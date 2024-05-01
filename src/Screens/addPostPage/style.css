@@ -1,0 +1,380 @@
+.add-post-page {
+  background: url("../../Asserts/images/add-post-bg.png");
+  /* background-size: 100% 100%; */
+  background-size: cover;
+  background-repeat: no-repeat;
+}
+
+.image-preview_sec {
+  padding-top: 150px;
+  padding-bottom: 60px;
+}
+
+.image__preview .image__preview-img {
+  width: 100%;
+  border-radius: 5px;
+}
+.image__preview {
+  margin-top: 30px;
+  margin-bottom: 30px;
+}
+.image-preview_item .swiper-button-prev:after,
+.image-preview_item .swiper-button-next:after {
+  font-size: 13px;
+  color: #fff;
+  line-height: 0;
+  font-weight: 600;
+  padding: 10px;
+}
+.image-preview_item .swiper-button-prev,
+.image-preview_item .swiper-button-next {
+  width: unset;
+  height: unset;
+  top: 10%;
+}
+.image-preview_item .swiper-button-prev {
+  right: -81%;
+}
+.image-preview_item .swiper-button-prev.swiper-button-disabled,
+.image-preview_item .swiper-button-next.swiper-button-disabled {
+  opacity: 1;
+}
+
+.image-preview_item .swiper-button-next {
+  right: -1%;
+}
+.image-preview_item {
+  position: relative;
+}
+.image__preview-heading {
+  color: #fff;
+  font-size: 14px;
+  font-family: "lato";
+  margin-bottom: 0;
+  text-transform: uppercase;
+  line-height: 1;
+  position: absolute;
+  top: 8px;
+}
+.image__preview-heading-1 {
+  background: -webkit-linear-gradient(0deg, #f4d77f, #fdf6c3, #bd8628);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+}
+
+/* Image Preview Upload */
+.image-preview_item .upload__box {
+  position: relative;
+  width: 100%;
+  top: 30px;
+  height: 250px;
+}
+.image-preview_item .upload__container-btn {
+  border: 3px dashed goldenrod;
+  border-radius: 5px;
+  overflow: hidden;
+  padding: 0;
+  position: relative;
+  width: 100%;
+  height: 220px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+.image-preview_item .upload__box .uploaded-image {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  position: absolute;
+  z-index: 99;
+}
+.image-preview_item .upload__container-btn .uoload-icon img {
+  width: 130px;
+}
+/* Image Preview Upload End */
+
+.add-post {
+  color: #fff;
+  font-family: "lato";
+  /* padding-bottom: 120px; */
+}
+
+.add-post .post-title .title {
+  text-transform: uppercase;
+}
+
+.add-post input[type="checkbox"],
+.add-post input[type="text"] {
+  background: #141414;
+  color: #fff;
+}
+
+.post-title__form {
+  border: 1px solid goldenrod;
+  font-size: 16px;
+  text-transform: none !important;
+}
+
+.post-title__form::placeholder {
+  color: #fff;
+  font-size: 16px;
+  text-transform: none !important;
+}
+.post-title__form:focus {
+  background-color: unset;
+  outline: unset;
+  box-shadow: unset;
+  border: 1px solid goldenrod;
+}
+
+.post__title-checkboxes {
+  display: flex;
+  justify-content: flex-start;
+  flex-wrap: wrap;
+  margin-top: 30px;
+}
+.add__post-checboxes {
+  margin-right: 30px;
+}
+.post__title-checkboxes .price h3 {
+  display: inline-block;
+  font-size: 25px;
+}
+.post__title-checkboxes span.price-amount {
+  padding: 10px 20px;
+  border: 1px solid goldenrod;
+  border-radius: 6px;
+  margin-left: 10px;
+}
+.add-post .post__title-checkboxes .custom_check-box .custom_check-text {
+  font-size: 23px;
+  margin-top: 0;
+}
+
+.add-post .post__title-checkboxes .private__span {
+  font-size: 15px;
+}
+
+.add-post .post__title-checkboxes .custom_check-box {
+  padding-right: 43px;
+  padding-left: 0;
+}
+.add-post .post__title-checkboxes .custom_check-box .chackbox_input {
+  right: 0;
+  left: unset;
+}
+
+p.description-text {
+  border: 1px solid goldenrod;
+  padding: 10px;
+  display: -webkit-box;
+  -webkit-line-clamp: 6;
+  -webkit-box-orient: vertical;
+  overflow: hidden;
+  font-size: 16px;
+  line-height: 2;
+  background-color: #141414;
+}
+
+.categories .custom_check-box {
+  display: flex;
+  position: relative;
+  padding-left: 35px;
+  margin-bottom: 12px;
+  cursor: pointer;
+  font-size: 18px;
+  -webkit-user-select: none;
+  user-select: none;
+}
+.categories .custom_check-box .custom_check-text {
+  color: #fff;
+  text-transform: uppercase;
+}
+.categories .custom_check-box .chackbox_input {
+  position: absolute;
+  opacity: 1;
+  cursor: pointer;
+  left: 0;
+  display: block;
+  appearance: none;
+  height: 25px !important;
+  width: 25px !important;
+  background-color: #141414;
+  border: 1px solid #b29139;
+}
+.categories .custom_check-box .chackbox_input:checked:after {
+  content: "\f00c";
+  font-family: "fontawesome";
+  position: absolute;
+  color: #ffffff;
+  left: 10%;
+  top: -10%;
+  background: -webkit-linear-gradient(45deg, #f4d77f, #fdf6c3, #bd8628);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+}
+
+.add-post .categories_checkboxes {
+  display: flex;
+  column-gap: 23px;
+  flex-wrap: wrap;
+  justify-content: space-between;
+}
+.add-post .categories_title {
+  font-size: 25px;
+  font-family: "lato";
+  margin-bottom: 15px;
+  font-weight: 700;
+}
+.categories {
+  margin-top: 40px;
+}
+
+.tags-sec {
+  margin: 30px 0;
+}
+
+.add-post .custom_check-box {
+  display: flex;
+  position: relative;
+  padding-left: 43px;
+  margin-bottom: 30px;
+  cursor: pointer;
+  font-size: 18px;
+  -webkit-user-select: none;
+  user-select: none;
+}
+.add-post .custom_check-box .custom_check-text {
+  color: #fff;
+  text-transform: uppercase;
+  margin-top: 5px;
+}
+.add-post .custom_check-box .chackbox_input {
+  position: absolute;
+  opacity: 1;
+  cursor: pointer;
+  left: 0;
+  display: block;
+  appearance: none;
+  height: 35px !important;
+  width: 35px !important;
+  background-color: #141414;
+  border: 1px solid #b29139;
+  border-radius: 5px;
+}
+.add-post .custom_check-box .chackbox_input:checked:after {
+  content: "\f00c";
+  font-family: "fontawesome";
+  position: absolute;
+  color: #ffffff;
+  left: 20%;
+  top: 3px;
+  background: -webkit-linear-gradient(45deg, #f4d77f, #fdf6c3, #bd8628);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+}
+
+.tag-friends {
+  background: #141414;
+  padding: 10px;
+  border: 1px solid goldenrod;
+  border-radius: 10px;
+}
+.tag-friends .tags-btn {
+  background: #0b0b0b;
+  color: #fff;
+  border: 0;
+  margin-right: 6px;
+  padding: 9px 15px;
+  border-radius: 7px;
+  position: relative;
+  font-size: 13px;
+}
+.tag-friends .tags-btn .small-cancel {
+  position: absolute;
+  right: 5px;
+  line-height: 0;
+}
+
+.add-post_btns {
+  display: flex;
+  justify-content: center;
+  column-gap: 30px;
+}
+.add-post_btns button {
+  width: 150px;
+}
+
+.sign_actionBtn.black-bg {
+  background-image: url(../../Asserts/images/have-a-look-btn-bk.png);
+  color: #fff;
+}
+
+.page-bottom_img {
+  width: 100%;
+  height: 200px;
+}
+
+@media (max-width: 1024px) {
+  .add-post .custom_check-box {
+    font-size: 16px;
+  }
+  .add-post .post__title-checkboxes .custom_check-box .custom_check-text {
+    font-size: 16px;
+  }
+  .add-post .custom_check-box .chackbox_input {
+    height: 30px !important;
+    width: 30px !important;
+  }
+  .post__title-checkboxes .price h3 {
+    font-size: 16px;
+  }
+  .post__title-checkboxes span.price-amount {
+    padding: 6px 13px;
+  }
+  .tags-sec .title {
+    font-size: 25px;
+  }
+  .post_options .custom_check-text {
+    font-size: 15px;
+  }
+  p.description-text {
+    -webkit-line-clamp: 5;
+  }
+}
+
+@media (max-width: 991px) {
+  .add-post .categories_checkboxes {
+    column-gap: 15px;
+    justify-content: left;
+  }
+  .add-post .custom_check-box {
+    font-size: 14px;
+    padding-left: 43px;
+  }
+  .add-post .post__title-checkboxes .custom_check-box .chackbox_input {
+    width: 25px !important;
+    height: 25px !important;
+  }
+  .add-post .post__title-checkboxes .custom_check-box {
+    padding-right: 33px;
+    padding-left: 0;
+  }
+  .add__post-checboxes {
+    margin-right: 10px;
+  }
+  .add-post .post__title-checkboxes .private__span {
+    font-size: 10px;
+  }
+  .tag-friends {
+    margin-bottom: 20px;
+  }
+  .add-post .custom_check-box {
+    margin-bottom: 20px;
+  }
+}
+@media (max-width: 428px) {
+  .add-post .categories_checkboxes {
+    column-gap: 25px;
+  }
+}

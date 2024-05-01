@@ -1,0 +1,196 @@
+.header_top {
+  position: absolute;
+  width: 100%;
+}
+
+.main_header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 14px 45px 0px;
+}
+
+.header_menu_icon,
+.header_search_icon {
+  border: none;
+  background-color: transparent;
+  padding: 0px;
+}
+
+.header_menu_icon img {
+  height: 50px;
+  width: 60px;
+  object-fit: cover;
+}
+
+.home_main_logo img {
+  height: 70px;
+  object-fit: cover;
+}
+
+.header_search_icon img {
+  height: 36px;
+  width: 36px;
+  object-fit: cover;
+}
+
+/* Search Modal Start */
+.search-modal .search-modal_content {
+  text-align: center;
+  color: #fff;
+  background: #121212;
+  padding: 50px 0;
+  border-top: 5px solid transparent;
+  border-bottom: 5px solid transparent;
+  border-image: linear-gradient(45deg, #fdf6c3, #bd8628, #f4d77f, #bd8628);
+  border-image-slice: 1;
+  position: relative;
+}
+.search-modal .search-modal_content .main_searchBar {
+  width: 90%;
+  margin: auto;
+  padding: 10px 40px;
+}
+.search-modal .search-modal_content .search-modal_close {
+  position: absolute;
+  right: 20px;
+  top: 10px;
+}
+/* Search Modal Emd */
+
+.sidenav {
+  height: 100%; /* 100% Full-height */
+  width: 0; /* 0 width - change this with JavaScript */
+  position: fixed; /* Stay in place */
+  z-index: 1; /* Stay on top */
+  top: 0; /* Stay at the top */
+  left: 0;
+  background-color: #111; /* Black*/
+  overflow-x: hidden; /* Disable horizontal scroll */
+  padding-top: 60px; /* Place content 60px from the top */
+  transition: 0.5s; /* 0.5 second transition effect to slide in the sidenav */
+}
+
+.sidenav h6 {
+  color: #fff;
+}
+
+.closebtn {
+  position: absolute;
+  top: 8px;
+  right: 8px;
+}
+
+.menuSection {
+  position: fixed;
+  width: 330px;
+  height: 100vh;
+  background-color: #000;
+  z-index: 999;
+  padding: 40px 40px 0px 40px;
+  overflow-y: scroll;
+}
+.menuSection {
+  border-right: 5px solid transparent;
+  border-bottom: 5px solid transparent;
+  border-image: linear-gradient(45deg, #f4d77f, #fdf6c3, #bd8628);
+  border-image-slice: 1;
+}
+.menuSection::-webkit-scrollbar {
+  opacity: 0;
+}
+.offcanvas-logo {
+  position: relative;
+}
+.offcanvas-logo .offcanvas-logo_img img {
+  width: 100%;
+}
+.offcanvas-logo {
+  position: relative;
+}
+.offcanvas-logo .offcanvas-logo_img img {
+  width: 100%;
+}
+.closeBtn {
+  position: absolute;
+  right: -10px;
+  top: 19%;
+}
+.closeBtn img {
+  width: 100%;
+  height: auto;
+}
+.menuSection .nav {
+  width: 100%;
+  text-align: center;
+  display: block;
+}
+.menuSection nav.offcanvas-nav {
+  margin-bottom: 50px;
+}
+
+.offcanvas-nav ul {
+  padding-left: 0;
+  list-style: none;
+  padding: 20px 0;
+}
+
+.offcanvas-nav ul li a {
+  color: #fff;
+  font-family: "lato";
+  font-size: 20px;
+  padding: 15px 0;
+  display: inline-block;
+  width: 100%;
+  position: relative;
+  text-transform: uppercase;
+}
+.offcanvas-nav ul li a:hover {
+  text-decoration: none;
+}
+.offcanvas-nav ul li a::after {
+  content: "";
+  width: 100%;
+  height: 100%;
+  top: 70%;
+  left: -17px;
+  position: absolute;
+  display: inline-block;
+  background: url(../../../Asserts/images/menu-after.png);
+  background-repeat: no-repeat;
+}
+
+.offcanvas-logout {
+  text-align: center;
+}
+.offcanvas-logout a {
+  color: #fff;
+  font-family: "lato";
+  font-size: 20px;
+  padding: 15px 0;
+  display: inline-block;
+  width: 100%;
+  position: relative;
+  text-transform: uppercase;
+}
+.offcanvas-logout a:hover {
+  text-decoration: none;
+}
+.offcanvas-logout a::after {
+  content: "";
+  width: 100px;
+  height: 100%;
+  top: 70%;
+  left: 29%;
+  position: absolute;
+  display: inline-block;
+  background: url(../../../Asserts/images/menu-after.png);
+  background-repeat: no-repeat;
+  background-position-x: center;
+}
+
+@media (max-width: 768px) {
+  .main_header {
+    padding: 14px 25px 0px;
+  }
+}

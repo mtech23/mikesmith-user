@@ -1,0 +1,36 @@
+body {
+  margin: 0;
+  font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", "Roboto", "Oxygen",
+    "Ubuntu", "Cantarell", "Fira Sans", "Droid Sans", "Helvetica Neue",
+    sans-serif;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+
+code {
+  font-family: source-code-pro, Menlo, Monaco, Consolas, "Courier New",
+    monospace;
+}
+
+#root {
+  overflow: hidden;
+}
+
+@font-face {
+  font-family: "delorie";
+  src: local("MyFont"), url(./Asserts/fonts/DeloireBold.woff) format("woff");
+  unicode-range: U+20-21, U+3F, U+41-5A, U+61-7A;
+  font-weight: 400;
+}
+
+@font-face {
+  font-family: "inter";
+  src: local("MyFont"), url(./Asserts/fonts/Inter-Regular.woff) format("woff");
+  font-weight: normal;
+}
+
+@font-face {
+  font-family: "lato";
+  src: local("MyFont"), url(./Asserts/fonts/Lato-Regular.ttf) format("ttf");
+  font-weight: normal;
+}

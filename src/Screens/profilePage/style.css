@@ -1,0 +1,441 @@
+.profile_section_main {
+  background-color: #000;
+  padding: 110px 0px;
+  background-image: url("../../Asserts/images/hotModel-bk.png");
+  background-repeat: no-repeat;
+  background-size: 100% 100%;
+}
+
+.user_profile_picture img {
+  height: 100px;
+  width: 100px;
+  object-fit: cover;
+  position: relative;
+  margin-top: -50px;
+}
+
+.profile_section_main .hot_model_name {
+  font-size: 18px;
+  font-weight: 500;
+}
+
+.user_access {
+  display: inline-block;
+  font-size: 12px;
+  font-weight: 700;
+  color: #494949;
+  text-transform: uppercase;
+}
+
+.user_profile_desc {
+  color: #bebebe;
+  text-align: justify;
+  font-size: 14px;
+  font-weight: 400;
+}
+
+.followers_title {
+  display: block;
+  text-transform: uppercase;
+  color: #fff;
+  font-size: 14px;
+  font-weight: 400;
+  padding-bottom: 3px;
+}
+
+.followers_number {
+  display: block;
+  padding: 5px 0px;
+  font-size: 20px;
+  font-weight: 700;
+  background-image: url("../../Asserts/images/user-profile-span-bk.png");
+  background-repeat: no-repeat;
+  background-size: 100% 100%;
+}
+
+.no_of_follows {
+  display: inline-block;
+  background: -webkit-linear-gradient(#ffe37f, #8e6200);
+  background-clip: text;
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+}
+
+.profile_section_main .sign_actionBtn {
+  background-image: url("../../Asserts/images/have-a-look-btn-bk.png");
+  font-size: 10px;
+  color: #fff;
+  padding: 10px 18px;
+  font-weight: 400;
+}
+
+.sec-rqst-btns {
+  flex-wrap: wrap;
+}
+.sec-rqst-btns button {
+  width: 100% !important;
+  margin-bottom: 12px;
+}
+
+.give_tip_btn {
+  background-image: url("../../Asserts/images/login-btn-bk.png");
+  background-repeat: no-repeat;
+  background-size: 100% 100%;
+  width: 100%;
+  border: none;
+  background-color: transparent;
+  text-transform: uppercase;
+  font-size: 14px;
+  font-weight: 600;
+  padding: 6px 0px;
+  margin-top: 16px;
+}
+
+.user_profile_info {
+  background-color: #000;
+  padding: 0px 14px 24px;
+}
+
+.more_profiles_main {
+  margin-top: 50px;
+  background-color: #0b0b0b;
+  border-image: url("../../Asserts/images/photo-frame.png");
+  border-image-outset: 1px;
+  border-image-width: 4px;
+  border-image-slice: 20;
+}
+
+.more_profiles_like_this_title {
+  color: #fff;
+  text-transform: uppercase;
+  text-align: center;
+  font-size: 14px;
+  font-weight: 400;
+  margin: 0px;
+  padding: 12px 0px;
+  background-color: #161616;
+}
+
+.more_users_profile_img img {
+  height: 40px;
+  width: 40px;
+  object-fit: cover;
+}
+
+.more_user_profile_details {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+}
+
+.other_user_name {
+  margin: 0px;
+  color: #fff;
+  font-size: 12px;
+  font-weight: 400;
+}
+
+.other_user_access {
+  display: inline-block;
+  font-size: 10px;
+  color: #7d7d7d;
+}
+
+.other_user_info {
+  line-height: 13px;
+}
+
+.more_profiles_content {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 22px;
+}
+
+.user_profile_follow_btn {
+  border: none;
+  background-image: url("../../Asserts/images/create-account-btn-bk.png");
+  background-size: 100% 100%;
+  background-repeat: no-repeat;
+  background-color: transparent;
+  color: #fff;
+  padding: 5px 15px;
+  font-size: 10px;
+  text-transform: uppercase;
+}
+
+.all_other_users_profiles {
+  padding: 16px 10px;
+}
+
+.profile_section_main .second_model_card_img {
+  background-color: initial;
+  border-image-outset: 5px;
+  border-image-width: auto;
+}
+
+.profile_section_main .swiper-slide-active,
+.profile_section_main .swiper-slide {
+  padding: 5px 7px;
+}
+
+/* .model_main_section{
+    background-image: url("../../Asserts/images/hotModel-bk.png");
+    background-repeat: no-repeat;
+    background-size: 100% 100%;
+    padding-bottom: 55px;
+} */
+
+/* .user_profile_follow_btn{
+
+} */
+
+.modal-dialog.my-modal {
+  max-width: 1024px;
+}
+.carousel-modal {
+  text-align: center;
+  color: #fff;
+  background: #121212;
+  padding: 50px 0;
+  border-top: 5px solid transparent;
+  border-bottom: 5px solid transparent;
+  border-image: linear-gradient(45deg, #fdf6c3, #bd8628, #f4d77f, #bd8628);
+  border-image-slice: 1;
+}
+.carousel-header {
+  position: relative;
+}
+.caarousel-icons_inner {
+  display: flex;
+  justify-content: space-between;
+  margin: 0 5%;
+}
+.carousel-icons {
+  position: absolute;
+  top: 10px;
+  width: 100%;
+}
+.carousel-modal .modal-title {
+  font-size: 38px;
+  line-height: 1.2;
+  font-weight: 500;
+}
+.carousel-modal .modal-subtitle {
+  font-size: 25px;
+  color: #c2c2c2;
+  font-weight: normal;
+}
+/* .carousel-modal .swiper-slide-active {
+  position: relative;
+}
+.carousel-modal .swiper-slide-active img {
+  position: relative;
+} */
+.carousel-modal .swiper-slide-active img::before {
+  content: "";
+  background: url("../../Asserts/images/btm.png");
+  display: block;
+  width: 100px;
+  height: 100px;
+  z-index: 99999 !important;
+  /* position: absolute; */
+}
+.carousel-modal .swiper-slide-active img::after {
+  content: url("../../Asserts/images/top.png");
+}
+.carousel-footer_body {
+  font-family: "Poppins", sans-serif;
+  font-weight: 400;
+  max-width: 90ch;
+  margin: auto;
+}
+.carousel-modal .swiper-slide-prev img {
+  height: 300px !important;
+}
+.carousel-modal .swiper-slide-next img {
+  height: 300px !important;
+}
+
+/* Carousel Icons Start */
+.carousel-modal .swiper-button-prev:after,
+.carousel-modal .swiper-button-next:after {
+  font-size: 17px;
+  color: #fff;
+  line-height: 1;
+  font-weight: 700 !important;
+  padding: 10px;
+  position: relative;
+  opacity: 1 !important;
+}
+.carousel-modal .swiper-button-prev:after {
+  left: -48%;
+}
+.carousel-modal .swiper-button-next:after {
+  right: -48%;
+}
+.carousel-modal .swiper-button-prev,
+.carousel-modal .swiper-button-next {
+  width: 19%;
+  height: 3px;
+  background: #fff;
+  top: 100%;
+}
+.carousel-modal .swiper-button-prev {
+  left: 30%;
+}
+.carousel-modal .swiper-button-prev.swiper-button-disabled,
+.carousel-modal .swiper-button-next.swiper-button-disabled {
+  opacity: 1;
+}
+.carousel-modal .swiper-button-next {
+  right: 30%;
+}
+.carousel-modal .swiper {
+  padding-bottom: 40px;
+}
+.carousel-modal .swiper-button-prev:hover:after,
+.carousel-modal .swiper-button-next:hover:after {
+  background: -webkit-linear-gradient(45deg, #f4d77f, #fdf6c3, #bd8628);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  opacity: 1 !important;
+}
+.carousel-modal .swiper-button-prev:hover,
+.carousel-modal .swiper-button-next:hover {
+  background: linear-gradient(45deg, #f4d77f, #fdf6c3, #bd8628);
+}
+/* Carousel Icons End */
+
+.carousel-modal .swiper-wrapper {
+  align-items: center;
+}
+.carousel-footer_title {
+  font-family: "Poppins", sans-serif;
+  font-weight: 600;
+  margin: 30px 0 15px;
+}
+.carousel-footer_button {
+  background-image: url("../../Asserts/images/home-btn-bk.png") !important;
+  background-size: 100% 100%;
+  background-repeat: no-repeat;
+  font-size: 14px !important;
+  text-transform: uppercase;
+  font-weight: 500;
+  padding: 10px 30px !important;
+  background-color: transparent;
+  border: none;
+  width: 150px;
+  color: #000 !important;
+}
+p.carousel-footer_price {
+  font-size: 30px;
+  font-weight: 700;
+  background: -webkit-linear-gradient(45deg, #f4d77f, #fdf6c3, #bd8628);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  margin: 10px;
+}
+
+/* Swiper Css */
+.swiper {
+  width: 100%;
+  height: 100%;
+}
+
+.swiper-slide {
+  text-align: center;
+  font-size: 18px;
+  /* background: #fff; */
+
+  /* Center slide text vertically */
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.swiper-slide img {
+  display: block;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+
+.swiper-slide {
+  width: 60%;
+}
+
+@media (max-width: 1024px) {
+  .more_profiles_content {
+    flex-wrap: wrap;
+  }
+  .more_profiles_content div {
+    width: 100%;
+  }
+  .user_profile_follow_btn {
+    width: 100%;
+  }
+  .more_users_profile_img {
+    width: 30% !important;
+  }
+}
+
+@media (max-width: 768px) {
+  .carousel-modal .swiper-slide-prev img {
+    height: 160px !important;
+  }
+  .carousel-modal .swiper-slide-next img {
+    height: 160px !important;
+  }
+  .carousel-footer_body {
+    max-width: 50ch;
+    display: -webkit-box;
+    -webkit-line-clamp: 3;
+    -webkit-box-orient: vertical;
+    overflow: hidden;
+  }
+  .user_profile_bk_img img {
+    width: 100%;
+  }
+}
+
+@media (max-width: 480px) {
+  .more_users_profile_img {
+    width: unset !important;
+  }
+  .more_profiles_content div {
+    width: unset;
+  }
+  .profile_left_part {
+    margin-bottom: 40px;
+  }
+  .carousel-modal .swiper-slide-prev img {
+    height: 100px !important;
+  }
+  .carousel-modal .swiper-slide-next img {
+    height: 100px !important;
+  }
+  .carousel-modal {
+    padding: 30px 0;
+  }
+  .carousel-modal .modal-title {
+    font-size: 28px;
+  }
+  .carousel-modal .modal-subtitle {
+    font-size: 18px;
+  }
+  .carousel-footer_title {
+    margin: 15px 0 10px;
+    font-size: 20px;
+  }
+  .carousel-footer_body {
+    max-width: 40ch;
+    font-size: 14px;
+  }
+  .profile_left_part .model_card_top_corner_img {
+    right: -4px;
+  }
+  .profile_left_part .model_card_bottom_corner_img {
+    left: -4px;
+  }
+}
