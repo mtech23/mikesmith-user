@@ -104,7 +104,8 @@
 }
 
 .add-post input[type="checkbox"],
-.add-post input[type="text"] {
+.add-post input[type="text"],
+.add-post textarea {
   background: #141414;
   color: #fff;
 }
@@ -136,15 +137,22 @@
 .add__post-checboxes {
   margin-right: 30px;
 }
+.post__title-checkboxes .price {
+  display: flex;
+  align-items: flex-start;
+  justify-content: flex-start;
+  gap: 10px;
+}
 .post__title-checkboxes .price h3 {
   display: inline-block;
   font-size: 25px;
 }
-.post__title-checkboxes span.price-amount {
+.post__title-checkboxes .price-amount {
   padding: 10px 20px;
   border: 1px solid goldenrod;
   border-radius: 6px;
   margin-left: 10px;
+  width: 120px;
 }
 .add-post .post__title-checkboxes .custom_check-box .custom_check-text {
   font-size: 23px;

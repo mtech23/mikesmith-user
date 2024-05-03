@@ -21,13 +21,68 @@ import { Navigation } from "swiper/modules";
 
 import Aos from "aos";
 import "aos/dist/aos.css";
+import CustomTextarea from "../../Components/CustomTextarea";
 
 const AddPost = () => {
   const [file, setFile] = useState("");
+  const [selectedCategory, setSelectedCategory] = useState(null);
+  const [selectedPostType, setSelectedPostType] = useState(null);
+  const [selectedPostOption, setSelectedPostOption] = useState(null);
+
+  const CATEGORY_OPTIONS = [
+    { id: 0, title: "LOREM IPSUM" },
+    { id: 1, title: "CLEAN" },
+    { id: 2, title: "SKINNY" },
+    { id: 3, title: "MIDDLE" },
+    { id: 4, title: "MEDIUM" },
+    { id: 5, title: "DIRTY" },
+    { id: 6, title: "WIDE" },
+  ];
+
+  const POST_TYPES = [
+    { id: 0, title: "FREE TEASE" },
+    { id: 1, title: "PUBLIC" },
+    { id: 2, title: "PRIVATE", subtext: "FOR CUSTOM ORDERS" },
+  ];
 
   const handleChange = (e) => {
     const data = e.target.files[0];
+    console.log(data);
     setFile(data);
+  };
+
+  const handleCategoryChange = (id) => {
+    if (id === selectedCategory) {
+      setSelectedCategory(null);
+      return;
+    }
+    setSelectedCategory(id);
+  };
+  const handlePostTypeChange = (id) => {
+    if (id === selectedPostType) {
+      setSelectedPostType(null);
+      return;
+    }
+    setSelectedPostType(id);
+  };
+  const handlePostOptionChange = (id) => {
+    if (id === selectedPostOption) {
+      setSelectedPostOption(null);
+      return;
+    }
+    setSelectedPostOption(id);
+  };
+
+  const handleSubmit = (e) => {
+    e.preventDefault();
+    const formData = new FormData(e.currentTarget);
+    let payload = {};
+    for (let [key, value] of formData.entries()) {
+      payload[key] = value;
+    }
+    payload["category_id"] = selectedCategory;
+    payload["post_type"] = selectedPostOption;
+    payload["type"] = selectedPostType;
   };
 
   useEffect(() => {
@@ -49,7 +104,7 @@ const AddPost = () => {
                   <h3 className="image__preview-heading image__preview-heading-1">
                     Image 1, preview (Unblurred)
                   </h3>
-                  <Swiper 
+                  <Swiper
                     navigation={true}
                     modules={[Navigation]}
                     className="mySwiper"
@@ -331,7 +386,7 @@ const AddPost = () => {
 
         <div className="add-post">
           <div className="container">
-            <form action="#">
+            <form onSubmit={(e) => handleSubmit(e)}>
               <div className="row">
                 <div className="col-md-6">
                   <div className="post-title">
@@ -345,6 +400,7 @@ const AddPost = () => {
                     </h3>
                     <div className="input-group">
                       <input
+                        name="post_title"
                         type="text"
                         className="form-control post-title__form"
                         placeholder="Lorem Ipsum is a dummy text"
@@ -353,9 +409,20 @@ const AddPost = () => {
                     <div className="post__title-checkboxes">
                       <div className="price add__post-checboxes">
                         <h3>PRICE</h3>
-                        <span className="price-amount">$12.34</span>
+                        {/* <input
+                          className="form-control post-title__form price-amount"
+                          value="$12.34"
+                        /> */}
+                        <div className="input-group">
+                          <input
+                            name="price"
+                            type="text"
+                            className="form-control post-title__form price-amount"
+                            placeholder="$12.34"
+                          />
+                        </div>
                       </div>
-                      <div className="add__post-checboxes">
+                      {/* <div className="add__post-checboxes">
                         <label class="custom_check-box">
                           <span class="custom_check-text">Free tease</span>
                           <input type="checkbox" class="chackbox_input" />
@@ -377,10 +444,39 @@ const AddPost = () => {
                           </span>
                           <input type="checkbox" class="chackbox_input" />
                         </label>
-                      </div>
+                      </div> */}
+                      {POST_TYPES.map((item, index) => (
+                        <div key={index} className="add__post-checboxes">
+                          <label class="custom_check-box">
+                            <span class="custom_check-text">
+                              {item.title}
+                              {item.subtext && (
+                                <span className="private__span">
+                                  {" "}
+                                  (For custom orders)
+                                </span>
+                              )}
+                            </span>
+                            <input
+                              type="checkbox"
+                              class="chackbox_input"
+                              checked={selectedPostType === item.id}
+                              onChange={() => handlePostTypeChange(item.id)}
+                            />
+                          </label>
+                        </div>
+                      ))}
                     </div>
                   </div>
                 </div>
+                {/* <div className="col-md-6">
+                  <CustomTextarea
+                    label="Description"
+                    labelClass="title"
+                    placeholder="Description"
+                    inputClass="form-control post-title__form"
+                  />
+                </div> */}
                 <div className="col-md-6">
                   <h3
                     className="description-title"
@@ -414,7 +510,18 @@ const AddPost = () => {
                   CATEGORIES
                 </h3>
                 <div className="categories_checkboxes">
-                  <label class="custom_check-box">
+                  {CATEGORY_OPTIONS.map((item, index) => (
+                    <label class="custom_check-box">
+                      <span class="custom_check-text">{item.title}</span>
+                      <input
+                        type="checkbox"
+                        class="chackbox_input"
+                        checked={selectedCategory === item.id}
+                        onChange={() => handleCategoryChange(item.id)}
+                      />
+                    </label>
+                  ))}
+                  {/* <label class="custom_check-box">
                     <span class="custom_check-text">Lorem Ipsum</span>
                     <input type="checkbox" class="chackbox_input" />
                   </label>
@@ -437,9 +544,9 @@ const AddPost = () => {
                   <label class="custom_check-box">
                     <span class="custom_check-text">Lorem Ipsum</span>
                     <input type="checkbox" class="chackbox_input" />
-                  </label>
+                  </label> */}
                   {/* ---------------------------------- */}
-                  <label class="custom_check-box">
+                  {/* <label class="custom_check-box">
                     <span class="custom_check-text">CLEAN</span>
                     <input type="checkbox" class="chackbox_input" />
                   </label>
@@ -462,7 +569,7 @@ const AddPost = () => {
                   <label class="custom_check-box">
                     <span class="custom_check-text">WIDE</span>
                     <input type="checkbox" class="chackbox_input" />
-                  </label>
+                  </label> */}
                 </div>
               </div>
               <div className="tags-sec">
@@ -505,7 +612,12 @@ const AddPost = () => {
                         <span class="custom_check-text">
                           Release for promotional use
                         </span>
-                        <input type="checkbox" class="chackbox_input" />
+                        <input
+                          type="checkbox"
+                          class="chackbox_input"
+                          checked={selectedPostOption === 0}
+                          onChange={() => handlePostOptionChange(0)}
+                        />
                       </label>
                     </div>
                   </div>
@@ -516,7 +628,12 @@ const AddPost = () => {
                         <span class="custom_check-text">
                           PIN AT TOP OF MY MEMBER PAGE
                         </span>
-                        <input type="checkbox" class="chackbox_input" />
+                        <input
+                          type="checkbox"
+                          class="chackbox_input"
+                          checked={selectedPostOption === 1}
+                          onChange={() => handlePostOptionChange(1)}
+                        />
                       </label>
                     </div>
                   </div>
@@ -527,7 +644,9 @@ const AddPost = () => {
                 <div className="col-md-12">
                   <div className="add-post_btns">
                     <button class="sign_actionBtn black-bg">BOOST POST</button>
-                    <button class="sign_actionBtn">SUBMIT</button>
+                    <button class="sign_actionBtn" type="submit">
+                      SUBMIT
+                    </button>
                   </div>
                 </div>
               </div>

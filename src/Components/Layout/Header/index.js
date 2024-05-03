@@ -7,20 +7,44 @@ import {
   Cancel,
 } from "../../../Asserts/images/index";
 import "./style.css";
-import { Link } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 
 import Aos from "aos";
 import "aos/dist/aos.css";
+import { logoutRequest } from "../../../redux/slicers/user";
+import { useDispatch } from "react-redux";
+import { toastAlert } from "../../../utils";
+import { ALERT_TYPES } from "../../../constants";
+import { userLogoutRequest } from "../../../api";
 
 const Header = () => {
   const [ismenu, setIsMenu] = useState(false);
-
+  const dispatch = useDispatch();
+  const navigate = useNavigate();
   const openMenu = () => {
     setIsMenu(!ismenu);
   };
+
+  const handleLogout = async () => {
+    try {
+      const response = await userLogoutRequest();
+
+      if (response && response.status === true) {
+        localStorage.removeItem("userToken");
+        dispatch(logoutRequest());
+        navigate("/login-page");
+      } else {
+        toastAlert(response.statusText, ALERT_TYPES.ERROR);
+      }
+    } catch (error) {
+      toastAlert(error, ALERT_TYPES.ERROR);
+    }
+  };
+
   useEffect(() => {
     Aos.init();
   }, []);
+
   return (
     <>
       <div className="header_top">
@@ -129,7 +153,7 @@ const Header = () => {
                   <Link to={"/add-post-page"}>swag</Link>
                 </li>
                 <li>
-                  <Link to={"/login-page"}>Sign up</Link>
+                  <Link to={"/signup-page"}>Sign up</Link>
                 </li>
                 <li>
                   <Link to={"/"}>how it works</Link>
@@ -147,7 +171,7 @@ const Header = () => {
             </nav>
           </div>
           <div className="offcanvas-logout">
-            <Link to={"/#!"}>Logout</Link>
+            <Link onClick={handleLogout}>Logout</Link>
           </div>
         </div>
       )}

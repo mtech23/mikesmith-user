@@ -2,7 +2,7 @@ import React, { useEffect } from "react";
 import Header from "../../Components/Layout/Header";
 import Footer from "../../Components/Layout/Footer";
 
-import { Link } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 
 import {
   platinumFeetText,
@@ -42,6 +42,9 @@ import Aos from "aos";
 import "aos/dist/aos.css";
 
 const Home = () => {
+  //CONST VALS
+  const navigate = useNavigate();
+
   useEffect(() => {
     Aos.init();
   }, []);
@@ -67,11 +70,21 @@ const Home = () => {
 
                 <div className="actionBtns_and_searchBar">
                   <div>
-                    <button className="sign_actionBtn">sign in</button>
+                    <button
+                      className="sign_actionBtn"
+                      onClick={() => navigate("/login-page")}
+                    >
+                      sign in
+                    </button>
                   </div>
 
                   <div>
-                    <button className="sign_actionBtn">sign up</button>
+                    <button
+                      className="sign_actionBtn"
+                      onClick={() => navigate("/signup-page")}
+                    >
+                      sign up
+                    </button>
                   </div>
 
                   <div className="main_searchBar">

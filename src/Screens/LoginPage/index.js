@@ -4,8 +4,45 @@ import React from "react";
 import { mainLogo, top, btm } from "../../Asserts/images/index";
 
 import "./style.css";
+import { useNavigate } from "react-router-dom";
+import { userLoginRequest } from "../../api";
+import { toastAlert } from "../../utils";
+import { ALERT_TYPES } from "../../constants";
+import { useDispatch } from "react-redux";
+import { loginSuccess } from "../../redux/slicers/user";
 
 const Login = () => {
+  //CONST VALS
+  const navigate = useNavigate();
+  const dispatch = useDispatch();
+
+  //HANDLERS
+  const handleSubmit = async (event) => {
+    event.preventDefault();
+    const formData = new FormData(event.currentTarget);
+    let payload = {};
+    for (let [key, value] of formData.entries()) {
+      payload[key] = value;
+    }
+    console.log(payload);
+    try {
+      const response = await userLoginRequest(payload);
+
+      if (response && response.success === true) {
+        const userToken = response.data.token;
+
+        localStorage.setItem("userToken", userToken);
+        dispatch(loginSuccess(response.data));
+        // navigate("/");
+      } else {
+        toastAlert(response.statusText, ALERT_TYPES.ERROR);
+      }
+    } catch (error) {
+      console.error("Error in logging in:", error);
+
+      toastAlert(error, ALERT_TYPES.ERROR);
+    }
+  };
   return (
     <div>
       <section className="log">
@@ -18,28 +55,36 @@ const Login = () => {
                   <div className="imagerow">
                     <img className="img-fluid " src={mainLogo} />
                   </div>
-                  <h4 className="sign">Welcome! Sign to continue</h4>
+                  <h4 className="sign">Welcome! Sign in to continue</h4>
                   <p className="txt">
                     Lorem Ipsum is simply dummy text of the printing and
                     typesetting industry. Lorem Ipsum has been the industry's{" "}
                   </p>
 
-                  <form className="login-form ">
+                  <form className="login-form " onSubmit={handleSubmit}>
                     {/* <input type='text'></input> */}
-                    <label class="user"> Email </label>
+                    <label required class="user">
+                      {" "}
+                      Email{" "}
+                    </label>
                     <input
                       class="mail"
                       type="text"
                       placeholder="Enter Your Email "
-                      name="username"
+                      name="email"
+                      required
                     />
 
-                    <label class="pass"> Password </label>
+                    <label class="pass" required>
+                      {" "}
+                      Password{" "}
+                    </label>
                     <input
                       class="pass"
                       type="password"
                       placeholder=" Enter Your Password"
                       name="password"
+                      required
                     />
 
                     <input type="submit" value="Login" />
@@ -54,7 +99,12 @@ const Login = () => {
                     <span className="line1"> </span>
                   </div>
                   <div className="create">
-                    <button className="account">Create Account</button>
+                    <button
+                      className="account"
+                      onClick={() => navigate("/signup-page")}
+                    >
+                      Create Account
+                    </button>
                   </div>
                 </div>
               </div>
