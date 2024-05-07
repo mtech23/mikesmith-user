@@ -143,6 +143,11 @@ const Header = () => {
                 <li>
                   <Link to={"/#!"}>My Dashboard</Link>
                 </li>
+
+                <li>
+                  <Link to={"/model-profile-page"}>My Profile</Link>
+                </li>
+                
                 <li>
                   <Link to={"/add-post-page"}>Search posts</Link>
                 </li>

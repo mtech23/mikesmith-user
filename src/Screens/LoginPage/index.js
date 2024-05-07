@@ -23,16 +23,24 @@ const Login = () => {
     let payload = {};
     for (let [key, value] of formData.entries()) {
       payload[key] = value;
+
     }
     console.log(payload);
     try {
       const response = await userLoginRequest(payload);
 
       if (response && response.success === true) {
-        const userToken = response.data.token;
+        const userToken = response?.data;
 
-        localStorage.setItem("userToken", userToken);
+        localStorage.setItem("userToken", userToken?.token);
+        localStorage.setItem("userrole", userToken?.user_role);
+
         dispatch(loginSuccess(response.data));
+        const usertype = localStorage.getItem('userrole')
+        console.log("usertype", usertype)
+        if (usertype == 2) {
+          navigate("/packages-page");
+        }
         // navigate("/");
       } else {
         toastAlert(response.statusText, ALERT_TYPES.ERROR);

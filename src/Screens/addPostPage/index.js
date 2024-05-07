@@ -25,10 +25,13 @@ import CustomTextarea from "../../Components/CustomTextarea";
 
 const AddPost = () => {
   const [file, setFile] = useState("");
+
   const [selectedCategory, setSelectedCategory] = useState(null);
   const [selectedPostType, setSelectedPostType] = useState(null);
   const [selectedPostOption, setSelectedPostOption] = useState(null);
-
+  const [formData, setFormData] = useState({
+    file: [], // Initialize image as an empty string
+  });
   const CATEGORY_OPTIONS = [
     { id: 0, title: "LOREM IPSUM" },
     { id: 1, title: "CLEAN" },
@@ -51,6 +54,7 @@ const AddPost = () => {
     setFile(data);
   };
 
+  console.log("file", file)
   const handleCategoryChange = (id) => {
     if (id === selectedCategory) {
       setSelectedCategory(null);
@@ -77,18 +81,58 @@ const AddPost = () => {
     e.preventDefault();
     const formData = new FormData(e.currentTarget);
     let payload = {};
+    for (let [file, value] of formData.entries()) {
+      payload[key] = value;
+    }
     for (let [key, value] of formData.entries()) {
       payload[key] = value;
     }
     payload["category_id"] = selectedCategory;
     payload["post_type"] = selectedPostOption;
     payload["type"] = selectedPostType;
+    console.log("formData", formData)
+    console.log("payload", payload)
+  }
+
+
+
+
+
+  const handleSubmits = (e) => {
+    e.preventDefault();
+    const formData = new FormData(e.currentTarget);
+    const payload = {};
+  
+    for (let [key, value] of formData.entries()) {
+      // Check if the current form data entry is a file
+      if (value instanceof File) {
+        // If it's a file, add it to the payload as an array
+        if (!payload[key]) {
+          payload[key] = [value];
+        } else {
+          payload[key].push(value);
+        }
+      } else {
+        // If it's not a file, directly assign the value to the payload
+        payload[key] = value;
+      }
+    }
+  
+    // Assuming selectedCategory, selectedPostOption, and selectedPostType are defined elsewhere
+    payload["category_id"] = selectedCategory;
+    payload["post_type"] = selectedPostOption;
+    payload["type"] = selectedPostType;
+  
+    console.log("formData", formData);
+    console.log("payload", payload);
   };
+
+
 
   useEffect(() => {
     Aos.init();
   }, []);
-
+   
   return (
     <>
       <section class="add-post-page">
@@ -160,7 +204,7 @@ const AddPost = () => {
               </div>
               <div className="col-md-4">
                 <div class="image-preview_item">
-                  <h3 className="image__preview-heading">Image 3</h3>
+                  <h3 className="image__preview-heading"> 3</h3>
                   <Swiper
                     navigation={true}
                     modules={[Navigation]}
@@ -307,12 +351,7 @@ const AddPost = () => {
                               />
                             </div>
                           )}
-                          {/* <img
-                        src={addPostImg1}
-                        className="uploaded-image"
-                        id="output"
-                        width="100%"
-                      /> */}
+
                         </label>
                       </div>
                     </SwiperSlide>
@@ -386,7 +425,7 @@ const AddPost = () => {
 
         <div className="add-post">
           <div className="container">
-            <form onSubmit={(e) => handleSubmit(e)}>
+            <form onSubmit={(e) => handleSubmits(e)}>
               <div className="row">
                 <div className="col-md-6">
                   <div className="post-title">

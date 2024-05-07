@@ -1,9 +1,12 @@
-import React, { useEffect } from "react";
+import React, { useEffect, useState } from "react";
 import Header from "../../Components/Layout/Header";
 import Footer from "../../Components/Layout/Footer";
-
+import { modelprofileview } from "../../api";
 import { Swiper, SwiperSlide } from "swiper/react";
-
+import { toastAlert } from "../../utils";
+import { ALERT_TYPES } from "../../constants";
+import { loginSuccess } from "../../redux/slicers/user";
+import { useDispatch } from "react-redux";
 import {
   platinumFeetText,
   headerSearchIcon,
@@ -53,11 +56,59 @@ import "./style.css";
 
 import Aos from "aos";
 import "aos/dist/aos.css";
+import { useNavigate } from "react-router-dom";
 
 const ModelProfile = () => {
+
+  const dispatch = useDispatch();
+  const [userdata, setUserdata] = useState()
+  const baseurl = `${process.env.REACT_APP_BASE_URL}/public/`
+  console.log("baseurl", baseurl)
+  const handleSubmit = async () => {
+
+
+    try {
+      const response = await modelprofileview();
+      console.log("response", response)
+
+
+      setUserdata(response?.data)
+      // if (response && response?.success === true) {
+      //   const  data = response?.data;
+      //   console.log("data" , data)
+      //   setUserdata(data)
+
+
+
+
+      //   dispatch(loginSuccess(response.data));
+
+
+      //   // navigate("/");
+      // } else {
+      //   // toastAlert(response.statusText, ALERT_TYPES.ERROR);
+      // }
+    } catch (error) {
+      console.error("Error in logging in:", error);
+
+      // toastAlert(error, ALERT_TYPES.ERROR);
+    }
+  };
   useEffect(() => {
     Aos.init();
+    handleSubmit()
   }, []);
+const navigate = useNavigate()
+const handleroute = () =>{
+
+
+  
+  navigate('/add-post-page')
+}
+
+
+
+
   return (
     <div>
       <div>
@@ -81,7 +132,7 @@ const ModelProfile = () => {
                       data-aos-anchor-placement="center-bottom"
                       data-aos-duration="3000"
                     >
-                      <img src={userProfilePic} />
+                      <img src={(baseurl + userdata?.profile_pic) && (userProfilePic)} />
                     </div>
 
                     <div className="user_info">
@@ -94,7 +145,7 @@ const ModelProfile = () => {
                         <span className="online_circle">
                           <i class="fa-solid fa-circle"></i>
                         </span>
-                        <span className="hot_model_name">HOTMODEL1234</span>
+                        <span className="hot_model_name">{userdata?.name || 'HOTMODEL1234'}</span>
                       </div>
 
                       <div
@@ -103,7 +154,7 @@ const ModelProfile = () => {
                         data-aos-anchor-placement="center-bottom"
                         data-aos-duration="2000"
                       >
-                        <span className="user_access">@HOTMODEL1223</span>
+                        <span className="user_access">{userdata?.email}</span>
                       </div>
 
                       <p
@@ -112,9 +163,7 @@ const ModelProfile = () => {
                         data-aos-anchor-placement="center-bottom"
                         data-aos-duration="3000"
                       >
-                        Lorem Ipsum is simply dummy text of the printing and
-                        typesetting industry. Lorem Ipsum has been the
-                        industry's standard
+                        {userdata?.bio}
                       </p>
                     </div>
 
@@ -126,7 +175,7 @@ const ModelProfile = () => {
                     >
                       <span className="followers_title">followers</span>
                       <span className="followers_number">
-                        <span className="no_of_follows">257</span>
+                        <span className="no_of_follows">{userdata?.follower}</span>
                       </span>
                     </div>
 
@@ -138,7 +187,7 @@ const ModelProfile = () => {
                     >
                       <span className="followers_title">following</span>
                       <span className="followers_number">
-                        <span className="no_of_follows">145</span>
+                        <span className="no_of_follows">{userdata?.following}</span>
                       </span>
                     </div>
 
@@ -148,6 +197,7 @@ const ModelProfile = () => {
                         data-aos="fade-right"
                         data-aos-anchor-placement="center-bottom"
                         data-aos-duration="3000"
+                        onClick={handleroute}
                       >
                         add post
                       </button>
@@ -167,7 +217,7 @@ const ModelProfile = () => {
                       data-aos-anchor-placement="center-bottom"
                       data-aos-duration="3000"
                     >
-                      <button className="give_tip_btn">BANK: $1234.42</button>
+                      <button className="give_tip_btn">BANK: $ {userdata?.earning}</button>
                     </div>
 
                     <div

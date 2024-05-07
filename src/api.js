@@ -86,172 +86,616 @@ export const userLogoutRequest = async () => {
     throw error; // Rethrow error to be handled by caller
   }
 };
+ 
 
-export const filterProducts = async (
-  url,
-  categoryID,
-  menuID,
-  dietaryID,
-  minPrice,
-  maxPrice
-) => {
+
+
+
+ 
+//AddPost
+export const Addmodelpost = async () => {
   try {
-    const apiUrl = `${url}/public/api/filter_product/?category_id=${categoryID}&menu_id=${menuID}&dietary_id=${dietaryID}&min_price=${minPrice}&max_price=${maxPrice}`;
-
-    console.log(apiUrl);
-    const response = await fetch(apiUrl, {
-      method: "GET",
+    const res = await fetch(`${url}/public/api/model/post-add-edit/`, {
+      method: "POST",
+      headers: {
+        "Content-Type": "application/json",
+        Authorization: `Bearer ${localStorage.getItem("userToken")}`,
+      },
     });
+    console.log(res, "res");
+    // Ensure response is ok before proceeding
 
-    if (!response.ok) {
-      throw new Error(`HTTP error! Status: ${response.status}`);
+    const productData = await res.json(); // Parse response JSON
+    console.log(productData, "res");
+    if (!res.ok) {
+      toastAlert(productData?.msg, ALERT_TYPES.ERROR);
+    } else {
+      toastAlert(productData?.msg, ALERT_TYPES.SUCCESS);
     }
 
-    const data = await response.json();
-
-    return data;
+    return productData; // Return parsed data
   } catch (error) {
-    console.error("Error in filtering products =>", error);
-    throw error;
+    toastAlert(error, ALERT_TYPES.ERROR); // Handle error
+    throw error; // Rethrow error to be handled by caller
   }
 };
+// https://custom3.mystagingserver.site/Mike-Smith/public/api/model/post-add-edit/1
 
-export const Get_all_product_detail = async (productId) => {
-  console.log(productId);
+
+//Editpost
+export const Editmodelpost = async (id) => {
   try {
-    const res = await fetch(`${url}/public/api/product_detail/${productId}`, {
-      method: "GET",
+    const res = await fetch(`${url}/public/api/model/post-add-edit/${id}`, {
+      method: "POST",
+      headers: {
+        "Content-Type": "application/json",
+        Authorization: `Bearer ${localStorage.getItem("userToken")}`,
+      },
     });
-    const data = await res.json();
+    console.log(res, "res");
+    // Ensure response is ok before proceeding
 
-    return data;
+    const productData = await res.json(); // Parse response JSON
+    console.log(productData, "res");
+    if (!res.ok) {
+      toastAlert(productData?.msg, ALERT_TYPES.ERROR);
+    } else {
+      toastAlert(productData?.msg, ALERT_TYPES.SUCCESS);
+    }
+
+    return productData; // Return parsed data
   } catch (error) {
-    console.log("Error in getting all products (service) =>", error);
+    toastAlert(error, ALERT_TYPES.ERROR); // Handle error
+    throw error; // Rethrow error to be handled by caller
   }
 };
 
-export const Popular_product = async () => {
+
+
+
+
+ 
+
+ 
+
+
+
+
+//Post image Delete
+export const PostImagedelete = async (id) => {
   try {
-    const res = await fetch(`${url}/public/api/popular_product`, {
-      method: "GET",
+    const res = await fetch(`${url}/public/api/model/post-image-delete/${id}/${id}`, {
+      method: "Get",
+      headers: {
+        "Content-Type": "application/json",
+        Authorization: `Bearer ${localStorage.getItem("userToken")}`,
+      },
     });
-    const data = await res.json();
-    return data;
+    console.log(res, "res");
+    // Ensure response is ok before proceeding
+
+    const productData = await res.json(); // Parse response JSON
+    console.log(productData, "res");
+    if (!res.ok) {
+      toastAlert(productData?.msg, ALERT_TYPES.ERROR);
+    } else {
+      toastAlert(productData?.msg, ALERT_TYPES.SUCCESS);
+    }
+
+    return productData; // Return parsed data
   } catch (error) {
-    console.log("Error in getting all products (service) =>", error);
-  }
-};
-// const [data, setData] = useState([]);
-// const [filteredData, setFilteredData] = useState([]);
-// const [categoryID, setCategoryID] = useState(1); // Set initial category ID
-// const [menuID, setMenuID] = useState(3); // Set initial menu ID
-// const [dietaryID, setDietaryID] = useState(1); // Set initial dietary ID
-
-// useEffect(() => {
-//   // Make initial API call or fetch data
-//   // For example:
-//   // fetch(`${apiUrl}/public/api/filter_product/?category_id=${categoryID}&menu_id=${menuID}&dietary_id=${dietaryID}`)
-//   //   .then(response => response.json())
-//   //   .then(data => setData(data));
-// }, [categoryID, menuID, dietaryID]);
-
-// const handleFilterChange = ({ minPrice, maxPrice }) => {
-//   // Filter data based on min and max price values
-//   fetch(`${apiUrl}/public/api/filter_product/?category_id=${categoryID}&menu_id=${menuID}&dietary_id=${dietaryID}&min_price=${minPrice}&max_price=${maxPrice}`)
-//     .then(response => response.json())
-//     .then(filteredData => setFilteredData(filteredData));
-// };
-
-// export const Filter_product = async() => {
-//   try {
-//     // fetch(`${url}/public/api/filter_product/?category_id=${categoryID}&menu_id=${menuID}&dietary_id=${dietaryID}&min_price=${minPrice}&max_price=${maxPrice}`)
-//     const res = await fetch(`${url}/public/api/filter_product/?category_id=1&menu_id=3&dietary_id=1&min_price=20&max_price=40`, {
-
-//       method: 'GET',
-//       headers: {
-//         "application": ''
-//       }
-//     });
-//     const data = await res.json();
-//     console.log(data)
-//     return data;
-//   } catch (error) {
-//     console.log('Error in getting all products (service) =>', error)
-//   }
-// }
-
-export const filterProduct = async () => {
-  try {
-    const categoryID = 2;
-    const menuID = 3;
-    const dietaryID = 1;
-    const minPrice = 300;
-    const maxPrice = 304;
-
-    const res = await fetch(
-      `https://custom2.mystagingserver.site/food-stadium/public/api/filter_product/?category_id=2&menu_id=3&dietary_id=1&min_price=300&max_price=304`,
-      {
-        method: "GET",
-        headers: {
-          "Content-Type": "application/json", // Replace with the appropriate content type
-          // Add any other headers as needed for your API
-        },
-      }
-    );
-
-    const data = await res.json();
-    console.log(data);
-    return data;
-  } catch (error) {
-    console.error("Error in getting filtered products:", error);
-    throw error; // Rethrow the error to propagate it to the caller if needed
+    toastAlert(error, ALERT_TYPES.ERROR); // Handle error
+    throw error; // Rethrow error to be handled by caller
   }
 };
 
-export const Menu_listing = async () => {
+
+
+
+//delete model post
+export const deletemodelpost = async (id) => {
   try {
-    const res = await fetch(`${url}/public/api/menu_listing`, {
-      method: "GET",
+    const res = await fetch(`${url}/public/api/model/post-delete/${id}`, {
+      method: "Get",
+      headers: {
+        "Content-Type": "application/json",
+        Authorization: `Bearer ${localStorage.getItem("userToken")}`,
+      },
     });
-    const data = await res.json();
-    return data;
+    console.log(res, "res");
+    // Ensure response is ok before proceeding
+
+    const productData = await res.json(); // Parse response JSON
+    console.log(productData, "res");
+    if (!res.ok) {
+      toastAlert(productData?.msg, ALERT_TYPES.ERROR);
+    } else {
+      toastAlert(productData?.msg, ALERT_TYPES.SUCCESS);
+    }
+
+    return productData; // Return parsed data
   } catch (error) {
-    console.log("Error in getting all products (service) =>", error);
+    toastAlert(error, ALERT_TYPES.ERROR); // Handle error
+    throw error; // Rethrow error to be handled by caller
   }
 };
 
-export const Get_all_catigories = async () => {
+ 
+
+//Get model post list
+export const Getmodelpostlist = async (id) => {
   try {
-    const res = await fetch(`${url}/public/api/category_listing`, {
-      method: "GET",
+    const res = await fetch(`${url}/public/api/model/post-listing`, {
+      method: "Get",
+      headers: {
+        "Content-Type": "application/json",
+        Authorization: `Bearer ${localStorage.getItem("userToken")}`,
+      },
     });
-    const data = await res.json();
-    return data;
+    console.log(res, "res");
+    // Ensure response is ok before proceeding
+
+    const productData = await res.json(); // Parse response JSON
+    console.log(productData, "res");
+    if (!res.ok) {
+      toastAlert(productData?.msg, ALERT_TYPES.ERROR);
+    } else {
+      toastAlert(productData?.msg, ALERT_TYPES.SUCCESS);
+    }
+
+    return productData; // Return parsed data
   } catch (error) {
-    console.log("Error in getting all products (service) =>", error);
+    toastAlert(error, ALERT_TYPES.ERROR); // Handle error
+    throw error; // Rethrow error to be handled by caller
   }
 };
 
-export const Dietary_listing = async () => {
+
+
+//Get model post detail
+export const Getmodelpostdetail = async (id) => {
   try {
-    const res = await fetch(`${url}/public/api/dietary_listing`, {
-      method: "GET",
+    const res = await fetch(`${url}/public/api/model/post-view/${id}`, {
+      method: "Get",
+      headers: {
+        "Content-Type": "application/json",
+        Authorization: `Bearer ${localStorage.getItem("userToken")}`,
+      },
     });
-    const data = await res.json();
-    return data;
+    console.log(res, "res");
+    // Ensure response is ok before proceeding
+
+    const productData = await res.json(); // Parse response JSON
+    console.log(productData, "res");
+    if (!res.ok) {
+      toastAlert(productData?.msg, ALERT_TYPES.ERROR);
+    } else {
+      toastAlert(productData?.msg, ALERT_TYPES.SUCCESS);
+    }
+
+    return productData; // Return parsed data
   } catch (error) {
-    console.log("Error in getting all products (service) =>", error);
+    toastAlert(error, ALERT_TYPES.ERROR); // Handle error
+    throw error; // Rethrow error to be handled by caller
   }
 };
 
-export const Trending_product = async () => {
+
+
+
+
+
+
+
+
+//Get model friend Request list
+export const  modelfriendrequestlist = async (id) => {
   try {
-    const res = await fetch(`${url}/public/api/trending_product`, {
-      method: "GET",
+    const res = await fetch(`${url}/public/api/model/requests`, {
+      method: "Get",
+      headers: {
+        "Content-Type": "application/json",
+        Authorization: `Bearer ${localStorage.getItem("userToken")}`,
+      },
     });
-    const data = await res.json();
-    return data;
+    console.log(res, "res");
+    // Ensure response is ok before proceeding
+
+    const productData = await res.json(); // Parse response JSON
+    console.log(productData, "res");
+    if (!res.ok) {
+      toastAlert(productData?.msg, ALERT_TYPES.ERROR);
+    } else {
+      toastAlert(productData?.msg, ALERT_TYPES.SUCCESS);
+    }
+
+    return productData; // Return parsed data
   } catch (error) {
-    console.log("Error in getting all products (service) =>", error);
+    toastAlert(error, ALERT_TYPES.ERROR); // Handle error
+    throw error; // Rethrow error to be handled by caller
   }
 };
+
+
+// public/api/model/request-accept/2
+
+
+
+//Get model friend Request accept
+export const  modelfriendrequestaccept = async (id) => {
+  try {
+    const res = await fetch(`${url}/public/api/model/request-accept/${id}`, {
+      method: "Get",
+      headers: {
+        "Content-Type": "application/json",
+        Authorization: `Bearer ${localStorage.getItem("userToken")}`,
+      },
+    });
+    console.log(res, "res");
+    // Ensure response is ok before proceeding
+
+    const productData = await res.json(); // Parse response JSON
+    console.log(productData, "res");
+    if (!res.ok) {
+      toastAlert(productData?.msg, ALERT_TYPES.ERROR);
+    } else {
+      toastAlert(productData?.msg, ALERT_TYPES.SUCCESS);
+    }
+
+    return productData; // Return parsed data
+  } catch (error) {
+    toastAlert(error, ALERT_TYPES.ERROR); // Handle error
+    throw error; // Rethrow error to be handled by caller
+  }
+};
+
+
+
+
+ 
+
+//Get model Pofile View
+export const  modelprofileview = async (id) => {
+  try {
+    const res = await fetch(`${url}/public/api/model/profile-get`, {
+      method: "Get",
+      headers: {
+        "Content-Type": "application/json",
+        Authorization: `Bearer ${localStorage.getItem("userToken")}`,
+      },
+    });
+    console.log(res, "res");
+    // Ensure response is ok before proceeding
+
+    const productData = await res.json(); // Parse response JSON
+    
+    console.log(productData, "res");
+
+    if (!res.ok) {
+      // toastAlert(productData?.msg, ALERT_TYPES.ERROR);
+    } else {
+     console.log("productData?.msg" , productData?.msg)
+      // toastAlert(productData?.msg, ALERT_TYPES.SUCCESS);
+    }
+
+    return productData; // Return parsed data
+  } catch (error) {
+    toastAlert(error, ALERT_TYPES.ERROR); // Handle error
+    throw error; // Rethrow error to be handled by caller
+  }
+};
+
+
+
+
+
+
+// public/api/model/post-tag/1
+
+//Get model Pofile Edit
+export const  modelprofileedit = async (id) => {
+  try {
+    const res = await fetch(`${url}/public/api/model/profile-add-edit`, {
+      method: "Post",
+      headers: {
+        "Content-Type": "application/json",
+        Authorization: `Bearer ${localStorage.getItem("userToken")}`,
+      },
+    });
+    console.log(res, "res");
+    // Ensure response is ok before proceeding
+
+    const productData = await res.json(); // Parse response JSON
+    console.log(productData, "res");
+    if (!res.ok) {
+      toastAlert(productData?.msg, ALERT_TYPES.ERROR);
+    } else {
+      toastAlert(productData?.msg, ALERT_TYPES.SUCCESS);
+    }
+
+    return productData; // Return parsed data
+  } catch (error) {
+    toastAlert(error, ALERT_TYPES.ERROR); // Handle error
+    throw error; // Rethrow error to be handled by caller
+  }
+};
+
+
+
+
+
+
+
+
+
+//Get model Post Tag
+export const  modelprofiletag = async (id) => {
+  try {
+    const res = await fetch(`${url}/public/api/model/post-tag/${id}`, {
+      method: "Post",
+      headers: {
+        "Content-Type": "application/json",
+        Authorization: `Bearer ${localStorage.getItem("userToken")}`,
+      },
+    });
+    console.log(res, "res");
+    // Ensure response is ok before proceeding
+
+    const productData = await res.json(); // Parse response JSON
+    console.log(productData, "res");
+    if (!res.ok) {
+      toastAlert(productData?.msg, ALERT_TYPES.ERROR);
+    } else {
+      toastAlert(productData?.msg, ALERT_TYPES.SUCCESS);
+    }
+
+    return productData; // Return parsed data
+  } catch (error) {
+    toastAlert(error, ALERT_TYPES.ERROR); // Handle error
+    throw error; // Rethrow error to be handled by caller
+  }
+};
+
+
+
+
+
+
+
+
+
+
+
+//Get User Profile view
+export const  Userprogileview = async (id) => {
+  try {
+    const res = await fetch(`${url}/public/api/user/profile-get`, {
+      method: "Get",
+      headers: {
+        "Content-Type": "application/json",
+        Authorization: `Bearer ${localStorage.getItem("userToken")}`,
+      },
+    });
+    console.log(res, "res");
+    // Ensure response is ok before proceeding
+
+    const productData = await res.json(); // Parse response JSON
+    console.log(productData, "res");
+    if (!res.ok) {
+      toastAlert(productData?.msg, ALERT_TYPES.ERROR);
+    } else {
+      toastAlert(productData?.msg, ALERT_TYPES.SUCCESS);
+    }
+
+    return productData; // Return parsed data
+  } catch (error) {
+    toastAlert(error, ALERT_TYPES.ERROR); // Handle error
+    throw error; // Rethrow error to be handled by caller
+  }
+};
+
+
+
+
+
+
+// Edit User Profile  
+export const  EditUserprofile = async (id) => {
+  try {
+    const res = await fetch(`${url}/public/api/user/profile-add-edit`, {
+      method: "Post",
+      headers: {
+        "Content-Type": "application/json",
+        Authorization: `Bearer ${localStorage.getItem("userToken")}`,
+      },
+    });
+    console.log(res, "res");
+    // Ensure response is ok before proceeding
+
+    const productData = await res.json(); // Parse response JSON
+    console.log(productData, "res");
+    if (!res.ok) {
+      toastAlert(productData?.msg, ALERT_TYPES.ERROR);
+    } else {
+      toastAlert(productData?.msg, ALERT_TYPES.SUCCESS);
+    }
+
+    return productData; // Return parsed data
+  } catch (error) {
+    toastAlert(error, ALERT_TYPES.ERROR); // Handle error
+    throw error; // Rethrow error to be handled by caller
+  }
+};
+
+
+
+
+
+
+
+// User Send Request
+export const  UserSendRequest = async (id) => {
+  try {
+    const res = await fetch(`${url}/public/api/send-request/${id}`, {
+      method: "Get",
+      headers: {
+        "Content-Type": "application/json",
+        Authorization: `Bearer ${localStorage.getItem("userToken")}`,
+      },
+    });
+    console.log(res, "res");
+    // Ensure response is ok before proceeding
+
+    const productData = await res.json(); // Parse response JSON
+    console.log(productData, "res");
+    if (!res.ok) {
+      toastAlert(productData?.msg, ALERT_TYPES.ERROR);
+    } else {
+      toastAlert(productData?.msg, ALERT_TYPES.SUCCESS);
+    }
+
+    return productData; // Return parsed data
+  } catch (error) {
+    toastAlert(error, ALERT_TYPES.ERROR); // Handle error
+    throw error; // Rethrow error to be handled by caller
+  }
+};
+
+
+
+
+
+
+// User Unflow Model
+export const  UserUnflowmodel = async (id) => {
+  try {
+    const res = await fetch(`${url}/public/api/model-follow-unfollow/${id}`, {
+      method: "Get",
+      headers: {
+        "Content-Type": "application/json",
+        Authorization: `Bearer ${localStorage.getItem("userToken")}`,
+      },
+    });
+    console.log(res, "res");
+    // Ensure response is ok before proceeding
+
+    const productData = await res.json(); // Parse response JSON
+    console.log(productData, "res");
+    if (!res.ok) {
+      toastAlert(productData?.msg, ALERT_TYPES.ERROR);
+    } else {
+      toastAlert(productData?.msg, ALERT_TYPES.SUCCESS);
+    }
+
+    return productData; // Return parsed data
+  } catch (error) {
+    toastAlert(error, ALERT_TYPES.ERROR); // Handle error
+    throw error; // Rethrow error to be handled by caller
+  }
+};
+
+
+
+
+
+
+// User unfavourite  Model
+export const  UserUnfavouritemodel = async (id) => {
+  try {
+    const res = await fetch(`${url}/public/api/model-favourite-unfavourite/${id}`, {
+      method: "Get",
+      headers: {
+        "Content-Type": "application/json",
+        Authorization: `Bearer ${localStorage.getItem("userToken")}`,
+      },
+    });
+    console.log(res, "res");
+    // Ensure response is ok before proceeding
+
+    const productData = await res.json(); // Parse response JSON
+    console.log(productData, "res");
+    if (!res.ok) {
+      toastAlert(productData?.msg, ALERT_TYPES.ERROR);
+    } else {
+      toastAlert(productData?.msg, ALERT_TYPES.SUCCESS);
+    }
+
+    return productData; // Return parsed data
+  } catch (error) {
+    toastAlert(error, ALERT_TYPES.ERROR); // Handle error
+    throw error; // Rethrow error to be handled by caller
+  }
+};
+
+
+
+
+
+
+
+
+
+// User Buy Post
+export const  UserBuyPost = async (id) => {
+  try {
+    const res = await fetch(`${url}/public/api/user/buy-post/${id}`, {
+      method: "Get",
+      headers: {
+        "Content-Type": "application/json",
+        Authorization: `Bearer ${localStorage.getItem("userToken")}`,
+      },
+    });
+    console.log(res, "res");
+    // Ensure response is ok before proceeding
+
+    const productData = await res.json(); // Parse response JSON
+    console.log(productData, "res");
+    if (!res.ok) {
+      toastAlert(productData?.msg, ALERT_TYPES.ERROR);
+    } else {
+      toastAlert(productData?.msg, ALERT_TYPES.SUCCESS);
+    }
+
+    return productData; // Return parsed data
+  } catch (error) {
+    toastAlert(error, ALERT_TYPES.ERROR); // Handle error
+    throw error; // Rethrow error to be handled by caller
+  }
+};
+
+
+
+
+
+//  Model Purchase Plane
+export const  modelpurchaseplane = async (id) => {
+  try {
+    const res = await fetch(`${url}/public/api/user/pick-subscription-package/${id}`, {
+      method: "Get",
+      headers: {
+        "Content-Type": "application/json",
+        Authorization: `Bearer ${localStorage.getItem("userToken")}`,
+      },
+    });
+    console.log(res, "res");
+    // Ensure response is ok before proceeding
+
+    const productData = await res.json(); // Parse response JSON
+    console.log(productData, "res");
+    if (!res.ok) {
+      toastAlert(productData?.msg, ALERT_TYPES.ERROR);
+    } else {
+      toastAlert(productData?.msg, ALERT_TYPES.SUCCESS);
+    }
+
+    return productData; // Return parsed data
+  } catch (error) {
+    toastAlert(error, ALERT_TYPES.ERROR); // Handle error
+    throw error; // Rethrow error to be handled by caller
+  }
+};
+
+
+ 
+
+ 

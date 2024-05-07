@@ -4,6 +4,7 @@ import Footer from "../../Components/Layout/Footer";
 
 import { Swiper, SwiperSlide } from "swiper/react";
 
+import {Addmodelpost} from '../../api'
 import "swiper/css";
 
 import {
@@ -101,6 +102,28 @@ const listingCard = [
     ],
   },
 ];
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 const Model = () => {
   return (

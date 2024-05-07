@@ -2,16 +2,100 @@ import React, { useEffect } from "react";
 import Header from "../../Components/Layout/Header";
 import Footer from "../../Components/Layout/Footer";
 
+import {modelpurchaseplane} from '../../api'
+
 import "./style.css";
 import { pageBottomImg } from "../../Asserts/images";
 
 import Aos from "aos";
 import "aos/dist/aos.css";
+import { useNavigate } from "react-router-dom";
 
 const Packages = () => {
   useEffect(() => {
     Aos.init();
   }, []);
+  const navigate = useNavigate()
+  const handleroute  = () =>{
+    navigate('/model-profile-page')
+  }
+  // const handleChange = (event) => {
+  //   const { name, value } = event.target;
+  //   setFormData((prevData) => ({
+  //     ...prevData,
+  //     [name]: value,
+  //   }));
+  //   console.log(formData);
+  // };
+
+
+  const handleSubmit = (id) => {
+    event.preventDefault();
+ 
+    // Create a new FormData object
+    // const formDataMethod = new FormData();
+    // for (const key in formData) {
+    //   formDataMethod.append(key, formData[key]);
+    // }
+
+    console.log(formData);
+ 
+    // Make the fetch request
+    // fetch(`${process.env.REACT_APP_API_URL}api/admin/course-add-update/${id}`, {
+    //   method: "POST",
+    //   headers: {
+    //     Accept: "application/json",
+    //     Authorization: `Bearer ${LogoutData}`,
+    //   },
+    //   body: formDataMethod, // Use the FormData object as the request body
+    // })
+      // .then((response) => {
+      //   return response.json();
+      // })
+      // .then((data) => {
+      //   document.querySelector(".loaderBox").classList.add("d-none");
+      //   console.log(data);
+      //   setShowModal(true);
+      // })
+      // .catch((error) => {
+      //   document.querySelector(".loaderBox").classList.add("d-none");
+      //   console.log(error);
+      // });
+  };
+
+
+
+ const handleSubmits = async (id) => {
+
+
+    try {
+      const response = await modelpurchaseplane(id);
+      console.log("response", response)
+
+
+      setUserdata(response?.data)
+      if (response && response?.success === true) {
+        const  data = response?.data;
+        console.log("data" , data)
+        setUserdata(data)
+
+
+
+
+        dispatch(loginSuccess(response.data));
+
+
+        // navigate("/");
+      } else {
+        toastAlert(response.statusText, ALERT_TYPES.ERROR);
+      }
+    } catch (error) {
+      console.error("Error in logging in:", error);
+
+      // toastAlert(error, ALERT_TYPES.ERROR);
+    }
+  };
+
   return (
     <>
       <section class="packages-page">
@@ -59,7 +143,7 @@ const Packages = () => {
                       </div>
                     </div>
                     <div className="packages-btns">
-                      <button className="gold-btn">CHECKOUT</button>
+                      <button onClick={handleroute} className="gold-btn">CHECKOUT</button>
                     </div>
                   </form>
                 </div>
@@ -102,7 +186,7 @@ const Packages = () => {
                       </div>
                     </div>
                     <div className="packages-btns">
-                      <button className="platinum-btn">CHECKOUT</button>
+                      <button onClick={handleroute} className="platinum-btn">CHECKOUT</button>
                     </div>
                   </form>
                 </div>
