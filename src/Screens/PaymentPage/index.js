@@ -5,17 +5,33 @@ import "./style.css";
 // import { CustomInput } from '../../Components/CustomInput';
 import { line } from "../../Asserts/images";
 import { Cancel } from "../../Asserts/images";
+import { useNavigate } from "react-router-dom";
 
 const Payment = () => {
+  const navigate = useNavigate()
+  const getusertype = localStorage.getItem('userrole')
+  const handleclick = () => {
+    if (getusertype == 2) {
+      navigate('/add-post-page')
+    }
+    else if (getusertype == 3) {
+      navigate('/profile-page')
+    }
+
+    else {
+      navigate('/')
+    }
+  }
   return (
     <div>
+      <Header />
       <section className="payment">
         <div class="container">
           <div class="row">
             <div class="col-md-10 mx-auto">
               <h5 className="pay">PAYMENT</h5>
               <form className="login-forms ">
-                <img className="img-fluid cancel " src={Cancel} />
+                {/* <img className="img-fluid cancel " src={Cancel} /> */}
                 <label className="namin"> Name </label>
                 <input
                   className="nam"
@@ -107,7 +123,7 @@ const Payment = () => {
                   </div>
                   <div class="drop">
                     {/* <input type="submit" class="sub" value="CONFIRM"/> */}
-                    <button class="sub">CONFIRM</button>
+                    <button onClick={handleclick} class="sub">CONFIRM</button>
                   </div>
                 </div>
               </form>
@@ -115,6 +131,7 @@ const Payment = () => {
           </div>
         </div>
       </section>
+      <Footer />
     </div>
   );
 };

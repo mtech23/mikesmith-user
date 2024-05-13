@@ -4,6 +4,7 @@
   background-image: url("../../Asserts/images/hotModel-bk.png");
   background-repeat: no-repeat;
   background-size: 100% 100%;
+  background-attachment: fixed !important;
 }
 
 .user_profile_picture img {
@@ -18,7 +19,82 @@
   font-size: 18px;
   font-weight: 500;
 }
+.model_profile_section_main{
+  
+  .framePic{
+    position: absolute;
+    /* top: -86px; */
+    /* left: -69px; */
+    top: 0;
+    left: 0;
+    z-index: 10;
+    width: 100%;
+      height: 100%;
+  }
 
+  .frameimg {
+      /* height: 494px !important;
+      width: 420px !important; */
+      width: 100% !important;
+      height: 91% !important;
+  }
+}
+
+
+.model_profile_section_main .model_have_a_look_btn {
+  position: absolute;
+  /* bottom: 0; */
+  left: 50%;
+  transform: translateX(-50%);
+  text-align: center;
+  width: 100%;
+  background-color: #0009;
+  height: 0;
+}
+
+
+
+
+
+.model_profile_section_main  .second_model_card:hover .model_have_a_look_btn{
+  bottom: 13%;
+    padding-top: 22px;
+height: 112px;
+width: 94%;
+top: auto;
+}
+
+.model_profile_section_main  .first_model_card:hover .model_have_a_look_btn{
+  bottom: 13%;
+    padding-top: 22px;
+height: 112px;
+width: 94%;
+top: auto;
+}
+
+.model_profile_section_main  .second_model_card:hover .be_nice_span, .model_profile_section_main  .first_model_card:hover .be_nice_span{
+	color: #fff;
+  display: block;
+  font-size: 14px;
+  font-weight: 500;
+  padding-top: 10px;
+}
+
+
+.fa-heart:before {
+  content: "\f004";
+  color: #dd3737;
+  height: 37px !important;
+  width: 52px;
+}
+
+
+#model_card_bottom_corner_imgs{
+  bottom: 34px!important;
+  left: -10px;
+  position: absolute;
+  transform: rotate(90deg);
+}
 .user_access {
   display: inline-block;
   font-size: 12px;
@@ -67,6 +143,7 @@
   color: #fff;
   padding: 10px 28px;
   font-weight: 400;
+  
 }
 
 .give_tip_btn {

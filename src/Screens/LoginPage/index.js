@@ -10,7 +10,7 @@ import { toastAlert } from "../../utils";
 import { ALERT_TYPES } from "../../constants";
 import { useDispatch } from "react-redux";
 import { loginSuccess } from "../../redux/slicers/user";
-
+import CustomInput from '../../Components/CustomInput'
 const Login = () => {
   //CONST VALS
   const navigate = useNavigate();
@@ -40,6 +40,8 @@ const Login = () => {
         console.log("usertype", usertype)
         if (usertype == 2) {
           navigate("/packages-page");
+        } else {
+          navigate("/profile-page");
         }
         // navigate("/");
       } else {

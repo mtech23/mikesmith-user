@@ -57,9 +57,10 @@ const SignUp = () => {
           const userToken = response.data.token;
 
           localStorage.setItem("userToken", userToken);
+          localStorage.setItem("userrole", response.data?.user_role);
           dispatch(loginSuccess(response.data));
 
-          // navigate("/login-page");
+          navigate("/packages-page");
         } else {
           toastAlert(response.statusText, ALERT_TYPES.ERROR);
         }

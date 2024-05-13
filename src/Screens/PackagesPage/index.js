@@ -3,7 +3,7 @@ import Header from "../../Components/Layout/Header";
 import Footer from "../../Components/Layout/Footer";
 
 import {modelpurchaseplane} from '../../api'
-
+import {modelpackagelist} from '../../api'
 import "./style.css";
 import { pageBottomImg } from "../../Asserts/images";
 
@@ -17,7 +17,7 @@ const Packages = () => {
   }, []);
   const navigate = useNavigate()
   const handleroute  = () =>{
-    navigate('/model-profile-page')
+    navigate('/payment-page')
   }
   // const handleChange = (event) => {
   //   const { name, value } = event.target;
@@ -29,73 +29,78 @@ const Packages = () => {
   // };
 
 
-  const handleSubmit = (id) => {
-    event.preventDefault();
+  // const handleSubmit = (id) => {
+  //   event.preventDefault();
  
-    // Create a new FormData object
-    // const formDataMethod = new FormData();
-    // for (const key in formData) {
-    //   formDataMethod.append(key, formData[key]);
-    // }
+  //   // Create a new FormData object
+  //   // const formDataMethod = new FormData();
+  //   // for (const key in formData) {
+  //   //   formDataMethod.append(key, formData[key]);
+  //   // }
 
-    console.log(formData);
  
-    // Make the fetch request
-    // fetch(`${process.env.REACT_APP_API_URL}api/admin/course-add-update/${id}`, {
-    //   method: "POST",
-    //   headers: {
-    //     Accept: "application/json",
-    //     Authorization: `Bearer ${LogoutData}`,
-    //   },
-    //   body: formDataMethod, // Use the FormData object as the request body
-    // })
-      // .then((response) => {
-      //   return response.json();
-      // })
-      // .then((data) => {
-      //   document.querySelector(".loaderBox").classList.add("d-none");
-      //   console.log(data);
-      //   setShowModal(true);
-      // })
-      // .catch((error) => {
-      //   document.querySelector(".loaderBox").classList.add("d-none");
-      //   console.log(error);
-      // });
-  };
+ 
+  //   // Make the fetch request
+  //   // fetch(`${process.env.REACT_APP_API_URL}api/admin/course-add-update/${id}`, {
+  //   //   method: "POST",
+  //   //   headers: {
+  //   //     Accept: "application/json",
+  //   //     Authorization: `Bearer ${LogoutData}`,
+  //   //   },
+  //   //   body: formDataMethod, // Use the FormData object as the request body
+  //   // })
+  //     // .then((response) => {
+  //     //   return response.json();
+  //     // })
+  //     // .then((data) => {
+  //     //   document.querySelector(".loaderBox").classList.add("d-none");
+  //     //   console.log(data);
+  //     //   setShowModal(true);
+  //     // })
+  //     // .catch((error) => {
+  //     //   document.querySelector(".loaderBox").classList.add("d-none");
+  //     //   console.log(error);
+  //     // });
+  // };
 
 
 
- const handleSubmits = async (id) => {
+//  const handleSubmits = async (id) => {
 
 
-    try {
-      const response = await modelpurchaseplane(id);
-      console.log("response", response)
+//     try {
+//       const response = await modelpackagelist();
+//       console.log("response", response)
 
 
-      setUserdata(response?.data)
-      if (response && response?.success === true) {
-        const  data = response?.data;
-        console.log("data" , data)
-        setUserdata(data)
+//       setUserdata(response?.data)
+//       if (response && response?.success === true) {
+//         const  data = response?.data;
+//         console.log("data" , data)
+//         setUserdata(data)
 
 
 
 
-        dispatch(loginSuccess(response.data));
+//         dispatch(loginSuccess(response.data));
 
 
-        // navigate("/");
-      } else {
-        toastAlert(response.statusText, ALERT_TYPES.ERROR);
-      }
-    } catch (error) {
-      console.error("Error in logging in:", error);
+//         // navigate("/");
+//       } else {
+//         // toastAlert(response.statusText, ALERT_TYPES.ERROR);
+//         console.log
+//       }
+//     } catch (error) {
+//       console.error("Error in logging in:", error);
 
-      // toastAlert(error, ALERT_TYPES.ERROR);
-    }
-  };
+//       // toastAlert(error, ALERT_TYPES.ERROR);
+//     }
+//   };
 
+
+const handlepayment = () =>{
+  navigate('/payment-page')
+}
   return (
     <>
       <section class="packages-page">
@@ -121,7 +126,7 @@ const Packages = () => {
                   <p>- Can Only View Requests</p>
                   <p>- 10 Posts/Month</p>
                   <p>- 5 Boosts/Month</p>
-                  <form>
+           
                     <div className="custom-check-boxes">
                       <div className="checkbox-div1">
                         <label className="custom_check-box">
@@ -145,7 +150,7 @@ const Packages = () => {
                     <div className="packages-btns">
                       <button onClick={handleroute} className="gold-btn">CHECKOUT</button>
                     </div>
-                  </form>
+             
                 </div>
               </div>
               <div className="col-lg-5 col-md-6">
@@ -164,7 +169,7 @@ const Packages = () => {
                   <p>- Can Only View Requests</p>
                   <p>- 10 Posts/Month</p>
                   <p>- 5 Boosts/Month</p>
-                  <form>
+                 
                     <div className="custom-check-boxes">
                       <div className="checkbox-div1">
                         <label className="custom_check-box">
@@ -188,7 +193,7 @@ const Packages = () => {
                     <div className="packages-btns">
                       <button onClick={handleroute} className="platinum-btn">CHECKOUT</button>
                     </div>
-                  </form>
+                
                 </div>
               </div>
             </div>
@@ -290,7 +295,7 @@ const Packages = () => {
                   </h2>
                 </div>
               </div>
-              <form action="#">
+              <form action="/">
                 <div className="row">
                   <div className="col-lg-7">
                     <div
@@ -379,7 +384,7 @@ const Packages = () => {
                 <div className="row">
                   <div class="col-md-12">
                     <div className="text-center checkout-btn">
-                      <button class="sign_actionBtn">GO TO PAYMENT</button>
+                      <button type="button" onClick={handlepayment} class="sign_actionBtn">GO TO PAYMENT</button>
                     </div>
                   </div>
                 </div>

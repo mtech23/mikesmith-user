@@ -1,12 +1,14 @@
 import React, { useEffect, useState } from "react";
 import Header from "../../Components/Layout/Header";
 import Footer from "../../Components/Layout/Footer";
-import { modelprofileview } from "../../api";
+import afterimgframe from '../../Asserts/images/after-img-frame.png'
+import { modelprofileview, modelprofillist } from "../../api";
 import { Swiper, SwiperSlide } from "swiper/react";
 import { toastAlert } from "../../utils";
 import { ALERT_TYPES } from "../../constants";
 import { loginSuccess } from "../../redux/slicers/user";
 import { useDispatch } from "react-redux";
+import { Navigation, Pagination } from "swiper/modules";
 import {
   platinumFeetText,
   headerSearchIcon,
@@ -15,6 +17,7 @@ import {
   imgBottomCorner,
   hundredPercentage,
   homeImg01,
+
   modelText,
   modelImg01,
   modelCardTopCorner,
@@ -42,6 +45,12 @@ import {
   moreUserProfilePic,
   profileFeetImg01,
   profileFeetImg02,
+  Cancel,
+  Heart,
+  modal1,
+  modal2,
+  modal3,
+
   profileFeetImg03,
   profileFeetImg04,
   profileFeetImg05,
@@ -60,34 +69,37 @@ import { useNavigate } from "react-router-dom";
 
 const ModelProfile = () => {
 
+  const handleclick = () => {
+    navigate('/')
+  }
   const dispatch = useDispatch();
   const [userdata, setUserdata] = useState()
+  const [userprofilelist, setprofilelist] = useState([])
   const baseurl = `${process.env.REACT_APP_BASE_URL}/public/`
+
   console.log("baseurl", baseurl)
-  const handleSubmit = async () => {
-
-
+  const modelprifile = async () => {
     try {
       const response = await modelprofileview();
       console.log("response", response)
 
 
       setUserdata(response?.data)
-      // if (response && response?.success === true) {
-      //   const  data = response?.data;
-      //   console.log("data" , data)
-      //   setUserdata(data)
+
+    } catch (error) {
+      console.error("Error in logging in:", error);
+
+      // toastAlert(error, ALERT_TYPES.ERROR);
+    }
+  };
+  const modelprifilelist = async () => {
+    try {
+      const response = await modelprofillist();
+      console.log("response", response)
 
 
+      setprofilelist(response?.data)
 
-
-      //   dispatch(loginSuccess(response.data));
-
-
-      //   // navigate("/");
-      // } else {
-      //   // toastAlert(response.statusText, ALERT_TYPES.ERROR);
-      // }
     } catch (error) {
       console.error("Error in logging in:", error);
 
@@ -96,17 +108,23 @@ const ModelProfile = () => {
   };
   useEffect(() => {
     Aos.init();
-    handleSubmit()
+    modelprifilelist()
+    modelprifile()
   }, []);
-const navigate = useNavigate()
-const handleroute = () =>{
+  const navigate = useNavigate()
+  const handleroute = () => {
 
 
-  
-  navigate('/add-post-page')
-}
 
+    navigate('/add-post-page')
+  }
+  const [hearts, setHeart] = useState(false)
 
+  const handleHeart = () => {
+    setHeart(!hearts);
+  }
+
+  console.log("userprofilelist", userprofilelist)
 
 
   return (
@@ -154,7 +172,7 @@ const handleroute = () =>{
                         data-aos-anchor-placement="center-bottom"
                         data-aos-duration="2000"
                       >
-                        <span className="user_access">{userdata?.email}</span>
+                        <span className="user_access">{userdata?.email || 'HOTMODEL1234@gmail.com'}</span>
                       </div>
 
                       <p
@@ -163,7 +181,7 @@ const handleroute = () =>{
                         data-aos-anchor-placement="center-bottom"
                         data-aos-duration="3000"
                       >
-                        {userdata?.bio}
+                        {userdata?.bio || 'Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry standard' }
                       </p>
                     </div>
 
@@ -175,7 +193,7 @@ const handleroute = () =>{
                     >
                       <span className="followers_title">followers</span>
                       <span className="followers_number">
-                        <span className="no_of_follows">{userdata?.follower}</span>
+                        <span className="no_of_follows">{userdata?.follower || 257}</span>
                       </span>
                     </div>
 
@@ -187,7 +205,7 @@ const handleroute = () =>{
                     >
                       <span className="followers_title">following</span>
                       <span className="followers_number">
-                        <span className="no_of_follows">{userdata?.following}</span>
+                        <span className="no_of_follows">{userdata?.following || 142} </span>
                       </span>
                     </div>
 
@@ -236,117 +254,12 @@ const handleroute = () =>{
                     <img src={modelCardTopCorner} />
                   </div>
 
-                  <div class="model_card_bottom_corner_img">
+                  <div class="model_card_bottom_corner_img"  >
                     <img src={modelCardBottomCorner} />
                   </div>
                 </div>
 
-                {/* <div className='more_profiles_main'>
-                                <div>
-                                    <p className='more_profiles_like_this_title'>more profiles like this</p>
-                                </div>
 
-                                <div className='all_other_users_profiles'>
-
-                                    <div className='more_profiles_content'>
-                                        <div className='more_user_profile_details'>
-                                            <div className='more_users_profile_img'>
-                                                <img src={moreUserProfilePic}/>
-                                            </div>
-                                            <div className='other_user_info'>
-                                                <p className='other_user_name'>HOTMODEL1234</p>
-                                                <span className='other_user_access'>@HOTMODEL1223</span>
-                                            </div>
-                                        </div>
-
-                                        <div>
-                                            <button className='user_profile_follow_btn'>follow</button>
-                                        </div>
-                                    </div>
-
-                                    <div className='more_profiles_content'>
-                                        <div className='more_user_profile_details'>
-                                            <div className='more_users_profile_img'>
-                                                <img src={moreUserProfilePic}/>
-                                            </div>
-                                            <div className='other_user_info'>
-                                                <p className='other_user_name'>HOTMODEL1234</p>
-                                                <span className='other_user_access'>@HOTMODEL1223</span>
-                                            </div>
-                                        </div>
-
-                                        <div>
-                                            <button className='user_profile_follow_btn'>follow</button>
-                                        </div>
-                                    </div>
-
-                                    <div className='more_profiles_content'>
-                                        <div className='more_user_profile_details'>
-                                            <div className='more_users_profile_img'>
-                                                <img src={moreUserProfilePic}/>
-                                            </div>
-                                            <div className='other_user_info'>
-                                                <p className='other_user_name'>HOTMODEL1234</p>
-                                                <span className='other_user_access'>@HOTMODEL1223</span>
-                                            </div>
-                                        </div>
-
-                                        <div>
-                                            <button className='user_profile_follow_btn'>follow</button>
-                                        </div>
-                                    </div>
-
-                                    <div className='more_profiles_content'>
-                                        <div className='more_user_profile_details'>
-                                            <div className='more_users_profile_img'>
-                                                <img src={moreUserProfilePic}/>
-                                            </div>
-                                            <div className='other_user_info'>
-                                                <p className='other_user_name'>HOTMODEL1234</p>
-                                                <span className='other_user_access'>@HOTMODEL1223</span>
-                                            </div>
-                                        </div>
-
-                                        <div>
-                                            <button className='user_profile_follow_btn'>follow</button>
-                                        </div>
-                                    </div>
-
-                                    <div className='more_profiles_content'>
-                                        <div className='more_user_profile_details'>
-                                            <div className='more_users_profile_img'>
-                                                <img src={moreUserProfilePic}/>
-                                            </div>
-                                            <div className='other_user_info'>
-                                                <p className='other_user_name'>HOTMODEL1234</p>
-                                                <span className='other_user_access'>@HOTMODEL1223</span>
-                                            </div>
-                                        </div>
-
-                                        <div>
-                                            <button className='user_profile_follow_btn'>follow</button>
-                                        </div>
-                                    </div>
-
-                                    <div className='more_profiles_content'>
-                                        <div className='more_user_profile_details'>
-                                            <div className='more_users_profile_img'>
-                                                <img src={moreUserProfilePic}/>
-                                            </div>
-                                            <div className='other_user_info'>
-                                                <p className='other_user_name'>HOTMODEL1234</p>
-                                                <span className='other_user_access'>@HOTMODEL1223</span>
-                                            </div>
-                                        </div>
-
-                                        <div>
-                                            <button className='user_profile_follow_btn'>follow</button>
-                                        </div>
-                                    </div>
-
-
-                                </div>
-                            </div> */}
               </div>
             </div>
 
@@ -376,150 +289,120 @@ const handleroute = () =>{
 
                 <div className="row">
                   <div className="col-sm-6 col-lg-4">
-                    <div className="second_model_card">
+                    <div className="second_model_card"
+                      data-toggle="modal"
+                      data-target=".exampleModal"  >
+
+                      <div type="button" className="framePic">
+                        <img src={afterimgframe} className="frameimg" />
+                      </div>
                       <Swiper
                         spaceBetween={30}
                         slidesPerView={1}
                         onSlideChange={() => console.log("slide change")}
                         onSwiper={(swiper) => console.log(swiper)}
                       >
+
+
                         <SwiperSlide>
-                          <div className="second_model_card_img position-relative">
-                            <img src={profileFeetImg01} className="w-100" />
+                          <div className="second_model_card_img position-relative first_model_card"
+                            data-toggle="modal"
+                            data-target=".exampleModal">
+                            <img src={profileFeetImg01} className="img-fluid" />
                             <span className="edit_icon_img">
-                              <img src={editingIcon} />
+
                             </span>
 
                             <span className="share_icon_img">
-                              <img src={sharingIcon} />
+
                             </span>
 
                             <span className="boost_icon_img">
-                              <img src={boostIcon} />
+
                             </span>
                           </div>
 
-                          {/* <div className='model_card_desc'>
-                                            <div className='name_with_status'>
-                                                <span className='online_circle'><i class="fa-solid fa-circle"></i></span>
-                                                <span className='hot_model_name'>HOTMODEL1234</span>
-                                            </div>
-                                            <div>
-                                                <span className='hotmodel_info'>38-USA</span>
-                                                <span className='send_tip_text'>send tip</span>
-                                            </div>
-
-                                            <div className='pt-2'>
-                                                <button className='sign_actionBtn'>view profile</button>
-                                            </div>
-                                            </div> */}
+                          <div>
+                            <div className="model_have_a_look_btn">
+                              <button className="have_alook_btn">have a look</button>
+                              <span className="be_nice_span">
+                                BE NICE, or we will crush you!
+                              </span>
+                            </div>
+                          </div>
                         </SwiperSlide>
 
                         <SwiperSlide>
-                          <div className="second_model_card_img position-relative">
+                          <div className="second_model_card_img position-relative  first_model_card"
+                            data-toggle="modal"
+                            data-target=".exampleModal">
                             <img src={profileFeetImg01} className="img-fluid" />
                             <span className="edit_icon_img">
-                              <img src={editingIcon} />
+
                             </span>
 
                             <span className="share_icon_img">
-                              <img src={sharingIcon} />
+
                             </span>
 
                             <span className="boost_icon_img">
-                              <img src={boostIcon} />
+
                             </span>
                           </div>
 
-                          {/* <div className='model_card_desc'>
-                                            <div className='name_with_status'>
-                                                <span className='online_circle'><i class="fa-solid fa-circle"></i></span>
-                                                <span className='hot_model_name'>HOTMODEL1234</span>
-                                            </div>
-                                            <div>
-                                                <span className='hotmodel_info'>38-USA</span>
-                                                <span className='send_tip_text'>send tip</span>
-                                            </div>
+                          <div>
+                            <div className="model_have_a_look_btn">
+                              <button className="have_alook_btn">have a look</button>
+                              <span className="be_nice_span">
+                                BE NICE, or we will crush you!
+                              </span>
+                            </div>
+                          </div>
 
-                                            <div className='pt-2'>
-                                                <button className='sign_actionBtn'>view profile</button>
-                                            </div>
-                                        </div> */}
                         </SwiperSlide>
 
                         <SwiperSlide>
-                          <div className="second_model_card_img position-relative">
+                          <div className="second_model_card_img position-relative first_model_card"
+                            data-toggle="modal"
+                            data-target=".exampleModal">
                             <img src={profileFeetImg01} className="img-fluid" />
                             <span className="edit_icon_img">
-                              <img src={editingIcon} />
+
                             </span>
 
                             <span className="share_icon_img">
-                              <img src={sharingIcon} />
+
                             </span>
 
                             <span className="boost_icon_img">
-                              <img src={boostIcon} />
+
                             </span>
                           </div>
 
-                          {/* <div className='model_card_desc'>
-                                                <div className='name_with_status'>
-                                                    <span className='online_circle'><i class="fa-solid fa-circle"></i></span>
-                                                    <span className='hot_model_name'>HOTMODEL1234</span>
-                                                </div>
-                                                <div>
-                                                    <span className='hotmodel_info'>38-USA</span>
-                                                    <span className='send_tip_text'>send tip</span>
-                                                </div>
-
-                                                <div className='pt-2'>
-                                                    <button className='sign_actionBtn'>view profile</button>
-                                                </div>
-                                            </div> */}
-                        </SwiperSlide>
-
-                        <SwiperSlide>
-                          <div className="second_model_card_img position-relative">
-                            <img src={profileFeetImg01} className="img-fluid" />
-                            <span className="edit_icon_img">
-                              <img src={editingIcon} />
-                            </span>
-
-                            <span className="share_icon_img">
-                              <img src={sharingIcon} />
-                            </span>
-
-                            <span className="boost_icon_img">
-                              <img src={boostIcon} />
-                            </span>
+                          <div>
+                            <div className="model_have_a_look_btn">
+                              <button className="have_alook_btn">have a look</button>
+                              <span className="be_nice_span">
+                                BE NICE, or we will crush you!
+                              </span>
+                            </div>
                           </div>
-
-                          {/* <div className='model_card_desc'>
-                                                <div className='name_with_status'>
-                                                    <span className='online_circle'><i class="fa-solid fa-circle"></i></span>
-                                                    <span className='hot_model_name'>HOTMODEL1234</span>
-                                                </div>
-                                                <div>
-                                                    <span className='hotmodel_info'>38-USA</span>
-                                                    <span className='send_tip_text'>send tip</span>
-                                                </div>
-
-                                                <div className='pt-2'>
-                                                    <button className='sign_actionBtn'>view profile</button>
-                                                </div>
-                                            </div> */}
                         </SwiperSlide>
                       </Swiper>
 
-                      {/* <div className='framePic'>
-                                        <img src={framePic} className=''/>
-                                    </div> */}
+
                     </div>
                   </div>
 
                   <div className="col-sm-6 col-lg-4">
-                    <div className="second_model_card">
+                    <div className="second_model_card"
+
+
+                      data-toggle="modal"
+                      data-target=".exampleModal"
+                    >   <div type="button" className="framePic">
+                        <img src={afterimgframe} className="frameimg" />
+                      </div>
                       <Swiper
                         spaceBetween={30}
                         slidesPerView={1}
@@ -527,134 +410,118 @@ const handleroute = () =>{
                         onSwiper={(swiper) => console.log(swiper)}
                       >
                         <SwiperSlide>
-                          <div className="second_model_card_img position-relative">
+                          <div className="second_model_card_img position-relative first_model_card"
+                            data-toggle="modal"
+                            data-target=".exampleModal"
+                          >
                             <img src={profileFeetImg02} className="w-100" />
                             <span className="edit_icon_img">
-                              <img src={editingIcon} />
+
                             </span>
 
                             <span className="share_icon_img">
-                              <img src={sharingIcon} />
+
                             </span>
 
                             <span className="boost_icon_img">
-                              <img src={boostIcon} />
+
                             </span>
+
+
+                            <div>
+                              <div className="model_have_a_look_btn" style={{ bottom: '0px' }}>
+                                <button className="have_alook_btn">have  a look</button>
+                                <span className="be_nice_span">
+                                  BE NICE, or we will crush you!
+                                </span>
+                              </div>
+                            </div>
                           </div>
 
-                          {/* <div className='model_card_desc'>
-                                            <div className='name_with_status'>
-                                                <span className='online_circle'><i class="fa-solid fa-circle"></i></span>
-                                                <span className='hot_model_name'>HOTMODEL1234</span>
-                                            </div>
-                                            <div>
-                                                <span className='hotmodel_info'>38-USA</span>
-                                                <span className='send_tip_text'>send tip</span>
-                                            </div>
 
-                                            <div className='pt-2'>
-                                                <button className='sign_actionBtn'>view profile</button>
-                                            </div>
-                                            </div> */}
                         </SwiperSlide>
 
                         <SwiperSlide>
-                          <div className="second_model_card_img position-relative">
+                          <div className="second_model_card_img position-relative first_model_card"
+                            data-toggle="modal"
+                            data-target=".exampleModal">
                             <img src={profileFeetImg02} className="img-fluid" />
                             <span className="edit_icon_img">
-                              <img src={editingIcon} />
+
                             </span>
 
                             <span className="share_icon_img">
-                              <img src={sharingIcon} />
+
                             </span>
 
                             <span className="boost_icon_img">
-                              <img src={boostIcon} />
+
                             </span>
                           </div>
 
-                          {/* <div className='model_card_desc'>
-                                            <div className='name_with_status'>
-                                                <span className='online_circle'><i class="fa-solid fa-circle"></i></span>
-                                                <span className='hot_model_name'>HOTMODEL1234</span>
-                                            </div>
-                                            <div>
-                                                <span className='hotmodel_info'>38-USA</span>
-                                                <span className='send_tip_text'>send tip</span>
-                                            </div>
-
-                                            <div className='pt-2'>
-                                                <button className='sign_actionBtn'>view profile</button>
-                                            </div>
-                                        </div> */}
+                          <div>
+                            <div className="model_have_a_look_btn">
+                              <button className="have_alook_btn">have a look</button>
+                              <span className="be_nice_span">
+                                BE NICE, or we will crush you!
+                              </span>
+                            </div>
+                          </div>
                         </SwiperSlide>
 
                         <SwiperSlide>
-                          <div className="second_model_card_img position-relative">
+                          <div className="second_model_card_img position-relative first_model_card"
+                            data-toggle="modal"
+                            data-target=".exampleModal">
                             <img src={profileFeetImg02} className="img-fluid" />
                             <span className="edit_icon_img">
-                              <img src={editingIcon} />
+
                             </span>
 
                             <span className="share_icon_img">
-                              <img src={sharingIcon} />
+
                             </span>
 
                             <span className="boost_icon_img">
-                              <img src={boostIcon} />
+
                             </span>
                           </div>
 
-                          {/* <div className='model_card_desc'>
-                                                <div className='name_with_status'>
-                                                    <span className='online_circle'><i class="fa-solid fa-circle"></i></span>
-                                                    <span className='hot_model_name'>HOTMODEL1234</span>
-                                                </div>
-                                                <div>
-                                                    <span className='hotmodel_info'>38-USA</span>
-                                                    <span className='send_tip_text'>send tip</span>
-                                                </div>
+                          <div>
+                            <div className="model_have_a_look_btn">
+                              <button className="have_alook_btn">have a look</button>
+                              <span className="be_nice_span">
+                                BE NICE, or we will crush you!
+                              </span>
+                            </div>
+                          </div>
 
-                                                <div className='pt-2'>
-                                                    <button className='sign_actionBtn'>view profile</button>
-                                                </div>
-                                            </div> */}
                         </SwiperSlide>
 
                         <SwiperSlide>
-                          <div className="second_model_card_img position-relative">
+                          <div className="second_model_card_img position-relative first_model_card"
+                            data-toggle="modal"
+                            data-target=".exampleModal">
                             <img src={profileFeetImg02} className="img-fluid" />
-                            {/* <span className='heart_icon'>
-                                                    <i class="fa-solid fa-heart"></i>
-                                                    </span> */}
+
                           </div>
 
-                          {/* <div className='model_card_desc'>
-                                                <div className='name_with_status'>
-                                                    <span className='online_circle'><i class="fa-solid fa-circle"></i></span>
-                                                    <span className='hot_model_name'>HOTMODEL1234</span>
-                                                </div>
-                                                <div>
-                                                    <span className='hotmodel_info'>38-USA</span>
-                                                    <span className='send_tip_text'>send tip</span>
-                                                </div>
 
-                                                <div className='pt-2'>
-                                                    <button className='sign_actionBtn'>view profile</button>
-                                                </div>
-                                            </div> */}
                         </SwiperSlide>
                       </Swiper>
 
-                      {/* <div className='framePic'>
-                                        <img src={framePic} className=''/>
-                                    </div> */}
+
                     </div>
                   </div>
 
                   <div className="col-sm-6 col-lg-4">
-                    <div className="second_model_card">
+                    <div className="second_model_card"
+
+                      data-toggle="modal"
+                      data-target=".exampleModal">
+                      <div type="button" className="framePic">
+                        <img src={afterimgframe} className="frameimg" />
+                      </div>
                       <Swiper
                         spaceBetween={30}
                         slidesPerView={1}
@@ -662,134 +529,122 @@ const handleroute = () =>{
                         onSwiper={(swiper) => console.log(swiper)}
                       >
                         <SwiperSlide>
-                          <div className="second_model_card_img position-relative">
+                          <div className="second_model_card_img position-relative first_model_card"
+                            data-toggle="modal"
+                            data-target=".exampleModal">
                             <img src={profileFeetImg03} className="w-100" />
                             <span className="edit_icon_img">
-                              <img src={editingIcon} />
+
                             </span>
 
                             <span className="share_icon_img">
-                              <img src={sharingIcon} />
+
                             </span>
 
                             <span className="boost_icon_img">
-                              <img src={boostIcon} />
+
                             </span>
                           </div>
 
-                          {/* <div className='model_card_desc'>
-                                            <div className='name_with_status'>
-                                                <span className='online_circle'><i class="fa-solid fa-circle"></i></span>
-                                                <span className='hot_model_name'>HOTMODEL1234</span>
-                                            </div>
-                                            <div>
-                                                <span className='hotmodel_info'>38-USA</span>
-                                                <span className='send_tip_text'>send tip</span>
-                                            </div>
 
-                                            <div className='pt-2'>
-                                                <button className='sign_actionBtn'>view profile</button>
-                                            </div>
-                                            </div> */}
+                          <div>
+                            <div className="model_have_a_look_btn">
+                              <button className="have_alook_btn">have a look</button>
+                              <span className="be_nice_span">
+                                BE NICE, or we will crush you!
+                              </span>
+                            </div>
+                          </div>
+
                         </SwiperSlide>
 
                         <SwiperSlide>
-                          <div className="second_model_card_img position-relative">
+                          <div className="second_model_card_img position-relative first_model_card"
+                            data-toggle="modal"
+                            data-target=".exampleModal">
                             <img src={profileFeetImg03} className="img-fluid" />
                             <span className="edit_icon_img">
-                              <img src={editingIcon} />
+
                             </span>
 
                             <span className="share_icon_img">
-                              <img src={sharingIcon} />
+
                             </span>
 
                             <span className="boost_icon_img">
-                              <img src={boostIcon} />
+
                             </span>
                           </div>
 
-                          {/* <div className='model_card_desc'>
-                                            <div className='name_with_status'>
-                                                <span className='online_circle'><i class="fa-solid fa-circle"></i></span>
-                                                <span className='hot_model_name'>HOTMODEL1234</span>
-                                            </div>
-                                            <div>
-                                                <span className='hotmodel_info'>38-USA</span>
-                                                <span className='send_tip_text'>send tip</span>
-                                            </div>
+                          <div>
+                            <div className="model_have_a_look_btn">
+                              <button className="have_alook_btn">have a look</button>
+                              <span className="be_nice_span">
+                                BE NICE, or we will crush you!
+                              </span>
+                            </div>
+                          </div>
 
-                                            <div className='pt-2'>
-                                                <button className='sign_actionBtn'>view profile</button>
-                                            </div>
-                                        </div> */}
                         </SwiperSlide>
 
                         <SwiperSlide>
-                          <div className="second_model_card_img position-relative">
+                          <div className="second_model_card_img position-relative first_model_card"
+                            data-toggle="modal"
+                            data-target=".exampleModal">
                             <img src={profileFeetImg03} className="img-fluid" />
                             <span className="edit_icon_img">
-                              <img src={editingIcon} />
+
                             </span>
 
                             <span className="share_icon_img">
-                              <img src={sharingIcon} />
+
                             </span>
 
                             <span className="boost_icon_img">
-                              <img src={boostIcon} />
+
                             </span>
                           </div>
 
-                          {/* <div className='model_card_desc'>
-                                                <div className='name_with_status'>
-                                                    <span className='online_circle'><i class="fa-solid fa-circle"></i></span>
-                                                    <span className='hot_model_name'>HOTMODEL1234</span>
-                                                </div>
-                                                <div>
-                                                    <span className='hotmodel_info'>38-USA</span>
-                                                    <span className='send_tip_text'>send tip</span>
-                                                </div>
-
-                                                <div className='pt-2'>
-                                                    <button className='sign_actionBtn'>view profile</button>
-                                                </div>
-                                            </div> */}
+                          <div>
+                            <div className="model_have_a_look_btn">
+                              <button className="have_alook_btn">have a look</button>
+                              <span className="be_nice_span">
+                                BE NICE, or we will crush you!
+                              </span>
+                            </div>
+                          </div>
                         </SwiperSlide>
 
                         <SwiperSlide>
-                          <div className="second_model_card_img position-relative">
+                          <div className="second_model_card_img position-relative first_model_card"
+                            data-toggle="modal"
+                            data-target=".exampleModal">
                             <img src={profileFeetImg03} className="img-fluid" />
-                            {/* <span className='heart_icon'>
-                                                    <i class="fa-solid fa-heart"></i>
-                                                    </span> */}
+
                           </div>
 
-                          {/* <div className='model_card_desc'>
-                                                <div className='name_with_status'>
-                                                    <span className='online_circle'><i class="fa-solid fa-circle"></i></span>
-                                                    <span className='hot_model_name'>HOTMODEL1234</span>
-                                                </div>
-                                                <div>
-                                                    <span className='hotmodel_info'>38-USA</span>
-                                                    <span className='send_tip_text'>send tip</span>
-                                                </div>
 
-                                                <div className='pt-2'>
-                                                    <button className='sign_actionBtn'>view profile</button>
-                                                </div>
-                                            </div> */}
+                          <div>
+                            <div className="model_have_a_look_btn">
+                              <button className="have_alook_btn">have a look</button>
+                              <span className="be_nice_span">
+                                BE NICE, or we will crush you!
+                              </span>
+                            </div>
+                          </div>
                         </SwiperSlide>
                       </Swiper>
 
-                      {/* <div className='framePic'>
-                                        <img src={framePic} className=''/>
-                                    </div> */}
+
                     </div>
                   </div>
 
                   <div className="col-sm-6 col-lg-4">
                     <div className="first_model_card">
+                      <div type="button" className="framePic">
+                        <img src={afterimgframe} className="frameimg" />
+                      </div>
+
                       <Swiper
                         spaceBetween={30}
                         slidesPerView={1}
@@ -797,123 +652,110 @@ const handleroute = () =>{
                         onSwiper={(swiper) => console.log(swiper)}
                       >
                         <SwiperSlide>
-                          <div className="model_card_img position-relative">
+                          <div className="model_card_img position-relative first_model_card"
+                            data-toggle="modal"
+                            data-target=".exampleModal">
                             <img src={profileFeetImg04} className="img-fluid" />
                             <span className="edit_icon_img">
-                              <img src={editingIcon} />
+
                             </span>
 
                             <span className="share_icon_img">
-                              <img src={sharingIcon} />
+
                             </span>
 
                             <span className="boost_icon_img">
-                              <img src={boostIcon} />
+
                             </span>
                           </div>
 
-                          {/* <div className='model_card_desc'>
-                        <div className='name_with_status'>
-                            <span className='online_circle'><i class="fa-solid fa-circle"></i></span>
-                            <span className='hot_model_name'>HOTMODEL1234</span>
-                        </div>
-                        <div>
-                            <span className='hotmodel_info'>38-USA</span>
-                            <span className='send_tip_text'>send tip</span>
-                        </div>
-
-                        <div className='pt-2'>
-                            <button className='sign_actionBtn'>view profile</button>
-                        </div>
-                    </div> */}
+                          <div>
+                            <div className="model_have_a_look_btn">
+                              <button className="have_alook_btn">have a look</button>
+                              <span className="be_nice_span">
+                                BE NICE, or we will crush you!
+                              </span>
+                            </div>
+                          </div>
                         </SwiperSlide>
 
                         <SwiperSlide>
-                          <div className="model_card_img">
+                          <div className="model_card_img position-relative first_model_card"
+                            data-toggle="modal"
+                            data-target=".exampleModal">
                             <img src={profileFeetImg04} className="img-fluid" />
                             <span className="edit_icon_img">
-                              <img src={editingIcon} />
+
                             </span>
 
                             <span className="share_icon_img">
-                              <img src={sharingIcon} />
+
                             </span>
 
                             <span className="boost_icon_img">
-                              <img src={boostIcon} />
+
                             </span>
                           </div>
 
-                          {/* <div className='model_card_desc'>
-                        <div className='name_with_status'>
-                            <span className='online_circle'><i class="fa-solid fa-circle"></i></span>
-                            <span className='hot_model_name'>HOTMODEL1234</span>
-                        </div>
-                        <div>
-                            <span className='hotmodel_info'>38-USA</span>
-                            <span className='send_tip_text'>send tip</span>
-                        </div>
 
-                        <div className='pt-2'>
-                            <button className='sign_actionBtn'>view profile</button>
-                        </div>
-                    </div> */}
+                          <div>
+                            <div className="model_have_a_look_btn">
+                              <button className="have_alook_btn">have a look</button>
+                              <span className="be_nice_span">
+                                BE NICE, or we will crush you!
+                              </span>
+                            </div>
+                          </div>
                         </SwiperSlide>
 
                         <SwiperSlide>
-                          <div className="model_card_img">
+                          <div className="model_card_img position-relative first_model_card"
+
+                            data-toggle="modal"
+                            data-target=".exampleModal"
+                          >
                             <img src={profileFeetImg04} className="img-fluid" />
                             <span className="edit_icon_img">
-                              <img src={editingIcon} />
+
                             </span>
 
                             <span className="share_icon_img">
-                              <img src={sharingIcon} />
+
                             </span>
 
                             <span className="boost_icon_img">
-                              <img src={boostIcon} />
+
                             </span>
                           </div>
 
-                          {/* <div className='model_card_desc'>
-                            <div className='name_with_status'>
-                                <span className='online_circle'><i class="fa-solid fa-circle"></i></span>
-                                <span className='hot_model_name'>HOTMODEL1234</span>
+                          <div>
+                            <div className="model_have_a_look_btn">
+                              <button className="have_alook_btn">have a look</button>
+                              <span className="be_nice_span">
+                                BE NICE, or we will crush you!
+                              </span>
                             </div>
-                            <div>
-                                <span className='hotmodel_info'>38-USA</span>
-                                <span className='send_tip_text'>send tip</span>
-                            </div>
-
-                            <div className='pt-2'>
-                                <button className='sign_actionBtn'>view profile</button>
-                            </div>
-                        </div> */}
+                          </div>
                         </SwiperSlide>
 
                         <SwiperSlide>
-                          <div className="model_card_img">
+                          <div className="model_card_img position-relative first_model_card"
+                            data-toggle="modal"
+                            data-target=".exampleModal">
+
                             <img src={profileFeetImg04} className="img-fluid" />
-                            {/* <span className='heart_icon'>
-                                <i class="fa-solid fa-heart"></i>
-                                </span> */}
+
                           </div>
 
-                          {/* <div className='model_card_desc'>
-                            <div className='name_with_status'>
-                                <span className='online_circle'><i class="fa-solid fa-circle"></i></span>
-                                <span className='hot_model_name'>HOTMODEL1234</span>
-                            </div>
-                            <div>
-                                <span className='hotmodel_info'>38-USA</span>
-                                <span className='send_tip_text'>send tip</span>
-                            </div>
 
-                            <div className='pt-2'>
-                                <button className='sign_actionBtn'>view profile</button>
+                          <div>
+                            <div className="model_have_a_look_btn">
+                              <button className="have_alook_btn">have a look</button>
+                              <span className="be_nice_span">
+                                BE NICE, or we will crush you!
+                              </span>
                             </div>
-                        </div> */}
+                          </div>
                         </SwiperSlide>
                       </Swiper>
 
@@ -921,18 +763,18 @@ const handleroute = () =>{
                         <img src={modelCardTopCorner} />
                       </div>
 
-                      <div className="model_card_bottom_corner_img">
+                      <div className="model_card_bottom_corner_img" id="model_card_bottom_corner_imgs">
                         <img src={modelCardBottomCorner} />
                       </div>
 
-                      {/* <div className='framePic'>
-                    <img src={framePic} className=''/>
-                </div> */}
                     </div>
                   </div>
 
                   <div className="col-sm-6 col-lg-4">
                     <div className="first_model_card">
+                      <div type="button" className="framePic">
+                        <img src={afterimgframe} className="frameimg" />
+                      </div>
                       <Swiper
                         spaceBetween={30}
                         slidesPerView={1}
@@ -940,123 +782,105 @@ const handleroute = () =>{
                         onSwiper={(swiper) => console.log(swiper)}
                       >
                         <SwiperSlide>
-                          <div className="model_card_img position-relative">
+                          <div className="model_card_img position-relative first_model_card"
+
+
+                            data-toggle="modal"
+                            data-target=".exampleModal">
                             <img src={profileFeetImg05} className="img-fluid" />
                             <span className="edit_icon_img">
-                              <img src={editingIcon} />
+
                             </span>
 
                             <span className="share_icon_img">
-                              <img src={sharingIcon} />
+
                             </span>
 
                             <span className="boost_icon_img">
-                              <img src={boostIcon} />
+
                             </span>
                           </div>
 
-                          {/* <div className='model_card_desc'>
-                        <div className='name_with_status'>
-                            <span className='online_circle'><i class="fa-solid fa-circle"></i></span>
-                            <span className='hot_model_name'>HOTMODEL1234</span>
-                        </div>
-                        <div>
-                            <span className='hotmodel_info'>38-USA</span>
-                            <span className='send_tip_text'>send tip</span>
-                        </div>
-
-                        <div className='pt-2'>
-                            <button className='sign_actionBtn'>view profile</button>
-                        </div>
-                    </div> */}
+                          <div>
+                            <div className="model_have_a_look_btn">
+                              <button className="have_alook_btn">have a look</button>
+                              <span className="be_nice_span">
+                                BE NICE, or we will crush you!
+                              </span>
+                            </div>
+                          </div>
                         </SwiperSlide>
 
                         <SwiperSlide>
-                          <div className="model_card_img">
+                          <div className="model_card_img position-relative first_model_card" data-toggle="modal"
+                            data-target=".exampleModal">
                             <img src={profileFeetImg05} className="img-fluid" />
                             <span className="edit_icon_img">
-                              <img src={editingIcon} />
+
                             </span>
 
                             <span className="share_icon_img">
-                              <img src={sharingIcon} />
+
                             </span>
 
                             <span className="boost_icon_img">
-                              <img src={boostIcon} />
+
                             </span>
                           </div>
 
-                          {/* <div className='model_card_desc'>
-                        <div className='name_with_status'>
-                            <span className='online_circle'><i class="fa-solid fa-circle"></i></span>
-                            <span className='hot_model_name'>HOTMODEL1234</span>
-                        </div>
-                        <div>
-                            <span className='hotmodel_info'>38-USA</span>
-                            <span className='send_tip_text'>send tip</span>
-                        </div>
-
-                        <div className='pt-2'>
-                            <button className='sign_actionBtn'>view profile</button>
-                        </div>
-                    </div> */}
+                          <div>
+                            <div className="model_have_a_look_btn">
+                              <button className="have_alook_btn">have a look</button>
+                              <span className="be_nice_span">
+                                BE NICE, or we will crush you!
+                              </span>
+                            </div>
+                          </div>
                         </SwiperSlide>
 
                         <SwiperSlide>
-                          <div className="model_card_img">
+                          <div className="model_card_img position-relative first_model_card" data-toggle="modal"
+                            data-target=".exampleModal">
                             <img src={profileFeetImg05} className="img-fluid" />
                             <span className="edit_icon_img">
-                              <img src={editingIcon} />
+
                             </span>
 
                             <span className="share_icon_img">
-                              <img src={sharingIcon} />
+
                             </span>
 
                             <span className="boost_icon_img">
-                              <img src={boostIcon} />
+
                             </span>
                           </div>
 
-                          {/* <div className='model_card_desc'>
-                            <div className='name_with_status'>
-                                <span className='online_circle'><i class="fa-solid fa-circle"></i></span>
-                                <span className='hot_model_name'>HOTMODEL1234</span>
+                          <div>
+                            <div className="model_have_a_look_btn">
+                              <button className="have_alook_btn">have a look</button>
+                              <span className="be_nice_span">
+                                BE NICE, or we will crush you!
+                              </span>
                             </div>
-                            <div>
-                                <span className='hotmodel_info'>38-USA</span>
-                                <span className='send_tip_text'>send tip</span>
-                            </div>
-
-                            <div className='pt-2'>
-                                <button className='sign_actionBtn'>view profile</button>
-                            </div>
-                        </div> */}
+                          </div>
                         </SwiperSlide>
 
                         <SwiperSlide>
-                          <div className="model_card_img">
+                          <div className="model_card_img position-relative first_model_card" data-toggle="modal"
+                            data-target=".exampleModal">
                             <img src={profileFeetImg05} className="img-fluid" />
-                            {/* <span className='heart_icon'>
-                                <i class="fa-solid fa-heart"></i>
-                                </span> */}
+
                           </div>
 
-                          {/* <div className='model_card_desc'>
-                            <div className='name_with_status'>
-                                <span className='online_circle'><i class="fa-solid fa-circle"></i></span>
-                                <span className='hot_model_name'>HOTMODEL1234</span>
-                            </div>
-                            <div>
-                                <span className='hotmodel_info'>38-USA</span>
-                                <span className='send_tip_text'>send tip</span>
-                            </div>
 
-                            <div className='pt-2'>
-                                <button className='sign_actionBtn'>view profile</button>
+                          <div>
+                            <div className="model_have_a_look_btn">
+                              <button className="have_alook_btn">have a look</button>
+                              <span className="be_nice_span">
+                                BE NICE, or we will crush you!
+                              </span>
                             </div>
-                        </div> */}
+                          </div>
                         </SwiperSlide>
                       </Swiper>
 
@@ -1064,18 +888,18 @@ const handleroute = () =>{
                         <img src={modelCardTopCorner} />
                       </div>
 
-                      <div className="model_card_bottom_corner_img">
+                      <div className="model_card_bottom_corner_img" id="model_card_bottom_corner_imgs">
                         <img src={modelCardBottomCorner} />
                       </div>
 
-                      {/* <div className='framePic'>
-                    <img src={framePic} className=''/>
-                </div> */}
                     </div>
                   </div>
 
-                  <div className="col-sm-6 col-lg-4">
-                    <div className="second_model_card">
+                  {/* <div className="col-sm-6 col-lg-4">
+                    <div className="second_model_card"
+
+                      data-toggle="modal"
+                      data-target=".exampleModal">
                       <Swiper
                         spaceBetween={30}
                         slidesPerView={1}
@@ -1083,142 +907,130 @@ const handleroute = () =>{
                         onSwiper={(swiper) => console.log(swiper)}
                       >
                         <SwiperSlide>
-                          <div className="second_model_card_img position-relative">
+                          <div className="second_model_card_img position-relative first_model_card"
+                            data-toggle="modal"
+                            data-target=".exampleModal">
                             <img src={profileFeetImg06} className="w-100" />
                             <span className="edit_icon_img">
-                              <img src={editingIcon} />
+
                             </span>
 
                             <span className="share_icon_img">
-                              <img src={sharingIcon} />
+
                             </span>
 
                             <span className="boost_icon_img">
-                              <img src={boostIcon} />
+
                             </span>
                           </div>
-
-                          {/* <div className='model_card_desc'>
-                                            <div className='name_with_status'>
-                                                <span className='online_circle'><i class="fa-solid fa-circle"></i></span>
-                                                <span className='hot_model_name'>HOTMODEL1234</span>
-                                            </div>
-                                            <div>
-                                                <span className='hotmodel_info'>38-USA</span>
-                                                <span className='send_tip_text'>send tip</span>
-                                            </div>
-
-                                            <div className='pt-2'>
-                                                <button className='sign_actionBtn'>view profile</button>
-                                            </div>
-                                            </div> */}
+                          
+                          <div>
+                            <div className="model_have_a_look_btn">
+                              <button className="have_alook_btn">have a look</button>
+                              <span className="be_nice_span">
+                                BE NICE, or we will crush you!
+                              </span>
+                            </div>
+                          </div>
                         </SwiperSlide>
 
                         <SwiperSlide>
-                          <div className="second_model_card_img position-relative">
+                          <div className="second_model_card_img position-relative first_model_card"
+                            data-toggle="modal"
+                            data-target=".exampleModal">
                             <img src={profileFeetImg06} className="img-fluid" />
                             <span className="edit_icon_img">
-                              <img src={editingIcon} />
+
                             </span>
 
                             <span className="share_icon_img">
-                              <img src={sharingIcon} />
+
                             </span>
 
                             <span className="boost_icon_img">
-                              <img src={boostIcon} />
+
                             </span>
                           </div>
+                          
+                          <div>
+                            <div className="model_have_a_look_btn">
+                              <button className="have_alook_btn">have a look</button>
+                              <span className="be_nice_span">
+                                BE NICE, or we will crush you!
+                              </span>
+                            </div>
+                          </div>
 
-                          {/* <div className='model_card_desc'>
-                                            <div className='name_with_status'>
-                                                <span className='online_circle'><i class="fa-solid fa-circle"></i></span>
-                                                <span className='hot_model_name'>HOTMODEL1234</span>
-                                            </div>
-                                            <div>
-                                                <span className='hotmodel_info'>38-USA</span>
-                                                <span className='send_tip_text'>send tip</span>
-                                            </div>
-
-                                            <div className='pt-2'>
-                                                <button className='sign_actionBtn'>view profile</button>
-                                            </div>
-                                        </div> */}
                         </SwiperSlide>
 
                         <SwiperSlide>
-                          <div className="second_model_card_img position-relative">
+                          <div className="second_model_card_img position-relative first_model_card"
+                            data-toggle="modal"
+                            data-target=".exampleModal">
                             <img src={profileFeetImg06} className="img-fluid" />
                             <span className="edit_icon_img">
-                              <img src={editingIcon} />
+
                             </span>
 
                             <span className="share_icon_img">
-                              <img src={sharingIcon} />
+
                             </span>
 
                             <span className="boost_icon_img">
-                              <img src={boostIcon} />
+
                             </span>
                           </div>
+                          
+                          <div>
+                            <div className="model_have_a_look_btn">
+                              <button className="have_alook_btn">have a look</button>
+                              <span className="be_nice_span">
+                                BE NICE, or we will crush you!
+                              </span>
+                            </div>
+                          </div>
 
-                          {/* <div className='model_card_desc'>
-                                                <div className='name_with_status'>
-                                                    <span className='online_circle'><i class="fa-solid fa-circle"></i></span>
-                                                    <span className='hot_model_name'>HOTMODEL1234</span>
-                                                </div>
-                                                <div>
-                                                    <span className='hotmodel_info'>38-USA</span>
-                                                    <span className='send_tip_text'>send tip</span>
-                                                </div>
-
-                                                <div className='pt-2'>
-                                                    <button className='sign_actionBtn'>view profile</button>
-                                                </div>
-                                            </div> */}
                         </SwiperSlide>
 
                         <SwiperSlide>
-                          <div className="second_model_card_img position-relative">
+                          <div className="second_model_card_img position-relative first_model_card"
+                            data-toggle="modal"
+                            data-target=".exampleModal">
                             <img src={profileFeetImg06} className="img-fluid" />
                             <span className="edit_icon_img">
-                              <img src={editingIcon} />
+
                             </span>
 
                             <span className="share_icon_img">
-                              <img src={sharingIcon} />
+
                             </span>
 
                             <span className="boost_icon_img">
-                              <img src={boostIcon} />
+
                             </span>
                           </div>
 
-                          {/* <div className='model_card_desc'>
-                                                <div className='name_with_status'>
-                                                    <span className='online_circle'><i class="fa-solid fa-circle"></i></span>
-                                                    <span className='hot_model_name'>HOTMODEL1234</span>
-                                                </div>
-                                                <div>
-                                                    <span className='hotmodel_info'>38-USA</span>
-                                                    <span className='send_tip_text'>send tip</span>
-                                                </div>
-
-                                                <div className='pt-2'>
-                                                    <button className='sign_actionBtn'>view profile</button>
-                                                </div>
-                                            </div> */}
+                          
+                          <div>
+                            <div className="model_have_a_look_btn">
+                              <button className="have_alook_btn">have a look</button>
+                              <span className="be_nice_span">
+                                BE NICE, or we will crush you!
+                              </span>
+                            </div>
+                          </div>
                         </SwiperSlide>
                       </Swiper>
 
-                      {/* <div className='framePic'>
-                                        <img src={framePic} className=''/>
-                                    </div> */}
+
                     </div>
-                  </div>
+                  </div> */}
 
                   <div className="col-sm-6 col-lg-4">
                     <div className="first_model_card">
+                      <div type="button" className="framePic">
+                        <img src={afterimgframe} className="frameimg" />
+                      </div>
                       <Swiper
                         spaceBetween={30}
                         slidesPerView={1}
@@ -1226,123 +1038,104 @@ const handleroute = () =>{
                         onSwiper={(swiper) => console.log(swiper)}
                       >
                         <SwiperSlide>
-                          <div className="model_card_img position-relative">
+                          <div className="model_card_img position-relative first_model_card" data-toggle="modal"
+                            data-target=".exampleModal">
                             <img src={profileFeetImg04} className="img-fluid" />
                             <span className="edit_icon_img">
-                              <img src={editingIcon} />
+
                             </span>
 
                             <span className="share_icon_img">
-                              <img src={sharingIcon} />
+
                             </span>
 
                             <span className="boost_icon_img">
-                              <img src={boostIcon} />
+
                             </span>
                           </div>
 
-                          {/* <div className='model_card_desc'>
-                        <div className='name_with_status'>
-                            <span className='online_circle'><i class="fa-solid fa-circle"></i></span>
-                            <span className='hot_model_name'>HOTMODEL1234</span>
-                        </div>
-                        <div>
-                            <span className='hotmodel_info'>38-USA</span>
-                            <span className='send_tip_text'>send tip</span>
-                        </div>
+                          <div>
+                            <div className="model_have_a_look_btn">
+                              <button className="have_alook_btn">have a look</button>
+                              <span className="be_nice_span">
+                                BE NICE, or we will crush you!
+                              </span>
+                            </div>
+                          </div>
 
-                        <div className='pt-2'>
-                            <button className='sign_actionBtn'>view profile</button>
-                        </div>
-                    </div> */}
                         </SwiperSlide>
 
                         <SwiperSlide>
-                          <div className="model_card_img">
+                          <div className="model_card_im first_model_cardg" data-toggle="modal"
+                            data-target=".exampleModal">
                             <img src={profileFeetImg04} className="img-fluid" />
                             <span className="edit_icon_img">
-                              <img src={editingIcon} />
+
                             </span>
 
                             <span className="share_icon_img">
-                              <img src={sharingIcon} />
+
                             </span>
 
                             <span className="boost_icon_img">
-                              <img src={boostIcon} />
+
                             </span>
                           </div>
 
-                          {/* <div className='model_card_desc'>
-                        <div className='name_with_status'>
-                            <span className='online_circle'><i class="fa-solid fa-circle"></i></span>
-                            <span className='hot_model_name'>HOTMODEL1234</span>
-                        </div>
-                        <div>
-                            <span className='hotmodel_info'>38-USA</span>
-                            <span className='send_tip_text'>send tip</span>
-                        </div>
+                          <div>
+                            <div className="model_have_a_look_btn">
+                              <button className="have_alook_btn">have a look</button>
+                              <span className="be_nice_span">
+                                BE NICE, or we will crush you!
+                              </span>
+                            </div>
+                          </div>
 
-                        <div className='pt-2'>
-                            <button className='sign_actionBtn'>view profile</button>
-                        </div>
-                    </div> */}
                         </SwiperSlide>
 
                         <SwiperSlide>
-                          <div className="model_card_img">
+                          <div className="model_card_img first_model_card" data-toggle="modal"
+                            data-target=".exampleModal">
                             <img src={profileFeetImg04} className="img-fluid" />
                             <span className="edit_icon_img">
-                              <img src={editingIcon} />
+
                             </span>
 
                             <span className="share_icon_img">
-                              <img src={sharingIcon} />
+
                             </span>
 
                             <span className="boost_icon_img">
-                              <img src={boostIcon} />
+
                             </span>
                           </div>
 
-                          {/* <div className='model_card_desc'>
-                            <div className='name_with_status'>
-                                <span className='online_circle'><i class="fa-solid fa-circle"></i></span>
-                                <span className='hot_model_name'>HOTMODEL1234</span>
+                          <div>
+                            <div className="model_have_a_look_btn">
+                              <button className="have_alook_btn">have a look</button>
+                              <span className="be_nice_span">
+                                BE NICE, or we will crush you!
+                              </span>
                             </div>
-                            <div>
-                                <span className='hotmodel_info'>38-USA</span>
-                                <span className='send_tip_text'>send tip</span>
-                            </div>
+                          </div>
 
-                            <div className='pt-2'>
-                                <button className='sign_actionBtn'>view profile</button>
-                            </div>
-                        </div> */}
                         </SwiperSlide>
 
                         <SwiperSlide>
-                          <div className="model_card_img">
+                          <div className="model_card_img first_model_card">
                             <img src={profileFeetImg04} className="img-fluid" />
-                            {/* <span className='heart_icon'>
-                                <i class="fa-solid fa-heart"></i>
-                                </span> */}
+
                           </div>
 
-                          {/* <div className='model_card_desc'>
-                            <div className='name_with_status'>
-                                <span className='online_circle'><i class="fa-solid fa-circle"></i></span>
-                                <span className='hot_model_name'>HOTMODEL1234</span>
-                            </div>
-                            <div>
-                                <span className='hotmodel_info'>38-USA</span>
-                                <span className='send_tip_text'>send tip</span>
-                            </div>
 
-                            <div className='pt-2'>
-                                <button className='sign_actionBtn'>view profile</button>
+                          <div>
+                            <div className="model_have_a_look_btn">
+                              <button className="have_alook_btn">have a look</button>
+                              <span className="be_nice_span">
+                                BE NICE, or we will crush you!
+                              </span>
                             </div>
-                        </div> */}
+                          </div>
                         </SwiperSlide>
                       </Swiper>
 
@@ -1350,7 +1143,122 @@ const handleroute = () =>{
                         <img src={modelCardTopCorner} />
                       </div>
 
-                      <div className="model_card_bottom_corner_img">
+                      <div className="model_card_bottom_corner_img" id="model_card_bottom_corner_imgs">
+                        <img src={modelCardBottomCorner} />
+                      </div>
+
+                    </div>
+                  </div>
+
+                  <div className="col-sm-6 col-lg-4">
+                    <div className="first_model_card">
+                      <div type="button" className="framePic">
+                        <img src={afterimgframe} className="frameimg" />
+                      </div>
+                      <Swiper
+                        spaceBetween={30}
+                        slidesPerView={1}
+                        onSlideChange={() => console.log("slide change")}
+                        onSwiper={(swiper) => console.log(swiper)}
+                      >
+                        <SwiperSlide>
+                          <div className="model_card_img position-relative first_model_card" data-toggle="modal"
+                            data-target=".exampleModal">
+                            <img src={profileFeetImg05} className="img-fluid" />
+                            <span className="edit_icon_img">
+
+                            </span>
+
+                            <span className="share_icon_img">
+
+                            </span>
+
+                            <span className="boost_icon_img">
+
+                            </span>
+                          </div>
+
+
+                          <div>
+                            <div className="model_have_a_look_btn">
+                              <button className="have_alook_btn">have a look</button>
+                              <span className="be_nice_span">
+                                BE NICE, or we will crush you!
+                              </span>
+                            </div>
+                          </div>
+                        </SwiperSlide>
+
+                        <SwiperSlide>
+                          <div className="model_card_img first_model_card" data-toggle="modal"
+                            data-target=".exampleModal">
+                            <img src={profileFeetImg05} className="img-fluid" />
+                            <span className="edit_icon_img">
+
+                            </span>
+
+                            <span className="share_icon_img">
+
+                            </span>
+
+                            <span className="boost_icon_img">
+
+                            </span>
+                          </div>
+
+                          <div>
+                            <div className="model_have_a_look_btn">
+                              <button className="have_alook_btn">have a look</button>
+                              <span className="be_nice_span">
+                                BE NICE, or we will crush you!
+                              </span>
+                            </div>
+                          </div>
+                        </SwiperSlide>
+
+                        <SwiperSlide>
+                          <div className="model_card_img first_model_card" data-toggle="modal"
+                            data-target=".exampleModal">
+                            <img src={profileFeetImg05} className="img-fluid" />
+                            <span className="edit_icon_img">
+
+                            </span>
+
+                            <span className="share_icon_img">
+
+                            </span>
+
+                            <span className="boost_icon_img">
+
+                            </span>
+                          </div>
+
+
+                          <div>
+                            <div className="model_have_a_look_btn">
+                              <button className="have_alook_btn">have a look</button>
+                              <span className="be_nice_span">
+                                BE NICE, or we will crush you!
+                              </span>
+                            </div>
+                          </div>
+                        </SwiperSlide>
+
+                        <SwiperSlide>
+                          <div className="model_card_img">
+                            <img src={profileFeetImg05} className="img-fluid" />
+
+                          </div>
+
+
+                        </SwiperSlide>
+                      </Swiper>
+
+                      <div className="model_card_top_corner_img">
+                        <img src={modelCardTopCorner} />
+                      </div>
+
+                      <div className="model_card_bottom_corner_img" id="model_card_bottom_corner_imgs">
                         <img src={modelCardBottomCorner} />
                       </div>
 
@@ -1361,7 +1269,12 @@ const handleroute = () =>{
                   </div>
 
                   <div className="col-sm-6 col-lg-4">
-                    <div className="first_model_card">
+                    <div className="second_model_card"
+                      data-toggle="modal"
+                      data-target=".exampleModal">
+                      <div type="button" className="framePic">
+                        <img src={afterimgframe} className="frameimg" />
+                      </div>
                       <Swiper
                         spaceBetween={30}
                         slidesPerView={1}
@@ -1369,280 +1282,339 @@ const handleroute = () =>{
                         onSwiper={(swiper) => console.log(swiper)}
                       >
                         <SwiperSlide>
-                          <div className="model_card_img position-relative">
-                            <img src={profileFeetImg05} className="img-fluid" />
-                            <span className="edit_icon_img">
-                              <img src={editingIcon} />
-                            </span>
-
-                            <span className="share_icon_img">
-                              <img src={sharingIcon} />
-                            </span>
-
-                            <span className="boost_icon_img">
-                              <img src={boostIcon} />
-                            </span>
-                          </div>
-
-                          {/* <div className='model_card_desc'>
-                        <div className='name_with_status'>
-                            <span className='online_circle'><i class="fa-solid fa-circle"></i></span>
-                            <span className='hot_model_name'>HOTMODEL1234</span>
-                        </div>
-                        <div>
-                            <span className='hotmodel_info'>38-USA</span>
-                            <span className='send_tip_text'>send tip</span>
-                        </div>
-
-                        <div className='pt-2'>
-                            <button className='sign_actionBtn'>view profile</button>
-                        </div>
-                    </div> */}
-                        </SwiperSlide>
-
-                        <SwiperSlide>
-                          <div className="model_card_img">
-                            <img src={profileFeetImg05} className="img-fluid" />
-                            <span className="edit_icon_img">
-                              <img src={editingIcon} />
-                            </span>
-
-                            <span className="share_icon_img">
-                              <img src={sharingIcon} />
-                            </span>
-
-                            <span className="boost_icon_img">
-                              <img src={boostIcon} />
-                            </span>
-                          </div>
-
-                          {/* <div className='model_card_desc'>
-                        <div className='name_with_status'>
-                            <span className='online_circle'><i class="fa-solid fa-circle"></i></span>
-                            <span className='hot_model_name'>HOTMODEL1234</span>
-                        </div>
-                        <div>
-                            <span className='hotmodel_info'>38-USA</span>
-                            <span className='send_tip_text'>send tip</span>
-                        </div>
-
-                        <div className='pt-2'>
-                            <button className='sign_actionBtn'>view profile</button>
-                        </div>
-                    </div> */}
-                        </SwiperSlide>
-
-                        <SwiperSlide>
-                          <div className="model_card_img">
-                            <img src={profileFeetImg05} className="img-fluid" />
-                            <span className="edit_icon_img">
-                              <img src={editingIcon} />
-                            </span>
-
-                            <span className="share_icon_img">
-                              <img src={sharingIcon} />
-                            </span>
-
-                            <span className="boost_icon_img">
-                              <img src={boostIcon} />
-                            </span>
-                          </div>
-
-                          {/* <div className='model_card_desc'>
-                            <div className='name_with_status'>
-                                <span className='online_circle'><i class="fa-solid fa-circle"></i></span>
-                                <span className='hot_model_name'>HOTMODEL1234</span>
-                            </div>
-                            <div>
-                                <span className='hotmodel_info'>38-USA</span>
-                                <span className='send_tip_text'>send tip</span>
-                            </div>
-
-                            <div className='pt-2'>
-                                <button className='sign_actionBtn'>view profile</button>
-                            </div>
-                        </div> */}
-                        </SwiperSlide>
-
-                        <SwiperSlide>
-                          <div className="model_card_img">
-                            <img src={profileFeetImg05} className="img-fluid" />
-                            {/* <span className='heart_icon'>
-                                <i class="fa-solid fa-heart"></i>
-                                </span> */}
-                          </div>
-
-                          {/* <div className='model_card_desc'>
-                            <div className='name_with_status'>
-                                <span className='online_circle'><i class="fa-solid fa-circle"></i></span>
-                                <span className='hot_model_name'>HOTMODEL1234</span>
-                            </div>
-                            <div>
-                                <span className='hotmodel_info'>38-USA</span>
-                                <span className='send_tip_text'>send tip</span>
-                            </div>
-
-                            <div className='pt-2'>
-                                <button className='sign_actionBtn'>view profile</button>
-                            </div>
-                        </div> */}
-                        </SwiperSlide>
-                      </Swiper>
-
-                      <div className="model_card_top_corner_img">
-                        <img src={modelCardTopCorner} />
-                      </div>
-
-                      <div className="model_card_bottom_corner_img">
-                        <img src={modelCardBottomCorner} />
-                      </div>
-
-                      {/* <div className='framePic'>
-                    <img src={framePic} className=''/>
-                </div> */}
-                    </div>
-                  </div>
-
-                  <div className="col-sm-6 col-lg-4">
-                    <div className="second_model_card">
-                      <Swiper
-                        spaceBetween={30}
-                        slidesPerView={1}
-                        onSlideChange={() => console.log("slide change")}
-                        onSwiper={(swiper) => console.log(swiper)}
-                      >
-                        <SwiperSlide>
-                          <div className="second_model_card_img position-relative">
+                          <div className="second_model_card_img position-relative first_model_card"
+                            data-toggle="modal"
+                            data-target=".exampleModal">
                             <img src={profileFeetImg06} className="w-100" />
                             <span className="edit_icon_img">
-                              <img src={editingIcon} />
+
                             </span>
 
                             <span className="share_icon_img">
-                              <img src={sharingIcon} />
+
                             </span>
 
                             <span className="boost_icon_img">
-                              <img src={boostIcon} />
+
                             </span>
                           </div>
 
-                          {/* <div className='model_card_desc'>
-                                            <div className='name_with_status'>
-                                                <span className='online_circle'><i class="fa-solid fa-circle"></i></span>
-                                                <span className='hot_model_name'>HOTMODEL1234</span>
-                                            </div>
-                                            <div>
-                                                <span className='hotmodel_info'>38-USA</span>
-                                                <span className='send_tip_text'>send tip</span>
-                                            </div>
 
-                                            <div className='pt-2'>
-                                                <button className='sign_actionBtn'>view profile</button>
-                                            </div>
-                                            </div> */}
+
+
+                          <div>
+                            <div className="model_have_a_look_btn">
+                              <button className="have_alook_btn">have a look</button>
+                              <span className="be_nice_span">
+                                BE NICE, or we will crush you!
+                              </span>
+                            </div>
+                          </div>
                         </SwiperSlide>
 
                         <SwiperSlide>
-                          <div className="second_model_card_img position-relative">
+                          <div className="second_model_card_img position-relative first_model_card"
+                            data-toggle="modal"
+                            data-target=".exampleModal">
                             <img src={profileFeetImg06} className="img-fluid" />
                             <span className="edit_icon_img">
-                              <img src={editingIcon} />
+
                             </span>
 
                             <span className="share_icon_img">
-                              <img src={sharingIcon} />
+
                             </span>
 
                             <span className="boost_icon_img">
-                              <img src={boostIcon} />
+
                             </span>
                           </div>
 
-                          {/* <div className='model_card_desc'>
-                                            <div className='name_with_status'>
-                                                <span className='online_circle'><i class="fa-solid fa-circle"></i></span>
-                                                <span className='hot_model_name'>HOTMODEL1234</span>
-                                            </div>
-                                            <div>
-                                                <span className='hotmodel_info'>38-USA</span>
-                                                <span className='send_tip_text'>send tip</span>
-                                            </div>
 
-                                            <div className='pt-2'>
-                                                <button className='sign_actionBtn'>view profile</button>
-                                            </div>
-                                        </div> */}
+
+                          <div>
+                            <div className="model_have_a_look_btn">
+                              <button className="have_alook_btn">have a look</button>
+                              <span className="be_nice_span">
+                                BE NICE, or we will crush you!
+                              </span>
+                            </div>
+                          </div>
+
                         </SwiperSlide>
 
                         <SwiperSlide>
-                          <div className="second_model_card_img position-relative">
+                          <div className="second_model_card_img position-relative first_model_card"
+
+                            data-toggle="modal"
+                            data-target=".exampleModal">
                             <img src={profileFeetImg06} className="img-fluid" />
                             <span className="edit_icon_img">
-                              <img src={editingIcon} />
+
                             </span>
 
                             <span className="share_icon_img">
-                              <img src={sharingIcon} />
+
                             </span>
 
                             <span className="boost_icon_img">
-                              <img src={boostIcon} />
+
                             </span>
                           </div>
 
-                          {/* <div className='model_card_desc'>
-                                                <div className='name_with_status'>
-                                                    <span className='online_circle'><i class="fa-solid fa-circle"></i></span>
-                                                    <span className='hot_model_name'>HOTMODEL1234</span>
-                                                </div>
-                                                <div>
-                                                    <span className='hotmodel_info'>38-USA</span>
-                                                    <span className='send_tip_text'>send tip</span>
-                                                </div>
 
-                                                <div className='pt-2'>
-                                                    <button className='sign_actionBtn'>view profile</button>
-                                                </div>
-                                            </div> */}
+                          <div>
+                            <div className="model_have_a_look_btn">
+                              <button className="have_alook_btn">have a look</button>
+                              <span className="be_nice_span">
+                                BE NICE, or we will crush you!
+                              </span>
+                            </div>
+                          </div>
                         </SwiperSlide>
 
                         <SwiperSlide>
-                          <div className="second_model_card_img position-relative">
+                          <div className="second_model_card_img position-relative first_model_card"
+                            data-toggle="modal"
+                            data-target=".exampleModal">
                             <img src={profileFeetImg06} className="img-fluid" />
                             <span className="edit_icon_img">
-                              <img src={editingIcon} />
+
                             </span>
 
                             <span className="share_icon_img">
-                              <img src={sharingIcon} />
+
                             </span>
 
                             <span className="boost_icon_img">
-                              <img src={boostIcon} />
+
                             </span>
                           </div>
 
-                          {/* <div className='model_card_desc'>
-                                                <div className='name_with_status'>
-                                                    <span className='online_circle'><i class="fa-solid fa-circle"></i></span>
-                                                    <span className='hot_model_name'>HOTMODEL1234</span>
-                                                </div>
-                                                <div>
-                                                    <span className='hotmodel_info'>38-USA</span>
-                                                    <span className='send_tip_text'>send tip</span>
-                                                </div>
-
-                                                <div className='pt-2'>
-                                                    <button className='sign_actionBtn'>view profile</button>
-                                                </div>
-                                            </div> */}
+                          <div>
+                            <div className="model_have_a_look_btn">
+                              <button className="have_alook_btn">have a look</button>
+                              <span className="be_nice_span">
+                                BE NICE, or we will crush you!
+                              </span>
+                            </div>
+                          </div>
                         </SwiperSlide>
                       </Swiper>
 
-                      {/* <div className='framePic'>
-                                        <img src={framePic} className=''/>
-                                    </div> */}
+                    </div>
+                  </div>
+
+                  <div className="col-sm-6 col-lg-4">
+                    <div className="first_model_card">
+                      <div type="button" className="framePic">
+                        <img src={afterimgframe} className="frameimg" />
+                      </div>
+                      <Swiper
+                        spaceBetween={30}
+                        slidesPerView={1}
+                        onSlideChange={() => console.log("slide change")}
+                        onSwiper={(swiper) => console.log(swiper)}
+                      >
+                        <SwiperSlide>
+                          <div className="model_card_img position-relative first_model_card" data-toggle="modal"
+                            data-target=".exampleModal">
+                            <img src={profileFeetImg04} className="img-fluid" />
+                            <span className="edit_icon_img">
+
+                            </span>
+
+                            <span className="share_icon_img">
+
+                            </span>
+
+                            <span className="boost_icon_img">
+
+                            </span>
+                          </div>
+
+                          <div>
+                            <div className="model_have_a_look_btn">
+                              <button className="have_alook_btn">have a look</button>
+                              <span className="be_nice_span">
+                                BE NICE, or we will crush you!
+                              </span>
+                            </div>
+                          </div>
+
+                        </SwiperSlide>
+
+                        <SwiperSlide>
+                          <div className="model_card_im first_model_cardg" data-toggle="modal"
+                            data-target=".exampleModal">
+                            <img src={profileFeetImg04} className="img-fluid" />
+                            <span className="edit_icon_img">
+
+                            </span>
+
+                            <span className="share_icon_img">
+
+                            </span>
+
+                            <span className="boost_icon_img">
+
+                            </span>
+                          </div>
+
+                          <div>
+                            <div className="model_have_a_look_btn">
+                              <button className="have_alook_btn">have a look</button>
+                              <span className="be_nice_span">
+                                BE NICE, or we will crush you!
+                              </span>
+                            </div>
+                          </div>
+
+                        </SwiperSlide>
+
+                        <SwiperSlide>
+                          <div className="model_card_img first_model_card" data-toggle="modal"
+                            data-target=".exampleModal">
+                            <img src={profileFeetImg04} className="img-fluid" />
+                            <span className="edit_icon_img">
+
+                            </span>
+
+                            <span className="share_icon_img">
+
+                            </span>
+
+                            <span className="boost_icon_img">
+
+                            </span>
+                          </div>
+
+                          <div>
+                            <div className="model_have_a_look_btn">
+                              <button className="have_alook_btn">have a look</button>
+                              <span className="be_nice_span">
+                                BE NICE, or we will crush you!
+                              </span>
+                            </div>
+                          </div>
+
+                        </SwiperSlide>
+
+                        <SwiperSlide>
+                          <div className="model_card_img first_model_card">
+                            <img src={profileFeetImg04} className="img-fluid" />
+
+                          </div>
+
+
+                          <div>
+                            <div className="model_have_a_look_btn">
+                              <button className="have_alook_btn">have a look</button>
+                              <span className="be_nice_span">
+                                BE NICE, or we will crush you!
+                              </span>
+                            </div>
+                          </div>
+                        </SwiperSlide>
+                      </Swiper>
+
+                      <div className="model_card_top_corner_img">
+                        <img src={modelCardTopCorner} />
+                      </div>
+
+                      <div className="model_card_bottom_corner_img" id="model_card_bottom_corner_imgs">
+                        <img src={modelCardBottomCorner} />
+                      </div>
+
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+
+
+
+
+
+
+
+
+
+            <div className="col-md-12">
+              <div
+                class="modal fade exampleModal"
+                // id="exampleModal"
+                tabindex="-1"
+                aria-labelledby="exampleModalLabel"
+                aria-hidden="true"
+              >
+                <div class="modal-dialog modal-dialog-centered my-modal">
+                  <div class="modal-content">
+                    <div className="carousel-modal">
+                      <div class="carousel-header">
+                        <div className="carousel-icons">
+                          <div className="caarousel-icons_inner">
+                            <a
+                              href="javaScript:;"
+                              className="cancel"
+                              data-dismiss="modal"
+                            >
+                              <img src={Cancel} />
+                            </a>
+                            <a type="button" onClick={handleHeart} className="heart">
+                              {/* <img src={Heart} /> */}
+                              <i className={`fa ${hearts ? 'fa-solid' : 'fa-regular'} fa-heart`}></i>
+                            </a>
+
+                          </div>
+                        </div>
+                        <h3 className="modal-title">HOTMODEL1234</h3>
+                        <p className="modal-subtitle">38- USA - 2 Hours ago</p>
+                      </div>
+
+                      <Swiper
+                        slidesPerView={"auto"}
+                        centeredSlides={true}
+                        spaceBetween={15}
+                        navigation={true}
+                        // pagination={{
+                        //   clickable: true,
+                        // }}
+                        modules={[Navigation]}
+                        className="mySwiper"
+                      >
+                        <SwiperSlide>
+                          <img src={modal1} />
+                        </SwiperSlide>
+                        <SwiperSlide>
+                          <img src={modal2} />
+                        </SwiperSlide>
+                        <SwiperSlide>
+                          <img src={modal3} />
+                        </SwiperSlide>
+                        <SwiperSlide>
+                          <img src={modal2} />
+                        </SwiperSlide>
+                        <SwiperSlide>
+                          <img src={modal3} />
+                        </SwiperSlide>
+                      </Swiper>
+
+                      <div className="carousel-footer">
+                        <h4 className="carousel-footer_title">
+                          My Pretty Pink Nails :)
+                        </h4>
+                        <p className="carousel-footer_body">
+                          Lorem Ipsum is simply dummy text of the printing and
+                          typesetting industry. Lorem Ipsum has been the
+                          industry's standard dummy text ever since the 1500s,
+                          when an unknown printer took a galley of type and
+                          scrambled it to make a type specimen book. It has
+                          survived not only five centuries
+                        </p>
+                        {/* <p className="carousel-footer_price">$12.44</p>
+                        <button onClick={handleclick} className="carousel-footer_button">Buy</button> */}
+                      </div>
                     </div>
                   </div>
                 </div>

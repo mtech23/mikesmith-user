@@ -8,6 +8,9 @@ import {
 } from "../../../Asserts/images/index";
 import "./style.css";
 import { Link, useNavigate } from "react-router-dom";
+ 
+ 
+
 
 import Aos from "aos";
 import "aos/dist/aos.css";
@@ -19,11 +22,16 @@ import { userLogoutRequest } from "../../../api";
 
 const Header = () => {
   const [ismenu, setIsMenu] = useState(false);
+
+  const LogoutData = localStorage.getItem("userToken");
   const dispatch = useDispatch();
   const navigate = useNavigate();
+  const usertype = localStorage.getItem('userrole')
+ 
   const openMenu = () => {
     setIsMenu(!ismenu);
   };
+
 
   const handleLogout = async () => {
     try {
@@ -31,6 +39,7 @@ const Header = () => {
 
       if (response && response.status === true) {
         localStorage.removeItem("userToken");
+        localStorage.removeItem("userrole");
         dispatch(logoutRequest());
         navigate("/login-page");
       } else {
@@ -137,46 +146,84 @@ const Header = () => {
             </div>
             <nav className="offcanvas-nav">
               <ul>
-                <li>
-                  <Link to={"/#!"}>Messages</Link>
-                </li>
-                <li>
-                  <Link to={"/#!"}>My Dashboard</Link>
-                </li>
-
+                {usertype === 3 && (
+                  <li>
+                    <Link to={"/#!"}>Messages</Link>
+                  </li>)}
+                {/* {usertype  == 2 ? "<li>
+                  <Link to={"/"}> My Dashboard</Link>
+                </li>" : ''}  */}
+                {usertype === 2 && (
+                  <li>
+                    <Link to={"/"}>My Dashboard</Link>
+                  </li>
+                )}
+ {usertype == 2 && (
                 <li>
                   <Link to={"/model-profile-page"}>My Profile</Link>
                 </li>
-                
-                <li>
+ )}
+
+                {usertype == 3 && (
+                  <li>
+                    <Link to={"/profile-page"}>My Profile</Link>
+                  </li>
+                )}
+
+
+                {/* <li>
                   <Link to={"/add-post-page"}>Search posts</Link>
-                </li>
+                </li> */}
+
+                {usertype == 2 && (
+  
                 <li>
                   <Link to={"/add-post-page"}>Request board</Link>
                 </li>
+)}
                 <li>
-                  <Link to={"/add-post-page"}>swag</Link>
+                  {/* <Link to={"/add-post-page"}>swag</Link> */}
                 </li>
-                <li>
+                {/* <li>
                   <Link to={"/signup-page"}>Sign up</Link>
-                </li>
-                <li>
+                </li> */}
+                {!LogoutData && (
+                  <li>
+                    <Link to={"/signup-page"}>Sign up</Link>
+                  </li>
+                )}
+                {/* <li>
                   <Link to={"/"}>how it works</Link>
-                </li>
-                <li>
+                </li> */}
+                {/* <li>
                   <Link to={"/"}>FAQ</Link>
-                </li>
+                </li> */}
                 <li>
                   <Link to={"/packages-page"}>Platinum bank</Link>
                 </li>
+
                 <li>
-                  <Link to={"/model-page"}>looking for page?</Link>
+                  <Link to={"/model-page"}>Models</Link>
                 </li>
+                {usertype === 2 && (
+                  <li>
+                    <Link to={"/model-page"}>looking for page?</Link>
+                  </li>)}
+ 
+                  <li>
+                    <Link to={"/faqs"}>Faqs</Link>
+                  </li>
               </ul>
             </nav>
           </div>
           <div className="offcanvas-logout">
-            <Link onClick={handleLogout}>Logout</Link>
+            {LogoutData && (
+              <Link onClick={handleLogout}>Logout</Link>
+            )}
+
+            {!LogoutData && (
+              <Link to={"/login-page"}>Sign In</Link>
+            )}
           </div>
         </div>
       )}

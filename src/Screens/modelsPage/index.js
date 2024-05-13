@@ -107,24 +107,6 @@ const listingCard = [
 
 
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
 const Model = () => {
   return (
     <div>
@@ -414,9 +396,9 @@ const Model = () => {
                         <img src={modelCardBottomCorner} />
                       </div>
 
-                      <div className="framePic">
+                      {/* <div className="framePic">
                         <img src={framePic} className="" />
-                      </div>
+                      </div> */}
                     </div>
                   </div>
                 ))}
@@ -550,9 +532,9 @@ const Model = () => {
                     <img src={modelCardBottomCorner} />
                   </div>
 
-                  <div className="framePic">
+                  {/* <div className="framePic">
                     <img src={framePic} className="" />
-                  </div>
+                  </div> */}
                 </div>
               </div>
 
@@ -677,9 +659,9 @@ const Model = () => {
                     </SwiperSlide>
                   </Swiper>
 
-                  <div className="framePic">
+                  {/* <div className="framePic">
                     <img src={framePic} className="" />
-                  </div>
+                  </div> */}
                 </div>
               </div>
 
@@ -804,9 +786,9 @@ const Model = () => {
                     </SwiperSlide>
                   </Swiper>
 
-                  <div className="framePic">
+                  {/* <div className="framePic">
                     <img src={framePic} className="" />
-                  </div>
+                  </div> */}
                 </div>
               </div>
 
@@ -955,9 +937,9 @@ const Model = () => {
                     <img src={modelCardBottomCorner} />
                   </div>
 
-                  <div className="framePic">
+                  {/* <div className="framePic">
                     <img src={framePic} className="" />
-                  </div>
+                  </div> */}
                 </div>
               </div>
 
@@ -1082,9 +1064,9 @@ const Model = () => {
                     </SwiperSlide>
                   </Swiper>
 
-                  <div className="framePic">
+                  {/* <div className="framePic">
                     <img src={framePic} className="" />
-                  </div>
+                  </div> */}
                 </div>
               </div>
 
@@ -1233,9 +1215,9 @@ const Model = () => {
                     <img src={modelCardBottomCorner} />
                   </div>
 
-                  <div className="framePic">
+                  {/* <div className="framePic">
                     <img src={framePic} className="" />
-                  </div>
+                  </div> */}
                 </div>
               </div>
 
@@ -1368,9 +1350,9 @@ const Model = () => {
                     <img src={modelCardBottomCorner} />
                   </div>
 
-                  <div className="framePic">
+                  {/* <div className="framePic">
                     <img src={framePic} className="" />
-                  </div>
+                  </div> */}
                 </div>
               </div>
 
@@ -1495,9 +1477,9 @@ const Model = () => {
                     </SwiperSlide>
                   </Swiper>
 
-                  <div className="framePic">
+                  {/* <div className="framePic">
                     <img src={framePic} className="" />
-                  </div>
+                  </div> */}
                 </div>
               </div>
 
@@ -1646,9 +1628,9 @@ const Model = () => {
                     <img src={modelCardBottomCorner} />
                   </div>
 
-                  <div className="framePic">
+                  {/* <div className="framePic">
                     <img src={framePic} className="" />
-                  </div>
+                  </div> */}
                 </div>
               </div>
 
@@ -1773,9 +1755,9 @@ const Model = () => {
                     </SwiperSlide>
                   </Swiper>
 
-                  <div className="framePic">
+                  {/* <div className="framePic">
                     <img src={framePic} className="" />
-                  </div>
+                  </div> */}
                 </div>
               </div>
 
@@ -1900,9 +1882,9 @@ const Model = () => {
                     </SwiperSlide>
                   </Swiper>
 
-                  <div className="framePic">
+                  {/* <div className="framePic">
                     <img src={framePic} className="" />
-                  </div>
+                  </div> */}
                 </div>
               </div>
 
@@ -2027,9 +2009,9 @@ const Model = () => {
                     </SwiperSlide>
                   </Swiper>
 
-                  <div className="framePic">
+                  {/* <div className="framePic">
                     <img src={framePic} className="" />
-                  </div>
+                  </div> */}
                 </div>
               </div>
             </div>

@@ -7,6 +7,7 @@ import ModelProfile from "../Screens/modelProfilePage";
 import Login from "../Screens/LoginPage";
 import AddPost from "../Screens/addPostPage";
 import Packages from "../Screens/PackagesPage";
+import Faqs from '../Screens/Faqs'
 import Payment from "../Screens/PaymentPage";
 import SignUp from "../Screens/SignUpPage";
 import { ToastContainer } from "react-toastify";
@@ -50,11 +51,12 @@ const Router = () => {
             </ProtectedRoute>
           }
         />
-
+ 
         <Route path="/" element={<Home />} />
         <Route path="/model-page" element={<Model />} />
         {/* <Route path="/profile-page" element={<Profile />} /> */}
         <Route path="/model-profile-page" element={<ModelProfile />} />
+        <Route path="/faqs" element={<Faqs/>} />
         {/* <Route path="/login-page" element={<Login />} /> */}
         {/* <Route path="/signup-page" element={<SignUp />} /> */}
         {/* <Route path="/add-post-page" element={<AddPost />} /> */}

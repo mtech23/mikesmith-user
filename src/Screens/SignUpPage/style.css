@@ -5,11 +5,12 @@
   background-repeat: no-repeat;
   background-size: 100% 100%;
   /* padding: 102px 0px; */
-  height: 100vh;
+  /* height: 100vh; */
   display: flex;
   justify-content: center;
   align-items: center;
 }
+
 .log img.top {
   position: absolute;
   top: 0px;

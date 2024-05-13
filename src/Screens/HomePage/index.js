@@ -44,10 +44,17 @@ import "aos/dist/aos.css";
 const Home = () => {
   //CONST VALS
   const navigate = useNavigate();
-
+  const handledetail = ( ) =>{
+  
+    navigate('/model-profile-page')
+  }
+  const handleclick = () =>{
+  navigate('/model-page')
+}
   useEffect(() => {
     Aos.init();
   }, []);
+
   return (
     <div className="home_page_main">
       <div>
@@ -65,7 +72,7 @@ const Home = () => {
                   data-aos-easing="ease-out-cubic"
                   data-aos-duration="2000"
                 >
-                  <img src={platinumFeetText} className="img-fluid" />
+                  <img src={platinumFeetText} className="img-fluid" id="platinumFeetTextimg" />
                 </div>
 
                 <div className="actionBtns_and_searchBar">
@@ -175,27 +182,27 @@ const Home = () => {
             </div>
 
             <div className="col-sm-6 col-lg-3">
-              <div className="first_model_card">
-                <div className="model_card_img">
+              <div onClick={handledetail} type="button" className="first_model_card">
+                <div    className="model_card_img">
                   <img src={modelImg01} className="img-fluid" />
                 </div>
 
-                <div className="model_card_top_corner_img">
+                <div onClick={handledetail} type="button" className="model_card_top_corner_img">
                   <img src={modelCardTopCorner} />
                 </div>
 
-                <div className="model_card_bottom_corner_img">
+                <div onClick={handledetail} type="button" className="model_card_bottom_corner_img">
                   <img src={modelCardBottomCorner} />
                 </div>
 
-                <div className="model_card_desc">
+                <div onClick={handledetail} type="button" className="model_card_desc">
                   <span className="card_short_para">
                     my pretty pink nails :)
                   </span>
                 </div>
 
-                <div className="framePic">
-                  <img src={mainFrameImg} className="" />
+                <div onClick={handledetail} type="button" className="framePic">
+                  <img src={mainFrameImg} className=" " />
                 </div>
 
                 <div>
@@ -209,7 +216,7 @@ const Home = () => {
               </div>
             </div>
 
-            <div className="col-sm-6 col-lg-3">
+            <div onClick={handledetail} type="button" className="col-sm-6 col-lg-3">
               <div className="second_model_card">
                 <div className="second_model_card_img">
                   <img src={modelImg02} className="w-100" />
@@ -236,7 +243,7 @@ const Home = () => {
               </div>
             </div>
 
-            <div className="col-sm-6 col-lg-3">
+            <div onClick={handledetail} type="button" className="col-sm-6 col-lg-3">
               <div className="second_model_card">
                 <div className="second_model_card_img">
                   <img src={modelImg03} className="w-100" />
@@ -263,7 +270,7 @@ const Home = () => {
               </div>
             </div>
 
-            <div className="col-sm-6 col-lg-3">
+            <div onClick={handledetail} type="button" className="col-sm-6 col-lg-3">
               <div className="first_model_card">
                 <div className="model_card_img">
                   <img src={modelImg04} className="img-fluid" />
@@ -302,7 +309,7 @@ const Home = () => {
               </div>
             </div>
 
-            <div className="col-sm-6 col-lg-3">
+            <div onClick={handledetail} type="button" className="col-sm-6 col-lg-3">
               <div className="second_model_card">
                 <div className="second_model_card_img">
                   <img src={modelImg03} className="w-100" />
@@ -329,7 +336,7 @@ const Home = () => {
               </div>
             </div>
 
-            <div className="col-sm-6 col-lg-3">
+            <div onClick={handledetail} type="button" className="col-sm-6 col-lg-3">
               <div className="first_model_card">
                 <div className="model_card_img">
                   <img src={modelImg05} className="img-fluid" />
@@ -368,7 +375,7 @@ const Home = () => {
               </div>
             </div>
 
-            <div className="col-sm-6 col-lg-3">
+            <div onClick={handledetail} type="button" className="col-sm-6 col-lg-3">
               <div className="second_model_card">
                 <div className="second_model_card_img">
                   <img src={modelImg06} className="w-100" />
@@ -395,7 +402,7 @@ const Home = () => {
               </div>
             </div>
 
-            <div className="col-sm-6 col-lg-3">
+            <div onClick={handledetail} type="button" className="col-sm-6 col-lg-3">
               <div className="second_model_card">
                 <div className="second_model_card_img">
                   <img src={modelImg07} className="w-100" />
@@ -424,7 +431,7 @@ const Home = () => {
 
             <div className="col-md-12">
               <div className="text-center">
-                <button className="sign_actionBtn">View More</button>
+                <button onClick={handleclick} className="sign_actionBtn">View More</button>
               </div>
             </div>
           </div>
@@ -637,7 +644,7 @@ const Home = () => {
                   </p>
 
                   <div class="text-left">
-                    <button class="sign_actionBtn">View More</button>
+                    <button  onClick={handleclick} class="sign_actionBtn">View More</button>
                   </div>
                 </div>
 

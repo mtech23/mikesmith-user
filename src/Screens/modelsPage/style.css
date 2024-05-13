@@ -59,15 +59,52 @@
   font-size: 16px;
   text-transform: uppercase;
 }
-
 .model_section .model_card_desc {
   position: absolute;
-  bottom: 50px;
+  bottom: 0;
   left: 50%;
   transform: translateX(-50%);
   text-align: center;
   width: 100%;
+  background-color: #0009;
+  height: 0;
 }
+.first_model_card:hover .model_card_desc {
+  height: 120px;
+  transition: .5s;
+}
+
+ 
+.model_section .model_have_a_look_btn {
+  position: absolute;
+  /* bottom: 0; */
+  left: 50%;
+  transform: translateX(-50%);
+  text-align: center;
+  width: 100%;
+  background-color: #0009;
+  height: 0;
+}
+
+.model_main_section{
+  .framePic {
+      position: absolute;
+      /* top: -93px; */
+      /* left: -72px; */
+      top: 0px;
+      left: 0px;
+      z-index: 10;
+      height: 100%;
+      width: 100%;
+  }
+
+    .framePic img {
+      height: 100% !important;
+      width: 100% !important;
+  }
+}
+
+
 
 .name_with_status {
   display: flex;

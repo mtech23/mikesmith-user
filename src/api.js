@@ -1,8 +1,8 @@
 import { ALERT_TYPES } from "./constants";
 import { toastAlert } from "./utils";
 
-const url = "https://custom3.mystagingserver.site/Mike-Smith";
-
+// const url = "https://custom3.mystagingserver.site/Mike-Smith";
+const url = process.env.REACT_APP_BASE_URL
 //SIGN UP
 export const userSignUpRequest = async (type, data) => {
   try {
@@ -86,21 +86,23 @@ export const userLogoutRequest = async () => {
     throw error; // Rethrow error to be handled by caller
   }
 };
- 
 
 
 
 
- 
+const LogoutData = localStorage.getItem("userToken");
+
 //AddPost
-export const Addmodelpost = async () => {
+export const Addmodelpost = async (data) => {
+  console.log("Addmodelpost", data)
   try {
-    const res = await fetch(`${url}/public/api/model/post-add-edit/`, {
+    const res = await fetch(`${url}/public/api/model/post-add-edit`, {
       method: "POST",
       headers: {
-        "Content-Type": "application/json",
-        Authorization: `Bearer ${localStorage.getItem("userToken")}`,
+        Accept: "application/json",
+        Authorization: `Bearer ${LogoutData}`,
       },
+      body: data,
     });
     console.log(res, "res");
     // Ensure response is ok before proceeding
@@ -119,8 +121,7 @@ export const Addmodelpost = async () => {
     throw error; // Rethrow error to be handled by caller
   }
 };
-// https://custom3.mystagingserver.site/Mike-Smith/public/api/model/post-add-edit/1
-
+ 
 
 //Editpost
 export const Editmodelpost = async (id) => {
@@ -154,9 +155,9 @@ export const Editmodelpost = async (id) => {
 
 
 
- 
 
- 
+
+
 
 
 
@@ -220,7 +221,7 @@ export const deletemodelpost = async (id) => {
   }
 };
 
- 
+
 
 //Get model post list
 export const Getmodelpostlist = async (id) => {
@@ -289,7 +290,7 @@ export const Getmodelpostdetail = async (id) => {
 
 
 //Get model friend Request list
-export const  modelfriendrequestlist = async (id) => {
+export const modelfriendrequestlist = async (id) => {
   try {
     const res = await fetch(`${url}/public/api/model/requests`, {
       method: "Get",
@@ -317,12 +318,11 @@ export const  modelfriendrequestlist = async (id) => {
 };
 
 
-// public/api/model/request-accept/2
 
 
 
 //Get model friend Request accept
-export const  modelfriendrequestaccept = async (id) => {
+export const modelfriendrequestaccept = async (id) => {
   try {
     const res = await fetch(`${url}/public/api/model/request-accept/${id}`, {
       method: "Get",
@@ -352,10 +352,10 @@ export const  modelfriendrequestaccept = async (id) => {
 
 
 
- 
+
 
 //Get model Pofile View
-export const  modelprofileview = async (id) => {
+export const modelprofileview = async ( ) => {
   try {
     const res = await fetch(`${url}/public/api/model/profile-get`, {
       method: "Get",
@@ -368,13 +368,13 @@ export const  modelprofileview = async (id) => {
     // Ensure response is ok before proceeding
 
     const productData = await res.json(); // Parse response JSON
-    
+
     console.log(productData, "res");
 
     if (!res.ok) {
       // toastAlert(productData?.msg, ALERT_TYPES.ERROR);
     } else {
-     console.log("productData?.msg" , productData?.msg)
+      console.log("productData?.msg", productData?.msg)
       // toastAlert(productData?.msg, ALERT_TYPES.SUCCESS);
     }
 
@@ -388,12 +388,42 @@ export const  modelprofileview = async (id) => {
 
 
 
+//Get model Pofile View list
+export const modelprofillist = async ( ) => {
+  try {
+    const res = await fetch(`${url}/public/api/package-listing`, {
+      method: "Get",
+      headers: {
+        "Content-Type": "application/json",
+        Authorization: `Bearer ${localStorage.getItem("userToken")}`,
+      },
+    });
+    console.log(res, "res");
+    // Ensure response is ok before proceeding
+
+    const productData = await res.json(); // Parse response JSON
+
+    console.log(productData, "res");
+
+    if (!res.ok) {
+      // toastAlert(productData?.msg, ALERT_TYPES.ERROR);
+    } else {
+      console.log("productData?.msg", productData?.msg)
+      // toastAlert(productData?.msg, ALERT_TYPES.SUCCESS);
+    }
+
+    return productData; // Return parsed data
+  } catch (error) {
+    toastAlert(error, ALERT_TYPES.ERROR); // Handle error
+    throw error; // Rethrow error to be handled by caller
+  }
+};
 
 
-// public/api/model/post-tag/1
+// /public/api/package-listing
 
 //Get model Pofile Edit
-export const  modelprofileedit = async (id) => {
+export const modelprofileedit = async (id) => {
   try {
     const res = await fetch(`${url}/public/api/model/profile-add-edit`, {
       method: "Post",
@@ -429,7 +459,7 @@ export const  modelprofileedit = async (id) => {
 
 
 //Get model Post Tag
-export const  modelprofiletag = async (id) => {
+export const modelprofiletag = async (id) => {
   try {
     const res = await fetch(`${url}/public/api/model/post-tag/${id}`, {
       method: "Post",
@@ -467,7 +497,7 @@ export const  modelprofiletag = async (id) => {
 
 
 //Get User Profile view
-export const  Userprogileview = async (id) => {
+export const Userprogileview = async (id) => {
   try {
     const res = await fetch(`${url}/public/api/user/profile-get`, {
       method: "Get",
@@ -500,7 +530,7 @@ export const  Userprogileview = async (id) => {
 
 
 // Edit User Profile  
-export const  EditUserprofile = async (id) => {
+export const EditUserprofile = async (id) => {
   try {
     const res = await fetch(`${url}/public/api/user/profile-add-edit`, {
       method: "Post",
@@ -534,7 +564,7 @@ export const  EditUserprofile = async (id) => {
 
 
 // User Send Request
-export const  UserSendRequest = async (id) => {
+export const UserSendRequest = async (id) => {
   try {
     const res = await fetch(`${url}/public/api/send-request/${id}`, {
       method: "Get",
@@ -567,7 +597,7 @@ export const  UserSendRequest = async (id) => {
 
 
 // User Unflow Model
-export const  UserUnflowmodel = async (id) => {
+export const UserUnflowmodel = async (id) => {
   try {
     const res = await fetch(`${url}/public/api/model-follow-unfollow/${id}`, {
       method: "Get",
@@ -600,7 +630,7 @@ export const  UserUnflowmodel = async (id) => {
 
 
 // User unfavourite  Model
-export const  UserUnfavouritemodel = async (id) => {
+export const UserUnfavouritemodel = async (id) => {
   try {
     const res = await fetch(`${url}/public/api/model-favourite-unfavourite/${id}`, {
       method: "Get",
@@ -636,7 +666,7 @@ export const  UserUnfavouritemodel = async (id) => {
 
 
 // User Buy Post
-export const  UserBuyPost = async (id) => {
+export const UserBuyPost = async (id) => {
   try {
     const res = await fetch(`${url}/public/api/user/buy-post/${id}`, {
       method: "Get",
@@ -668,7 +698,7 @@ export const  UserBuyPost = async (id) => {
 
 
 //  Model Purchase Plane
-export const  modelpurchaseplane = async (id) => {
+export const modelpurchaseplane = async (id) => {
   try {
     const res = await fetch(`${url}/public/api/user/pick-subscription-package/${id}`, {
       method: "Get",
@@ -696,6 +726,64 @@ export const  modelpurchaseplane = async (id) => {
 };
 
 
- 
+
+
+
+
+
+
+//  Model  Catigory Plane
+export const modelcatigorylist = async () => {
+  try {
+    const res = await fetch(`${url}/public/api/category-listing`, {
+      method: "Get",
+      headers: {
+        "Content-Type": "application/json",
+        Authorization: `Bearer ${localStorage.getItem("userToken")}`,
+      },
+    });
+    console.log(res, "res");
+
+    const productData = await res.json(); 
+    console.log(productData, "res");
+    if (!res.ok) {
+    } else {
+    }
+
+    return productData; 
+  } catch (error) {
+    toastAlert(error, ALERT_TYPES.ERROR); // Handle error
+    throw error;
+  }
+};
 
  
+
+
+//  Model  Packaged Plane
+export const modelpackagelist = async () => {
+  try {
+    const res = await fetch(`${url}/public/api/package-listing`, {
+      method: "Get",
+      headers: {
+        "Content-Type": "application/json",
+        Authorization: `Bearer ${localStorage.getItem("userToken")}`,
+      },
+    });
+    console.log(res, "res");
+    // Ensure response is ok before proceeding
+
+    const productData = await res.json();  
+    console.log(productData, "res");
+    if (!res.ok) {
+      toastAlert(productData?.msg, ALERT_TYPES.ERROR);
+    } else {
+      toastAlert(productData?.msg, ALERT_TYPES.SUCCESS);
+    }
+
+    return productData; // Return parsed data
+  } catch (error) {
+    toastAlert(error, ALERT_TYPES.ERROR); // Handle error
+    throw error; // Rethrow error to be handled by caller
+  }
+};
