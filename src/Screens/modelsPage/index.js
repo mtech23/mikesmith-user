@@ -3,7 +3,7 @@ import Header from "../../Components/Layout/Header";
 import Footer from "../../Components/Layout/Footer";
 
 import { Swiper, SwiperSlide } from "swiper/react";
-
+ 
 import {Addmodelpost} from '../../api'
 import "swiper/css";
 
@@ -43,6 +43,8 @@ import {
 // import {modelText, headerSearchIcon} from "../../Asserts/images/index";
 
 import "./style.css";
+import { useNavigate } from "react-router-dom";
+
 
 const listingCard = [
   {
@@ -108,6 +110,10 @@ const listingCard = [
 
 
 const Model = () => {
+  const navigate  = useNavigate()
+  const handleclick = () =>{
+    navigate('/profile-page')
+  }
   return (
     <div>
       <div className="model_main_section">
@@ -189,31 +195,31 @@ const Model = () => {
 
                 <div className="all_filtered_btn">
                   <div>
-                    <button className="sign_actionBtn">featured</button>
+                    <button className="sign_actionBtn" onClick={handleclick}>featured</button>
                   </div>
 
                   <div>
-                    <button className="sign_actionBtn">new</button>
+                    <button className="sign_actionBtn" onClick={handleclick}>new</button>
                   </div>
 
                   <div>
-                    <button className="sign_actionBtn">free teases</button>
+                    <button className="sign_actionBtn" onClick={handleclick}>free teases</button>
                   </div>
 
                   <div>
-                    <button className="sign_actionBtn">cute</button>
+                    <button className="sign_actionBtn" onClick={handleclick}>cute</button>
                   </div>
 
                   <div>
-                    <button className="sign_actionBtn">thick</button>
+                    <button className="sign_actionBtn" onClick={handleclick}>thick</button>
                   </div>
 
                   <div>
-                    <button className="sign_actionBtn">petite</button>
+                    <button className="sign_actionBtn" onClick={handleclick}>petite</button>
                   </div>
 
                   <div>
-                    <button className="sign_actionBtn">polished</button>
+                    <button className="sign_actionBtn" onClick={handleclick}>polished</button>
                   </div>
                 </div>
               </div>
@@ -260,7 +266,7 @@ const Model = () => {
                                 </div>
 
                                 <div className="pt-2">
-                                  <button className="sign_actionBtn">
+                                  <button className="sign_actionBtn" onClick={handleclick}>
                                     view profile
                                   </button>
                                 </div>
@@ -290,7 +296,7 @@ const Model = () => {
                             </div>
 
                             <div className="pt-2">
-                              <button className="sign_actionBtn">
+                              <button className="sign_actionBtn" onClick={handleclick}>
                                 view profile
                               </button>
                             </div>
@@ -320,7 +326,7 @@ const Model = () => {
                             </div>
 
                             <div className="pt-2">
-                              <button className="sign_actionBtn">
+                              <button className="sign_actionBtn" onClick={handleclick}>
                                 view profile
                               </button>
                             </div>
@@ -350,7 +356,7 @@ const Model = () => {
                             </div>
 
                             <div className="pt-2">
-                              <button className="sign_actionBtn">
+                              <button className="sign_actionBtn" onClick={handleclick}>
                                 view profile
                               </button>
                             </div>
@@ -380,7 +386,7 @@ const Model = () => {
                             </div>
 
                             <div className="pt-2">
-                              <button className="sign_actionBtn">
+                              <button className="sign_actionBtn" onClick={handleclick}>
                                 view profile
                               </button>
                             </div>
@@ -432,7 +438,7 @@ const Model = () => {
                         </div>
 
                         <div className="pt-2">
-                          <button className="sign_actionBtn">
+                          <button className="sign_actionBtn" onClick={handleclick}>
                             view profile
                           </button>
                         </div>
@@ -460,7 +466,7 @@ const Model = () => {
                         </div>
 
                         <div className="pt-2">
-                          <button className="sign_actionBtn">
+                          <button className="sign_actionBtn" onClick={handleclick}>
                             view profile
                           </button>
                         </div>
@@ -488,7 +494,7 @@ const Model = () => {
                         </div>
 
                         <div className="pt-2">
-                          <button className="sign_actionBtn">
+                          <button className="sign_actionBtn" onClick={handleclick}>
                             view profile
                           </button>
                         </div>
@@ -516,7 +522,7 @@ const Model = () => {
                         </div>
 
                         <div className="pt-2">
-                          <button className="sign_actionBtn">
+                          <button className="sign_actionBtn" onClick={handleclick}>
                             view profile
                           </button>
                         </div>
@@ -567,7 +573,7 @@ const Model = () => {
                         </div>
 
                         <div className="pt-2">
-                          <button className="sign_actionBtn">
+                          <button className="sign_actionBtn" onClick={handleclick}>
                             view profile
                           </button>
                         </div>
@@ -595,7 +601,7 @@ const Model = () => {
                         </div>
 
                         <div className="pt-2">
-                          <button className="sign_actionBtn">
+                          <button className="sign_actionBtn" onClick={handleclick}>
                             view profile
                           </button>
                         </div>
@@ -623,7 +629,7 @@ const Model = () => {
                         </div>
 
                         <div className="pt-2">
-                          <button className="sign_actionBtn">
+                          <button className="sign_actionBtn" onClick={handleclick}>
                             view profile
                           </button>
                         </div>
@@ -651,7 +657,7 @@ const Model = () => {
                         </div>
 
                         <div className="pt-2">
-                          <button className="sign_actionBtn">
+                          <button className="sign_actionBtn" onClick={handleclick}>
                             view profile
                           </button>
                         </div>
@@ -694,7 +700,7 @@ const Model = () => {
                         </div>
 
                         <div className="pt-2">
-                          <button className="sign_actionBtn">
+                          <button className="sign_actionBtn" onClick={handleclick}>
                             view profile
                           </button>
                         </div>
@@ -722,7 +728,7 @@ const Model = () => {
                         </div>
 
                         <div className="pt-2">
-                          <button className="sign_actionBtn">
+                          <button className="sign_actionBtn" onClick={handleclick}>
                             view profile
                           </button>
                         </div>
@@ -750,7 +756,7 @@ const Model = () => {
                         </div>
 
                         <div className="pt-2">
-                          <button className="sign_actionBtn">
+                          <button className="sign_actionBtn" onClick={handleclick}>
                             view profile
                           </button>
                         </div>
@@ -778,7 +784,7 @@ const Model = () => {
                         </div>
 
                         <div className="pt-2">
-                          <button className="sign_actionBtn">
+                          <button className="sign_actionBtn" onClick={handleclick}>
                             view profile
                           </button>
                         </div>
@@ -825,7 +831,7 @@ const Model = () => {
                         </div>
 
                         <div className="pt-2">
-                          <button className="sign_actionBtn">
+                          <button className="sign_actionBtn" onClick={handleclick}>
                             view profile
                           </button>
                         </div>
@@ -857,7 +863,7 @@ const Model = () => {
                         </div>
 
                         <div className="pt-2">
-                          <button className="sign_actionBtn">
+                          <button className="sign_actionBtn" onClick={handleclick}>
                             view profile
                           </button>
                         </div>
@@ -889,7 +895,7 @@ const Model = () => {
                         </div>
 
                         <div className="pt-2">
-                          <button className="sign_actionBtn">
+                          <button className="sign_actionBtn" onClick={handleclick}>
                             view profile
                           </button>
                         </div>
@@ -921,7 +927,7 @@ const Model = () => {
                         </div>
 
                         <div className="pt-2">
-                          <button className="sign_actionBtn">
+                          <button className="sign_actionBtn" onClick={handleclick}>
                             view profile
                           </button>
                         </div>
@@ -972,7 +978,7 @@ const Model = () => {
                         </div>
 
                         <div className="pt-2">
-                          <button className="sign_actionBtn">
+                          <button className="sign_actionBtn" onClick={handleclick}>
                             view profile
                           </button>
                         </div>
@@ -1000,7 +1006,7 @@ const Model = () => {
                         </div>
 
                         <div className="pt-2">
-                          <button className="sign_actionBtn">
+                          <button className="sign_actionBtn" onClick={handleclick}>
                             view profile
                           </button>
                         </div>
@@ -1028,7 +1034,7 @@ const Model = () => {
                         </div>
 
                         <div className="pt-2">
-                          <button className="sign_actionBtn">
+                          <button className="sign_actionBtn" onClick={handleclick}>
                             view profile
                           </button>
                         </div>
@@ -1056,7 +1062,7 @@ const Model = () => {
                         </div>
 
                         <div className="pt-2">
-                          <button className="sign_actionBtn">
+                          <button className="sign_actionBtn" onClick={handleclick}>
                             view profile
                           </button>
                         </div>
@@ -1103,7 +1109,7 @@ const Model = () => {
                         </div>
 
                         <div className="pt-2">
-                          <button className="sign_actionBtn">
+                          <button className="sign_actionBtn" onClick={handleclick}>
                             view profile
                           </button>
                         </div>
@@ -1135,7 +1141,7 @@ const Model = () => {
                         </div>
 
                         <div className="pt-2">
-                          <button className="sign_actionBtn">
+                          <button className="sign_actionBtn" onClick={handleclick}>
                             view profile
                           </button>
                         </div>
@@ -1167,7 +1173,7 @@ const Model = () => {
                         </div>
 
                         <div className="pt-2">
-                          <button className="sign_actionBtn">
+                          <button className="sign_actionBtn" onClick={handleclick}>
                             view profile
                           </button>
                         </div>
@@ -1199,7 +1205,7 @@ const Model = () => {
                         </div>
 
                         <div className="pt-2">
-                          <button className="sign_actionBtn">
+                          <button className="sign_actionBtn" onClick={handleclick}>
                             view profile
                           </button>
                         </div>
@@ -1250,7 +1256,7 @@ const Model = () => {
                         </div>
 
                         <div className="pt-2">
-                          <button className="sign_actionBtn">
+                          <button className="sign_actionBtn" onClick={handleclick}>
                             view profile
                           </button>
                         </div>
@@ -1278,7 +1284,7 @@ const Model = () => {
                         </div>
 
                         <div className="pt-2">
-                          <button className="sign_actionBtn">
+                          <button className="sign_actionBtn" onClick={handleclick}>
                             view profile
                           </button>
                         </div>
@@ -1306,7 +1312,7 @@ const Model = () => {
                         </div>
 
                         <div className="pt-2">
-                          <button className="sign_actionBtn">
+                          <button className="sign_actionBtn" onClick={handleclick}>
                             view profile
                           </button>
                         </div>
@@ -1334,7 +1340,7 @@ const Model = () => {
                         </div>
 
                         <div className="pt-2">
-                          <button className="sign_actionBtn">
+                          <button className="sign_actionBtn" onClick={handleclick}>
                             view profile
                           </button>
                         </div>
@@ -1385,7 +1391,7 @@ const Model = () => {
                         </div>
 
                         <div className="pt-2">
-                          <button className="sign_actionBtn">
+                          <button className="sign_actionBtn" onClick={handleclick}>
                             view profile
                           </button>
                         </div>
@@ -1413,7 +1419,7 @@ const Model = () => {
                         </div>
 
                         <div className="pt-2">
-                          <button className="sign_actionBtn">
+                          <button className="sign_actionBtn" onClick={handleclick}>
                             view profile
                           </button>
                         </div>
@@ -1441,7 +1447,7 @@ const Model = () => {
                         </div>
 
                         <div className="pt-2">
-                          <button className="sign_actionBtn">
+                          <button className="sign_actionBtn" onClick={handleclick}>
                             view profile
                           </button>
                         </div>
@@ -1469,7 +1475,7 @@ const Model = () => {
                         </div>
 
                         <div className="pt-2">
-                          <button className="sign_actionBtn">
+                          <button className="sign_actionBtn" onClick={handleclick}>
                             view profile
                           </button>
                         </div>
@@ -1516,7 +1522,7 @@ const Model = () => {
                         </div>
 
                         <div className="pt-2">
-                          <button className="sign_actionBtn">
+                          <button className="sign_actionBtn" onClick={handleclick}>
                             view profile
                           </button>
                         </div>
@@ -1548,7 +1554,7 @@ const Model = () => {
                         </div>
 
                         <div className="pt-2">
-                          <button className="sign_actionBtn">
+                          <button className="sign_actionBtn" onClick={handleclick}>
                             view profile
                           </button>
                         </div>
@@ -1580,7 +1586,7 @@ const Model = () => {
                         </div>
 
                         <div className="pt-2">
-                          <button className="sign_actionBtn">
+                          <button className="sign_actionBtn" onClick={handleclick}>
                             view profile
                           </button>
                         </div>
@@ -1612,7 +1618,7 @@ const Model = () => {
                         </div>
 
                         <div className="pt-2">
-                          <button className="sign_actionBtn">
+                          <button className="sign_actionBtn" onClick={handleclick}>
                             view profile
                           </button>
                         </div>
@@ -1663,7 +1669,7 @@ const Model = () => {
                         </div>
 
                         <div className="pt-2">
-                          <button className="sign_actionBtn">
+                          <button className="sign_actionBtn" onClick={handleclick}>
                             view profile
                           </button>
                         </div>
@@ -1691,7 +1697,7 @@ const Model = () => {
                         </div>
 
                         <div className="pt-2">
-                          <button className="sign_actionBtn">
+                          <button className="sign_actionBtn" onClick={handleclick}>
                             view profile
                           </button>
                         </div>
@@ -1719,7 +1725,7 @@ const Model = () => {
                         </div>
 
                         <div className="pt-2">
-                          <button className="sign_actionBtn">
+                          <button className="sign_actionBtn" onClick={handleclick}>
                             view profile
                           </button>
                         </div>
@@ -1747,7 +1753,7 @@ const Model = () => {
                         </div>
 
                         <div className="pt-2">
-                          <button className="sign_actionBtn">
+                          <button className="sign_actionBtn" onClick={handleclick}>
                             view profile
                           </button>
                         </div>
@@ -1790,7 +1796,7 @@ const Model = () => {
                         </div>
 
                         <div className="pt-2">
-                          <button className="sign_actionBtn">
+                          <button className="sign_actionBtn" onClick={handleclick}>
                             view profile
                           </button>
                         </div>
@@ -1818,7 +1824,7 @@ const Model = () => {
                         </div>
 
                         <div className="pt-2">
-                          <button className="sign_actionBtn">
+                          <button className="sign_actionBtn" onClick={handleclick}>
                             view profile
                           </button>
                         </div>
@@ -1846,7 +1852,7 @@ const Model = () => {
                         </div>
 
                         <div className="pt-2">
-                          <button className="sign_actionBtn">
+                          <button className="sign_actionBtn" onClick={handleclick}>
                             view profile
                           </button>
                         </div>
@@ -1874,7 +1880,7 @@ const Model = () => {
                         </div>
 
                         <div className="pt-2">
-                          <button className="sign_actionBtn">
+                          <button className="sign_actionBtn" onClick={handleclick}>
                             view profile
                           </button>
                         </div>
@@ -1917,7 +1923,7 @@ const Model = () => {
                         </div>
 
                         <div className="pt-2">
-                          <button className="sign_actionBtn">
+                          <button className="sign_actionBtn" onClick={handleclick}>
                             view profile
                           </button>
                         </div>
@@ -1945,7 +1951,7 @@ const Model = () => {
                         </div>
 
                         <div className="pt-2">
-                          <button className="sign_actionBtn">
+                          <button className="sign_actionBtn" onClick={handleclick}>
                             view profile
                           </button>
                         </div>
@@ -1973,7 +1979,7 @@ const Model = () => {
                         </div>
 
                         <div className="pt-2">
-                          <button className="sign_actionBtn">
+                          <button className="sign_actionBtn" onClick={handleclick}>
                             view profile
                           </button>
                         </div>
@@ -2001,7 +2007,7 @@ const Model = () => {
                         </div>
 
                         <div className="pt-2">
-                          <button className="sign_actionBtn">
+                          <button className="sign_actionBtn" onClick={handleclick}>
                             view profile
                           </button>
                         </div>

@@ -111,9 +111,9 @@ const Footer = () => {
                   <img src={footerSocialIcon04} />
                 </div>
 
-                <div className="footer_icon">
+                {/* <div className="footer_icon">
                   <img src={footerSocialIcon05} />
-                </div>
+                </div> */}
 
                 <div className="footer_icon">
                   <img src={footerSocialIcon06} />

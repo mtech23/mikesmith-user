@@ -66,12 +66,22 @@ import Aos from "aos";
 import "aos/dist/aos.css";
 import { nanoid } from "@reduxjs/toolkit";
 import { useNavigate } from "react-router-dom";
-
+import { useRef } from 'react';
 const Profile = () => {
   const navigate = useNavigate()
-  const handleclick = () => {
-    navigate('/payment-page')
-  }
+  // const handleclick = () => {
+  //   data-dismiss:"modal"
+  //   navigate('/payment-page')
+  // }
+  
+
+        const modalRef = useRef(null);
+  
+      const handleclick = () => {
+               navigate('/payment-page');
+        }
+  
+
   useEffect(() => {
     Aos.init();
   }, []);
@@ -1658,7 +1668,7 @@ const Profile = () => {
                           survived not only five centuries
                         </p>
                         <p className="carousel-footer_price">$12.44</p>
-                        <button onClick={handleclick} className="carousel-footer_button">Buy</button>
+                        <button onClick={handleclick} className="carousel-footer_button " data-dismiss="modal">Buy</button>
                       </div>
                     </div>
                   </div>

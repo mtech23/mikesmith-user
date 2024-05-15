@@ -8,8 +8,8 @@ import {
 } from "../../../Asserts/images/index";
 import "./style.css";
 import { Link, useNavigate } from "react-router-dom";
- 
- 
+
+
 
 
 import Aos from "aos";
@@ -27,7 +27,7 @@ const Header = () => {
   const dispatch = useDispatch();
   const navigate = useNavigate();
   const usertype = localStorage.getItem('userrole')
- 
+
   const openMenu = () => {
     setIsMenu(!ismenu);
   };
@@ -38,15 +38,16 @@ const Header = () => {
       const response = await userLogoutRequest();
 
       if (response && response.status === true) {
+        // toastAlert('Logged Out Successfully', ALERT_TYPES.SUCCESS);
         localStorage.removeItem("userToken");
         localStorage.removeItem("userrole");
         dispatch(logoutRequest());
         navigate("/login-page");
       } else {
-        toastAlert(response.statusText, ALERT_TYPES.ERROR);
+        // toastAlert(response.statusText, ALERT_TYPES.ERROR);
       }
     } catch (error) {
-      toastAlert(error, ALERT_TYPES.ERROR);
+      // toastAlert(error, ALERT_TYPES.ERROR);
     }
   };
 
@@ -158,11 +159,11 @@ const Header = () => {
                     <Link to={"/"}>My Dashboard</Link>
                   </li>
                 )}
- {usertype == 2 && (
-                <li>
-                  <Link to={"/model-profile-page"}>My Profile</Link>
-                </li>
- )}
+                {usertype == 2 && (
+                  <li>
+                    <Link to={"/model-profile-page"}>My Profile</Link>
+                  </li>
+                )}
 
                 {usertype == 3 && (
                   <li>
@@ -176,11 +177,11 @@ const Header = () => {
                 </li> */}
 
                 {usertype == 2 && (
-  
-                <li>
-                  <Link to={"/add-post-page"}>Request board</Link>
-                </li>
-)}
+
+                  <li>
+                    <Link to={"/add-post-page"}>Request board</Link>
+                  </li>
+                )}
                 <li>
                   {/* <Link to={"/add-post-page"}>swag</Link> */}
                 </li>
@@ -209,10 +210,10 @@ const Header = () => {
                   <li>
                     <Link to={"/model-page"}>looking for page?</Link>
                   </li>)}
- 
-                  <li>
-                    <Link to={"/faqs"}>Faqs</Link>
-                  </li>
+
+                <li>
+                  <Link to={"/faqs"}>Faqs</Link>
+                </li>
               </ul>
             </nav>
           </div>

@@ -17,11 +17,22 @@
   border-radius: 5px;
 }
 
+.post-title  h3{
+  font-size: 1.3rem;
+}
+
+
+
+.description-title{
+  font-size: 1.3rem;
+}
+
 #des {
   text-decoration: none !important;
   width: 100%;
   border: none;
   height: 100%;
+  color: white;
 }
 
 .image__preview {
@@ -170,7 +181,8 @@
 
 .post__title-checkboxes .price h3 {
   display: inline-block;
-  font-size: 25px;
+  font-size: 20px;
+  margin-top: 6px;
 }
 
 .post__title-checkboxes .price-amount {
@@ -182,7 +194,7 @@
 }
 
 .add-post .post__title-checkboxes .custom_check-box .custom_check-text {
-  font-size: 23px;
+  font-size: 20px;
   margin-top: 0;
 }
 
@@ -215,6 +227,7 @@ p.description-text {
   font-size: 16px;
   line-height: 2;
   background-color: #141414;
+  height: 110px;
 }
 
 .categories .custom_check-box {
@@ -265,11 +278,21 @@ p.description-text {
   justify-content: space-between;
 }
 
-.add-post .categories_title {
+/* .add-post .categories_title {
   font-size: 25px;
   font-family: "lato";
   margin-bottom: 15px;
   font-weight: 700;
+} */
+
+.title{
+  font-size: 19px;
+}
+.add-post .categories_title {
+  font-size: 19px;
+  font-family: "lato";
+  margin-bottom: 15px;
+  font-weight: 500;
 }
 
 .categories {

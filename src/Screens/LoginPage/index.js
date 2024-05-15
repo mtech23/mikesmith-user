@@ -31,7 +31,7 @@ const Login = () => {
 
       if (response && response.success === true) {
         const userToken = response?.data;
-
+        toastAlert('you have successfully logged in', ALERT_TYPES.SUCCESS);
         localStorage.setItem("userToken", userToken?.token);
         localStorage.setItem("userrole", userToken?.user_role);
 

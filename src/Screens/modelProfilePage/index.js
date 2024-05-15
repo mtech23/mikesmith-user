@@ -89,7 +89,7 @@ const ModelProfile = () => {
     } catch (error) {
       console.error("Error in logging in:", error);
 
-      // toastAlert(error, ALERT_TYPES.ERROR);
+ 
     }
   };
   const modelprifilelist = async () => {

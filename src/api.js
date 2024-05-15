@@ -49,7 +49,7 @@ export const userLoginRequest = async (data) => {
     if (!res.ok) {
       toastAlert(productData?.message, ALERT_TYPES.ERROR);
     } else {
-      toastAlert(productData?.message, ALERT_TYPES.SUCCESS);
+      // toastAlert(productData?.message, ALERT_TYPES.SUCCESS);
     }
 
     return productData; // Return parsed data
@@ -75,7 +75,7 @@ export const userLogoutRequest = async () => {
     const productData = await res.json(); // Parse response JSON
     console.log(productData, "res");
     if (!res.ok) {
-      toastAlert(productData?.msg, ALERT_TYPES.ERROR);
+      // toastAlert(productData?.msg, ALERT_TYPES.ERROR);
     } else {
       toastAlert(productData?.msg, ALERT_TYPES.SUCCESS);
     }
@@ -94,7 +94,7 @@ const LogoutData = localStorage.getItem("userToken");
 
 //AddPost
 export const Addmodelpost = async (data) => {
-  console.log("Addmodelpost", data)
+ 
   try {
     const res = await fetch(`${url}/public/api/model/post-add-edit`, {
       method: "POST",
@@ -110,9 +110,10 @@ export const Addmodelpost = async (data) => {
     const productData = await res.json(); // Parse response JSON
     console.log(productData, "res");
     if (!res.ok) {
-      toastAlert(productData?.msg, ALERT_TYPES.ERROR);
+      // toastAlert(productData?.msg, ALERT_TYPES.ERROR);
     } else {
-      toastAlert(productData?.msg, ALERT_TYPES.SUCCESS);
+      console.log("productData?.msg" , productData?.msg)
+      // toastAlert(productData?.msg, ALERT_TYPES.SUCCESS);
     }
 
     return productData; // Return parsed data
@@ -622,7 +623,7 @@ export const UserUnflowmodel = async (id) => {
     toastAlert(error, ALERT_TYPES.ERROR); // Handle error
     throw error; // Rethrow error to be handled by caller
   }
-};
+};  
 
 
 
