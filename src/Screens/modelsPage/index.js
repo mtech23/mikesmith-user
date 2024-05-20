@@ -1,10 +1,10 @@
-import React from "react";
+import React, { useEffect, useState } from "react";
 import Header from "../../Components/Layout/Header";
 import Footer from "../../Components/Layout/Footer";
 
 import { Swiper, SwiperSlide } from "swiper/react";
- 
-import {Addmodelpost} from '../../api'
+
+import { Addmodelpost, modellist } from '../../api'
 import "swiper/css";
 
 import {
@@ -110,10 +110,34 @@ const listingCard = [
 
 
 const Model = () => {
-  const navigate  = useNavigate()
-  const handleclick = () =>{
+
+const baseurl = `${process.env.REACT_APP_BASE_URL}/`
+console.log("baseurl" , baseurl)
+  const [modellists, setModellists] = useState([])
+
+  const modesllist = async () => {
+    try {
+      const response = await modellist();
+      console.log("response", response)
+
+
+      setModellists(response?.data)
+
+    } catch (error) {
+      console.error("Error in logging in:", error);
+
+      // toastAlert(error, ALERT_TYPES.ERROR);
+    }
+  };
+  const navigate = useNavigate()
+
+  const handleclick = () => {
     navigate('/profile-page')
   }
+  useEffect(() => {
+    modesllist()
+  }, [])
+  console.log("modellists", modellists)
   return (
     <div>
       <div className="model_main_section">
@@ -228,6 +252,8 @@ const Model = () => {
                 listingCard.map((item, index) => (
                   <div key={index} className="col-sm-6 col-lg-3">
                     <div className="first_model_card">
+                  {modellists?.map((items) =>(
+
                       <Swiper
                         spaceBetween={30}
                         slidesPerView={1}
@@ -239,7 +265,7 @@ const Model = () => {
                             <SwiperSlide key={index}>
                               <div className="model_card_img position-relative">
                                 <img
-                                  src={data?.cardImage}
+                                  src={data?.cardImage || baseurl +  items?.progile_pic }
                                   className="img-fluid"
                                 />
                                 <span className="heart_icon">
@@ -392,7 +418,7 @@ const Model = () => {
                             </div>
                           </div>
                         </SwiperSlide>
-                      </Swiper>
+                      </Swiper>))}
 
                       <div className="model_card_top_corner_img">
                         <img src={modelCardTopCorner} />

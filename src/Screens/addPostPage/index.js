@@ -33,29 +33,29 @@ const AddPost = () => {
   const [files, setFiles] = useState([]);
   console.log("file", file)
 
- 
+
 
 
 
   const handleChange = (event) => {
-      const selectedFiles = event.target.files;
-      const filesArray = Array.from(selectedFiles);
-    
-      Promise.all(filesArray.map(file => {
-        return new Promise((resolve, reject) => {
-          const reader = new FileReader();
-          reader.onload = () => resolve(reader.result);
-          reader.onerror = reject;
-          reader.readAsDataURL(file);
-        });
-      })).then(dataUrls => {
-        setFiles(prevFiles => [...prevFiles, ...filesArray]);
-        setFile(prevFiles => [...prevFiles, ...dataUrls]);
-      });
-    }
-    
+    const selectedFiles = event.target.files;
+    const filesArray = Array.from(selectedFiles);
 
-  console.log("file" , file)
+    Promise.all(filesArray.map(file => {
+      return new Promise((resolve, reject) => {
+        const reader = new FileReader();
+        reader.onload = () => resolve(reader.result);
+        reader.onerror = reject;
+        reader.readAsDataURL(file);
+      });
+    })).then(dataUrls => {
+      setFiles(prevFiles => [...prevFiles, ...filesArray]);
+      setFile(prevFiles => [...prevFiles, ...dataUrls]);
+    });
+  }
+
+
+
   const navigate = useNavigate()
 
   const [userdata, setUserdata] = useState()
@@ -81,6 +81,17 @@ const AddPost = () => {
   ];
 
 
+
+
+
+
+  const handlechanges = (e) => {
+    const { name, value } = e.target;
+    setFormData((prevdata) => ({
+      ...prevdata,
+      [name]: value
+    }))
+  }
 
 
   const dispatch = useDispatch()
@@ -111,55 +122,10 @@ const AddPost = () => {
 
   console.log("selectedCategory", selectedCategory)
 
-  // const handleSubmits = (event) => {
-  //   event.preventDefault();
-  //   const formDataMethod = new FormData();
-  //   formDataMethod.append('category_id', selectedCategory);
-  //   formDataMethod.append('category_id', "data");
-  //   formDataMethod.append('post_type', selectedPostOption);
-  //   formDataMethod.append('type', selectedPostType);
-  //   formDataMethod.append('file', file);
-
-  //   // console.log("formDataMethod", formDataMethod);
-  // };
-
-
-
-
-
-  // const handleSubmit = async (event) => {
-  //   event.preventDefault();
-  //   // navigate('/')
-  //   toastAlert("Post Add Successfully", ALERT_TYPES.SUCCESS);
-  //   const formDataMethod = new FormData();
-  //   formDataMethod.append('category_id', selectedCategory); // Assuming selectedCategory is defined elsewhere
-  //   formDataMethod.append('post_type', selectedPostOption);
-  //   formDataMethod.append('type', selectedPostType);
-  //   // formDataMethod.append('file', file);
-  //   file.forEach((  index) => {
-  //     formDataMethod.append(`file${[index]}`, {file});
-  // });
-
-
-
-  //   try {
-  //     const response = await Addmodelpost(formDataMethod);
-
-  //     if (response && response.success === true) {
-  //       navigate('/payment-page')
-  //     } else {
-  //       toastAlert(response.statusText, ALERT_TYPES.ERROR);
-  //     }
-  //   } catch (error) {
-  //     console.error("Error in adding model post:", error); // Corrected the log message
-  //     toastAlert(error.message || "An error occurred", ALERT_TYPES.ERROR); // Show error message in toast
-  //   }
-  // };
-
 
 
   const handleSubmit = async (event) => {
- 
+
     event.preventDefault();
     // navigate('/')
 
@@ -168,15 +134,19 @@ const AddPost = () => {
     formDataMethod.append('category_id', selectedCategory); // Assuming selectedCategory is defined elsewhere
     formDataMethod.append('post_type', selectedPostOption);
     formDataMethod.append('type', selectedPostType);
+    for (const key in formData) {
+      formDataMethod.append(key, formData[key]);
+  }
     files?.forEach((file, index) => {
-      formDataMethod.append(`file[${index}]`, file);
+      formDataMethod.append(`files[${index}]`, file);
     })
- 
+
     try {
       const response = await Addmodelpost(formDataMethod);
-  
-      if (response && response.success === true) {
-        navigate('/payment-page');
+ 
+      if (response?.status == true) {
+        // navigate('/model-profile-page');
+        // toastAlert(response.statusText, ALERT_TYPES.ERROR);
       } else {
         toastAlert(response.statusText, ALERT_TYPES.ERROR);
       }
@@ -185,7 +155,7 @@ const AddPost = () => {
       toastAlert(error.message || "An error occurred", ALERT_TYPES.ERROR); // Show error message in toast
     }
   };
-  
+
 
 
 
@@ -339,6 +309,7 @@ const AddPost = () => {
                         required
                         name="post_title"
                         type="text"
+                        onChange={handlechanges}
                         className="form-control post-title__form"
                         placeholder="Enter Title"
                       />
@@ -353,6 +324,7 @@ const AddPost = () => {
                         <div className="input-group">
                           <input
                             required
+                            onChange={handlechanges}
                             name="price"
                             type="text"
                             className="form-control post-title__form price-amount"
@@ -374,7 +346,6 @@ const AddPost = () => {
                               )}
                             </span>
                             <input
-
                               type="checkbox"
                               class="chackbox_input"
                               // checked={selectedPostType === item.id}
@@ -404,7 +375,7 @@ const AddPost = () => {
                     DESCRIPTION
                   </h3>
                   <p className="description-text">
-                    <textarea name="post_title" className="form-control post-title__form" required placeholder="Enter Description" id="des"></textarea>
+                    <textarea name="post_title" onChange={handlechanges} className="form-control post-title__form" required placeholder="Enter Description" id="des"></textarea>
 
                   </p>
                 </div>

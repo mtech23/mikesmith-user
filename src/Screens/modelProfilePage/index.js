@@ -2,7 +2,7 @@ import React, { useEffect, useState } from "react";
 import Header from "../../Components/Layout/Header";
 import Footer from "../../Components/Layout/Footer";
 import afterimgframe from '../../Asserts/images/after-img-frame.png'
-import { modelprofileview, modelprofillist } from "../../api";
+import { modelprofileview, modelprofillist  , Getmodelpostlist } from "../../api";
 import { Swiper, SwiperSlide } from "swiper/react";
 import { toastAlert } from "../../utils";
 import { ALERT_TYPES } from "../../constants";
@@ -77,7 +77,7 @@ const ModelProfile = () => {
   const [userprofilelist, setprofilelist] = useState([])
   const baseurl = `${process.env.REACT_APP_BASE_URL}/public/`
 
-  console.log("baseurl", baseurl)
+  console.log("userprofilelist", userprofilelist)
   const modelprifile = async () => {
     try {
       const response = await modelprofileview();
@@ -92,9 +92,27 @@ const ModelProfile = () => {
  
     }
   };
+  // const modelprifilelist = async () => {
+  //   try {
+  //     const response = await modelprofillist();
+  //     console.log("response", response)
+
+
+  //     setprofilelist(response?.data)
+
+  //   } catch (error) {
+  //     console.error("Error in logging in:", error);
+
+  //     // toastAlert(error, ALERT_TYPES.ERROR);
+  //   }
+  // };
+
+
+
+
   const modelprifilelist = async () => {
     try {
-      const response = await modelprofillist();
+      const response = await Getmodelpostlist();
       console.log("response", response)
 
 
@@ -106,6 +124,8 @@ const ModelProfile = () => {
       // toastAlert(error, ALERT_TYPES.ERROR);
     }
   };
+
+   
   useEffect(() => {
     Aos.init();
     modelprifilelist()

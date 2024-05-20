@@ -1,106 +1,104 @@
-import React, { useEffect } from "react";
+import React, { useEffect, useState } from "react";
 import Header from "../../Components/Layout/Header";
 import Footer from "../../Components/Layout/Footer";
-
-import {modelpurchaseplane} from '../../api'
-import {modelpackagelist} from '../../api'
+import goldpackage from '../../Asserts/images/Grouppackage.png'
+// import { modelpurchaseplane } from '../../api'
+import { modelpackagelist , modelpurchaseplane } from '../../api'
 import "./style.css";
 import { pageBottomImg } from "../../Asserts/images";
 
 import Aos from "aos";
 import "aos/dist/aos.css";
 import { useNavigate } from "react-router-dom";
-
+import { toastAlert } from "../../utils";
+import { ALERT_TYPES } from "../../constants";
 const Packages = () => {
+  const [userdata, setUserdata] = useState([])
+  console.log("userdata", userdata)
   useEffect(() => {
     Aos.init();
   }, []);
   const navigate = useNavigate()
-  const handleroute  = () =>{
+
+  const handleegtpackage = async (id) => {
+
+
+    try {
+      const response = await modelpackagelist();
+      console.log("response", response)
+
+
+      setUserdata(response?.data)
+      if (response && response?.status === true) {
+
+        const data = response?.data;
+        console.log("data", data)
+ 
+        navigate('/payment-page')
+
+      } else {
+        // toastAlert(response.statusText, ALERT_TYPES.ERROR);
+        console.log("packege ", response.statusText)
+      }
+    } catch (error) {
+      console.error("Error in logging in:", error);
+
+      // toastAlert(error, ALERT_TYPES.ERROR);
+    }
+  };
+
+
+
+
+
+
+
+  useEffect(() => {
+    handleegtpackage()
+  }, [])
+  const handlepayment = () => {
     navigate('/payment-page')
   }
-  // const handleChange = (event) => {
-  //   const { name, value } = event.target;
-  //   setFormData((prevData) => ({
-  //     ...prevData,
-  //     [name]: value,
-  //   }));
-  //   console.log(formData);
-  // };
+
+  const [pkg, setPkg] = useState()
+  const handlepkg = async (id) => {
+    if (id === pkg) {
+
+      setPkg(null)
+    }
+    setPkg(id)
+  }
+
+  console.log("pkg" , pkg)
+
+  const [modellists, setModellists] = useState()
+
+  const packagecheckout = async () => {
+    try {
+      const response = await modelpurchaseplane(pkg);
+      console.log("response", response)
+
+      if (response && response?.success === true) {
+
+        const data = response?.data;
+        console.log("data", data)
+        setModellists(data)
 
 
-  // const handleSubmit = (id) => {
-  //   event.preventDefault();
- 
-  //   // Create a new FormData object
-  //   // const formDataMethod = new FormData();
-  //   // for (const key in formData) {
-  //   //   formDataMethod.append(key, formData[key]);
-  //   // }
+      } else {
+        // toastAlert(response.statusText, ALERT_TYPES.ERROR);
+        console.log("packege ", response.statusText)
+      }
+      setModellists(response?.data)
 
- 
- 
-  //   // Make the fetch request
-  //   // fetch(`${process.env.REACT_APP_API_URL}api/admin/course-add-update/${id}`, {
-  //   //   method: "POST",
-  //   //   headers: {
-  //   //     Accept: "application/json",
-  //   //     Authorization: `Bearer ${LogoutData}`,
-  //   //   },
-  //   //   body: formDataMethod, // Use the FormData object as the request body
-  //   // })
-  //     // .then((response) => {
-  //     //   return response.json();
-  //     // })
-  //     // .then((data) => {
-  //     //   document.querySelector(".loaderBox").classList.add("d-none");
-  //     //   console.log(data);
-  //     //   setShowModal(true);
-  //     // })
-  //     // .catch((error) => {
-  //     //   document.querySelector(".loaderBox").classList.add("d-none");
-  //     //   console.log(error);
-  //     // });
-  // };
+    } catch (error) {
+      console.error("Error in logging in:", error);
 
+      // toastAlert(error, ALERT_TYPES.ERROR);
+    }
+  };
+console.log("modellists" , modellists)
 
-
-//  const handleSubmits = async (id) => {
-
-
-//     try {
-//       const response = await modelpackagelist();
-//       console.log("response", response)
-
-
-//       setUserdata(response?.data)
-//       if (response && response?.success === true) {
-//         const  data = response?.data;
-//         console.log("data" , data)
-//         setUserdata(data)
-
-
-
-
-//         dispatch(loginSuccess(response.data));
-
-
-//         // navigate("/");
-//       } else {
-//         // toastAlert(response.statusText, ALERT_TYPES.ERROR);
-//         console.log
-//       }
-//     } catch (error) {
-//       console.error("Error in logging in:", error);
-
-//       // toastAlert(error, ALERT_TYPES.ERROR);
-//     }
-//   };
-
-
-const handlepayment = () =>{
-  navigate('/payment-page')
-}
   return (
     <>
       <section class="packages-page">
@@ -109,94 +107,63 @@ const handlepayment = () =>{
         </div>
         <section className="packages_section">
           <div className="container">
+
             <div className="row justify-content-center">
-              <div className="col-lg-5 col-md-6">
-                <div
-                  className="gold-package"
-                  data-aos="fade-right"
-                  data-aos-anchor-placement="center-bottom"
-                  data-aos-duration="3000"
-                >
-                  <p>+ Good, Easy Money!</p>
-                  <p>+ 10 Posts/Month</p>
-                  <p>+ 20 Messages Per Month</p>
-                  <p>+ Keep 80% of Sales</p>
-                  <p>+ Keep 100% of Tips</p>
-                  <p>+ Earn 2% in Platinum Points on Sales</p>
-                  <p>- Can Only View Requests</p>
-                  <p>- 10 Posts/Month</p>
-                  <p>- 5 Boosts/Month</p>
-           
+              {userdata?.map((data) => (
+                <div className="col-lg-5 col-md-6">
+
+
+                  <div
+                    className="gold-package"
+                    data-aos="fade-right"
+                    data-aos-anchor-placement="center-bottom"
+                    data-aos-duration="3000"
+                  >
+                    <img className="goldpkg" src={goldpackage} />
+
+                    <p className="goldp">{data?.plan?.name}</p>
+                    <p>+ Good, Easy Money!</p>
+                    <p>+ {data?.plan?.posts_limit} Posts/Month</p>
+                    <p>+ {data?.plan?.messages_limit} Messages Per Month</p>
+                    <p>+ Keep {data?.plan?.sales_percent}% of Sales</p>
+                    <p>+ Keep {data?.plan?.tips_percent}% of Tips</p>
+                    <p>+ Earn {data?.plan?.platinum_percent}% in Platinum Points on Sales</p>
+                    <p>- Can Only View Requests</p>
+                    {/* <p>- 10 Posts/Month</p> */}
+                    <p>- {data?.plan?.boost_limit} Boosts/Month</p>
+
                     <div className="custom-check-boxes">
                       <div className="checkbox-div1">
-                        <label className="custom_check-box">
-                          <span className="custom_check-text">$12/Month</span>
-                          <input type="checkbox" className="blackbox_custom" />
-                        </label>
-                        <label className="custom_check-box">
-                          <span className="custom_check-text">$123/YEAR</span>
-                          <input type="checkbox" className="blackbox_custom" />
-                        </label>
+                        {data?.plan_time?.map((plantime) => (<label className="custom_check-box">
+                          <span className="custom_check-text">${plantime?.price}/{plantime?.plan_time}</span>
+                          <input onChange={() => handlepkg(plantime?.id)}  type="checkbox" className="blackbox_custom" />
+                        </label>))}
+                        {/* <label className="custom_check-box">
+                     <span className="custom_check-text">$123/YEAR</span>
+                     <input type="checkbox" className="blackbox_custom" />
+                   </label> */}
                       </div>
-                      <div className="checkbox-div2">
-                        <label className="custom_check-box">
-                          <span className="custom_check-text">
-                            350/Month Platinum Points
-                          </span>
-                          <input type="checkbox" className="blackbox_custom" />
-                        </label>
-                      </div>
+                      {/* <div className="checkbox-div2">
+                   <label className="custom_check-box">
+                     <span className="custom_check-text">
+                       350/Month Platinum Points
+                     </span>
+                     <input type="checkbox" className="blackbox_custom" />
+                   </label>
+                 </div> */}
                     </div>
                     <div className="packages-btns">
-                      <button onClick={handleroute} className="gold-btn">CHECKOUT</button>
+                      <button onClick={packagecheckout} className="gold-btn">CHECKOUT</button>
                     </div>
-             
+
+                  </div>
+
                 </div>
-              </div>
-              <div className="col-lg-5 col-md-6">
-                <div
-                  className="platinum-package"
-                  data-aos="fade-left"
-                  data-aos-anchor-placement="center-bottom"
-                  data-aos-duration="3000"
-                >
-                  <p>+ Awesome Money!</p>
-                  <p>+ 10 Posts/Month</p>
-                  <p>+ 20 Messages Per Month</p>
-                  <p>+ Keep 80% of Sales</p>
-                  <p>+ Keep 100% of Tips</p>
-                  <p>+ Earn 2% in Platinum Points on Sales</p>
-                  <p>- Can Only View Requests</p>
-                  <p>- 10 Posts/Month</p>
-                  <p>- 5 Boosts/Month</p>
-                 
-                    <div className="custom-check-boxes">
-                      <div className="checkbox-div1">
-                        <label className="custom_check-box">
-                          <span className="custom_check-text">$12/Month</span>
-                          <input type="checkbox" className="blackbox_custom" />
-                        </label>
-                        <label className="custom_check-box">
-                          <span className="custom_check-text">$123/YEAR</span>
-                          <input type="checkbox" className="blackbox_custom" />
-                        </label>
-                      </div>
-                      <div className="checkbox-div2">
-                        <label className="custom_check-box">
-                          <span className="custom_check-text">
-                            350/Month Platinum Points
-                          </span>
-                          <input type="checkbox" className="blackbox_custom" />
-                        </label>
-                      </div>
-                    </div>
-                    <div className="packages-btns">
-                      <button onClick={handleroute} className="platinum-btn">CHECKOUT</button>
-                    </div>
-                
-                </div>
-              </div>
+
+              ))}
             </div>
+
+
           </div>
         </section>
         <section className="feedbacks">
