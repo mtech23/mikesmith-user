@@ -39,9 +39,9 @@ const Login = () => {
         const usertype = localStorage.getItem('userrole')
         console.log("usertype", usertype)
         if (usertype == 2) {
-          navigate("/packages-page");
+          navigate("/model-profile-page");
         } else {
-          navigate("/profile-page");
+          navigate("/");
         }
         // navigate("/");
       } else {

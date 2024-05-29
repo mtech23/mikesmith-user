@@ -1,9 +1,9 @@
-import React, { useEffect } from "react";
+import React, { useEffect, useState } from "react";
 import Header from "../../Components/Layout/Header";
 import Footer from "../../Components/Layout/Footer";
 
 import { Link, useNavigate } from "react-router-dom";
-
+import { modellist } from '../../api'
 import {
   platinumFeetText,
   headerSearchIcon,
@@ -44,16 +44,46 @@ import "aos/dist/aos.css";
 const Home = () => {
   //CONST VALS
   const navigate = useNavigate();
-  const handledetail = ( ) =>{
-  
-    navigate('/model-profile-page')
+  const handledetail = (id) => {
+
+    navigate(`/profile-page/${id}`)
   }
-  const handleclick = () =>{
-  navigate('/model-page')
-}
+  const handleclick = () => {
+    navigate('/profile-page')
+  }
   useEffect(() => {
     Aos.init();
   }, []);
+
+
+
+
+
+
+  const baseurl = `${process.env.REACT_APP_BASE_URL}/public/`
+  console.log("baseurl", baseurl)
+  const [modellists, setModellists] = useState([])
+
+  const modesllist = async () => {
+    try {
+      const response = await modellist();
+      console.log("response", response)
+
+
+      setModellists(response?.data)
+
+    } catch (error) {
+      console.error("Error in logging in:", error);
+
+      // toastAlert(error, ALERT_TYPES.ERROR);
+    }
+  };
+
+  useEffect(() => {
+    modesllist()
+  }, [])
+
+
 
   return (
     <div className="home_page_main">
@@ -181,10 +211,15 @@ const Home = () => {
               </div>
             </div>
 
-            <div className="col-sm-6 col-lg-3">
-              <div onClick={handledetail} type="button" className="first_model_card">
-                <div    className="model_card_img">
-                  <img src={modelImg01} className="img-fluid" />
+
+
+
+
+
+            {modellists?.map((item, index) => (
+              <div className="col-sm-6 col-lg-3">      <div onClick={() => handledetail(item?.id)} type="button" className="first_model_card">
+                <div className="model_card_img">
+                  <img src={baseurl + item?.profile_pic} className="img-fluid" />
                 </div>
 
                 <div onClick={handledetail} type="button" className="model_card_top_corner_img">
@@ -197,7 +232,7 @@ const Home = () => {
 
                 <div onClick={handledetail} type="button" className="model_card_desc">
                   <span className="card_short_para">
-                    my pretty pink nails :)
+                    {item?.name} :)
                   </span>
                 </div>
 
@@ -214,220 +249,13 @@ const Home = () => {
                   </div>
                 </div>
               </div>
-            </div>
-
-            <div onClick={handledetail} type="button" className="col-sm-6 col-lg-3">
-              <div className="second_model_card">
-                <div className="second_model_card_img">
-                  <img src={modelImg02} className="w-100" />
-                </div>
-
-                <div className="model_card_desc">
-                  <span className="card_short_para">
-                    Want to come play dress up with me?
-                  </span>
-                </div>
-
-                <div className="framePic">
-                  <img src={mainFrameImg} className="" />
-                </div>
-
-                <div>
-                  <div className="model_have_a_look_btn">
-                    <button className="have_alook_btn">have a look</button>
-                    <span className="be_nice_span">
-                      BE NICE, or we will crush you!
-                    </span>
-                  </div>
-                </div>
               </div>
-            </div>
+            ))}
 
-            <div onClick={handledetail} type="button" className="col-sm-6 col-lg-3">
-              <div className="second_model_card">
-                <div className="second_model_card_img">
-                  <img src={modelImg03} className="w-100" />
-                </div>
 
-                <div className="model_card_desc">
-                  <span className="card_short_para">
-                    Want to come play dress up with me?
-                  </span>
-                </div>
 
-                <div className="framePic">
-                  <img src={mainFrameImg} className="" />
-                </div>
 
-                <div>
-                  <div className="model_have_a_look_btn">
-                    <button className="have_alook_btn">have a look</button>
-                    <span className="be_nice_span">
-                      BE NICE, or we will crush you!
-                    </span>
-                  </div>
-                </div>
-              </div>
-            </div>
 
-            <div onClick={handledetail} type="button" className="col-sm-6 col-lg-3">
-              <div className="first_model_card">
-                <div className="model_card_img">
-                  <img src={modelImg04} className="img-fluid" />
-                </div>
-
-                <div className="model_card_top_corner_img">
-                  <img src={modelCardTopCorner} />
-                </div>
-
-                <div className="model_card_bottom_corner_img">
-                  <img src={modelCardBottomCorner} />
-                </div>
-
-                <div className="model_card_desc">
-                  <span className="card_short_para">
-                    my first post, what do you think? :)
-                  </span>
-                </div>
-
-                <div className="video_play_icon">
-                  <img src={videoPlayIcon} />
-                </div>
-
-                <div className="framePic">
-                  <img src={mainFrameImg} className="" />
-                </div>
-
-                <div>
-                  <div className="model_have_a_look_btn">
-                    <button className="have_alook_btn">have a look</button>
-                    <span className="be_nice_span">
-                      BE NICE, or we will crush you!
-                    </span>
-                  </div>
-                </div>
-              </div>
-            </div>
-
-            <div onClick={handledetail} type="button" className="col-sm-6 col-lg-3">
-              <div className="second_model_card">
-                <div className="second_model_card_img">
-                  <img src={modelImg03} className="w-100" />
-                </div>
-
-                <div className="model_card_desc">
-                  <span className="card_short_para">
-                    come clean my feet with me, out in the...
-                  </span>
-                </div>
-
-                <div className="framePic">
-                  <img src={mainFrameImg} className="" />
-                </div>
-
-                <div>
-                  <div className="model_have_a_look_btn">
-                    <button className="have_alook_btn">have a look</button>
-                    <span className="be_nice_span">
-                      BE NICE, or we will crush you!
-                    </span>
-                  </div>
-                </div>
-              </div>
-            </div>
-
-            <div onClick={handledetail} type="button" className="col-sm-6 col-lg-3">
-              <div className="first_model_card">
-                <div className="model_card_img">
-                  <img src={modelImg05} className="img-fluid" />
-                </div>
-
-                <div className="model_card_top_corner_img">
-                  <img src={modelCardTopCorner} />
-                </div>
-
-                <div className="model_card_bottom_corner_img">
-                  <img src={modelCardBottomCorner} />
-                </div>
-
-                <div className="model_card_desc">
-                  <span className="card_short_para">
-                    my pretty pink nails :)
-                  </span>
-                </div>
-
-                <div className="video_play_icon">
-                  <img src={videoPlayIcon} />
-                </div>
-
-                <div className="framePic">
-                  <img src={mainFrameImg} className="" />
-                </div>
-
-                <div>
-                  <div className="model_have_a_look_btn">
-                    <button className="have_alook_btn">have a look</button>
-                    <span className="be_nice_span">
-                      BE NICE, or we will crush you!
-                    </span>
-                  </div>
-                </div>
-              </div>
-            </div>
-
-            <div onClick={handledetail} type="button" className="col-sm-6 col-lg-3">
-              <div className="second_model_card">
-                <div className="second_model_card_img">
-                  <img src={modelImg06} className="w-100" />
-                </div>
-
-                <div className="model_card_desc">
-                  <span className="card_short_para">
-                    Want to come play dress up with me?
-                  </span>
-                </div>
-
-                <div className="framePic">
-                  <img src={mainFrameImg} className="" />
-                </div>
-
-                <div>
-                  <div className="model_have_a_look_btn">
-                    <button className="have_alook_btn">have a look</button>
-                    <span className="be_nice_span">
-                      BE NICE, or we will crush you!
-                    </span>
-                  </div>
-                </div>
-              </div>
-            </div>
-
-            <div onClick={handledetail} type="button" className="col-sm-6 col-lg-3">
-              <div className="second_model_card">
-                <div className="second_model_card_img">
-                  <img src={modelImg07} className="w-100" />
-                </div>
-
-                <div className="model_card_desc">
-                  <span className="card_short_para">
-                    be nice or we will crush you!
-                  </span>
-                </div>
-
-                <div className="framePic">
-                  <img src={mainFrameImg} className="" />
-                </div>
-
-                <div>
-                  <div className="model_have_a_look_btn">
-                    <button className="have_alook_btn">have a look</button>
-                    <span className="be_nice_span">
-                      BE NICE, or we will crush you!
-                    </span>
-                  </div>
-                </div>
-              </div>
-            </div>
 
             <div className="col-md-12">
               <div className="text-center">
@@ -644,7 +472,7 @@ const Home = () => {
                   </p>
 
                   <div class="text-left">
-                    <button  onClick={handleclick} class="sign_actionBtn">View More</button>
+                    <button onClick={handleclick} class="sign_actionBtn">View More</button>
                   </div>
                 </div>
 

@@ -44,7 +44,7 @@ const Router = () => {
           }
         />
         <Route
-          path="/profile-page"
+          path="/profile-page/:id"
           element={
             <ProtectedRoute>
               <Profile />

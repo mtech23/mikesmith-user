@@ -1,11 +1,11 @@
-.profile_section_main {
+ .profile_section_main {
   background-color: #000;
   padding: 145px 0px;
   background-image: url("../../Asserts/images/hotModel-bk.png");
   background-repeat: no-repeat;
   background-size: 100% 100%;
 }
-
+ 
 .user_profile_picture img {
   height: 100px;
   width: 100px;
@@ -19,38 +19,38 @@
   font-weight: 700;
   padding-top: 10px;
 } */
-
-
-
-
+ 
+ 
+ 
+ 
 .first_model_card .be_nice_span {
   display: block;
   font-size: 19px;
   font-weight: 700;
   padding-top: 10px;
 }
-
+ 
 .second_model_card .be_nice_span {
   display: block;
   font-size: 19px;
   font-weight: 700;
   padding-top: 10px;
 }
-
+ 
 .profile_section_main .hot_model_name {
   font-size: 18px;
   font-weight: 500;
 }
-
+ 
 .fa-heart:before {
   content: "\f004";
   color: #dd3737;
   height: 37px !important;
   width: 52px;
 }
-
+ 
 .profile_section_main{
-  
+ 
   .framePic{
     position: absolute;
     /* top: -86px; */
@@ -61,7 +61,7 @@
     width: 100%;
     height: 100%;
 }
-
+ 
 .frameimg {
   /* height: 494px !important;
   width: 420px !important; */
@@ -69,26 +69,26 @@
   height: 91% !important;
 }
 }
-
-/* 
+ 
+/*
 .model_profile_section_main{
-  
+ 
   .framePic{
     position: absolute;
     top: -86px;
     left: -69px;
     z-index: 10;
   }
-
+ 
   .frameimg {
       height: 494px !important;
       width: 420px !important;
   }
 } */
-
-
-
-
+ 
+ 
+ 
+ 
 .profile_section_main .model_have_a_look_btn {
   position: absolute;
   /* bottom: 0; */
@@ -99,30 +99,30 @@
   background-color: #0009;
   height: 0;
 }
-
-
+ 
+ 
 .second_model_card:hover .model_have_a_look_btn {
   /* height: 102px; */
   transition: .5s;
 }
-
+ 
 .profile_section_main  .second_model_card:hover .model_have_a_look_btn{
-	  bottom: 13%;
-    	padding-top: 22px;
-	height: 112px;
+    bottom: 13%;
+      padding-top: 22px;
+  height: 112px;
   width: 94%;
   top: auto;
 }
-
+ 
 .profile_section_main  .second_model_card:hover .be_nice_span, .profile_section_main  .first_model_card:hover .be_nice_span{
-	color: #fff;
+  color: #fff;
   display: block;
   font-size: 14px;
   font-weight: 500;
   padding-top: 10px;
 }
-
-
+ 
+ 
 #model_have_a_look_btn {
     bottom: 0;
     padding-top: 22px;
@@ -132,8 +132,8 @@
     position: absolute;
     background-color: #000;
 }
-
-
+ 
+ 
 .profile_section_main .first_model_card:hover .model_have_a_look_btn {
   bottom: 13%;
   padding-top: 22px;
@@ -141,15 +141,15 @@
   width: 94%;
   top: auto;
 }
-
-
+ 
+ 
 .first_model_card .model_card_bottom_corner_img {
   bottom: -6px;
   left: -10px;
   position: absolute;
   transform: rotate(90deg);
 }
-
+ 
 .user_access {
   display: inline-block;
   font-size: 12px;
@@ -157,14 +157,14 @@
   color: #494949;
   text-transform: uppercase;
 }
-
+ 
 .user_profile_desc {
   color: #bebebe;
   text-align: justify;
   font-size: 14px;
   font-weight: 400;
 }
-
+ 
 .followers_title {
   display: block;
   text-transform: uppercase;
@@ -173,7 +173,7 @@
   font-weight: 400;
   padding-bottom: 3px;
 }
-
+ 
 .followers_number {
   display: block;
   padding: 5px 0px;
@@ -183,7 +183,7 @@
   background-repeat: no-repeat;
   background-size: 100% 100%;
 }
-
+ 
 .no_of_follows {
   display: inline-block;
   background: -webkit-linear-gradient(#ffe37f, #8e6200);
@@ -191,7 +191,7 @@
   -webkit-background-clip: text;
   -webkit-text-fill-color: transparent;
 }
-
+ 
 .profile_section_main .sign_actionBtn {
   background-image: url("../../Asserts/images/have-a-look-btn-bk.png");
   font-size: 10px;
@@ -199,7 +199,7 @@
   padding: 10px 18px;
   font-weight: 400;
 }
-
+ 
 .sec-rqst-btns {
   flex-wrap: wrap;
 }
@@ -207,7 +207,7 @@
   width: 100% !important;
   margin-bottom: 12px;
 }
-
+ 
 .give_tip_btn {
   background-image: url("../../Asserts/images/login-btn-bk.png");
   background-repeat: no-repeat;
@@ -221,12 +221,12 @@
   padding: 6px 0px;
   margin-top: 16px;
 }
-
+ 
 .user_profile_info {
   background-color: #000;
   padding: 0px 14px 24px;
 }
-
+ 
 .more_profiles_main {
   margin-top: 50px;
   background-color: #0b0b0b;
@@ -235,7 +235,7 @@
   border-image-width: 4px;
   border-image-slice: 20;
 }
-
+ 
 .more_profiles_like_this_title {
   color: #fff;
   text-transform: uppercase;
@@ -246,43 +246,43 @@
   padding: 12px 0px;
   background-color: #161616;
 }
-
+ 
 .more_users_profile_img img {
   height: 40px;
   width: 40px;
   object-fit: cover;
 }
-
+ 
 .more_user_profile_details {
   display: flex;
   align-items: center;
   gap: 8px;
 }
-
+ 
 .other_user_name {
   margin: 0px;
   color: #fff;
   font-size: 12px;
   font-weight: 400;
 }
-
+ 
 .other_user_access {
   display: inline-block;
   font-size: 10px;
   color: #7d7d7d;
 }
-
+ 
 .other_user_info {
   line-height: 13px;
 }
-
+ 
 .more_profiles_content {
   display: flex;
   justify-content: space-between;
   align-items: center;
   margin-bottom: 22px;
 }
-
+ 
 .user_profile_follow_btn {
   border: none;
   background-image: url("../../Asserts/images/create-account-btn-bk.png");
@@ -294,33 +294,33 @@
   font-size: 10px;
   text-transform: uppercase;
 }
-
+ 
 .all_other_users_profiles {
   padding: 16px 10px;
 }
-
+ 
 .profile_section_main .second_model_card_img {
   background-color: initial;
   border-image-outset: 5px;
   border-image-width: auto;
 }
-
+ 
 .profile_section_main .swiper-slide-active,
 .profile_section_main .swiper-slide {
   padding: 5px 7px;
 }
-
+ 
 /* .model_main_section{
     background-image: url("../../Asserts/images/hotModel-bk.png");
     background-repeat: no-repeat;
     background-size: 100% 100%;
     padding-bottom: 55px;
 } */
-
+ 
 /* .user_profile_follow_btn{
-
+ 
 } */
-
+ 
 .modal-dialog.my-modal {
   max-width: 1024px;
 }
@@ -381,24 +381,24 @@
   max-width: 90ch;
   margin: auto;
 }
-
-
-
+ 
+ 
+ 
 /* .be_nice_span {
   display: block;
   font-size: 15px;
   font-weight: 700;
   padding-top: 10px;
 } */
-
-
+ 
+ 
 .carousel-modal .swiper-slide-prev img {
   height: 300px !important;
 }
 .carousel-modal .swiper-slide-next img {
   height: 300px !important;
 }
-
+ 
 /* Carousel Icons Start */
 .carousel-modal .swiper-button-prev:after,
 .carousel-modal .swiper-button-next:after {
@@ -448,7 +448,7 @@
   background: linear-gradient(45deg, #f4d77f, #fdf6c3, #bd8628);
 }
 /* Carousel Icons End */
-
+ 
 .carousel-modal .swiper-wrapper {
   align-items: center;
 }
@@ -478,35 +478,35 @@ p.carousel-footer_price {
   -webkit-text-fill-color: transparent;
   margin: 10px;
 }
-
+ 
 /* Swiper Css */
 .swiper {
   width: 100%;
   height: 100%;
 }
-
+ 
 .swiper-slide {
   text-align: center;
   font-size: 18px;
   /* background: #fff; */
-
+ 
   /* Center slide text vertically */
   display: flex;
   justify-content: center;
   align-items: center;
 }
-
+ 
 .swiper-slide img {
   display: block;
   width: 100%;
   height: 100%;
   object-fit: cover;
 }
-
+ 
 .swiper-slide {
   width: 60%;
 }
-
+ 
 @media (max-width: 1024px) {
   .more_profiles_content {
     flex-wrap: wrap;
@@ -523,7 +523,7 @@ p.carousel-footer_price {
  
   }
 }
-
+ 
 @media (max-width: 768px) {
   .carousel-modal .swiper-slide-prev img {
     height: 160px !important;
@@ -542,7 +542,7 @@ p.carousel-footer_price {
     width: 100%;
   }
 }
-
+ 
 @media (max-width: 480px) {
   .more_users_profile_img {
     width: unset !important;
@@ -583,3 +583,4 @@ p.carousel-footer_price {
     left: -4px;
   }
 }
+ 

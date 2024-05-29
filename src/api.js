@@ -100,7 +100,7 @@ export const Addmodelpost = async (data) => {
       method: "POST",
       headers: {
         Accept: "application/json",
-        Authorization: `Bearer ${LogoutData}`,
+        Authorization: `Bearer ${localStorage.getItem("userToken")}`,
       },
       body: data,
     });
@@ -227,7 +227,7 @@ export const deletemodelpost = async (id) => {
 //Get model post list
 export const Getmodelpostlist = async (id) => {
   try {
-    const res = await fetch(`${url}/public/api/model/post-listing`, {
+    const res = await fetch(`${url}/public/api/model/post-listing/${id}`, {
       method: "Get",
       headers: {
         "Content-Type": "application/json",
@@ -240,9 +240,9 @@ export const Getmodelpostlist = async (id) => {
     const productData = await res.json(); // Parse response JSON
     console.log(productData, "res");
     if (!res.ok) {
-      toastAlert(productData?.msg, ALERT_TYPES.ERROR);
+      // toastAlert(productData?.msg, ALERT_TYPES.ERROR);
     } else {
-      toastAlert(productData?.msg, ALERT_TYPES.SUCCESS);
+      // toastAlert(productData?.msg, ALERT_TYPES.SUCCESS);
     }
 
     return productData; // Return parsed data
@@ -436,7 +436,7 @@ export const modellist = async ( ) => {
       method: "Get",
       headers: {
         "Content-Type": "application/json",
-        Authorization: `Bearer ${localStorage.getItem("userToken")}`,
+        Authorization: `Bearer ${localStorage.getItem(" ")}`,
       },
     });
     console.log(res, "res");

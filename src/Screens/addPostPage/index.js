@@ -145,7 +145,7 @@ const AddPost = () => {
       const response = await Addmodelpost(formDataMethod);
  
       if (response?.status == true) {
-        // navigate('/model-profile-page');
+        navigate('/model-profile-page');
         // toastAlert(response.statusText, ALERT_TYPES.ERROR);
       } else {
         toastAlert(response.statusText, ALERT_TYPES.ERROR);
