@@ -159,11 +159,11 @@ const Header = () => {
                     <Link to={"/"}>My Dashboard</Link>
                   </li>
                 )}
-                {usertype == 2 && (
+                {/* {usertype == 2 && (
                   <li>
                     <Link to={"/model-profile-page"}>My Profile</Link>
                   </li>
-                )}
+                )} */}
 
                 {usertype == 3 && (
                   <li>

@@ -15,50 +15,50 @@ import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 // import { faHeart } from '@awesome.me/kit-KIT_CODE/icons'
 
 import {
-  platinumFeetText,
-  headerSearchIcon,
-  legsImage01,
-  imgTopCorner,
-  imgBottomCorner,
-  hundredPercentage,
-  homeImg01,
-  modelText,
-  modelImg01,
+    platinumFeetText,
+    headerSearchIcon,
+    legsImage01,
+    imgTopCorner,
+    imgBottomCorner,
+    hundredPercentage,
+    homeImg01,
+    modelText,
+    modelImg01,
 
-  modelCardTopCorner,
-  modelCardBottomCorner,
-  modelImg02,
-  modelImg03,
-  modelImg04,
-  framePic,
-  hoverableImg,
-  mainFrameImg,
-  videoPlayIcon,
-  modelImg05,
-  modelImg06,
-  modelImg07,
-  howItWorksText,
-  howItWorksImg,
-  forClientText,
-  forClientImg,
-  forModelsText,
-  formodelImg01,
-  formodelImg02,
-  faqText,
-  userProfilePic,
-  userProfilePicBackground,
-  moreUserProfilePic,
-  profileFeetImg01,
-  profileFeetImg02,
-  profileFeetImg03,
-  profileFeetImg04,
-  profileFeetImg05,
-  profileFeetImg06,
-  modal1,
-  modal3,
-  modal2,
-  Cancel,
-  Heart,
+    modelCardTopCorner,
+    modelCardBottomCorner,
+    modelImg02,
+    modelImg03,
+    modelImg04,
+    framePic,
+    hoverableImg,
+    mainFrameImg,
+    videoPlayIcon,
+    modelImg05,
+    modelImg06,
+    modelImg07,
+    howItWorksText,
+    howItWorksImg,
+    forClientText,
+    forClientImg,
+    forModelsText,
+    formodelImg01,
+    formodelImg02,
+    faqText,
+    userProfilePic,
+    userProfilePicBackground,
+    moreUserProfilePic,
+    profileFeetImg01,
+    profileFeetImg02,
+    profileFeetImg03,
+    profileFeetImg04,
+    profileFeetImg05,
+    profileFeetImg06,
+    modal1,
+    modal3,
+    modal2,
+    Cancel,
+    Heart,
 } from "../../Asserts/images/index";
 
 import "./style.css";
@@ -69,486 +69,834 @@ import { nanoid } from "@reduxjs/toolkit";
 import { useNavigate } from "react-router-dom";
 import { useRef } from 'react';
 const Profile = () => {
-  const { id } = useParams()
-  const navigate = useNavigate()
-  // const handleclick = () => {
-  //   data-dismiss:"modal"
-  //   navigate('/payment-page')
-  // }
+    const { id } = useParams()
+    const navigate = useNavigate()
+    // const handleclick = () => {
+    //   data-dismiss:"modal"
+    //   navigate('/payment-page')
+    // }
 
 
-  const modalRef = useRef(null);
+    const modalRef = useRef(null);
 
-  const handleclick = () => {
-    navigate('/payment-page');
-  }
-
-
-
-
-  const [modellists, setModellists] = useState([])
-
-  const model_list = async () => {
-    try {
-      const response = await Getmodelpostlist(id);
-      console.log("response", response)
-
-      if (response?.status == true) {
-
-        const data = response?.data;
-        console.log("data", data)
-        setModellists(data)
-
-
-      } else {
-        // toastAlert(response.statusText, ALERT_TYPES.ERROR);
-        console.log("packege ", response.statusText)
-      }
-      setModellists(response?.data)
-
-    } catch (error) {
-      console.error("Error in logging in:", error);
-
-      // toastAlert(error, ALERT_TYPES.ERROR);
+    const handleclick = () => {
+        navigate('/payment-page');
     }
-  };
 
 
 
-  console.log("modellists", modellists)
-  useEffect(() => {
-    model_list()
-    Aos.init();
 
-  }, []);
-  const [hearts, setHeart] = useState(false)
+    const [modellists, setModellists] = useState([])
 
-  const handleHeart = () => {
-    setHeart(!hearts);
-  }
-const baseurl = `${process.env.REACT_APP_BASE_URL}/public/`
+    const model_list = async () => {
+        try {
+            const response = await Getmodelpostlist(id);
+            console.log("response", response)
 
-  return (
-    <div>
-      <div>
-        <Header />
-      </div>
+            if (response?.status == true) {
 
-      <div className="profile_section_main">
-        <div className="container">
-          <div className="row">
-            <div className="col-md-3">
-              <div className="profile_left_part">
-                <div className="user_profile_main position-relative">
-                  <div className="user_profile_bk_img">
-                    <img src={userProfilePicBackground} className="img-fluid" />
-                  </div>
+                const data = response?.data;
+                console.log("data", data)
+                setModellists(data)
 
-                  <div className="user_profile_info text-center">
-                    <div
-                      className="user_profile_picture"
-                      data-aos="flip-left"
-                      data-aos-anchor-placement="center-bottom"
-                      data-aos-duration="3000"
-                    >
-                      <img src={userProfilePic} />
-                    </div>
 
-                    <div className="user_info">
-                      <div
-                        className="name_with_status pt-3"
-                        data-aos="fade-right"
-                        data-aos-anchor-placement="center-bottom"
-                        data-aos-duration="1000"
-                      >
-                        <span className="online_circle">
-                          <i class="fa-solid fa-circle"></i>
-                        </span>
-                        <span className="hot_model_name">HOTMODEL1234</span>
-                      </div>
+            } else {
+                // toastAlert(response.statusText, ALERT_TYPES.ERROR);
+                console.log("packege ", response.statusText)
+            }
+            setModellists(response?.data)
 
-                      <div
-                        className="mb-3"
-                        data-aos="fade-right"
-                        data-aos-anchor-placement="center-bottom"
-                        data-aos-duration="2000"
-                      >
-                        <span className="user_access">@HOTMODEL1223</span>
-                      </div>
+        } catch (error) {
+            console.error("Error in logging in:", error);
 
-                      <p
-                        className="user_profile_desc"
-                        data-aos="fade-right"
-                        data-aos-anchor-placement="center-bottom"
-                        data-aos-duration="3000"
-                      >
-                        Lorem Ipsum is simply dummy text of the printing and
-                        typesetting industry. Lorem Ipsum has been the
-                        industry's standard
-                      </p>
-                    </div>
+            // toastAlert(error, ALERT_TYPES.ERROR);
+        }
+    };
 
-                    <div
-                      className="followers_div mb-4"
-                      data-aos="fade-left"
-                      data-aos-anchor-placement="center-bottom"
-                      data-aos-duration="3000"
-                    >
-                      <span className="followers_title">followers</span>
-                      <span className="followers_number">
-                        <span className="no_of_follows">257</span>
-                      </span>
-                    </div>
 
-                    <div
-                      className="followers_div"
-                      data-aos="fade-right"
-                      data-aos-anchor-placement="center-bottom"
-                      data-aos-duration="3000"
-                    >
-                      <span className="followers_title">following</span>
-                      <span className="followers_number">
-                        <span className="no_of_follows">145</span>
-                      </span>
-                    </div>
 
-                    <div className="d-flex justify-content-between align-items-center pt-4 sec-rqst-btns">
-                      <button
-                        className="sign_actionBtn"
-                        data-aos="fade-right"
-                        data-aos-anchor-placement="center-bottom"
-                        data-aos-duration="3000"
-                      >
-                        send request
-                      </button>
+    console.log("modellists", modellists)
+    useEffect(() => {
+        model_list()
+        Aos.init();
 
-                      <button
-                        className="sign_actionBtn"
-                        data-aos="fade-left"
-                        data-aos-anchor-placement="center-bottom"
-                        data-aos-duration="3000"
-                      >
-                        send message
-                      </button>
-                    </div>
+    }, []);
+    const [hearts, setHeart] = useState(false)
 
-                    <div
-                      data-aos="fade-right"
-                      data-aos-anchor-placement="center-bottom"
-                      data-aos-duration="3000"
-                    >
-                      <button className="give_tip_btn">give tip</button>
-                    </div>
-                  </div>
+    const handleHeart = () => {
+        setHeart(!hearts);
+    }
+    const baseurl = `${process.env.REACT_APP_BASE_URL}/public/`
 
-                  <div class="model_card_top_corner_img">
-                    <img src={modelCardTopCorner} />
-                  </div>
+    const [modellist, setmodellisting] = useState(true)
+ 
+    const [follow, setFollowing] = useState(false)
+    const [sendmessages, setSendmessage] = useState(false)
+    const [transactions, setTransactions] = useState(false)
+ 
 
-                  <div class="model_card_bottom_corner_img"  >
-                    <img src={modelCardBottomCorner} />
-                  </div>
-                </div>
+    const [givestip, setGivestip] = useState(false)
+    const following = () => {
+        setFollowing(!follow)
+        setmodellisting(false)
+        setSendmessage(false)
+        setTransactions(false)
+        setGivestip(false)
+    }
+    const sendmessage = () => {
+        setSendmessage(!sendmessages)
+        setFollowing(false)
+        setmodellisting(false)
+        setTransactions(false)
+        setGivestip(false)
+    }
 
-                <div
-                  className="more_profiles_main"
-                  data-aos="fade-right"
-                  data-aos-anchor-placement="center-bottom"
-                  data-aos-duration="3000"
-                >
-                  <div>
-                    <p className="more_profiles_like_this_title">
-                      more profiles like this
-                    </p>
-                  </div>
 
-                  <div className="all_other_users_profiles">
-                    <div className="more_profiles_content">
-                      <div className="more_user_profile_details">
-                        <div className="more_users_profile_img">
-                          <img src={moreUserProfilePic} />
-                        </div>
-                        <div className="other_user_info">
-                          <p className="other_user_name">HOTMODEL1234</p>
-                          <span className="other_user_access">
-                            @HOTMODEL1223
-                          </span>
-                        </div>
-                      </div>
+    const transaction = () => {
+        setTransactions(!transactions)
+        setFollowing(false)
+        setSendmessage(false)
+        setmodellisting(false)
+        setGivestip(false)
+    }
+    const showprofile = () => {
+        setmodellisting(true)
+        setTransactions(false)
+        setFollowing(false)
+        setSendmessage(false)
 
-                      <div>
-                        <button className="user_profile_follow_btn">
-                          follow
-                        </button>
-                      </div>
-                    </div>
+        setGivestip(false)
+    }
 
-                    <div className="more_profiles_content">
-                      <div className="more_user_profile_details">
-                        <div className="more_users_profile_img">
-                          <img src={moreUserProfilePic} />
-                        </div>
-                        <div className="other_user_info">
-                          <p className="other_user_name">HOTMODEL1234</p>
-                          <span className="other_user_access">
-                            @HOTMODEL1223
-                          </span>
-                        </div>
-                      </div>
+    const givetip = () => {
+        setTransactions(false)
+        setFollowing(false)
+        setSendmessage(false)
+        setmodellisting(false)
+        setGivestip(!givestip)
+    }
 
-                      <div>
-                        <button className="user_profile_follow_btn">
-                          follow
-                        </button>
-                      </div>
-                    </div>
+    const [isChecked, setIsChecked] = useState(null);
 
-                    <div className="more_profiles_content">
-                      <div className="more_user_profile_details">
-                        <div className="more_users_profile_img">
-                          <img src={moreUserProfilePic} />
-                        </div>
-                        <div className="other_user_info">
-                          <p className="other_user_name">HOTMODEL1234</p>
-                          <span className="other_user_access">
-                            @HOTMODEL1223
-                          </span>
-                        </div>
-                      </div>
+    const handleRadioChange = (id) => {
+        // setIsChecked(!isChecked);
+        if (id === isChecked) {
+            setIsChecked(null);
+             return;
+          }
+        
+    };
 
-                      <div>
-                        <button className="user_profile_follow_btn">
-                          follow
-                        </button>
-                      </div>
-                    </div>
 
-                    <div className="more_profiles_content">
-                      <div className="more_user_profile_details">
-                        <div className="more_users_profile_img">
-                          <img src={moreUserProfilePic} />
-                        </div>
-                        <div className="other_user_info">
-                          <p className="other_user_name">HOTMODEL1234</p>
-                          <span className="other_user_access">
-                            @HOTMODEL1223
-                          </span>
-                        </div>
-                      </div>
 
-                      <div>
-                        <button className="user_profile_follow_btn">
-                          follow
-                        </button>
-                      </div>
-                    </div>
-
-                    <div className="more_profiles_content">
-                      <div className="more_user_profile_details">
-                        <div className="more_users_profile_img">
-                          <img src={moreUserProfilePic} />
-                        </div>
-                        <div className="other_user_info">
-                          <p className="other_user_name">HOTMODEL1234</p>
-                          <span className="other_user_access">
-                            @HOTMODEL1223
-                          </span>
-                        </div>
-                      </div>
-
-                      <div>
-                        <button className="user_profile_follow_btn">
-                          follow
-                        </button>
-                      </div>
-                    </div>
-
-                    <div className="more_profiles_content">
-                      <div className="more_user_profile_details">
-                        <div className="more_users_profile_img">
-                          <img src={moreUserProfilePic} />
-                        </div>
-                        <div className="other_user_info">
-                          <p className="other_user_name">HOTMODEL1234</p>
-                          <span className="other_user_access">
-                            @HOTMODEL1223
-                          </span>
-                        </div>
-                      </div>
-
-                      <div>
-                        <button className="user_profile_follow_btn">
-                          follow
-                        </button>
-                      </div>
-                    </div>
-                  </div>
-                </div>
-              </div>
+    console.log("isChecked", isChecked)
+    return (
+        <div>
+            <div>
+                <Header />
             </div>
 
-            <div className="col-md-9">
-              <div className="feet_container_main">
+            <div className="profile_section_main">
+                <div className="container">
+                    <div className="row">
+                        <div className="col-md-3">
+                            <div className="profile_left_part">
+                                <div className="user_profile_main position-relative">
+                                    <div className="user_profile_bk_img">
+                                        <img src={userProfilePicBackground} className="img-fluid" />
+                                    </div>
 
-                <div className="row">
-                  {modellists?.map((items, index) => (
+                                    <div className="user_profile_info text-center">
+                                        <div type="button" onClick={showprofile}
+                                            className="user_profile_picture"
+                                            data-aos="flip-left"
+                                            data-aos-anchor-placement="center-bottom"
+                                            data-aos-duration="3000"
+                                        >
+                                            <img src={userProfilePic} />
+                                        </div>
+
+                                        <div className="user_info">
+                                            <div type="button" onClick={showprofile}
+                                                className="name_with_status pt-3"
+                                                data-aos="fade-right"
+                                                data-aos-anchor-placement="center-bottom"
+                                                data-aos-duration="1000"
+                                            >
+                                                <span className="online_circle">
+                                                    <i class="fa-solid fa-circle"></i>
+                                                </span>
+                                                <span className="hot_model_name">HOTMODEL1234</span>
+                                            </div>
+
+                                            <div type="button" onClick={showprofile}
+                                                className="mb-3"
+                                                data-aos="fade-right"
+                                                data-aos-anchor-placement="center-bottom"
+                                                data-aos-duration="2000"
+                                            >
+                                                <span className="user_access">@HOTMODEL1223</span>
+                                            </div>
+
+                                            <p
+                                                className="user_profile_desc"
+                                                data-aos="fade-right"
+                                                data-aos-anchor-placement="center-bottom"
+                                                data-aos-duration="3000"
+                                            >
+                                                Lorem Ipsum is simply dummy text of the printing and
+                                                typesetting industry. Lorem Ipsum has been the
+                                                industry's standard
+                                            </p>
+                                        </div>
+
+                                        <div
+                                            className="followers_div mb-4"
+                                            data-aos="fade-left"
+                                            data-aos-anchor-placement="center-bottom"
+                                            data-aos-duration="3000"
+                                        >
+                                            <span className="followers_title">followers</span>
+                                            <span className="followers_number">
+                                                <span className="no_of_follows">257</span>
+                                            </span>
+                                        </div>
+
+                                        <div
+                                            className="followers_div"
+                                            data-aos="fade-right"
+                                            data-aos-anchor-placement="center-bottom"
+                                            data-aos-duration="3000"
+                                        >
+                                            {/* <span className="followers_title">following</span> */}
+                                            <div
+                                                data-aos="fade-right"
+                                                data-aos-anchor-placement="center-bottom"
+                                                data-aos-duration="3000"
+                                            >
+                                                <button className="give_tip_btn" onClick={following}>  following</button>
+                                            </div>
+                                            <span className="followers_number">
+                                                <span className="no_of_follows">145</span>
+                                            </span>
+                                        </div>
+
+                                        <div className="d-flex justify-content-between align-items-center pt-4 sec-rqst-btns">
+                                            <button
+                                                className="sign_actionBtn"
+                                                data-aos="fade-right"
+                                                data-aos-anchor-placement="center-bottom"
+                                                data-aos-duration="3000"
+                                            >
+                                                send request
+                                            </button>
+
+                                            <button
+                                                className="sign_actionBtn"
+                                                data-aos="fade-left"
+                                                data-aos-anchor-placement="center-bottom"
+                                                data-aos-duration="3000"
+                                                onClick={sendmessage} >
+                                                send message
+                                            </button>
+                                            <button
+                                                className="sign_actionBtn"
+                                                data-aos="fade-left"
+                                                data-aos-anchor-placement="center-bottom"
+                                                data-aos-duration="3000"
+                                                onClick={transaction} >
+                                                Transaction
+                                            </button>
+                                        </div>
+
+                                        <div
+                                            data-aos="fade-right"
+                                            data-aos-anchor-placement="center-bottom"
+                                            data-aos-duration="3000"
+                                        >
+                                            <button onClick={givetip} className="give_tip_btn">give tip</button>
+                                        </div>
+                                    </div>
+
+                                    <div class="model_card_top_corner_img">
+                                        <img src={modelCardTopCorner} />
+                                    </div>
+
+                                    <div class="model_card_bottom_corner_img"  >
+                                        <img src={modelCardBottomCorner} />
+                                    </div>
+                                </div>
+
+                                <div
+                                    className="more_profiles_main"
+                                    data-aos="fade-right"
+                                    data-aos-anchor-placement="center-bottom"
+                                    data-aos-duration="3000"
+                                >
+                                    <div>
+                                        <p className="more_profiles_like_this_title">
+                                            more profiles like this
+                                        </p>
+                                    </div>
+
+                                    <div className="all_other_users_profiles">
+                                        <div className="more_profiles_content">
+                                            <div className="more_user_profile_details">
+                                                <div className="more_users_profile_img">
+                                                    <img src={moreUserProfilePic} />
+                                                </div>
+                                                <div className="other_user_info">
+                                                    <p className="other_user_name">HOTMODEL1234</p>
+                                                    <span className="other_user_access">
+                                                        @HOTMODEL1223
+                                                    </span>
+                                                </div>
+                                            </div>
+
+                                            <div>
+                                                <button className="user_profile_follow_btn">
+                                                    follow
+                                                </button>
+                                            </div>
+                                        </div>
+
+                                        <div className="more_profiles_content">
+                                            <div className="more_user_profile_details">
+                                                <div className="more_users_profile_img">
+                                                    <img src={moreUserProfilePic} />
+                                                </div>
+                                                <div className="other_user_info">
+                                                    <p className="other_user_name">HOTMODEL1234</p>
+                                                    <span className="other_user_access">
+                                                        @HOTMODEL1223
+                                                    </span>
+                                                </div>
+                                            </div>
+
+                                            <div>
+                                                <button className="user_profile_follow_btn">
+                                                    follow
+                                                </button>
+                                            </div>
+                                        </div>
+
+                                        <div className="more_profiles_content">
+                                            <div className="more_user_profile_details">
+                                                <div className="more_users_profile_img">
+                                                    <img src={moreUserProfilePic} />
+                                                </div>
+                                                <div className="other_user_info" type="button" >
+                                                    <p className="other_user_name">HOTMODEL1234</p>
+                                                    <span className="other_user_access">
+                                                        @HOTMODEL1223
+                                                    </span>
+                                                </div>
+                                            </div>
+
+                                            <div>
+                                                <button className="user_profile_follow_btn">
+                                                    follow
+                                                </button>
+                                            </div>
+                                        </div>
+
+                                        <div className="more_profiles_content">
+                                            <div className="more_user_profile_details">
+                                                <div className="more_users_profile_img">
+                                                    <img src={moreUserProfilePic} />
+                                                </div>
+                                                <div className="other_user_info">
+                                                    <p className="other_user_name">HOTMODEL1234</p>
+                                                    <span className="other_user_access">
+                                                        @HOTMODEL1223
+                                                    </span>
+                                                </div>
+                                            </div>
+
+                                            <div>
+                                                <button className="user_profile_follow_btn">
+                                                    follow
+                                                </button>
+                                            </div>
+                                        </div>
+
+                                        <div className="more_profiles_content">
+                                            <div className="more_user_profile_details">
+                                                <div className="more_users_profile_img">
+                                                    <img src={moreUserProfilePic} />
+                                                </div>
+                                                <div className="other_user_info">
+                                                    <p className="other_user_name">HOTMODEL1234</p>
+                                                    <span className="other_user_access">
+                                                        @HOTMODEL1223
+                                                    </span>
+                                                </div>
+                                            </div>
+
+                                            <div>
+                                                <button className="user_profile_follow_btn">
+                                                    follow
+                                                </button>
+                                            </div>
+                                        </div>
+
+                                        <div className="more_profiles_content">
+                                            <div className="more_user_profile_details">
+                                                <div className="more_users_profile_img">
+                                                    <img src={moreUserProfilePic} />
+                                                </div>
+                                                <div className="other_user_info">
+                                                    <p className="other_user_name">HOTMODEL1234</p>
+                                                    <span className="other_user_access">
+                                                        @HOTMODEL1223
+                                                    </span>
+                                                </div>
+                                            </div>
+
+                                            <div>
+                                                <button className="user_profile_follow_btn">
+                                                    follow
+                                                </button>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+
+                        <div className="col-md-9">
+                            <div className="feet_container_main">
 
 
-                    <div className="col-sm-6 col-lg-4">
-                      <div className="first_model_card">
-                        {/* <div type="button" className="framePic">
-                            <img src={afterimgframe} className="frameimg" />
-                          </div> */}
 
-                        <Swiper
-                          spaceBetween={30}
-                          slidesPerView={1}
-                          onSlideChange={() => console.log("slide change")}
-                          onSwiper={(swiper) => console.log(swiper)}
-                        >
-                          {items?.post_data?.map((data) => (
 
-                            <SwiperSlide>
-                              <div className="model_card_img position-relative first_model_card"
-                                data-toggle="modal"
-                                data-target=".exampleModal">
-                                <img src={data?.file ? baseurl + data.file : dummy} className="img-fluid" />
-                               
-                                <span className="edit_icon_img">
 
-                                </span>
 
-                                <span className="share_icon_img">
 
-                                </span>
 
-                                <span className="boost_icon_img">
 
-                                </span>
-                              </div>
+                                {modellist && (
+                                    <div className="row  ">
+                                        {modellists?.map((items, index) => (
 
-                              <div>
-                                <div className="model_have_a_look_btn">
-                                  <button className="have_alook_btn">have a look</button>
-                                  <span className="be_nice_span">
-                                    BE NICE, or we will crush you!
-                                  </span>
+
+                                            <div className="col-sm-6 col-lg-4">
+                                                <div className="first_model_card">
+
+
+                                                    <Swiper
+                                                        spaceBetween={30}
+                                                        slidesPerView={1}
+                                                        onSlideChange={() => console.log("slide change")}
+                                                        onSwiper={(swiper) => console.log(swiper)}
+                                                    >
+                                                        {items?.post_data?.map((data) => (
+
+                                                            <SwiperSlide>
+                                                                <div className="model_card_img position-relative first_model_card"
+                                                                    data-toggle="modal"
+                                                                    data-target=".exampleModal">
+                                                                    <img src={data?.file ? baseurl + data.file : dummy} className="img-fluid" />
+
+                                                                    <span className="edit_icon_img">
+
+                                                                    </span>
+
+                                                                    <span className="share_icon_img">
+
+                                                                    </span>
+
+                                                                    <span className="boost_icon_img">
+
+                                                                    </span>
+                                                                </div>
+
+                                                                <div>
+                                                                    <div className="model_have_a_look_btn">
+                                                                        <button className="have_alook_btn">have a look</button>
+                                                                        <span className="be_nice_span">
+                                                                            BE NICE, or we will crush you!
+                                                                        </span>
+                                                                    </div>
+                                                                </div>
+                                                            </SwiperSlide>))}
+
+
+                                                    </Swiper>
+
+                                                    <div className="model_card_top_corner_img">
+                                                        <img src={modelCardTopCorner} />
+                                                    </div>
+
+                                                    <div className="model_card_bottom_corner_img" id="model_card_bottom_corner_imgs">
+                                                        <img src={modelCardBottomCorner} />
+                                                    </div>
+
+                                                </div>
+                                            </div>
+                                        ))}
+
+                                    </div>
+                                )}
+
+                                {follow && (
+                                    <div className="row tabs_box">
+                                        <div className="col-md-12">
+                                            <h3
+                                                className="following_heading"
+                                                data-aos="fade-right"
+                                                data-aos-anchor-placement="center-bottom"
+                                                data-aos-duration="3000"
+                                            >
+                                                Following
+                                            </h3>
+                                            <div className="divider_row"></div>
+                                        </div>
+                                        <div className="col-lg-3 col-md-4 col-sm-12 pt-4" data-aos="fade-up" data-aos-duration="3000">
+                                            <div className="follow_img_div">
+                                                <img className="img-fluid follow_img" src={modelImg02} alt="Brittanyvues" />
+                                                <p className="image_text">Brittanyvues</p>
+                                                <div className="locked_div">
+                                                    <p className="free_text">
+                                                        <span className="icon_unlock">
+                                                            <i className="fa-solid fa-unlock"></i>
+                                                        </span>
+                                                        Free
+                                                    </p>
+                                                    <p className="lock_text">
+                                                        <span className="icon_lock">
+                                                            <i className="fa-solid fa-lock"></i>
+                                                        </span>
+                                                        Locked
+                                                    </p>
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <div className="col-lg-3 col-md-4 col-sm-12 pt-4" data-aos="fade-down" data-aos-duration="3000">
+                                            <div className="follow_img_div">
+                                                <img className="img-fluid follow_img" src={modelImg02} alt="Brittanyvues" />
+                                                <p className="image_text">Brittanyvues</p>
+                                                <div className="locked_div">
+                                                    <p className="free_text">
+                                                        <span className="icon_unlock">
+                                                            <i className="fa-solid fa-unlock"></i>
+                                                        </span>
+                                                        Free
+                                                    </p>
+                                                    <p className="lock_text">
+                                                        <span className="icon_lock">
+                                                            <i className="fa-solid fa-lock"></i>
+                                                        </span>
+                                                        Locked
+                                                    </p>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                )}
+
+
+
+
+
+{/* 
+{sendmessages && (
+                                
+                                <div className="tabs_box">
+                                <div className="row">
+                                  <div className="col-md-12 ">
+                                    <h3 className="inbox_heading" data-aos="fade-right" data-aos-anchor-placement="center-bottom" data-aos-duration="3000" >Inbox</h3>
+                                    <div className="divider_row"></div>
+                                  </div>
+                                  
+                                </div>
+                             
+                                    <div className="row inbox_container">
+                                      <div className="col-md-4 right_divider">
+                                          <div>
+                                            <form class="example" action="/action_page.php" >
+                                              <button type="submit"><i class="fa fa-search"></i></button>
+                                              <input type="text" placeholder="Search Message" name="search2"/>
+                                            </form>
+                                          </div>
+                                        <div className="profile_div">
+                                         <div> <img className="img-fluid profile_img" src={follow}/></div>
+                                          <div>
+                                            <p className="profile_name"> Brittanyvues <sup  className="profile_message_date"> 29 May 07:55 AM </sup> </p>    
+                                            <p className="message_text">I am</p> 
+                                          </div>                     
+                                        </div>
+                                      
+                                      </div>
+                                    
+                                      <div className="col-md-8">
+                                        <div className="profile_div">
+                                            <div> <img className="img-fluid profile_img" src={follow}/></div>
+                                            <div>
+                                              <p className="profile_name"> Brittanyvues </p>                      
+                                            </div>                     
+                                        </div>
+                                          <div className="divider_row"></div>
+                                         
+                                            <div className="chat_box">
+                                              <p className="message_date">29 May 07:55 AM</p>
+                                              <p className="message_para">Hey</p>
+                                            </div>
+                                            <div className="chat_box">
+                                              <p className="message_date">29 May 07:59 AM</p>
+                                              <p className="message_para">I'm waiting</p>
+                                          </div>
+                                        
+              
+                                         <div className="message_sent_box"> 
+                                         
+                                          <input type="text" className="message_type_box" placeholder="Write Text" id="name" name="name" required/>
+                                          <button className="message_type_box_icon" ><i class="fa fa-paper-plane message_type_box_icon" aria-hidden="true"></i></button>
+                                         </div>
+                                      </div>
+              
                                 </div>
                               </div>
-                            </SwiperSlide>))}
+                                )} */}
 
 
-                        </Swiper>
 
-                        <div className="model_card_top_corner_img">
-                          <img src={modelCardTopCorner} />
+
+                                {transactions && (
+                                    <div className="row tabs_box">
+
+                                        <div className="col-md-12">
+                                            <h3 className="following_heading" data-aos="fade-right" data-aos-anchor-placement="center-bottom" data-aos-duration="3000" >Transactions</h3>
+                                            <div className="divider_row"></div>
+                                        </div>
+                                        <div className="col-md-12" data-aos="fade-up" data-aos-anchor-placement="center-bottom" data-aos-duration="3000">
+                                            <div class="table-responsive">
+                                                <table class="table">
+                                                    <thead class="table_header_bg">
+                                                        <tr>
+                                                            <th scope="col" className="table_header_row">Date</th>
+                                                            <th scope="col" className="table_header_row">Amount</th>
+                                                            <th scope="col" className="table_header_row">Seller</th>
+                                                            <th scope="col" className="table_header_row">Purchased</th>
+                                                        </tr>
+
+                                                    </thead>
+                                                    <tbody>
+                                                        <tr >
+                                                            <td class="order_history">25.05.2024</td>
+                                                            <td class="order_history">$80.00</td>
+                                                            <td class="order_history"><a href="#" className="seller_text"> Brittanyvues </a></td>
+                                                            <td class="order_history">Unlocked collection: Lime green high heels <span><a href="#" className="view_links"> View </a></span></td>
+
+                                                        </tr>
+                                                        <tr className="bg_table_row">
+                                                            <td class="order_history">29.05.2024</td>
+                                                            <td class="order_history">$7.00</td>
+                                                            <td class="order_history"><a href="#" className="seller_text"> Brittanyvues </a></td>
+                                                            <td class="order_history">Unlocked collection: Lime green high heels <span><a href="#" className="view_links"> View </a></span></td>
+
+                                                        </tr>
+                                                        <tr>
+                                                            <td class="order_history">26.05.2024</td>
+                                                            <td class="order_history">$9.00</td>
+                                                            <td class="order_history"><a href="#" className="seller_text"> Brittanyvues </a></td>
+                                                            <td class="order_history">Unlocked collection: Lime green high heels <span><a href="#" className="view_links"> View </a></span></td>
+
+                                                        </tr>
+                                                    </tbody>
+                                                </table>
+                                            </div>
+                                        </div>
+                                    </div>
+                                )}
+
+
+
+
+
+
+
+
+
+
+
+
+                                {givestip && (
+                                    <div className="row paytab">
+
+                                        <div className="col-md-19">
+                                            <h3 className="following_heading" data-aos="fade-right" data-aos-anchor-placement="center-bottom" data-aos-duration="3000" >Payment Information</h3>
+                                            <div className="divider_row"></div>
+                                        </div>
+                                        <div className="col-md-12" data-aos="fade-up" data-aos-anchor-placement="center-bottom" data-aos-duration="3000">
+                                            <h4 className="  text-white mt-2 mb-2">Choose Amount </h4>
+                                            <div className="tipgap row  mx-auto    ">
+                                                <div className="paytips col-md-3    mb-4 justify-content-center">
+                                                    <input
+                                                        className=""
+                                                        type="radio"
+                                                        checked={isChecked}
+                                                        onClick={() => handleRadioChange(0)}
+                                                    /> $100
+                                                </div>
+
+
+
+
+                                                <div className="paytips col-md-3    mb-4 justify-content-center">
+                                                    <input
+                                                        className=""
+                                                        type="radio"
+                                                        checked={isChecked}
+                                                        onClick={() => handleRadioChange(1)}
+                                                    /> $100
+                                                </div>
+
+                                                <div className="paytips col-md-3    mb-4 justify-content-center">
+                                                    <input
+                                                        className=""
+                                                        type="radio"
+                                                        checked={isChecked}
+                                                       onClick={() => handleRadioChange(2)}
+                                                    /> $100
+                                                </div>
+                                                <div className="paytips col-md-3  mb-4 " >
+                                                    <input
+                                                        className=""
+                                                        type="radio"
+                                                        checked={isChecked}
+                                                       onClick={() => handleRadioChange(3)}
+                                                    /> $100
+                                                </div>
+                                                <div className="paytips col-md-3  mb-4 ">
+                                                    <input
+                                                        className=""
+                                                        type="radio"
+                                                        checked={isChecked}
+                                                       onClick={() => handleRadioChange(4)}
+                                                    /> $100
+                                                </div>
+                                                <div className="paytips col-md-3  mb-4 ">
+                                                    <input
+                                                        className=""
+                                                        type="radio"
+                                                        checked={isChecked}
+                                                       onClick={() => handleRadioChange(5)}
+                                                    /> $100
+                                                </div>
+
+                                            </div>
+
+                                            <h4 className="  text-white mt-2 mb-2">Custom Amount </h4>
+                                            <div className="custompay mb-4"> $
+                                                <input className="custom" type="text"/>
+                                                </div>
+                                                <button className="paybtn mt -4">
+                                                    Pay Now
+                                                </button>
+                                        </div>
+                                    </div>
+                                )}
+
+
+
+
+
+
+
+
+                            </div>
                         </div>
 
-                        <div className="model_card_bottom_corner_img" id="model_card_bottom_corner_imgs">
-                          <img src={modelCardBottomCorner} />
-                        </div>
-
-                      </div>
-                    </div>
-                  ))}
-
-
-
-
-
-                </div>
-              </div>
-            </div>
-
-            <div className="col-md-12">
-              <div
-                class="modal fade exampleModal"
-                // id="exampleModal"
-                tabindex="-1"
-                aria-labelledby="exampleModalLabel"
-                aria-hidden="true"
-              >
-                <div class="modal-dialog modal-dialog-centered my-modal">
-                  <div class="modal-content">
-                    <div className="carousel-modal">
-                      <div class="carousel-header">
-                        <div className="carousel-icons">
-                          <div className="caarousel-icons_inner">
-                            <a
-                              href="javaScript:;"
-                              className="cancel"
-                              data-dismiss="modal"
+                        <div className="col-md-12">
+                            <div
+                                class="modal fade exampleModal"
+                                // id="exampleModal"
+                                tabindex="-1"
+                                aria-labelledby="exampleModalLabel"
+                                aria-hidden="true"
                             >
-                              <img src={Cancel} />
-                            </a>
-                            <a type="button" onClick={handleHeart} className="heart">
-                              {/* <img src={Heart} /> */}
-                              <i className={`fa ${hearts ? 'fa-solid' : 'fa-regular'} fa-heart`}></i>
-                            </a>
+                                <div class="modal-dialog modal-dialog-centered my-modal">
+                                    <div class="modal-content">
+                                        <div className="carousel-modal">
+                                            <div class="carousel-header">
+                                                <div className="carousel-icons">
+                                                    <div className="caarousel-icons_inner">
+                                                        <a
+                                                            href="javaScript:;"
+                                                            className="cancel"
+                                                            data-dismiss="modal"
+                                                        >
+                                                            <img src={Cancel} />
+                                                        </a>
+                                                        <a type="button" onClick={handleHeart} className="heart">
+                                                            {/* <img src={Heart} /> */}
+                                                            <i className={`fa ${hearts ? 'fa-solid' : 'fa-regular'} fa-heart`}></i>
+                                                        </a>
 
-                          </div>
+                                                    </div>
+                                                </div>
+                                                <h3 className="modal-title">HOTMODEL1234</h3>
+                                                <p className="modal-subtitle">38- USA - 2 Hours ago</p>
+                                            </div>
+
+                                            <Swiper
+                                                slidesPerView={"auto"}
+                                                centeredSlides={true}
+                                                spaceBetween={15}
+                                                navigation={true}
+                                                // pagination={{
+                                                //   clickable: true,
+                                                // }}
+                                                modules={[Navigation]}
+                                                className="mySwiper"
+                                            >
+                                                <SwiperSlide>
+                                                    <img src={modal1} />
+                                                </SwiperSlide>
+                                                <SwiperSlide>
+                                                    <img src={modal2} />
+                                                </SwiperSlide>
+                                                <SwiperSlide>
+                                                    <img src={modal3} />
+                                                </SwiperSlide>
+                                                <SwiperSlide>
+                                                    <img src={modal2} />
+                                                </SwiperSlide>
+                                                <SwiperSlide>
+                                                    <img src={modal3} />
+                                                </SwiperSlide>
+                                            </Swiper>
+
+                                            <div className="carousel-footer">
+                                                <h4 className="carousel-footer_title">
+                                                    My Pretty Pink Nails :)
+                                                </h4>
+                                                <p className="carousel-footer_body">
+                                                    Lorem Ipsum is simply dummy text of the printing and
+                                                    typesetting industry. Lorem Ipsum has been the
+                                                    industry's standard dummy text ever since the 1500s,
+                                                    when an unknown printer took a galley of type and
+                                                    scrambled it to make a type specimen book. It has
+                                                    survived not only five centuries
+                                                </p>
+                                                <p className="carousel-footer_price">$12.44</p>
+                                                <button onClick={handleclick} className="carousel-footer_button " data-dismiss="modal">Buy</button>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
                         </div>
-                        <h3 className="modal-title">HOTMODEL1234</h3>
-                        <p className="modal-subtitle">38- USA - 2 Hours ago</p>
-                      </div>
-
-                      <Swiper
-                        slidesPerView={"auto"}
-                        centeredSlides={true}
-                        spaceBetween={15}
-                        navigation={true}
-                        // pagination={{
-                        //   clickable: true,
-                        // }}
-                        modules={[Navigation]}
-                        className="mySwiper"
-                      >
-                        <SwiperSlide>
-                          <img src={modal1} />
-                        </SwiperSlide>
-                        <SwiperSlide>
-                          <img src={modal2} />
-                        </SwiperSlide>
-                        <SwiperSlide>
-                          <img src={modal3} />
-                        </SwiperSlide>
-                        <SwiperSlide>
-                          <img src={modal2} />
-                        </SwiperSlide>
-                        <SwiperSlide>
-                          <img src={modal3} />
-                        </SwiperSlide>
-                      </Swiper>
-
-                      <div className="carousel-footer">
-                        <h4 className="carousel-footer_title">
-                          My Pretty Pink Nails :)
-                        </h4>
-                        <p className="carousel-footer_body">
-                          Lorem Ipsum is simply dummy text of the printing and
-                          typesetting industry. Lorem Ipsum has been the
-                          industry's standard dummy text ever since the 1500s,
-                          when an unknown printer took a galley of type and
-                          scrambled it to make a type specimen book. It has
-                          survived not only five centuries
-                        </p>
-                        <p className="carousel-footer_price">$12.44</p>
-                        <button onClick={handleclick} className="carousel-footer_button " data-dismiss="modal">Buy</button>
-                      </div>
                     </div>
-                  </div>
                 </div>
-              </div>
             </div>
-          </div>
-        </div>
-      </div>
 
-      <div>
-        <Footer />
-      </div>
-    </div>
-  );
+            <div>
+                <Footer />
+            </div>
+        </div>
+    );
 };
 
 export default Profile;
