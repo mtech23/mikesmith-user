@@ -165,11 +165,11 @@ const Header = () => {
                   </li>
                 )} */}
 
-                {usertype == 3 && (
+                {/* {usertype == 3 && (
                   <li>
                     <Link to={"/profile-page"}>My Profile</Link>
                   </li>
-                )}
+                )} */}
 
 
                 {/* <li>
