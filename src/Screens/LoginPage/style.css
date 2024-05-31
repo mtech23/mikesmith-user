@@ -1,0 +1,219 @@
+@import "//netdna.bootstrapcdn.com/font-awesome/3.0/css/font-awesome.css";
+.log{
+    background-image: url("../../Asserts/images/login-page-bk.png");
+    background-position: center;
+    background-repeat: no-repeat;
+    background-size: cover;
+    padding: 102px 0px;
+}
+.log img.top{
+    position: absolute;
+    top: 0px;
+    left: -4px;
+
+}
+.log img.btm{
+    position: absolute;
+    bottom: -1px;
+    right: 0;
+}
+
+.gold{
+    background: #1A1A1A;
+    padding: 39px; 
+    position: relative; 
+}
+.log img.plat{
+   padding: 40px 0px;
+}
+.imagerow{
+    display: flex;
+    justify-content: center;
+}
+.log h4.sign{
+    font-family: 'Deloire';
+    font-size: 25px;
+    font-weight: 600;
+    line-height: 35.07px;
+    letter-spacing: 0.02em;
+    text-align: center;
+    /* color: #A76A26; */
+    background: linear-gradient(#B0A915, #F5D77F, #FFFFD7, #B07515, #F5D77F, #B07515);
+    -webkit-text-fill-color: transparent;
+    -webkit-background-clip: text;
+    text-transform: uppercase;
+}
+.log p.txt{
+    font-family: 'Poppins';
+font-size: 17px;
+font-weight: 400;
+line-height: 30px;
+letter-spacing: 0.02em;
+text-align: center;
+color: #B0B0B0;
+padding: 0px 0px 40px 0px;
+}
+.black{
+    width: 584px;
+    border-radius: 28px;
+}
+
+.login-form {
+    width: 300px;
+    margin: 0 auto;
+ 
+    flex-wrap: wrap;
+  }
+  .login-form label.user{
+    background: linear-gradient(#B0A915, #F5D77F, #FFFFD7, #B07515, #F5D77F, #B07515);
+    -webkit-text-fill-color: transparent;
+    -webkit-background-clip: text;
+    font-family: 'Poppins';
+font-size: 18px;
+font-weight: 500;
+line-height: 30px;
+letter-spacing: 0.02em;
+text-align: left;
+
+  }
+  .login-form label.pass{
+    color: #B6B6B6;
+    padding-top: 12px;
+    font-family: 'Poppins';
+font-size: 18px;
+font-weight: 500;
+line-height: 30px;
+letter-spacing: 0.02em;
+text-align: left;
+
+  }
+  
+  .login-form input.mail[type='text']{
+    color: #fff;
+    font-family: 'Poppins';
+    font-size: 13px;
+    font-weight: 500;
+    line-height: 30px;
+    letter-spacing: 0.02em;
+    text-align: left;
+    background: transparent;
+    border: 1px gold dashed;
+    display: flex;
+    width: 355px;
+    background-image: url('../../Asserts/images/login-email-label.png');
+    background-position: 11px 15px;
+    background-repeat: no-repeat;
+    padding: 12px 20px 12px 51px;
+    background-size: 8% 47%;
+
+}
+
+    
+  .login-form input.pass[type='password'] {
+    color: #fff;
+    font-family: 'Poppins';
+    font-size: 13px;
+    font-weight: 500;
+    line-height: 30px;
+    letter-spacing: 0.02em;
+    text-align: left;
+    background: transparent;
+    display: flex;
+    width: 355px;
+    background-image: url('../../Asserts/images/lock.png');
+    background-position: 11px 15px;
+    background-repeat: no-repeat;
+    padding: 12px 20px 12px 51px;
+    background-size: 8% 47%;
+    
+  }
+  
+  .login-form input[type='submit'] {
+    background-image: url('../../Asserts/images/btn.png');
+    background-repeat: no-repeat;
+    background-position: center;
+    background-size: 100% 100%;
+    color: #000;
+    padding: 9px;
+    margin: 10px 0;
+    border: none;
+    cursor: pointer;
+    width: 355px;
+    font-family: 'Poppins';
+font-size: 15px;
+font-weight: 600;
+
+letter-spacing: 0.02em;
+
+
+    
+  }
+  .for{
+    text-align: right;
+    padding-right: 85px;
+  }
+.log p.forgot{
+    font-family: 'Poppins';
+    font-size: 18px;
+    font-weight: 500;
+    line-height: 27px;
+    letter-spacing: 0.02em;
+    /* text-align: right; */
+    color: #A9A9A9;
+    text-decoration: underline;
+
+
+}
+.divider{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    gap: 8px;
+}
+.line{
+    background: linear-gradient(#B0A915, #F5D77F, #FFFFD7, #B07515, #F5D77F, #B07515);
+    width: 25%;
+    height: 2px;
+}
+.line1{
+    background: linear-gradient(#B0A915, #F5D77F, #FFFFD7, #B07515, #F5D77F, #B07515);
+    width: 25%;
+    height: 2px;
+}
+span.or{
+    background: linear-gradient(#B0A915, #F5D77F, #FFFFD7, #B07515, #F5D77F, #B07515);
+    -webkit-text-fill-color: transparent;
+    -webkit-background-clip: text;
+    font-family: 'Poppins';
+font-size: 20px;
+font-weight: 600;
+line-height: 30px;
+letter-spacing: 0.02em;
+text-align: left;
+
+}
+.log button.account{
+    font-family: 'Poppins';
+font-size: 18px;
+font-weight: 500;
+line-height: 27px;
+letter-spacing: 0.02em;
+color:  #f5d77f;
+padding: 9px;
+width: 62%;
+    background-image: url('../../Asserts/images/create-account-btn-bk.png');
+    background-repeat: no-repeat;
+    background-position: center;
+    background-size: 100% 100%;
+
+}
+.create{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+  @media only screen and (max-width: 600px) {
+    .login-form {
+      width: 100%;
+    }
+  }

@@ -1,0 +1,43 @@
+
+.label{
+    color: #B6B6B6;
+    padding-top: 12px;
+    font-family: 'Poppins';
+font-size: 18px;
+font-weight: 500;
+line-height: 30px;
+letter-spacing: 0.02em;
+text-align: left;
+
+  }
+ .input[type='text']{
+    color: #fff;
+    font-family: 'Poppins';
+    font-size: 13px;
+    font-weight: 500;
+    line-height: 30px;
+    letter-spacing: 0.02em;
+    text-align: left;
+    background: transparent;
+    border: 1px gold dashed;
+    display: flex;
+    width: 100%;
+
+}
+.input[type='submit'] {
+    background-image: url('../../Asserts/images/btn.png');
+    background-repeat: no-repeat;
+    background-position: center;
+    background-size: 100% 100%;
+    color: #000;
+    padding: 9px;
+    margin: 10px 0;
+    border: none;
+    cursor: pointer;
+    width: 355px;
+    font-family: 'Poppins';
+font-size: 15px;
+font-weight: 600;
+
+letter-spacing: 0.02em;
+}
