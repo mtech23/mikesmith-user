@@ -421,7 +421,7 @@ const baseurl = `${process.env.REACT_APP_BASE_URL}/public/`
                 </div>    */}
 
 
-              <div className="row tabs_box">
+              {/* <div className="row tabs_box">
                   
                   <div className="col-md-12">
                     <h3 className="following_heading" data-aos="fade-right" data-aos-anchor-placement="center-bottom" data-aos-duration="3000" >Transactions</h3>
@@ -465,7 +465,7 @@ const baseurl = `${process.env.REACT_APP_BASE_URL}/public/`
                                 </table>
                            </div>
                     </div>
-                </div>  
+                </div>   */}
 
 
 
@@ -575,6 +575,66 @@ const baseurl = `${process.env.REACT_APP_BASE_URL}/public/`
                   
 
                 </div>  */}
+
+                <div className="tabs_box">
+                  <div className="row">
+                    <div className="col-md-12 ">
+                      <h3 className="inbox_heading" data-aos="fade-right" data-aos-anchor-placement="center-bottom" data-aos-duration="3000" >Inbox</h3>
+                      <div className="divider_row"></div>
+                    </div>
+                    
+                  </div>
+               
+                      <div className="row inbox_container">
+                        <div className="col-md-4 right_divider">
+                            <div>
+                              <form class="example" action="/action_page.php" >
+                                <button type="submit"><i class="fa fa-search"></i></button>
+                                <input type="text" placeholder="Search Message" name="search2"/>
+                              </form>
+                            </div>
+                          <div className="profile_div">
+                           <div> <img className="img-fluid profile_img" src={follow}/></div>
+                            <div>
+                              <p className="profile_name"> Brittanyvues <sup  className="profile_message_date"> 29 May 07:55 AM </sup> </p>    
+                              <p className="message_text">I am</p> 
+                            </div>                     
+                          </div>
+                        
+                        </div>
+                      
+                        <div className="col-md-8">
+                          <div className="profile_div">
+                              <div> <img className="img-fluid profile_img" src={follow}/></div>
+                              <div>
+                                <p className="profile_name"> Brittanyvues </p>                      
+                              </div>                     
+                          </div>
+                            <div className="divider_row"></div>
+                           
+                              <div className="chat_box">
+                                <p className="message_date">29 May 07:55 AM</p>
+                                <p className="message_para">Hey</p>
+                              </div>
+                              <div className="chat_box">
+                                <p className="message_date">29 May 07:59 AM</p>
+                                <p className="message_para">I'm waiting</p>
+                            </div>
+                          
+
+                           <div className="message_sent_box"> 
+                           
+                            <input type="text" className="message_type_box" placeholder="Write Text" id="name" name="name" required/>
+                            <button className="message_type_box_icon" ><i class="fa fa-paper-plane message_type_box_icon" aria-hidden="true"></i></button>
+                           </div>
+                        </div>
+
+                  </div>
+                </div>
+                  
+
+                  
+             
 
 
 

@@ -46,9 +46,9 @@
  }
  .follow_img_div{
   background-color: #161616;
+  box-shadow: #f5d77f1f 0px -9px 55px, rgba(0, 0, 0, 0.12) 0px -31px 30px, #141414 0px -1px 0px, #f4d77f08 0px 8px 6px, #bd8628a6 0px 0px 2px;
   border-radius: 10px;
   padding: 10px;
-  box-shadow: #f5d77f1f 0px -9px 55px, rgba(0, 0, 0, 0.12) 0px -31px 30px, #141414 0px -1px 0px, #f4d77f08 0px 8px 6px, #bd8628a6 0px 0px 2px;
   text-align: center;
  }
 
@@ -389,7 +389,155 @@ padding: 0px 20px ;
   width: 70%;
   background-color: transparent;
 }
+.example_one{
+   /* padding: 12px 0px; */
+}
+form.example input[type=text] {
+  padding: 9px 11px;
+  font-family: "CircularStd-Medium", sans-serif;
+  color: #fff;
+  font-size: 15px;
+  border: none;
+  float: left;
+  margin: auto;
+  max-width: 80%;
+  background: rgb(45 44 48);
+  border-radius: 0px 6px 6px 0px;
+}
+form.example input::placeholder{
+    color: #fff;
+    font-size: 9px;
+    font-family: "CircularStd-Medium", sans-serif;
+}
+form.example button {
+  float: left;
+  width: 20%;
+  padding: 9px 11px;
+  background: rgb(45 44 48);
+  color: white;
+  font-size: 15px;
+  /* border: 1px solid grey; */
+  border:none;
+  cursor: pointer;
+  border-radius: 6px 0px 0px 6px;
+}
 
+form.example button:hover {
+  background: rgba(137, 148, 166, 0.08);
+}
+.inbox_container{
+  padding: 12px 0px;
+  background-color: #161616;
+  box-shadow: #f5d77f1f 0px -9px 55px, rgba(0, 0, 0, 0.12) 0px -31px 30px, #141414 0px -1px 0px, #f4d77f08 0px 8px 6px, #bd8628a6 0px 0px 2px;
+  border-radius: 10px;
+  margin: 16px;
+}
+.inbox_heading {
+  font-family: "CircularStd-Medium", sans-serif;
+  font-size: 30px;
+  color: #fff;
+  font-weight: 500;
+  padding: 9px 24px;
+}
+.profile_img{
+  height: 32px;
+  width: 32px;
+  border-radius: 20px;
+}
+.profile_div{
+  display: flex;
+  padding: 11px 2px;
+  gap: 5px;
+  align-items: center;
+  flex-wrap: wrap
+}
+
+.profile_name {
+  font-family: "CircularStd-Book", sans-serif;
+  font-style: normal;
+  font-weight: 450;
+  font-size: 11px;
+  margin: 0px;
+  color: #fff;
+  padding: 0px;
+}
+
+.profile_message_date{
+
+  font-family: "CircularStd-Book", sans-serif;
+  color: #d7d7d7;
+}
+.message_text{
+  font-family: "CircularStd-Book", sans-serif;
+  font-size: 12px;
+  color: #d7d7d7;
+  margin: 0px;
+}
+.inbox_divider{
+  border: 1px solid #8e6200;
+  border-width: 0px 1px 0px 0px;
+}
+.message_body{
+  margin: 2px;
+}
+.message_date{
+  font-size: 8px;
+  line-height: 20px;
+  color: #d7d7d7;
+  font-family: "CircularStd-Book", sans-serif;
+  margin: 0px;
+
+}
+.chat_box{
+  text-align: right;
+  padding-top: 20px;
+}
+.message_para{
+     font-family: "CircularStd-Book", sans-serif;
+    font-size: 17px;
+    line-height: 19px;
+    background-color: #49494b;
+    color: #fff;
+    display: inline-block;
+    padding: 10px 24px;
+    border-radius: 8px 8px 0px 8px;
+    margin: 0px;
+  
+}
+.message_sent_box{
+    padding-top: 270px;
+    /* height: 91%; */
+}
+
+.message_dailog{
+  height: 80%;
+}
+.message_type_box {
+  width: 84%;
+  background: #49494b;
+  border-width: 0px 7px 0px 0px;
+  border-right: 1px solid #fff;
+  padding: 11px;
+  font-family: "CircularStd-Book", sans-serif;
+  font-size: 16px;
+  color: #fff;
+  border-radius: 8px 0px 0px 8px;
+}
+.message_type_box::placeholder {
+ 
+  font-family: "CircularStd-Book", sans-serif;
+  font-size: 16px;
+  color: #fff;
+
+}
+.message_type_box_icon {
+  background: #49494b;
+  color: #fff;
+  font-size: 15px;
+  padding: 8px;
+  border-radius: 0px 8px 8px 0px;
+  border: none;
+}
 
  /* tabs css end */
 
