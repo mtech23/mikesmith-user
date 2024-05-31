@@ -9,6 +9,8 @@ import AddPost from "../Screens/addPostPage";
 import Packages from "../Screens/PackagesPage";
 import Faqs from '../Screens/Faqs'
 import Payment from "../Screens/PaymentPage";
+import History from "../Screens/History";
+ 
 import SignUp from "../Screens/SignUpPage";
 import { ToastContainer } from "react-toastify";
 import ProtectedRoute from "./protectedRoute";
@@ -52,6 +54,17 @@ const Router = () => {
           }
         />
  
+
+
+
+ <Route
+          path="/history-page"
+          element={
+            <ProtectedRoute>
+              <History />
+            </ProtectedRoute>
+          }
+        />
         <Route path="/" element={<Home />} />
         <Route path="/model-page" element={<Model />} />
         {/* <Route path="/profile-page" element={<Profile />} /> */}
