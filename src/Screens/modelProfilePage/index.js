@@ -153,6 +153,7 @@ const ModelProfile = () => {
   const [follow, setFollowing] = useState(false)
   const [sendmessages, setSendmessage] = useState(false)
   const [transactions, setTransactions] = useState(false)
+  const [Recivedtips, setRecivedtips] = useState(false)
 
 
 
@@ -209,6 +210,14 @@ const ModelProfile = () => {
     }
 
   };
+   
+  const recived_tips = () => {
+    setRecivedtips(!Recivedtips)
+    setFollowing(false)
+    setSendmessage(false)
+    setmodellisting(false)
+    setGivestip(false)
+  }
 
 
   return (
@@ -328,6 +337,15 @@ const ModelProfile = () => {
                         Transaction
                       </button>
                     </div>
+
+
+                    <div
+                        data-aos="fade-right"
+                        data-aos-anchor-placement="center-bottom"
+                        data-aos-duration="3000"
+                      >
+                        <button className="give_tip_btn" onClick={recived_tips}>  Recived Tips</button>
+                      </div>
 
                     <div
                       data-aos="fade-right"
@@ -748,6 +766,56 @@ const ModelProfile = () => {
                 )}
 
 
+
+
+
+{Recivedtips && (
+                  <div className="row tabs_box">
+
+                    <div className="col-md-12">
+                      <h3 className="following_heading" data-aos="fade-right" data-aos-anchor-placement="center-bottom" data-aos-duration="3000" >Tips History</h3>
+                      <div className="divider_row"></div>
+                    </div>
+                    <div className="col-md-12" data-aos="fade-up" data-aos-anchor-placement="center-bottom" data-aos-duration="3000">
+                      <div class="table-responsive">
+                        <table class="table">
+                          <thead class="table_header_bg">
+                            <tr>
+                              <th scope="col" className="table_header_row">Date</th>
+                              <th scope="col" className="table_header_row">Amount</th>
+                              <th scope="col" className="table_header_row">Name</th>
+                              <th scope="col" className="table_header_row">Purchased</th>
+                            </tr>
+
+                          </thead>
+                          <tbody>
+                            <tr >
+                              <td class="order_history">25.05.2024</td>
+                              <td class="order_history">$80.00</td>
+                              <td class="order_history"><a href="#" className="seller_text"> Brittanyvues </a></td>
+                              <td class="order_history">Unlocked collection: Lime green high heels <span><a href="#" className="view_links"> View </a></span></td>
+
+                            </tr>
+                            <tr className="bg_table_row">
+                              <td class="order_history">29.05.2024</td>
+                              <td class="order_history">$7.00</td>
+                              <td class="order_history"><a href="#" className="seller_text"> Brittanyvues </a></td>
+                              <td class="order_history">Unlocked collection: Lime green high heels <span><a href="#" className="view_links"> View </a></span></td>
+
+                            </tr>
+                            <tr>
+                              <td class="order_history">26.05.2024</td>
+                              <td class="order_history">$9.00</td>
+                              <td class="order_history"><a href="#" className="seller_text"> Brittanyvues </a></td>
+                              <td class="order_history">Unlocked collection: Lime green high heels <span><a href="#" className="view_links"> View </a></span></td>
+
+                            </tr>
+                          </tbody>
+                        </table>
+                      </div>
+                    </div>
+                  </div>
+                )}
 
 
 

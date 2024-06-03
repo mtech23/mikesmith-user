@@ -43,13 +43,15 @@ import "aos/dist/aos.css";
 
 const Home = () => {
   //CONST VALS
+  const [inputValue, setInputValue] = useState('');
+ 
   const navigate = useNavigate();
   const handledetail = (id) => {
 
     navigate(`/profile-page/${id}`)
   }
   const handleclick = () => {
-    navigate('/profile-page')
+    navigate('/model-page')
   }
   useEffect(() => {
     Aos.init();
@@ -83,7 +85,9 @@ const Home = () => {
     modesllist()
   }, [])
 
-
+  const filterData = modellists?.filter(item =>
+    item?.name?.toLowerCase().includes(inputValue.toLowerCase())
+  );
 
   return (
     <div className="home_page_main">

@@ -58,6 +58,8 @@ const SignUp = () => {
 
           localStorage.setItem("userToken", userToken);
           localStorage.setItem("userrole", response.data?.user_role);
+          localStorage.setItem("email", response.data?.email);
+           
           navigate("/packages-page");
           dispatch(loginSuccess(response.data));
 

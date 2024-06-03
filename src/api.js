@@ -462,36 +462,91 @@ export const modelprofillist = async () => {
 
 
 //Get model Pofile View list
+// export const modellist = async () => {
+//   const useremail = localStorage.getItem('email')
+//   try {
+//     let apiurl = "/public/api/model-listing";
+//     if(localStorage.getItem("userToken"))
+//       {
+
+//       }
+//     const res = await fetch(`${url}/public/api/model-listing`, 
+//     if(email){
+//       `${res}/useremail`
+//     }
+//     else{
+//       res
+//     }
+    
+//     {
+//       method: "Get",
+//       headers: {
+//         "Content-Type": "application/json",
+//         Authorization: `Bearer ${localStorage.getItem(" ")}`,
+//       },
+//     });
+//     console.log(res, "res");
+//     // Ensure response is ok before proceeding
+
+//     const productData = await res.json(); // Parse response JSON
+
+//     console.log(productData, "res");
+
+//     if (!res.ok) {
+//       // toastAlert(productData?.msg, ALERT_TYPES.ERROR);
+//     } else {
+//       console.log("productData?.msg", productData?.msg)
+//       // toastAlert(productData?.msg, ALERT_TYPES.SUCCESS);
+//     }
+
+//     return productData; // Return parsed data
+//   } catch (error) {
+//     toastAlert(error, ALERT_TYPES.ERROR); // Handle error
+//     throw error; // Rethrow error to be handled by caller
+//   }
+// };
+
+
+
+
 export const modellist = async () => {
+  const userEmail = localStorage.getItem('email');
+  const userToken = localStorage.getItem('userToken');
+
   try {
-    const res = await fetch(`${url}/public/api/model-listing`, {
-      method: "Get",
-      headers: {
-        "Content-Type": "application/json",
-        Authorization: `Bearer ${localStorage.getItem(" ")}`,
-      },
-    });
-    console.log(res, "res");
-    // Ensure response is ok before proceeding
-
-    const productData = await res.json(); // Parse response JSON
-
-    console.log(productData, "res");
-
-    if (!res.ok) {
-      // toastAlert(productData?.msg, ALERT_TYPES.ERROR);
-    } else {
-      console.log("productData?.msg", productData?.msg)
-      // toastAlert(productData?.msg, ALERT_TYPES.SUCCESS);
+    let apiUrl = `${url}/public/api/model-listing`;
+    if (userEmail) {
+      apiUrl += `/${userEmail}`;
     }
 
-    return productData; // Return parsed data
+    const response = await fetch(apiUrl, {
+      method: "GET",
+      headers: {
+        "Content-Type": "application/json",
+        Authorization: `Bearer ${userToken}`,
+      },
+    });
+
+    console.log(response, "response");
+
+    if (!response.ok) {
+      const errorData = await response.json();
+      console.error('Error:', errorData);
+      // toastAlert(errorData?.msg, ALERT_TYPES.ERROR);
+      throw new Error(errorData?.msg || 'Error fetching model list');
+    }
+
+    const productData = await response.json();
+    console.log(productData, "productData");
+
+    // toastAlert(productData?.msg, ALERT_TYPES.SUCCESS);
+    return productData;
   } catch (error) {
-    toastAlert(error, ALERT_TYPES.ERROR); // Handle error
-    throw error; // Rethrow error to be handled by caller
+    console.error('Fetch error:', error);
+    // toastAlert(error.message, ALERT_TYPES.ERROR);
+    throw error;
   }
 };
-
 
 
 //Get model Pofile Edit
@@ -704,7 +759,7 @@ export const UserUnflowmodel = async (id) => {
 // User unfavourite  Model
 export const UserUnfavouritemodel = async (id) => {
   try {
-    const res = await fetch(`${url}/public/api/model-favourite-unfavourite/${id}`, {
+    const res = await fetch(`${url}/public/api/user/model-favourite-unfavourite/${id}`, {
       method: "Get",
       headers: {
         "Content-Type": "application/json",
@@ -716,10 +771,10 @@ export const UserUnfavouritemodel = async (id) => {
 
     const productData = await res.json(); // Parse response JSON
     console.log(productData, "res");
-    if (!res.ok) {
-      toastAlert(productData?.msg, ALERT_TYPES.ERROR);
+    if (res.status == true) {
+      toastAlert(productData?.message, ALERT_TYPES.ERROR);
     } else {
-      toastAlert(productData?.msg, ALERT_TYPES.SUCCESS);
+      toastAlert(productData?.message, ALERT_TYPES.SUCCESS);
     }
 
     return productData; // Return parsed data
@@ -778,17 +833,16 @@ export const modelpurchaseplane = async (id) => {
         "Content-Type": "application/json",
         Authorization: `Bearer ${localStorage.getItem("userToken")}`,
       },
-    });
-    console.log(res, "res");
+    }); 
  
 
     const productData = await res.json(); // Parse response JSON
     console.log(productData, "res");
     if (!res.ok) {
-      toastAlert(productData?.msg, ALERT_TYPES.SUCCESS);
+      // toastAlert(productData?.msg, ALERT_TYPES.SUCCESS);
 
     } else {
-      toastAlert(productData?.msg, ALERT_TYPES.ERROR);
+      // toastAlert(productData?.msg, ALERT_TYPES.ERROR);
     }
 
     return productData; // Return parsed data

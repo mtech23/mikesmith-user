@@ -377,7 +377,7 @@ const Profile = () => {
                                             data-aos-anchor-placement="center-bottom"
                                             data-aos-duration="3000"
                                         >
-                                            {/* <button onClick={givetip} className="give_tip_btn">give tip</button> */}
+                                            <button onClick={givetip} className="give_tip_btn">give tip</button>
                                         </div>
                                     </div>
 
