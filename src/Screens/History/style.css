@@ -321,6 +321,17 @@ padding: 0px 20px ;
   padding: 0px 35px 20px;
   margin: 0px;
 }
+.message_para_reply {
+  font-family: "CircularStd-Book", sans-serif;
+  font-size: 12px;
+  line-height: 13px;
+  background-color: #49494b;
+  color: #fff;
+  display: inline-block;
+  padding: 10px 24px;
+  border-radius: 8px 8px 8px 0px;
+  margin: 0px;
+}
 .text_bold{
   font-weight: bold;
 }
@@ -390,9 +401,9 @@ padding: 0px 20px ;
   background-color: transparent;
 }
 .example_one{
-   /* padding: 12px 0px; */
+   padding-top: 12px 
 }
-form.example input[type=text] {
+.example input[type=text] {
   padding: 9px 11px;
   font-family: "CircularStd-Medium", sans-serif;
   color: #fff;
@@ -404,12 +415,12 @@ form.example input[type=text] {
   background: rgb(45 44 48);
   border-radius: 0px 6px 6px 0px;
 }
-form.example input::placeholder{
+.example input::placeholder{
     color: #fff;
     font-size: 9px;
     font-family: "CircularStd-Medium", sans-serif;
 }
-form.example button {
+.example button {
   float: left;
   width: 20%;
   padding: 9px 11px;
@@ -422,15 +433,16 @@ form.example button {
   border-radius: 6px 0px 0px 6px;
 }
 
-form.example button:hover {
+.example button:hover {
   background: rgba(137, 148, 166, 0.08);
 }
 .inbox_container{
-  padding: 12px 0px;
+  /* padding: 12px 0px; */
   background-color: #161616;
   box-shadow: #f5d77f1f 0px -9px 55px, rgba(0, 0, 0, 0.12) 0px -31px 30px, #141414 0px -1px 0px, #f4d77f08 0px 8px 6px, #bd8628a6 0px 0px 2px;
   border-radius: 10px;
   margin: 16px;
+  /* height: 85%; */
 }
 .inbox_heading {
   font-family: "CircularStd-Medium", sans-serif;
@@ -443,13 +455,15 @@ form.example button:hover {
   height: 32px;
   width: 32px;
   border-radius: 20px;
+  position: relative;
 }
 .profile_div{
   display: flex;
   padding: 11px 2px;
   gap: 5px;
   align-items: center;
-  flex-wrap: wrap
+  flex-wrap: wrap;
+  width: 100%;
 }
 
 .profile_name {
@@ -460,6 +474,7 @@ form.example button:hover {
   margin: 0px;
   color: #fff;
   padding: 0px;
+  position: relative;
 }
 
 .profile_message_date{
@@ -492,10 +507,14 @@ form.example button:hover {
   text-align: right;
   padding-top: 20px;
 }
+.chat_box_reply{
+  text-align: left;
+  padding-top: 20px;
+}
 .message_para{
      font-family: "CircularStd-Book", sans-serif;
-    font-size: 17px;
-    line-height: 19px;
+    font-size: 12px;
+    line-height: 13px;
     background-color: #49494b;
     color: #fff;
     display: inline-block;
@@ -505,40 +524,107 @@ form.example button:hover {
   
 }
 .message_sent_box{
-    padding-top: 270px;
-    /* height: 91%; */
-}
+  /* position: absolute; */
+  width: 100%;
+  /* bottom: 8px; */
+  border-top: 1px solid #8e6200;
+  text-align: center;
+  padding: 15px 0px;
 
+}
+.main_chat_div{
+  height: 431px;
+    padding: 0px 12px;
+    overflow-y: auto;
+}
+.box_height{
+  /* height: 780px; */
+}
 .message_dailog{
   height: 80%;
+}
+.main_btn_input_div{
+  background: #49494b;
+    border-radius: 8px;
+    margin: 0px 16px;
 }
 .message_type_box {
   width: 84%;
   background: #49494b;
   border-width: 0px 7px 0px 0px;
   border-right: 1px solid #fff;
-  padding: 11px;
+  padding: 6px;
   font-family: "CircularStd-Book", sans-serif;
-  font-size: 16px;
+  font-size: 14px;
   color: #fff;
   border-radius: 8px 0px 0px 8px;
 }
 .message_type_box::placeholder {
  
   font-family: "CircularStd-Book", sans-serif;
-  font-size: 16px;
+  font-size: 11px;
   color: #fff;
 
 }
+.message_type_box:focus-visible{
+  border: none;
+  outline: 0 !important;
+}
+
 .message_type_box_icon {
   background: #49494b;
   color: #fff;
-  font-size: 15px;
-  padding: 8px;
+  font-size: 14px;
+  padding-left: 20px;
+
   border-radius: 0px 8px 8px 0px;
   border: none;
 }
-
+.inbox_header_row{
+display: flex;
+}
+.custom_btn_secondary{
+  background-color: transparent;
+  border: none;
+  color: #fff;
+}
+.custom_btn_secondary:hover{
+  color: #fff;
+  border: none;
+}
+.custom_btn_secondary:active{
+  color: #fff;
+  border: none;
+}
+.custom_btn_secondary:focus{
+  color: #fff;
+  border: none;
+}
+.custom_dropdown_div{
+  padding: 11px 2px;
+}
+/* .dropdown-menu.custom_dropdown_menu{
+  left: -153px;
+} */
+.custom_dropdown-menu{
+  left: -132px !important;
+  background: #2d2c30;
+  color: #fff !important;
+}
+.custom_dropdown_item{
+  color: #fff ;
+}
+.custom_dropdown_item:hover{
+  color: #f5d77f; 
+  background-color: transparent;
+}
+.online_mark {
+  color: red;
+  position: absolute;
+  top: 31px;
+  left: 39px;
+  font-size: 10px;
+}
  /* tabs css end */
 
 
@@ -1041,6 +1127,7 @@ p.carousel-footer_price {
  
  
   }
+
 }
  
 @media (max-width: 768px) {
@@ -1118,6 +1205,35 @@ p.carousel-footer_price {
 
     background-size: 5% 40%;
   }
-  
+  .right_divider {
+    border-width: 0px 0px 1px 0px;
+}
+.example input[type=text] {
+  width: 78%;
+}
+}
+@media only screen and (max-width:1440px){
+  .custom_dropdown-menu {
+    left: -100px !important;
+  }
+
+}
+@media  only screen and (max-width:1024px) {
+  .custom_dropdown-menu {
+    left: -59px !important;
+}
+}
+@media only screen and (max-width: 425px) {
+  .custom_dropdown-menu {
+      left: -29px !important;
+  }
+}
+/* @media only screen and (max-width: 600px) {
+  .custom_dropdown-menu {
+    left: -58px !important;
+  }
+} */
+.chat_box:last-child {
+  padding-bottom: 16px;
 }
  

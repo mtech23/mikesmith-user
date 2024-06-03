@@ -137,7 +137,7 @@ const baseurl = `${process.env.REACT_APP_BASE_URL}/public/`
       <div className="profile_section_main">
         <div className="container">
           <div className="row tabs_row">
-            <div className="col-md-3">
+            <div className="col-lg-3 col-sm-12">
               <div className="profile_left_part">
                 <div className="user_profile_main position-relative">
                   <div className="user_profile_bk_img">
@@ -387,7 +387,7 @@ const baseurl = `${process.env.REACT_APP_BASE_URL}/public/`
               </div>
             </div>
 
-            <div className="col-md-7">
+            <div className="col-lg-7 col-sm-12 position-relative">
               <div className="feet_container_main">
  
                 {/* <div className="row tabs_box">
@@ -576,7 +576,7 @@ const baseurl = `${process.env.REACT_APP_BASE_URL}/public/`
 
                 </div>  */}
 
-                <div className="tabs_box">
+                <div className="tabs_box box_height">
                   <div className="row">
                     <div className="col-md-12 ">
                       <h3 className="inbox_heading" data-aos="fade-right" data-aos-anchor-placement="center-bottom" data-aos-duration="3000" >Inbox</h3>
@@ -586,9 +586,9 @@ const baseurl = `${process.env.REACT_APP_BASE_URL}/public/`
                   </div>
                
                       <div className="row inbox_container">
-                        <div className="col-md-4 right_divider">
-                            <div>
-                              <form class="example" action="/action_page.php" >
+                        <div className="col-lg-4 col-sm-12 right_divider ">
+                            <div className="example example_one">
+                              <form class="" action="/action_page.php" >
                                 <button type="submit"><i class="fa fa-search"></i></button>
                                 <input type="text" placeholder="Search Message" name="search2"/>
                               </form>
@@ -603,15 +603,35 @@ const baseurl = `${process.env.REACT_APP_BASE_URL}/public/`
                         
                         </div>
                       
-                        <div className="col-md-8">
-                          <div className="profile_div">
+                        <div className="col-lg-8 col-sm-12 p-0 ">
+                        <div className="inbox_header_row">
+                          <div className="profile_div pl-3">
                               <div> <img className="img-fluid profile_img" src={follow}/></div>
+                              
                               <div>
-                                <p className="profile_name"> Brittanyvues </p>                      
+                                <p className="profile_name"> Brittanyvues </p>
+                                                     
                               </div>                     
                           </div>
+
+
+                            <div className="custom_dropdown_div">
+                                <div class="dropdown">
+                                  <button class=" custom_btn_secondary" type="button" data-toggle="dropdown" aria-expanded="false">
+                                  <i class="fa-solid fa-ellipsis"></i>
+                                  </button>
+                                  <div class="dropdown-menu custom_dropdown-menu">
+                                    <a class="dropdown-item custom_dropdown_item" href="#">View Profile</a>
+                                    <a class="dropdown-item custom_dropdown_item" href="#">Delete Chat</a>
+                                  </div>
+                                </div>
+                              </div>
+                          </div>
+
+
                             <div className="divider_row"></div>
                            
+                              <div className="main_chat_div">
                               <div className="chat_box">
                                 <p className="message_date">29 May 07:55 AM</p>
                                 <p className="message_para">Hey</p>
@@ -619,13 +639,60 @@ const baseurl = `${process.env.REACT_APP_BASE_URL}/public/`
                               <div className="chat_box">
                                 <p className="message_date">29 May 07:59 AM</p>
                                 <p className="message_para">I'm waiting</p>
-                            </div>
+                              </div>
+                              <div className="chat_box_reply">
+                                <p className="message_date">29 May 08:09 AM</p>
+                                <p className="message_para_reply">Hey</p>
+                              </div>
+                              <div className="chat_box_reply">
+                                <p className="message_date">29 May 08:12 AM</p>
+                                <p className="message_para_reply">Coming</p>
+                              </div>
+                              {/* <div className="chat_box">
+                                <p className="message_date">29 May 07:59 AM</p>
+                                <p className="message_para">I'm waiting</p>
+                              </div>
+                              <div className="chat_box">
+                                <p className="message_date">29 May 07:59 AM</p>
+                                <p className="message_para">I'm waiting</p>
+                              </div>
+                              <div className="chat_box">
+                                <p className="message_date">29 May 07:59 AM</p>
+                                <p className="message_para">I'm waiting</p>
+                              </div>
+                              <div className="chat_box">
+                                <p className="message_date">29 May 07:59 AM</p>
+                                <p className="message_para">Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lore five centuries, but also the leap into electronic typesetting, remaining essentially unchanged. It was popularised in the 1960s with the release of Letraset sheets containing Lorem Ipsum passages, and more recently with des</p>
+                              </div>
+                              <div className="chat_box">
+                                <p className="message_date">29 May 07:59 AM</p>
+                                <p className="message_para">I'm waiting</p>
+                              </div>
+                              <div className="chat_box">
+                                <p className="message_date">29 May 07:59 AM</p>
+                                <p className="message_para">I'm waiting</p>
+                              </div>
+                              <div className="chat_box">
+                                <p className="message_date">29 May 07:59 AM</p>
+                                <p className="message_para">I'm waiting</p>
+                              </div>
+                              <div className="chat_box">
+                                <p className="message_date">29 May 07:59 AM</p>
+                                <p className="message_para">I'm waiting</p>
+                              </div>
+                              <div className="chat_box">
+                                <p className="message_date">29 May 07:59 AM</p>
+                                <p className="message_para">I'm waiting</p>
+                              </div> */}
+                              </div>
                           
 
                            <div className="message_sent_box"> 
                            
-                            <input type="text" className="message_type_box" placeholder="Write Text" id="name" name="name" required/>
-                            <button className="message_type_box_icon" ><i class="fa fa-paper-plane message_type_box_icon" aria-hidden="true"></i></button>
+                           <div  className="main_btn_input_div">
+                              <input type="text" className="message_type_box" placeholder="Write Text" id="name" name="name" required/>
+                              <button className="message_type_box_icon" ><i class="fa fa-paper-plane" aria-hidden="true"></i></button>
+                           </div>
                            </div>
                         </div>
 
