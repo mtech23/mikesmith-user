@@ -4,7 +4,8 @@ import Footer from "../../Components/Layout/Footer";
 
 import { Swiper, SwiperSlide } from "swiper/react";
 
-import { Addmodelpost, modellist } from '../../api'
+import { Addmodelpost, modellist, UserUnfavouritemodel } from '../../api'
+
 import "swiper/css";
 
 import {
@@ -111,10 +112,58 @@ const listingCard = [
 
 const Model = () => {
 
-const baseurl = `${process.env.REACT_APP_BASE_URL}/public/`
-console.log("baseurl" , baseurl)
+
+  const token = localStorage.getItem("userToken")
+  const [heart, setHearts] = useState(false)
+  const [hearts, setHeart] = useState(false)
+
+  // const handleHeart = () => {
+  //   setHeart(!hearts);
+  // }
+
+
+  const handleHeart = async (id) => {
+    try {
+      const response = await UserUnfavouritemodel(id);
+      console.log("response", response)
+
+      if (response?.status == true) {
+
+        const data = response?.data;
+        setHearts(data)
+
+        modesllist()
+
+      } else {
+        // toastAlert(response.statusText, ALERT_TYPES.ERROR);
+        console.log("packege ", response.statusText)
+      }
+      setModellists(response?.data)
+
+    } catch (error) {
+      console.error("Error in logging in:", error);
+
+      // toastAlert(error, ALERT_TYPES.ERROR);
+    }
+  }
+    ; console.log("heart", heart)
+  const [inputValue, setInputValue] = useState('');
+  const baseurl = `${process.env.REACT_APP_BASE_URL}/public/`
+  console.log("baseurl", baseurl)
   const [modellists, setModellists] = useState([])
 
+
+  const handleChange = (e) => {
+    setInputValue(e.target.value);
+  }
+
+  const filterData = modellists?.filter(item =>
+    item?.name?.toLowerCase().includes(inputValue.toLowerCase())
+  );
+
+
+
+  console.log("filterData ", filterData)
   const modesllist = async () => {
     try {
       const response = await modellist();
@@ -131,8 +180,9 @@ console.log("baseurl" , baseurl)
   };
   const navigate = useNavigate()
 
-  const handleclick = () => {
-    navigate('/profile-page')
+  const handleclick = (id) => {
+    // navigate('/profile-page')
+    navigate(`/profile-page/${id}`)
   }
   useEffect(() => {
     modesllist()
@@ -161,6 +211,7 @@ console.log("baseurl" , baseurl)
                 <div className="all_filters_with_search">
                   <div className="main_searchBar">
                     <input
+                      value={inputValue} inputClass="mainInput" onChange={handleChange}
                       className="searchbar_input_field"
                       type="text"
                       placeholder="search post here"
@@ -170,7 +221,7 @@ console.log("baseurl" , baseurl)
                     </button>
                   </div>
 
-                  <div className="dropdown">
+                  {/* <div className="dropdown">
                     <button
                       className="sign_actionBtn btn dropdown-toggle"
                       type="button"
@@ -190,8 +241,8 @@ console.log("baseurl" , baseurl)
                         Something else here
                       </a>
                     </div>
-                  </div>
-
+                  </div> */}
+                  {/* 
                   <div className="dropdown">
                     <label className="sortby_label m-0">sort by: </label>
 
@@ -214,10 +265,10 @@ console.log("baseurl" , baseurl)
                         Something else here
                       </a>
                     </div>
-                  </div>
+                  </div> */}
                 </div>
 
-                <div className="all_filtered_btn">
+                {/* <div className="all_filtered_btn">
                   <div>
                     <button className="sign_actionBtn" onClick={handleclick}>featured</button>
                   </div>
@@ -245,14 +296,14 @@ console.log("baseurl" , baseurl)
                   <div>
                     <button className="sign_actionBtn" onClick={handleclick}>polished</button>
                   </div>
-                </div>
+                </div> */}
               </div>
 
               {listingCard &&
-                modellists.map((item, index) => (
+                filterData?.map((item, index) => (
                   <div key={index} className="col-sm-6 col-lg-3">
                     <div className="first_model_card">
-            
+
 
                       <Swiper
                         spaceBetween={30}
@@ -260,46 +311,59 @@ console.log("baseurl" , baseurl)
                         onSlideChange={() => console.log("slide change")}
                         onSwiper={(swiper) => console.log(swiper)}
                       >
-                
-                            <SwiperSlide key={index}>
-                              <div className="model_card_img position-relative">
-                                <img
-                                  src={    baseurl +  item?.profile_pic }
-                                  className="img-fluid"
-                                />
-                                <span className="heart_icon">
-                                  <i class="fa-solid fa-heart"></i>
-                                </span>
-                              </div>
 
-                              <div className="model_card_desc">
-                                <div className="name_with_status">
-                                  <span className="online_circle">
-                                    <i class="fa-solid fa-circle"></i>
-                                  </span>
-                                  <span className="hot_model_name">
-                                    {item?.name}
-                                  </span>
-                                </div>
-                                <div>
-                                  <span className="hotmodel_info">
-                                    {item?.address}
-                                  </span>
-                                  <span className="send_tip_text">
-                                    send tip
-                                  </span>
-                                </div>
+                        <SwiperSlide key={index}>
+                          <div className="model_card_img position-relative">
+                            <img
+                              src={baseurl + item?.profile_pic}
+                              className="img-fluid"
+                            />
+                            {token && (
+                              <span
+                                type="button"
+                                onClick={() => handleHeart(item?.id)}
+                                className="heart_icon"
+                              >
+                                <i className={`fa ${item?.favourite == true ? 'fa-solid' : 'fa-regular'} fa-heart`}></i>
+                              </span>
+                            )}
 
-                                <div className="pt-2">
-                                  <button className="sign_actionBtn" onClick={handleclick}>
-                                    view profile
-                                  </button>
-                                </div>
-                              </div>
-                            </SwiperSlide>
-          
-                     
-                      </Swiper> 
+
+
+
+
+
+
+                          </div>
+
+                          <div className="model_card_desc">
+                            <div className="name_with_status">
+                              <span className="online_circle">
+                                <i class="fa-solid fa-circle"></i>
+                              </span>
+                              <span className="hot_model_name">
+                                {item?.name}
+                              </span>
+                            </div>
+                            <div>
+                              <span className="hotmodel_info">
+                                {item?.address}
+                              </span>
+                              <span className="send_tip_text">
+                                send tip
+                              </span>
+                            </div>
+
+                            <div className="pt-2">
+                              <button className="sign_actionBtn" onClick={() => handleclick(item?.id)}>
+                                view profile
+                              </button>
+                            </div>
+                          </div>
+                        </SwiperSlide>
+
+
+                      </Swiper>
 
                       <div className="model_card_top_corner_img">
                         <img src={modelCardTopCorner} />
@@ -316,7 +380,7 @@ console.log("baseurl" , baseurl)
                   </div>
                 ))}
 
-           
+
             </div>
           </div>
         </div>

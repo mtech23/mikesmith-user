@@ -34,6 +34,7 @@ const Login = () => {
         toastAlert('you have successfully logged in', ALERT_TYPES.SUCCESS);
         localStorage.setItem("userToken", userToken?.token);
         localStorage.setItem("userrole", userToken?.user_role);
+        localStorage.setItem("email", response.data?.email);
 
         dispatch(loginSuccess(response.data));
         const usertype = localStorage.getItem('userrole')

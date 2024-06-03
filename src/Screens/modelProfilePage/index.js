@@ -153,6 +153,7 @@ const ModelProfile = () => {
   const [follow, setFollowing] = useState(false)
   const [sendmessages, setSendmessage] = useState(false)
   const [transactions, setTransactions] = useState(false)
+  const [Recivedtips, setRecivedtips] = useState(false)
 
 
 
@@ -177,6 +178,7 @@ const ModelProfile = () => {
 
   const transaction = () => {
     setTransactions(!transactions)
+    setRecivedtips(false)
     setFollowing(false)
     setSendmessage(false)
     setmodellisting(false)
@@ -209,6 +211,15 @@ const ModelProfile = () => {
     }
 
   };
+   
+  const recived_tips = () => {
+    setTransactions(false)
+    setRecivedtips(!Recivedtips)
+    setFollowing(false)
+    setSendmessage(false)
+    setmodellisting(false)
+    setGivestip(false)
+  }
 
 
   return (
@@ -278,7 +289,7 @@ const ModelProfile = () => {
                     >
                       <span className="followers_title">followers</span>
                       <span className="followers_number">
-                      <span className="no_of_follows">{userdata?.follower || 257}</span>
+                      <span className="no_of_follows">{userdata?.follower || 0}</span>
                       </span>
                     </div>
 
@@ -297,19 +308,19 @@ const ModelProfile = () => {
                         <button className="give_tip_btn" onClick={following}>  following</button>
                       </div>
                       <span className="followers_number">
-                      <span className="no_of_follows">{userdata?.following || 142} </span>
+                      <span className="no_of_follows">{userdata?.following || 0} </span>
                       </span>
                     </div>
 
                     <div className="d-flex justify-content-between align-items-center pt-4 sec-rqst-btns">
-                      <button
+                      {/* <button
                         className="sign_actionBtn"
                         data-aos="fade-right"
                         data-aos-anchor-placement="center-bottom"
                         data-aos-duration="3000"
                       >
                         send request
-                      </button>
+                      </button> */}
 
                       <button
                         className="sign_actionBtn"
@@ -329,6 +340,15 @@ const ModelProfile = () => {
                       </button>
                     </div>
 
+
+                    <div
+                        data-aos="fade-right"
+                        data-aos-anchor-placement="center-bottom"
+                        data-aos-duration="3000"
+                      >
+                        <button className="give_tip_btn" onClick={recived_tips}>  Recived Tips</button>
+                      </div>
+
                     <div
                       data-aos="fade-right"
                       data-aos-anchor-placement="center-bottom"
@@ -346,7 +366,7 @@ const ModelProfile = () => {
                     <img src={modelCardBottomCorner} />
                   </div>
                 </div>
-
+{/* 
                 <div
                   className="more_profiles_main"
                   data-aos="fade-right"
@@ -480,13 +500,13 @@ const ModelProfile = () => {
                       </div>
                     </div>
                   </div>
-                </div>
+                </div> */}
               </div>
             </div>
 
             <div className="col-md-9">
               <div className="feet_container_main">
-                <div class="all_filtered_btn" bis_skin_checked="1">
+                {/* <div class="all_filtered_btn" bis_skin_checked="1">
                   <div bis_skin_checked="1">
                     <button class="sign_actionBtn">My posts</button>
                   </div>
@@ -506,13 +526,13 @@ const ModelProfile = () => {
                   <div bis_skin_checked="1">
                     <button class="sign_actionBtn">Fans</button>
                   </div>
-                </div>
+                </div> */}
 
 
 
 
 
-                {userprofilelist && (
+                {modellist && (
                                     <div className="row  ">
                                         {userprofilelist?.map((items, index) => (
 
@@ -636,65 +656,131 @@ const ModelProfile = () => {
 
 
 
-                {/* 
+       
 {sendmessages && (
-                                
-                                <div className="tabs_box">
-                                <div className="row">
-                                  <div className="col-md-12 ">
-                                    <h3 className="inbox_heading" data-aos="fade-right" data-aos-anchor-placement="center-bottom" data-aos-duration="3000" >Inbox</h3>
-                                    <div className="divider_row"></div>
-                                  </div>
-                                  
-                                </div>
-                             
-                                    <div className="row inbox_container">
-                                      <div className="col-md-4 right_divider">
-                                          <div>
-                                            <form class="example" action="/action_page.php" >
-                                              <button type="submit"><i class="fa fa-search"></i></button>
-                                              <input type="text" placeholder="Search Message" name="search2"/>
-                                            </form>
-                                          </div>
-                                        <div className="profile_div">
-                                         <div> <img className="img-fluid profile_img" src={follow}/></div>
-                                          <div>
-                                            <p className="profile_name"> Brittanyvues <sup  className="profile_message_date"> 29 May 07:55 AM </sup> </p>    
-                                            <p className="message_text">I am</p> 
-                                          </div>                     
-                                        </div>
-                                      
-                                      </div>
-                                    
-                                      <div className="col-md-8">
-                                        <div className="profile_div">
-                                            <div> <img className="img-fluid profile_img" src={follow}/></div>
-                                            <div>
-                                              <p className="profile_name"> Brittanyvues </p>                      
-                                            </div>                     
-                                        </div>
-                                          <div className="divider_row"></div>
-                                         
-                                            <div className="chat_box">
-                                              <p className="message_date">29 May 07:55 AM</p>
-                                              <p className="message_para">Hey</p>
-                                            </div>
-                                            <div className="chat_box">
-                                              <p className="message_date">29 May 07:59 AM</p>
-                                              <p className="message_para">I'm waiting</p>
-                                          </div>
-                                        
-              
-                                         <div className="message_sent_box"> 
-                                         
-                                          <input type="text" className="message_type_box" placeholder="Write Text" id="name" name="name" required/>
-                                          <button className="message_type_box_icon" ><i class="fa fa-paper-plane message_type_box_icon" aria-hidden="true"></i></button>
-                                         </div>
-                                      </div>
-              
-                                </div>
+                            <div className="tabs_box box_height">
+                            <div className="row">
+                              <div className="col-md-12 ">
+                                <h3 className="inbox_heading" data-aos="fade-right" data-aos-anchor-placement="center-bottom" data-aos-duration="3000" >Inbox</h3>
+                                <div className="divider_row"></div>
                               </div>
-                                )} */}
+                              
+                            </div>
+                         
+                                <div className="row inbox_container">
+                                  <div className="col-lg-4 col-sm-12 right_divider ">
+                                      <div className="example example_one">
+                                        <form class="" action="/action_page.php" >
+                                          <button type="submit"><i class="fa fa-search"></i></button>
+                                          <input type="text" placeholder="Search Message" name="search2"/>
+                                        </form>
+                                      </div>
+                                    <div className="profile_div">
+                                     <div> <img className="img-fluid profile_img" src={userProfilePic}/></div>
+                                      <div>
+                                        <p className="profile_name"> Brittanyvues <sup  className="profile_message_date"> 29 May 07:55 AM </sup> </p>    
+                                        <p className="message_text">I am</p> 
+                                      </div>                     
+                                    </div>
+                                  
+                                  </div>
+                                
+                                  <div className="col-lg-8 col-sm-12 p-0 ">
+                                  <div className="inbox_header_row">
+                                    <div className="profile_div pl-3">
+                                        <div> <img className="img-fluid profile_img" src={userProfilePic}/></div>
+                                        
+                                        <div>
+                                          <p className="profile_name"> Brittanyvues </p>
+                                                               
+                                        </div>                     
+                                    </div>
+          
+          
+                                      <div className="custom_dropdown_div">
+                                          <div class="dropdown">
+                                            <button class=" custom_btn_secondary" type="button" data-toggle="dropdown" aria-expanded="false">
+                                            <i class="fa-solid fa-ellipsis"></i>
+                                            </button>
+                                            <div class="dropdown-menu custom_dropdown-menu">
+                                              <a class="dropdown-item custom_dropdown_item" href="#">View Profile</a>
+                                              <a class="dropdown-item custom_dropdown_item" href="#">Delete Chat</a>
+                                            </div>
+                                          </div>
+                                        </div>
+                                    </div>
+          
+          
+                                      <div className="divider_row"></div>
+                                     
+                                        <div className="main_chat_div">
+                                        <div className="chat_box">
+                                          <p className="message_date">29 May 07:55 AM</p>
+                                          <p className="message_para">Hey</p>
+                                        </div>
+                                        <div className="chat_box">
+                                          <p className="message_date">29 May 07:59 AM</p>
+                                          <p className="message_para">I'm waiting</p>
+                                        </div>
+                                        <div className="chat_box_reply">
+                                          <p className="message_date">29 May 08:09 AM</p>
+                                          <p className="message_para_reply">Hey</p>
+                                        </div>
+                                        <div className="chat_box_reply">
+                                          <p className="message_date">29 May 08:12 AM</p>
+                                          <p className="message_para_reply">Coming</p>
+                                        </div>
+                                        {/* <div className="chat_box">
+                                          <p className="message_date">29 May 07:59 AM</p>
+                                          <p className="message_para">I'm waiting</p>
+                                        </div>
+                                        <div className="chat_box">
+                                          <p className="message_date">29 May 07:59 AM</p>
+                                          <p className="message_para">I'm waiting</p>
+                                        </div>
+                                        <div className="chat_box">
+                                          <p className="message_date">29 May 07:59 AM</p>
+                                          <p className="message_para">I'm waiting</p>
+                                        </div>
+                                        <div className="chat_box">
+                                          <p className="message_date">29 May 07:59 AM</p>
+                                          <p className="message_para">Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lore five centuries, but also the leap into electronic typesetting, remaining essentially unchanged. It was popularised in the 1960s with the release of Letraset sheets containing Lorem Ipsum passages, and more recently with des</p>
+                                        </div>
+                                        <div className="chat_box">
+                                          <p className="message_date">29 May 07:59 AM</p>
+                                          <p className="message_para">I'm waiting</p>
+                                        </div>
+                                        <div className="chat_box">
+                                          <p className="message_date">29 May 07:59 AM</p>
+                                          <p className="message_para">I'm waiting</p>
+                                        </div>
+                                        <div className="chat_box">
+                                          <p className="message_date">29 May 07:59 AM</p>
+                                          <p className="message_para">I'm waiting</p>
+                                        </div>
+                                        <div className="chat_box">
+                                          <p className="message_date">29 May 07:59 AM</p>
+                                          <p className="message_para">I'm waiting</p>
+                                        </div>
+                                        <div className="chat_box">
+                                          <p className="message_date">29 May 07:59 AM</p>
+                                          <p className="message_para">I'm waiting</p>
+                                        </div> */}
+                                        </div>
+                                    
+          
+                                     <div className="message_sent_box"> 
+                                     
+                                     <div  className="main_btn_input_div">
+                                        <input type="text" className="message_type_box" placeholder="Write Text" id="name" name="name" required/>
+                                        <button className="message_type_box_icon" ><i class="fa fa-paper-plane" aria-hidden="true"></i></button>
+                                     </div>
+                                     </div>
+                                  </div>
+          
+                            </div>
+                          </div>
+                                )} 
 
 
 
@@ -748,6 +834,56 @@ const ModelProfile = () => {
                 )}
 
 
+
+
+
+{Recivedtips && (
+                  <div className="row tabs_box">
+
+                    <div className="col-md-12">
+                      <h3 className="following_heading" data-aos="fade-right" data-aos-anchor-placement="center-bottom" data-aos-duration="3000" >Tips History</h3>
+                      <div className="divider_row"></div>
+                    </div>
+                    <div className="col-md-12" data-aos="fade-up" data-aos-anchor-placement="center-bottom" data-aos-duration="3000">
+                      <div class="table-responsive">
+                        <table class="table">
+                          <thead class="table_header_bg">
+                            <tr>
+                              <th scope="col" className="table_header_row">Date</th>
+                              <th scope="col" className="table_header_row">Amount</th>
+                              <th scope="col" className="table_header_row">Name</th>
+                              <th scope="col" className="table_header_row">Purchased</th>
+                            </tr>
+
+                          </thead>
+                          <tbody>
+                            <tr >
+                              <td class="order_history">25.05.2024</td>
+                              <td class="order_history">$80.00</td>
+                              <td class="order_history"><a href="#" className="seller_text"> Brittanyvues </a></td>
+                              <td class="order_history">Unlocked collection: Lime green high heels <span><a href="#" className="view_links"> View </a></span></td>
+
+                            </tr>
+                            <tr className="bg_table_row">
+                              <td class="order_history">29.05.2024</td>
+                              <td class="order_history">$7.00</td>
+                              <td class="order_history"><a href="#" className="seller_text"> Brittanyvues </a></td>
+                              <td class="order_history">Unlocked collection: Lime green high heels <span><a href="#" className="view_links"> View </a></span></td>
+
+                            </tr>
+                            <tr>
+                              <td class="order_history">26.05.2024</td>
+                              <td class="order_history">$9.00</td>
+                              <td class="order_history"><a href="#" className="seller_text"> Brittanyvues </a></td>
+                              <td class="order_history">Unlocked collection: Lime green high heels <span><a href="#" className="view_links"> View </a></span></td>
+
+                            </tr>
+                          </tbody>
+                        </table>
+                      </div>
+                    </div>
+                  </div>
+                )}
 
 
 
