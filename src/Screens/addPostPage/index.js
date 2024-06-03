@@ -3,6 +3,7 @@ import Header from "../../Components/Layout/Header";
 import Footer from "../../Components/Layout/Footer";
 import { useDispatch } from "react-redux";
 import { modelcatigorylist, Addmodelpost } from '../../api'
+import { SelectBox } from "../../Components/CustomSelect";
 import "./style.css";
 import {
   SmallCancel,
@@ -20,7 +21,7 @@ import { Swiper, SwiperSlide } from "swiper/react";
 import "swiper/css";
 import "swiper/css/navigation";
 import { Navigation } from "swiper/modules";
-
+import Select from 'react-select'
 import Aos from "aos";
 import "aos/dist/aos.css";
 import CustomTextarea from "../../Components/CustomTextarea";
@@ -34,8 +35,10 @@ const AddPost = () => {
   console.log("file", file)
 
 
-
-
+  // const SelectOptions = [
+  //   { id: 1, name: " Jhon" },
+  //   { id: 2, name: "Michael" }
+  // ]
 
   const handleChange = (event) => {
     const selectedFiles = event.target.files;
@@ -62,8 +65,8 @@ const AddPost = () => {
   const [selectedCategory, setSelectedCategory] = useState(null);
   const [selectedPostType, setSelectedPostType] = useState(null);
   const [selectedPostOption, setSelectedPostOption] = useState(null);
-  const [formData, setFormData] = useState();
-
+  // const [formData, setFormData] = useState();
+  const [formData, setFormData] = useState({ friend: [] });
   const CATEGORY_OPTIONS = [
     { id: 0, title: "LOREM IPSUM" },
     { id: 1, title: "CLEAN" },
@@ -80,7 +83,11 @@ const AddPost = () => {
     { id: 2, title: "PRIVATE", subtext: "FOR CUSTOM ORDERS" },
   ];
 
-
+  const SelectOptions = [
+    { id: 1, name: "Jhon" },
+    { id: 2, name: "Michael" }
+  ].map(option => ({ value: option.id, label: option.name }));
+  
 
 
 
@@ -136,14 +143,14 @@ const AddPost = () => {
     formDataMethod.append('type', selectedPostType);
     for (const key in formData) {
       formDataMethod.append(key, formData[key]);
-  }
+    }
     files?.forEach((file, index) => {
       formDataMethod.append(`files[${index}]`, file);
     })
 
     try {
       const response = await Addmodelpost(formDataMethod);
- 
+
       if (response?.status == true) {
         navigate('/model-profile-page');
         // toastAlert(response.statusText, ALERT_TYPES.ERROR);
@@ -187,7 +194,13 @@ const AddPost = () => {
 
 
 
-  console.log("userdata", userdata)
+  const handleChangeSelect = (selected) => {
+    setFormData({
+      ...formData, friend: selected
+    })
+    console.log(formData)
+  };
+
   return (
     <>
       <section class="add-post-page">
@@ -417,19 +430,27 @@ const AddPost = () => {
                       TAGS FRIENDS
                     </h3>
                     <div className="tag-friends">
-                      <button type="button" className="tags-btn">
+                     
+                      <Select
+                      className="tags-btn"
+                        value={formData?.friend}
+                        isMulti
+                        required
+                        options={SelectOptions}
+                        onChange={handleChangeSelect}
+                      />
+                         {/* <a href="javascript:;" class="small-cancel">
+                          <img src={SmallCancel} />
+                        </a> */}
+                    </div>
+
+ {/*   <button type="button"  >
                         2MANYKIDS{" "}
                         <a href="javascript:;" class="small-cancel">
                           <img src={SmallCancel} />
                         </a>
                       </button>
-                      <button type="button" className="tags-btn">
-                        ROUGH-N-TOUGH
-                        <a href="javascript:;" class="small-cancel">
-                          <img src={SmallCancel} />
-                        </a>
-                      </button>
-                    </div>
+                      */}
                   </div>
                   <div className="col-lg-4">
                     <div className="post_options">

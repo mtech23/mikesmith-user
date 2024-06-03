@@ -2,7 +2,7 @@ import React, { useEffect, useState } from "react";
 import Header from "../../Components/Layout/Header";
 import Footer from "../../Components/Layout/Footer";
 import afterimgframe from '../../Asserts/images/after-img-frame.png'
-import { modelprofileview, modelprofillist  , Getmodelpostlist } from "../../api";
+import { modelprofileview, modelprofillist, Getmodelpostlist , Getmodelpost  , UserUnflowmodel} from "../../api";
 import { Swiper, SwiperSlide } from "swiper/react";
 import { toastAlert } from "../../utils";
 import { ALERT_TYPES } from "../../constants";
@@ -73,15 +73,15 @@ const ModelProfile = () => {
     navigate('/')
   }
   const dispatch = useDispatch();
-  const [userdata, setUserdata] = useState()
+  const [userdata, setUserdata] = useState([])
   const [userprofilelist, setprofilelist] = useState([])
   const baseurl = `${process.env.REACT_APP_BASE_URL}/public/`
 
   console.log("userprofilelist", userprofilelist)
-  const modelprifile = async () => {
+  const modelprofile = async () => {
     try {
       const response = await modelprofileview();
-      console.log("response", response)
+      console.log("response1", response)
 
 
       setUserdata(response?.data)
@@ -89,12 +89,29 @@ const ModelProfile = () => {
     } catch (error) {
       console.error("Error in logging in:", error);
 
- 
+
     }
   };
-  // const modelprifilelist = async () => {
+  const getmodelprofile = async () => {
+    try {
+      const response = await Getmodelpost();
+      console.log("response", response)
+
+
+      setprofilelist(response?.data)
+
+    } catch (error) {
+      console.error("Error in logging in:", error);
+
+      // toastAlert(error, ALERT_TYPES.ERROR);
+    }
+  };
+
+ 
+
+  // const modelprofilelist = async () => {
   //   try {
-  //     const response = await modelprofillist();
+  //     const response = await Getmodelpostlist();
   //     console.log("response", response)
 
 
@@ -108,28 +125,11 @@ const ModelProfile = () => {
   // };
 
 
-
-
-  const modelprifilelist = async () => {
-    try {
-      const response = await Getmodelpostlist();
-      console.log("response", response)
-
-
-      setprofilelist(response?.data)
-
-    } catch (error) {
-      console.error("Error in logging in:", error);
-
-      // toastAlert(error, ALERT_TYPES.ERROR);
-    }
-  };
-
-   
   useEffect(() => {
     Aos.init();
-    modelprifilelist()
-    modelprifile()
+    // modelprofilelist()
+    modelprofile()
+    getmodelprofile()
   }, []);
   const navigate = useNavigate()
   const handleroute = () => {
@@ -145,6 +145,70 @@ const ModelProfile = () => {
   }
 
   console.log("userprofilelist", userprofilelist)
+
+
+
+  const [modellist, setmodellisting] = useState(true)
+
+  const [follow, setFollowing] = useState(false)
+  const [sendmessages, setSendmessage] = useState(false)
+  const [transactions, setTransactions] = useState(false)
+
+
+
+
+  
+  const [givestip, setGivestip] = useState(false)
+  const following = () => {
+    setFollowing(!follow)
+    setmodellisting(false)
+    setSendmessage(false)
+    setTransactions(false)
+    setGivestip(false)
+  }
+  const sendmessage = () => {
+    setSendmessage(!sendmessages)
+    setFollowing(false)
+    setmodellisting(false)
+    setTransactions(false)
+    setGivestip(false)
+  }
+
+
+  const transaction = () => {
+    setTransactions(!transactions)
+    setFollowing(false)
+    setSendmessage(false)
+    setmodellisting(false)
+    setGivestip(false)
+  }
+  const showprofile = () => {
+    setmodellisting(true)
+    setTransactions(false)
+    setFollowing(false)
+    setSendmessage(false)
+
+    setGivestip(false)
+  }
+
+  const givetip = () => {
+    setTransactions(false)
+    setFollowing(false)
+    setSendmessage(false)
+    setmodellisting(false)
+    setGivestip(!givestip)
+  }
+
+  const [isChecked, setIsChecked] = useState(null);
+
+  const handleRadioChange = (id) => {
+    // setIsChecked(!isChecked);
+    if (id === isChecked) {
+      setIsChecked(null);
+      return;
+    }
+
+  };
 
 
   return (
@@ -164,7 +228,7 @@ const ModelProfile = () => {
                   </div>
 
                   <div className="user_profile_info text-center">
-                    <div
+                    <div type="button" onClick={showprofile}
                       className="user_profile_picture"
                       data-aos="flip-left"
                       data-aos-anchor-placement="center-bottom"
@@ -174,7 +238,7 @@ const ModelProfile = () => {
                     </div>
 
                     <div className="user_info">
-                      <div
+                      <div type="button" onClick={showprofile}
                         className="name_with_status pt-3"
                         data-aos="fade-right"
                         data-aos-anchor-placement="center-bottom"
@@ -186,7 +250,7 @@ const ModelProfile = () => {
                         <span className="hot_model_name">{userdata?.name || 'HOTMODEL1234'}</span>
                       </div>
 
-                      <div
+                      <div type="button" onClick={showprofile}
                         className="mb-3"
                         data-aos="fade-right"
                         data-aos-anchor-placement="center-bottom"
@@ -195,14 +259,15 @@ const ModelProfile = () => {
                         <span className="user_access">{userdata?.email || 'HOTMODEL1234@gmail.com'}</span>
                       </div>
 
-                      <p
+                      {/* <p
                         className="user_profile_desc"
                         data-aos="fade-right"
                         data-aos-anchor-placement="center-bottom"
                         data-aos-duration="3000"
                       >
-                        {userdata?.bio || 'Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry standard' }
-                      </p>
+                                         {userdata?.bio || 'Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry standard' }
+
+                      </p> */}
                     </div>
 
                     <div
@@ -213,7 +278,7 @@ const ModelProfile = () => {
                     >
                       <span className="followers_title">followers</span>
                       <span className="followers_number">
-                        <span className="no_of_follows">{userdata?.follower || 257}</span>
+                      <span className="no_of_follows">{userdata?.follower || 257}</span>
                       </span>
                     </div>
 
@@ -223,21 +288,27 @@ const ModelProfile = () => {
                       data-aos-anchor-placement="center-bottom"
                       data-aos-duration="3000"
                     >
-                      <span className="followers_title">following</span>
+                      {/* <span className="followers_title">following</span> */}
+                      <div
+                        data-aos="fade-right"
+                        data-aos-anchor-placement="center-bottom"
+                        data-aos-duration="3000"
+                      >
+                        <button className="give_tip_btn" onClick={following}>  following</button>
+                      </div>
                       <span className="followers_number">
-                        <span className="no_of_follows">{userdata?.following || 142} </span>
+                      <span className="no_of_follows">{userdata?.following || 142} </span>
                       </span>
                     </div>
 
-                    <div className="d-flex justify-content-between align-items-center pt-4 sec-pstmsg-btns">
+                    <div className="d-flex justify-content-between align-items-center pt-4 sec-rqst-btns">
                       <button
                         className="sign_actionBtn"
                         data-aos="fade-right"
                         data-aos-anchor-placement="center-bottom"
                         data-aos-duration="3000"
-                        onClick={handleroute}
                       >
-                        add post
+                        send request
                       </button>
 
                       <button
@@ -245,28 +316,25 @@ const ModelProfile = () => {
                         data-aos="fade-left"
                         data-aos-anchor-placement="center-bottom"
                         data-aos-duration="3000"
-                      >
-                        message
+                        onClick={sendmessage} >
+                        send message
+                      </button>
+                      <button
+                        className="sign_actionBtn"
+                        data-aos="fade-left"
+                        data-aos-anchor-placement="center-bottom" 
+                        data-aos-duration="3000"
+                        onClick={transaction} >
+                        Transaction
                       </button>
                     </div>
 
                     <div
-                      data-aos="fade-left"
-                      data-aos-anchor-placement="center-bottom"
-                      data-aos-duration="3000"
-                    >
-                      <button className="give_tip_btn">BANK: $ {userdata?.earning}</button>
-                    </div>
-
-                    <div
-                      className="mt-1"
                       data-aos="fade-right"
                       data-aos-anchor-placement="center-bottom"
                       data-aos-duration="3000"
                     >
-                      <button className="rewards_btn">
-                        Reward Points: 253
-                      </button>
+                      {/* <button onClick={givetip} className="give_tip_btn">give tip</button> */}
                     </div>
                   </div>
 
@@ -279,7 +347,140 @@ const ModelProfile = () => {
                   </div>
                 </div>
 
+                <div
+                  className="more_profiles_main"
+                  data-aos="fade-right"
+                  data-aos-anchor-placement="center-bottom"
+                  data-aos-duration="3000"
+                >
+                  <div>
+                    <p className="more_profiles_like_this_title">
+                      more profiles like this
+                    </p>
+                  </div>
 
+                  <div className="all_other_users_profiles">
+                    <div className="more_profiles_content">
+                      <div className="more_user_profile_details">
+                        <div className="more_users_profile_img">
+                          <img src={moreUserProfilePic} />
+                        </div>
+                        <div className="other_user_info">
+                          <p className="other_user_name">HOTMODEL1234</p>
+                          <span className="other_user_access">
+                            @HOTMODEL1223
+                          </span>
+                        </div>
+                      </div>
+
+                      <div>
+                        <button className="user_profile_follow_btn">
+                          follow
+                        </button>
+                      </div>
+                    </div>
+
+                    <div className="more_profiles_content">
+                      <div className="more_user_profile_details">
+                        <div className="more_users_profile_img">
+                          <img src={moreUserProfilePic} />
+                        </div>
+                        <div className="other_user_info">
+                          <p className="other_user_name">HOTMODEL1234</p>
+                          <span className="other_user_access">
+                            @HOTMODEL1223
+                          </span>
+                        </div>
+                      </div>
+
+                      <div>
+                        <button className="user_profile_follow_btn">
+                          follow
+                        </button>
+                      </div>
+                    </div>
+
+                    <div className="more_profiles_content">
+                      <div className="more_user_profile_details">
+                        <div className="more_users_profile_img">
+                          <img src={moreUserProfilePic} />
+                        </div>
+                        <div className="other_user_info" type="button" >
+                          <p className="other_user_name">HOTMODEL1234</p>
+                          <span className="other_user_access">
+                            @HOTMODEL1223
+                          </span>
+                        </div>
+                      </div>
+
+                      <div>
+                        <button className="user_profile_follow_btn">
+                          follow
+                        </button>
+                      </div>
+                    </div>
+
+                    <div className="more_profiles_content">
+                      <div className="more_user_profile_details">
+                        <div className="more_users_profile_img">
+                          <img src={moreUserProfilePic} />
+                        </div>
+                        <div className="other_user_info">
+                          <p className="other_user_name">HOTMODEL1234</p>
+                          <span className="other_user_access">
+                            @HOTMODEL1223
+                          </span>
+                        </div>
+                      </div>
+
+                      <div>
+                        <button className="user_profile_follow_btn">
+                          follow
+                        </button>
+                      </div>
+                    </div>
+
+                    <div className="more_profiles_content">
+                      <div className="more_user_profile_details">
+                        <div className="more_users_profile_img">
+                          <img src={moreUserProfilePic} />
+                        </div>
+                        <div className="other_user_info">
+                          <p className="other_user_name">HOTMODEL1234</p>
+                          <span className="other_user_access">
+                            @HOTMODEL1223
+                          </span>
+                        </div>
+                      </div>
+
+                      <div>
+                        <button className="user_profile_follow_btn">
+                          follow
+                        </button>
+                      </div>
+                    </div>
+
+                    <div className="more_profiles_content">
+                      <div className="more_user_profile_details">
+                        <div className="more_users_profile_img">
+                          <img src={moreUserProfilePic} />
+                        </div>
+                        <div className="other_user_info">
+                          <p className="other_user_name">HOTMODEL1234</p>
+                          <span className="other_user_access">
+                            @HOTMODEL1223
+                          </span>
+                        </div>
+                      </div>
+
+                      <div>
+                        <button className="user_profile_follow_btn">
+                          follow
+                        </button>
+                      </div>
+                    </div>
+                  </div>
+                </div>
               </div>
             </div>
 
@@ -307,1248 +508,332 @@ const ModelProfile = () => {
                   </div>
                 </div>
 
-                <div className="row">
-                  <div className="col-sm-6 col-lg-4">
-                    <div className="second_model_card"
-                      data-toggle="modal"
-                      data-target=".exampleModal"  >
 
-                      <div type="button" className="framePic">
-                        <img src={afterimgframe} className="frameimg" />
-                      </div>
-                      <Swiper
-                        spaceBetween={30}
-                        slidesPerView={1}
-                        onSlideChange={() => console.log("slide change")}
-                        onSwiper={(swiper) => console.log(swiper)}
+
+
+
+                {userprofilelist && (
+                                    <div className="row  ">
+                                        {userprofilelist?.map((items, index) => (
+
+
+                                            <div className="col-sm-6 col-lg-4">
+                                                <div className="first_model_card">
+
+
+                                                    <Swiper
+                                                        spaceBetween={30}
+                                                        slidesPerView={1}
+                                                        onSlideChange={() => console.log("slide change")}
+                                                        onSwiper={(swiper) => console.log(swiper)}
+                                                    >
+                                                        {items?.post_data?.map((data) => (
+
+                                                            <SwiperSlide>
+                                                                <div className="model_card_img position-relative first_model_card"
+                                                                    data-toggle="modal"
+                                                                    data-target=".exampleModal">
+                                                                    <img src={data?.file ? baseurl + data.file : "dummy"} className="img-fluid" />
+
+                                                                    <span className="edit_icon_img">
+
+                                                                    </span>
+
+                                                                    <span className="share_icon_img">
+
+                                                                    </span>
+
+                                                                    <span className="boost_icon_img">
+
+                                                                    </span>
+                                                                </div>
+
+                                                                <div>
+                                                                    <div className="model_have_a_look_btn">
+                                                                        <button className="have_alook_btn">have a look</button>
+                                                                        <span className="be_nice_span">
+                                                                            BE NICE, or we will crush you!
+                                                                        </span>
+                                                                    </div>
+                                                                </div>
+                                                            </SwiperSlide>))}
+
+
+                                                    </Swiper>
+
+                                                    <div className="model_card_top_corner_img">
+                                                        <img src={modelCardTopCorner} />
+                                                    </div>
+
+                                                    <div className="model_card_bottom_corner_img" id="model_card_bottom_corner_imgs">
+                                                        <img src={modelCardBottomCorner} />
+                                                    </div>
+
+                                                </div>
+                                            </div>
+                                        ))}
+
+                                    </div>
+                                )}
+
+                {follow && (
+                  <div className="row tabs_box">
+                    <div className="col-md-12">
+                      <h3
+                        className="following_heading"
+                        data-aos="fade-right"
+                        data-aos-anchor-placement="center-bottom"
+                        data-aos-duration="3000"
                       >
-
-
-                        <SwiperSlide>
-                          <div className="second_model_card_img position-relative first_model_card"
-                            data-toggle="modal"
-                            data-target=".exampleModal">
-                            <img src={profileFeetImg01} className="img-fluid" />
-                            <span className="edit_icon_img">
-
+                        Following
+                      </h3>
+                      <div className="divider_row"></div>
+                    </div>
+                    <div className="col-lg-3 col-md-4 col-sm-12 pt-4" data-aos="fade-up" data-aos-duration="3000">
+                      <div className="follow_img_div">
+                        <img className="img-fluid follow_img" src={modelImg02} alt="Brittanyvues" />
+                        <p className="image_text">Brittanyvues</p>
+                        <div className="locked_div">
+                          <p className="free_text">
+                            <span className="icon_unlock">
+                              <i className="fa-solid fa-unlock"></i>
                             </span>
-
-                            <span className="share_icon_img">
-
+                            Free
+                          </p>
+                          <p className="lock_text">
+                            <span className="icon_lock">
+                              <i className="fa-solid fa-lock"></i>
                             </span>
-
-                            <span className="boost_icon_img">
-
+                            Locked
+                          </p>
+                        </div>
+                      </div>
+                    </div>
+                    <div className="col-lg-3 col-md-4 col-sm-12 pt-4" data-aos="fade-down" data-aos-duration="3000">
+                      <div className="follow_img_div">
+                        <img className="img-fluid follow_img" src={modelImg02} alt="Brittanyvues" />
+                        <p className="image_text">Brittanyvues</p>
+                        <div className="locked_div">
+                          <p className="free_text">
+                            <span className="icon_unlock">
+                              <i className="fa-solid fa-unlock"></i>
                             </span>
-                          </div>
-
-                          <div>
-                            <div className="model_have_a_look_btn">
-                              <button className="have_alook_btn">have a look</button>
-                              <span className="be_nice_span">
-                                BE NICE, or we will crush you!
-                              </span>
-                            </div>
-                          </div>
-                        </SwiperSlide>
-
-                        <SwiperSlide>
-                          <div className="second_model_card_img position-relative  first_model_card"
-                            data-toggle="modal"
-                            data-target=".exampleModal">
-                            <img src={profileFeetImg01} className="img-fluid" />
-                            <span className="edit_icon_img">
-
+                            Free
+                          </p>
+                          <p className="lock_text">
+                            <span className="icon_lock">
+                              <i className="fa-solid fa-lock"></i>
                             </span>
-
-                            <span className="share_icon_img">
-
-                            </span>
-
-                            <span className="boost_icon_img">
-
-                            </span>
-                          </div>
-
-                          <div>
-                            <div className="model_have_a_look_btn">
-                              <button className="have_alook_btn">have a look</button>
-                              <span className="be_nice_span">
-                                BE NICE, or we will crush you!
-                              </span>
-                            </div>
-                          </div>
-
-                        </SwiperSlide>
-
-                        <SwiperSlide>
-                          <div className="second_model_card_img position-relative first_model_card"
-                            data-toggle="modal"
-                            data-target=".exampleModal">
-                            <img src={profileFeetImg01} className="img-fluid" />
-                            <span className="edit_icon_img">
-
-                            </span>
-
-                            <span className="share_icon_img">
-
-                            </span>
-
-                            <span className="boost_icon_img">
-
-                            </span>
-                          </div>
-
-                          <div>
-                            <div className="model_have_a_look_btn">
-                              <button className="have_alook_btn">have a look</button>
-                              <span className="be_nice_span">
-                                BE NICE, or we will crush you!
-                              </span>
-                            </div>
-                          </div>
-                        </SwiperSlide>
-                      </Swiper>
-
-
+                            Locked
+                          </p>
+                        </div>
+                      </div>
                     </div>
                   </div>
-
-                  <div className="col-sm-6 col-lg-4">
-                    <div className="second_model_card"
+                )}
 
 
-                      data-toggle="modal"
-                      data-target=".exampleModal"
-                    >   <div type="button" className="framePic">
-                        <img src={afterimgframe} className="frameimg" />
-                      </div>
-                      <Swiper
-                        spaceBetween={30}
-                        slidesPerView={1}
-                        onSlideChange={() => console.log("slide change")}
-                        onSwiper={(swiper) => console.log(swiper)}
-                      >
-                        <SwiperSlide>
-                          <div className="second_model_card_img position-relative first_model_card"
-                            data-toggle="modal"
-                            data-target=".exampleModal"
-                          >
-                            <img src={profileFeetImg02} className="w-100" />
-                            <span className="edit_icon_img">
-
-                            </span>
-
-                            <span className="share_icon_img">
-
-                            </span>
-
-                            <span className="boost_icon_img">
-
-                            </span>
 
 
-                            <div>
-                              <div className="model_have_a_look_btn" style={{ bottom: '0px' }}>
-                                <button className="have_alook_btn">have  a look</button>
-                                <span className="be_nice_span">
-                                  BE NICE, or we will crush you!
-                                </span>
+
+                {/* 
+{sendmessages && (
+                                
+                                <div className="tabs_box">
+                                <div className="row">
+                                  <div className="col-md-12 ">
+                                    <h3 className="inbox_heading" data-aos="fade-right" data-aos-anchor-placement="center-bottom" data-aos-duration="3000" >Inbox</h3>
+                                    <div className="divider_row"></div>
+                                  </div>
+                                  
+                                </div>
+                             
+                                    <div className="row inbox_container">
+                                      <div className="col-md-4 right_divider">
+                                          <div>
+                                            <form class="example" action="/action_page.php" >
+                                              <button type="submit"><i class="fa fa-search"></i></button>
+                                              <input type="text" placeholder="Search Message" name="search2"/>
+                                            </form>
+                                          </div>
+                                        <div className="profile_div">
+                                         <div> <img className="img-fluid profile_img" src={follow}/></div>
+                                          <div>
+                                            <p className="profile_name"> Brittanyvues <sup  className="profile_message_date"> 29 May 07:55 AM </sup> </p>    
+                                            <p className="message_text">I am</p> 
+                                          </div>                     
+                                        </div>
+                                      
+                                      </div>
+                                    
+                                      <div className="col-md-8">
+                                        <div className="profile_div">
+                                            <div> <img className="img-fluid profile_img" src={follow}/></div>
+                                            <div>
+                                              <p className="profile_name"> Brittanyvues </p>                      
+                                            </div>                     
+                                        </div>
+                                          <div className="divider_row"></div>
+                                         
+                                            <div className="chat_box">
+                                              <p className="message_date">29 May 07:55 AM</p>
+                                              <p className="message_para">Hey</p>
+                                            </div>
+                                            <div className="chat_box">
+                                              <p className="message_date">29 May 07:59 AM</p>
+                                              <p className="message_para">I'm waiting</p>
+                                          </div>
+                                        
+              
+                                         <div className="message_sent_box"> 
+                                         
+                                          <input type="text" className="message_type_box" placeholder="Write Text" id="name" name="name" required/>
+                                          <button className="message_type_box_icon" ><i class="fa fa-paper-plane message_type_box_icon" aria-hidden="true"></i></button>
+                                         </div>
+                                      </div>
+              
+                                </div>
                               </div>
-                            </div>
-                          </div>
+                                )} */}
 
 
-                        </SwiperSlide>
-
-                        <SwiperSlide>
-                          <div className="second_model_card_img position-relative first_model_card"
-                            data-toggle="modal"
-                            data-target=".exampleModal">
-                            <img src={profileFeetImg02} className="img-fluid" />
-                            <span className="edit_icon_img">
-
-                            </span>
-
-                            <span className="share_icon_img">
-
-                            </span>
-
-                            <span className="boost_icon_img">
-
-                            </span>
-                          </div>
-
-                          <div>
-                            <div className="model_have_a_look_btn">
-                              <button className="have_alook_btn">have a look</button>
-                              <span className="be_nice_span">
-                                BE NICE, or we will crush you!
-                              </span>
-                            </div>
-                          </div>
-                        </SwiperSlide>
-
-                        <SwiperSlide>
-                          <div className="second_model_card_img position-relative first_model_card"
-                            data-toggle="modal"
-                            data-target=".exampleModal">
-                            <img src={profileFeetImg02} className="img-fluid" />
-                            <span className="edit_icon_img">
-
-                            </span>
-
-                            <span className="share_icon_img">
-
-                            </span>
-
-                            <span className="boost_icon_img">
-
-                            </span>
-                          </div>
-
-                          <div>
-                            <div className="model_have_a_look_btn">
-                              <button className="have_alook_btn">have a look</button>
-                              <span className="be_nice_span">
-                                BE NICE, or we will crush you!
-                              </span>
-                            </div>
-                          </div>
-
-                        </SwiperSlide>
-
-                        <SwiperSlide>
-                          <div className="second_model_card_img position-relative first_model_card"
-                            data-toggle="modal"
-                            data-target=".exampleModal">
-                            <img src={profileFeetImg02} className="img-fluid" />
-
-                          </div>
 
 
-                        </SwiperSlide>
-                      </Swiper>
+                {transactions && (
+                  <div className="row tabs_box">
 
+                    <div className="col-md-12">
+                      <h3 className="following_heading" data-aos="fade-right" data-aos-anchor-placement="center-bottom" data-aos-duration="3000" >Transactions</h3>
+                      <div className="divider_row"></div>
+                    </div>
+                    <div className="col-md-12" data-aos="fade-up" data-aos-anchor-placement="center-bottom" data-aos-duration="3000">
+                      <div class="table-responsive">
+                        <table class="table">
+                          <thead class="table_header_bg">
+                            <tr>
+                              <th scope="col" className="table_header_row">Date</th>
+                              <th scope="col" className="table_header_row">Amount</th>
+                              <th scope="col" className="table_header_row">Seller</th>
+                              <th scope="col" className="table_header_row">Purchased</th>
+                            </tr>
 
+                          </thead>
+                          <tbody>
+                            <tr >
+                              <td class="order_history">25.05.2024</td>
+                              <td class="order_history">$80.00</td>
+                              <td class="order_history"><a href="#" className="seller_text"> Brittanyvues </a></td>
+                              <td class="order_history">Unlocked collection: Lime green high heels <span><a href="#" className="view_links"> View </a></span></td>
+
+                            </tr>
+                            <tr className="bg_table_row">
+                              <td class="order_history">29.05.2024</td>
+                              <td class="order_history">$7.00</td>
+                              <td class="order_history"><a href="#" className="seller_text"> Brittanyvues </a></td>
+                              <td class="order_history">Unlocked collection: Lime green high heels <span><a href="#" className="view_links"> View </a></span></td>
+
+                            </tr>
+                            <tr>
+                              <td class="order_history">26.05.2024</td>
+                              <td class="order_history">$9.00</td>
+                              <td class="order_history"><a href="#" className="seller_text"> Brittanyvues </a></td>
+                              <td class="order_history">Unlocked collection: Lime green high heels <span><a href="#" className="view_links"> View </a></span></td>
+
+                            </tr>
+                          </tbody>
+                        </table>
+                      </div>
                     </div>
                   </div>
+                )}
 
-                  <div className="col-sm-6 col-lg-4">
-                    <div className="second_model_card"
 
-                      data-toggle="modal"
-                      data-target=".exampleModal">
-                      <div type="button" className="framePic">
-                        <img src={afterimgframe} className="frameimg" />
+
+
+
+
+
+
+
+
+
+
+                {givestip && (
+                  <div className="row paytab">
+
+                    <div className="col-md-19">
+                      <h3 className="following_heading" data-aos="fade-right" data-aos-anchor-placement="center-bottom" data-aos-duration="3000" >Payment Information</h3>
+                      <div className="divider_row"></div>
+                    </div>
+                    <div className="col-md-12" data-aos="fade-up" data-aos-anchor-placement="center-bottom" data-aos-duration="3000">
+                      <h4 className="  text-white mt-2 mb-2">Choose Amount </h4>
+                      <div className="tipgap row  mx-auto    ">
+                        <div className="paytips col-md-3    mb-4 justify-content-center">
+                          <input
+                            className=""
+                            type="radio"
+                            checked={isChecked}
+                            onClick={() => handleRadioChange(0)}
+                          /> $100
+                        </div>
+
+
+
+
+                        <div className="paytips col-md-3    mb-4 justify-content-center">
+                          <input
+                            className=""
+                            type="radio"
+                            checked={isChecked}
+                            onClick={() => handleRadioChange(1)}
+                          /> $100
+                        </div>
+
+                        <div className="paytips col-md-3    mb-4 justify-content-center">
+                          <input
+                            className=""
+                            type="radio"
+                            checked={isChecked}
+                            onClick={() => handleRadioChange(2)}
+                          /> $100
+                        </div>
+                        <div className="paytips col-md-3  mb-4 " >
+                          <input
+                            className=""
+                            type="radio"
+                            checked={isChecked}
+                            onClick={() => handleRadioChange(3)}
+                          /> $100
+                        </div>
+                        <div className="paytips col-md-3  mb-4 ">
+                          <input
+                            className=""
+                            type="radio"
+                            checked={isChecked}
+                            onClick={() => handleRadioChange(4)}
+                          /> $100
+                        </div>
+                        <div className="paytips col-md-3  mb-4 ">
+                          <input
+                            className=""
+                            type="radio"
+                            checked={isChecked}
+                            onClick={() => handleRadioChange(5)}
+                          /> $100
+                        </div>
+
                       </div>
-                      <Swiper
-                        spaceBetween={30}
-                        slidesPerView={1}
-                        onSlideChange={() => console.log("slide change")}
-                        onSwiper={(swiper) => console.log(swiper)}
-                      >
-                        <SwiperSlide>
-                          <div className="second_model_card_img position-relative first_model_card"
-                            data-toggle="modal"
-                            data-target=".exampleModal">
-                            <img src={profileFeetImg03} className="w-100" />
-                            <span className="edit_icon_img">
 
-                            </span>
-
-                            <span className="share_icon_img">
-
-                            </span>
-
-                            <span className="boost_icon_img">
-
-                            </span>
-                          </div>
-
-
-                          <div>
-                            <div className="model_have_a_look_btn">
-                              <button className="have_alook_btn">have a look</button>
-                              <span className="be_nice_span">
-                                BE NICE, or we will crush you!
-                              </span>
-                            </div>
-                          </div>
-
-                        </SwiperSlide>
-
-                        <SwiperSlide>
-                          <div className="second_model_card_img position-relative first_model_card"
-                            data-toggle="modal"
-                            data-target=".exampleModal">
-                            <img src={profileFeetImg03} className="img-fluid" />
-                            <span className="edit_icon_img">
-
-                            </span>
-
-                            <span className="share_icon_img">
-
-                            </span>
-
-                            <span className="boost_icon_img">
-
-                            </span>
-                          </div>
-
-                          <div>
-                            <div className="model_have_a_look_btn">
-                              <button className="have_alook_btn">have a look</button>
-                              <span className="be_nice_span">
-                                BE NICE, or we will crush you!
-                              </span>
-                            </div>
-                          </div>
-
-                        </SwiperSlide>
-
-                        <SwiperSlide>
-                          <div className="second_model_card_img position-relative first_model_card"
-                            data-toggle="modal"
-                            data-target=".exampleModal">
-                            <img src={profileFeetImg03} className="img-fluid" />
-                            <span className="edit_icon_img">
-
-                            </span>
-
-                            <span className="share_icon_img">
-
-                            </span>
-
-                            <span className="boost_icon_img">
-
-                            </span>
-                          </div>
-
-                          <div>
-                            <div className="model_have_a_look_btn">
-                              <button className="have_alook_btn">have a look</button>
-                              <span className="be_nice_span">
-                                BE NICE, or we will crush you!
-                              </span>
-                            </div>
-                          </div>
-                        </SwiperSlide>
-
-                        <SwiperSlide>
-                          <div className="second_model_card_img position-relative first_model_card"
-                            data-toggle="modal"
-                            data-target=".exampleModal">
-                            <img src={profileFeetImg03} className="img-fluid" />
-
-                          </div>
-
-
-                          <div>
-                            <div className="model_have_a_look_btn">
-                              <button className="have_alook_btn">have a look</button>
-                              <span className="be_nice_span">
-                                BE NICE, or we will crush you!
-                              </span>
-                            </div>
-                          </div>
-                        </SwiperSlide>
-                      </Swiper>
-
-
+                      <h4 className="  text-white mt-2 mb-2">Custom Amount </h4>
+                      <div className="custompay mb-4"> $
+                        <input className="custom" type="text" />
+                      </div>
+                      <button className="paybtn mt -4">
+                        Pay Now
+                      </button>
                     </div>
                   </div>
-
-                  <div className="col-sm-6 col-lg-4">
-                    <div className="first_model_card">
-                      <div type="button" className="framePic">
-                        <img src={afterimgframe} className="frameimg" />
-                      </div>
-
-                      <Swiper
-                        spaceBetween={30}
-                        slidesPerView={1}
-                        onSlideChange={() => console.log("slide change")}
-                        onSwiper={(swiper) => console.log(swiper)}
-                      >
-                        <SwiperSlide>
-                          <div className="model_card_img position-relative first_model_card"
-                            data-toggle="modal"
-                            data-target=".exampleModal">
-                            <img src={profileFeetImg04} className="img-fluid" />
-                            <span className="edit_icon_img">
-
-                            </span>
-
-                            <span className="share_icon_img">
-
-                            </span>
-
-                            <span className="boost_icon_img">
-
-                            </span>
-                          </div>
-
-                          <div>
-                            <div className="model_have_a_look_btn">
-                              <button className="have_alook_btn">have a look</button>
-                              <span className="be_nice_span">
-                                BE NICE, or we will crush you!
-                              </span>
-                            </div>
-                          </div>
-                        </SwiperSlide>
-
-                        <SwiperSlide>
-                          <div className="model_card_img position-relative first_model_card"
-                            data-toggle="modal"
-                            data-target=".exampleModal">
-                            <img src={profileFeetImg04} className="img-fluid" />
-                            <span className="edit_icon_img">
-
-                            </span>
-
-                            <span className="share_icon_img">
-
-                            </span>
-
-                            <span className="boost_icon_img">
-
-                            </span>
-                          </div>
-
-
-                          <div>
-                            <div className="model_have_a_look_btn">
-                              <button className="have_alook_btn">have a look</button>
-                              <span className="be_nice_span">
-                                BE NICE, or we will crush you!
-                              </span>
-                            </div>
-                          </div>
-                        </SwiperSlide>
-
-                        <SwiperSlide>
-                          <div className="model_card_img position-relative first_model_card"
-
-                            data-toggle="modal"
-                            data-target=".exampleModal"
-                          >
-                            <img src={profileFeetImg04} className="img-fluid" />
-                            <span className="edit_icon_img">
-
-                            </span>
-
-                            <span className="share_icon_img">
-
-                            </span>
-
-                            <span className="boost_icon_img">
-
-                            </span>
-                          </div>
-
-                          <div>
-                            <div className="model_have_a_look_btn">
-                              <button className="have_alook_btn">have a look</button>
-                              <span className="be_nice_span">
-                                BE NICE, or we will crush you!
-                              </span>
-                            </div>
-                          </div>
-                        </SwiperSlide>
-
-                        <SwiperSlide>
-                          <div className="model_card_img position-relative first_model_card"
-                            data-toggle="modal"
-                            data-target=".exampleModal">
-
-                            <img src={profileFeetImg04} className="img-fluid" />
-
-                          </div>
-
-
-                          <div>
-                            <div className="model_have_a_look_btn">
-                              <button className="have_alook_btn">have a look</button>
-                              <span className="be_nice_span">
-                                BE NICE, or we will crush you!
-                              </span>
-                            </div>
-                          </div>
-                        </SwiperSlide>
-                      </Swiper>
-
-                      <div className="model_card_top_corner_img">
-                        <img src={modelCardTopCorner} />
-                      </div>
-
-                      <div className="model_card_bottom_corner_img" id="model_card_bottom_corner_imgs">
-                        <img src={modelCardBottomCorner} />
-                      </div>
-
-                    </div>
-                  </div>
-
-                  <div className="col-sm-6 col-lg-4">
-                    <div className="first_model_card">
-                      <div type="button" className="framePic">
-                        <img src={afterimgframe} className="frameimg" />
-                      </div>
-                      <Swiper
-                        spaceBetween={30}
-                        slidesPerView={1}
-                        onSlideChange={() => console.log("slide change")}
-                        onSwiper={(swiper) => console.log(swiper)}
-                      >
-                        <SwiperSlide>
-                          <div className="model_card_img position-relative first_model_card"
-
-
-                            data-toggle="modal"
-                            data-target=".exampleModal">
-                            <img src={profileFeetImg05} className="img-fluid" />
-                            <span className="edit_icon_img">
-
-                            </span>
-
-                            <span className="share_icon_img">
-
-                            </span>
-
-                            <span className="boost_icon_img">
-
-                            </span>
-                          </div>
-
-                          <div>
-                            <div className="model_have_a_look_btn">
-                              <button className="have_alook_btn">have a look</button>
-                              <span className="be_nice_span">
-                                BE NICE, or we will crush you!
-                              </span>
-                            </div>
-                          </div>
-                        </SwiperSlide>
-
-                        <SwiperSlide>
-                          <div className="model_card_img position-relative first_model_card" data-toggle="modal"
-                            data-target=".exampleModal">
-                            <img src={profileFeetImg05} className="img-fluid" />
-                            <span className="edit_icon_img">
-
-                            </span>
-
-                            <span className="share_icon_img">
-
-                            </span>
-
-                            <span className="boost_icon_img">
-
-                            </span>
-                          </div>
-
-                          <div>
-                            <div className="model_have_a_look_btn">
-                              <button className="have_alook_btn">have a look</button>
-                              <span className="be_nice_span">
-                                BE NICE, or we will crush you!
-                              </span>
-                            </div>
-                          </div>
-                        </SwiperSlide>
-
-                        <SwiperSlide>
-                          <div className="model_card_img position-relative first_model_card" data-toggle="modal"
-                            data-target=".exampleModal">
-                            <img src={profileFeetImg05} className="img-fluid" />
-                            <span className="edit_icon_img">
-
-                            </span>
-
-                            <span className="share_icon_img">
-
-                            </span>
-
-                            <span className="boost_icon_img">
-
-                            </span>
-                          </div>
-
-                          <div>
-                            <div className="model_have_a_look_btn">
-                              <button className="have_alook_btn">have a look</button>
-                              <span className="be_nice_span">
-                                BE NICE, or we will crush you!
-                              </span>
-                            </div>
-                          </div>
-                        </SwiperSlide>
-
-                        <SwiperSlide>
-                          <div className="model_card_img position-relative first_model_card" data-toggle="modal"
-                            data-target=".exampleModal">
-                            <img src={profileFeetImg05} className="img-fluid" />
-
-                          </div>
-
-
-                          <div>
-                            <div className="model_have_a_look_btn">
-                              <button className="have_alook_btn">have a look</button>
-                              <span className="be_nice_span">
-                                BE NICE, or we will crush you!
-                              </span>
-                            </div>
-                          </div>
-                        </SwiperSlide>
-                      </Swiper>
-
-                      <div className="model_card_top_corner_img">
-                        <img src={modelCardTopCorner} />
-                      </div>
-
-                      <div className="model_card_bottom_corner_img" id="model_card_bottom_corner_imgs">
-                        <img src={modelCardBottomCorner} />
-                      </div>
-
-                    </div>
-                  </div>
-
-                  {/* <div className="col-sm-6 col-lg-4">
-                    <div className="second_model_card"
-
-                      data-toggle="modal"
-                      data-target=".exampleModal">
-                      <Swiper
-                        spaceBetween={30}
-                        slidesPerView={1}
-                        onSlideChange={() => console.log("slide change")}
-                        onSwiper={(swiper) => console.log(swiper)}
-                      >
-                        <SwiperSlide>
-                          <div className="second_model_card_img position-relative first_model_card"
-                            data-toggle="modal"
-                            data-target=".exampleModal">
-                            <img src={profileFeetImg06} className="w-100" />
-                            <span className="edit_icon_img">
-
-                            </span>
-
-                            <span className="share_icon_img">
-
-                            </span>
-
-                            <span className="boost_icon_img">
-
-                            </span>
-                          </div>
-                          
-                          <div>
-                            <div className="model_have_a_look_btn">
-                              <button className="have_alook_btn">have a look</button>
-                              <span className="be_nice_span">
-                                BE NICE, or we will crush you!
-                              </span>
-                            </div>
-                          </div>
-                        </SwiperSlide>
-
-                        <SwiperSlide>
-                          <div className="second_model_card_img position-relative first_model_card"
-                            data-toggle="modal"
-                            data-target=".exampleModal">
-                            <img src={profileFeetImg06} className="img-fluid" />
-                            <span className="edit_icon_img">
-
-                            </span>
-
-                            <span className="share_icon_img">
-
-                            </span>
-
-                            <span className="boost_icon_img">
-
-                            </span>
-                          </div>
-                          
-                          <div>
-                            <div className="model_have_a_look_btn">
-                              <button className="have_alook_btn">have a look</button>
-                              <span className="be_nice_span">
-                                BE NICE, or we will crush you!
-                              </span>
-                            </div>
-                          </div>
-
-                        </SwiperSlide>
-
-                        <SwiperSlide>
-                          <div className="second_model_card_img position-relative first_model_card"
-                            data-toggle="modal"
-                            data-target=".exampleModal">
-                            <img src={profileFeetImg06} className="img-fluid" />
-                            <span className="edit_icon_img">
-
-                            </span>
-
-                            <span className="share_icon_img">
-
-                            </span>
-
-                            <span className="boost_icon_img">
-
-                            </span>
-                          </div>
-                          
-                          <div>
-                            <div className="model_have_a_look_btn">
-                              <button className="have_alook_btn">have a look</button>
-                              <span className="be_nice_span">
-                                BE NICE, or we will crush you!
-                              </span>
-                            </div>
-                          </div>
-
-                        </SwiperSlide>
-
-                        <SwiperSlide>
-                          <div className="second_model_card_img position-relative first_model_card"
-                            data-toggle="modal"
-                            data-target=".exampleModal">
-                            <img src={profileFeetImg06} className="img-fluid" />
-                            <span className="edit_icon_img">
-
-                            </span>
-
-                            <span className="share_icon_img">
-
-                            </span>
-
-                            <span className="boost_icon_img">
-
-                            </span>
-                          </div>
-
-                          
-                          <div>
-                            <div className="model_have_a_look_btn">
-                              <button className="have_alook_btn">have a look</button>
-                              <span className="be_nice_span">
-                                BE NICE, or we will crush you!
-                              </span>
-                            </div>
-                          </div>
-                        </SwiperSlide>
-                      </Swiper>
-
-
-                    </div>
-                  </div> */}
-
-                  <div className="col-sm-6 col-lg-4">
-                    <div className="first_model_card">
-                      <div type="button" className="framePic">
-                        <img src={afterimgframe} className="frameimg" />
-                      </div>
-                      <Swiper
-                        spaceBetween={30}
-                        slidesPerView={1}
-                        onSlideChange={() => console.log("slide change")}
-                        onSwiper={(swiper) => console.log(swiper)}
-                      >
-                        <SwiperSlide>
-                          <div className="model_card_img position-relative first_model_card" data-toggle="modal"
-                            data-target=".exampleModal">
-                            <img src={profileFeetImg04} className="img-fluid" />
-                            <span className="edit_icon_img">
-
-                            </span>
-
-                            <span className="share_icon_img">
-
-                            </span>
-
-                            <span className="boost_icon_img">
-
-                            </span>
-                          </div>
-
-                          <div>
-                            <div className="model_have_a_look_btn">
-                              <button className="have_alook_btn">have a look</button>
-                              <span className="be_nice_span">
-                                BE NICE, or we will crush you!
-                              </span>
-                            </div>
-                          </div>
-
-                        </SwiperSlide>
-
-                        <SwiperSlide>
-                          <div className="model_card_im first_model_cardg" data-toggle="modal"
-                            data-target=".exampleModal">
-                            <img src={profileFeetImg04} className="img-fluid" />
-                            <span className="edit_icon_img">
-
-                            </span>
-
-                            <span className="share_icon_img">
-
-                            </span>
-
-                            <span className="boost_icon_img">
-
-                            </span>
-                          </div>
-
-                          <div>
-                            <div className="model_have_a_look_btn">
-                              <button className="have_alook_btn">have a look</button>
-                              <span className="be_nice_span">
-                                BE NICE, or we will crush you!
-                              </span>
-                            </div>
-                          </div>
-
-                        </SwiperSlide>
-
-                        <SwiperSlide>
-                          <div className="model_card_img first_model_card" data-toggle="modal"
-                            data-target=".exampleModal">
-                            <img src={profileFeetImg04} className="img-fluid" />
-                            <span className="edit_icon_img">
-
-                            </span>
-
-                            <span className="share_icon_img">
-
-                            </span>
-
-                            <span className="boost_icon_img">
-
-                            </span>
-                          </div>
-
-                          <div>
-                            <div className="model_have_a_look_btn">
-                              <button className="have_alook_btn">have a look</button>
-                              <span className="be_nice_span">
-                                BE NICE, or we will crush you!
-                              </span>
-                            </div>
-                          </div>
-
-                        </SwiperSlide>
-
-                        <SwiperSlide>
-                          <div className="model_card_img first_model_card">
-                            <img src={profileFeetImg04} className="img-fluid" />
-
-                          </div>
-
-
-                          <div>
-                            <div className="model_have_a_look_btn">
-                              <button className="have_alook_btn">have a look</button>
-                              <span className="be_nice_span">
-                                BE NICE, or we will crush you!
-                              </span>
-                            </div>
-                          </div>
-                        </SwiperSlide>
-                      </Swiper>
-
-                      <div className="model_card_top_corner_img">
-                        <img src={modelCardTopCorner} />
-                      </div>
-
-                      <div className="model_card_bottom_corner_img" id="model_card_bottom_corner_imgs">
-                        <img src={modelCardBottomCorner} />
-                      </div>
-
-                    </div>
-                  </div>
-
-                  <div className="col-sm-6 col-lg-4">
-                    <div className="first_model_card">
-                      <div type="button" className="framePic">
-                        <img src={afterimgframe} className="frameimg" />
-                      </div>
-                      <Swiper
-                        spaceBetween={30}
-                        slidesPerView={1}
-                        onSlideChange={() => console.log("slide change")}
-                        onSwiper={(swiper) => console.log(swiper)}
-                      >
-                        <SwiperSlide>
-                          <div className="model_card_img position-relative first_model_card" data-toggle="modal"
-                            data-target=".exampleModal">
-                            <img src={profileFeetImg05} className="img-fluid" />
-                            <span className="edit_icon_img">
-
-                            </span>
-
-                            <span className="share_icon_img">
-
-                            </span>
-
-                            <span className="boost_icon_img">
-
-                            </span>
-                          </div>
-
-
-                          <div>
-                            <div className="model_have_a_look_btn">
-                              <button className="have_alook_btn">have a look</button>
-                              <span className="be_nice_span">
-                                BE NICE, or we will crush you!
-                              </span>
-                            </div>
-                          </div>
-                        </SwiperSlide>
-
-                        <SwiperSlide>
-                          <div className="model_card_img first_model_card" data-toggle="modal"
-                            data-target=".exampleModal">
-                            <img src={profileFeetImg05} className="img-fluid" />
-                            <span className="edit_icon_img">
-
-                            </span>
-
-                            <span className="share_icon_img">
-
-                            </span>
-
-                            <span className="boost_icon_img">
-
-                            </span>
-                          </div>
-
-                          <div>
-                            <div className="model_have_a_look_btn">
-                              <button className="have_alook_btn">have a look</button>
-                              <span className="be_nice_span">
-                                BE NICE, or we will crush you!
-                              </span>
-                            </div>
-                          </div>
-                        </SwiperSlide>
-
-                        <SwiperSlide>
-                          <div className="model_card_img first_model_card" data-toggle="modal"
-                            data-target=".exampleModal">
-                            <img src={profileFeetImg05} className="img-fluid" />
-                            <span className="edit_icon_img">
-
-                            </span>
-
-                            <span className="share_icon_img">
-
-                            </span>
-
-                            <span className="boost_icon_img">
-
-                            </span>
-                          </div>
-
-
-                          <div>
-                            <div className="model_have_a_look_btn">
-                              <button className="have_alook_btn">have a look</button>
-                              <span className="be_nice_span">
-                                BE NICE, or we will crush you!
-                              </span>
-                            </div>
-                          </div>
-                        </SwiperSlide>
-
-                        <SwiperSlide>
-                          <div className="model_card_img">
-                            <img src={profileFeetImg05} className="img-fluid" />
-
-                          </div>
-
-
-                        </SwiperSlide>
-                      </Swiper>
-
-                      <div className="model_card_top_corner_img">
-                        <img src={modelCardTopCorner} />
-                      </div>
-
-                      <div className="model_card_bottom_corner_img" id="model_card_bottom_corner_imgs">
-                        <img src={modelCardBottomCorner} />
-                      </div>
-
-                      {/* <div className='framePic'>
-                    <img src={framePic} className=''/>
-                </div> */}
-                    </div>
-                  </div>
-
-                  <div className="col-sm-6 col-lg-4">
-                    <div className="second_model_card"
-                      data-toggle="modal"
-                      data-target=".exampleModal">
-                      <div type="button" className="framePic">
-                        <img src={afterimgframe} className="frameimg" />
-                      </div>
-                      <Swiper
-                        spaceBetween={30}
-                        slidesPerView={1}
-                        onSlideChange={() => console.log("slide change")}
-                        onSwiper={(swiper) => console.log(swiper)}
-                      >
-                        <SwiperSlide>
-                          <div className="second_model_card_img position-relative first_model_card"
-                            data-toggle="modal"
-                            data-target=".exampleModal">
-                            <img src={profileFeetImg06} className="w-100" />
-                            <span className="edit_icon_img">
-
-                            </span>
-
-                            <span className="share_icon_img">
-
-                            </span>
-
-                            <span className="boost_icon_img">
-
-                            </span>
-                          </div>
-
-
-
-
-                          <div>
-                            <div className="model_have_a_look_btn">
-                              <button className="have_alook_btn">have a look</button>
-                              <span className="be_nice_span">
-                                BE NICE, or we will crush you!
-                              </span>
-                            </div>
-                          </div>
-                        </SwiperSlide>
-
-                        <SwiperSlide>
-                          <div className="second_model_card_img position-relative first_model_card"
-                            data-toggle="modal"
-                            data-target=".exampleModal">
-                            <img src={profileFeetImg06} className="img-fluid" />
-                            <span className="edit_icon_img">
-
-                            </span>
-
-                            <span className="share_icon_img">
-
-                            </span>
-
-                            <span className="boost_icon_img">
-
-                            </span>
-                          </div>
-
-
-
-                          <div>
-                            <div className="model_have_a_look_btn">
-                              <button className="have_alook_btn">have a look</button>
-                              <span className="be_nice_span">
-                                BE NICE, or we will crush you!
-                              </span>
-                            </div>
-                          </div>
-
-                        </SwiperSlide>
-
-                        <SwiperSlide>
-                          <div className="second_model_card_img position-relative first_model_card"
-
-                            data-toggle="modal"
-                            data-target=".exampleModal">
-                            <img src={profileFeetImg06} className="img-fluid" />
-                            <span className="edit_icon_img">
-
-                            </span>
-
-                            <span className="share_icon_img">
-
-                            </span>
-
-                            <span className="boost_icon_img">
-
-                            </span>
-                          </div>
-
-
-                          <div>
-                            <div className="model_have_a_look_btn">
-                              <button className="have_alook_btn">have a look</button>
-                              <span className="be_nice_span">
-                                BE NICE, or we will crush you!
-                              </span>
-                            </div>
-                          </div>
-                        </SwiperSlide>
-
-                        <SwiperSlide>
-                          <div className="second_model_card_img position-relative first_model_card"
-                            data-toggle="modal"
-                            data-target=".exampleModal">
-                            <img src={profileFeetImg06} className="img-fluid" />
-                            <span className="edit_icon_img">
-
-                            </span>
-
-                            <span className="share_icon_img">
-
-                            </span>
-
-                            <span className="boost_icon_img">
-
-                            </span>
-                          </div>
-
-                          <div>
-                            <div className="model_have_a_look_btn">
-                              <button className="have_alook_btn">have a look</button>
-                              <span className="be_nice_span">
-                                BE NICE, or we will crush you!
-                              </span>
-                            </div>
-                          </div>
-                        </SwiperSlide>
-                      </Swiper>
-
-                    </div>
-                  </div>
-
-                  <div className="col-sm-6 col-lg-4">
-                    <div className="first_model_card">
-                      <div type="button" className="framePic">
-                        <img src={afterimgframe} className="frameimg" />
-                      </div>
-                      <Swiper
-                        spaceBetween={30}
-                        slidesPerView={1}
-                        onSlideChange={() => console.log("slide change")}
-                        onSwiper={(swiper) => console.log(swiper)}
-                      >
-                        <SwiperSlide>
-                          <div className="model_card_img position-relative first_model_card" data-toggle="modal"
-                            data-target=".exampleModal">
-                            <img src={profileFeetImg04} className="img-fluid" />
-                            <span className="edit_icon_img">
-
-                            </span>
-
-                            <span className="share_icon_img">
-
-                            </span>
-
-                            <span className="boost_icon_img">
-
-                            </span>
-                          </div>
-
-                          <div>
-                            <div className="model_have_a_look_btn">
-                              <button className="have_alook_btn">have a look</button>
-                              <span className="be_nice_span">
-                                BE NICE, or we will crush you!
-                              </span>
-                            </div>
-                          </div>
-
-                        </SwiperSlide>
-
-                        <SwiperSlide>
-                          <div className="model_card_im first_model_cardg" data-toggle="modal"
-                            data-target=".exampleModal">
-                            <img src={profileFeetImg04} className="img-fluid" />
-                            <span className="edit_icon_img">
-
-                            </span>
-
-                            <span className="share_icon_img">
-
-                            </span>
-
-                            <span className="boost_icon_img">
-
-                            </span>
-                          </div>
-
-                          <div>
-                            <div className="model_have_a_look_btn">
-                              <button className="have_alook_btn">have a look</button>
-                              <span className="be_nice_span">
-                                BE NICE, or we will crush you!
-                              </span>
-                            </div>
-                          </div>
-
-                        </SwiperSlide>
-
-                        <SwiperSlide>
-                          <div className="model_card_img first_model_card" data-toggle="modal"
-                            data-target=".exampleModal">
-                            <img src={profileFeetImg04} className="img-fluid" />
-                            <span className="edit_icon_img">
-
-                            </span>
-
-                            <span className="share_icon_img">
-
-                            </span>
-
-                            <span className="boost_icon_img">
-
-                            </span>
-                          </div>
-
-                          <div>
-                            <div className="model_have_a_look_btn">
-                              <button className="have_alook_btn">have a look</button>
-                              <span className="be_nice_span">
-                                BE NICE, or we will crush you!
-                              </span>
-                            </div>
-                          </div>
-
-                        </SwiperSlide>
-
-                        <SwiperSlide>
-                          <div className="model_card_img first_model_card">
-                            <img src={profileFeetImg04} className="img-fluid" />
-
-                          </div>
-
-
-                          <div>
-                            <div className="model_have_a_look_btn">
-                              <button className="have_alook_btn">have a look</button>
-                              <span className="be_nice_span">
-                                BE NICE, or we will crush you!
-                              </span>
-                            </div>
-                          </div>
-                        </SwiperSlide>
-                      </Swiper>
-
-                      <div className="model_card_top_corner_img">
-                        <img src={modelCardTopCorner} />
-                      </div>
-
-                      <div className="model_card_bottom_corner_img" id="model_card_bottom_corner_imgs">
-                        <img src={modelCardBottomCorner} />
-                      </div>
-
-                    </div>
-                  </div>
-                </div>
+                )}
               </div>
             </div>
 

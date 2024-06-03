@@ -468,3 +468,66 @@ p.description-text {
     column-gap: 25px;
   }
 }
+
+.css-13cymwt-control{
+  background-color: transparent !important;
+  border: none !important;
+}
+
+.css-13cymwt-control:focus{
+  background-color: transparent !important;
+  border: none !important;
+}
+.css-1u9des2-indicatorSeparator{
+  opacity: 0 !important;
+}
+.tags-btn.css-b62m3t-container:focus-visible{
+outline: 0 !important;
+}
+.css-t3ipsp-control{
+  outline: 0 !important;
+  border: none !important;
+
+  background-color: transparent !important;
+}
+.css-t3ipsp-control:hover{
+  box-shadow: none !important;
+  border: none !important;
+}
+.css-t3ipsp-control:active{
+  box-shadow: none !important;
+  border: none !important;
+  outline: 0 !important;
+}
+
+.css-1f43avz-a11yText-A11yText{
+  border: none !important;
+}
+
+.css-1p3m7a8-multiValue{
+  background-color: #000 !important;
+ 
+}
+.css-wsp0cs-MultiValueGeneric{
+  color: #fff !important;
+}
+
+.css-1nmdiq5-menu{
+  /* background-color: #000 !important; */
+  color: #000 !important;
+}
+
+
+.css-t3ipsp-control .css-1p3m7a8-multiValue * {
+  color: #fff !important;
+}
+
+
+/* .css-13cymwt-control:hover{
+  background-color: #000 !important;
+  color: #fff !important;
+} */
+.css-t3ipsp-control *{
+  color: #000000 !important;
+}
+/* .css-5kkxb */
