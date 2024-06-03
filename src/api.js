@@ -94,7 +94,7 @@ const LogoutData = localStorage.getItem("userToken");
 
 //AddPost
 export const Addmodelpost = async (data) => {
- 
+
   try {
     const res = await fetch(`${url}/public/api/model/post-add-edit`, {
       method: "POST",
@@ -112,7 +112,7 @@ export const Addmodelpost = async (data) => {
     if (!res.ok) {
       // toastAlert(productData?.msg, ALERT_TYPES.ERROR);
     } else {
-      console.log("productData?.msg" , productData?.msg)
+      console.log("productData?.msg", productData?.msg)
       // toastAlert(productData?.msg, ALERT_TYPES.SUCCESS);
     }
 
@@ -122,7 +122,7 @@ export const Addmodelpost = async (data) => {
     throw error; // Rethrow error to be handled by caller
   }
 };
- 
+
 
 //Editpost
 export const Editmodelpost = async (id) => {
@@ -254,6 +254,38 @@ export const Getmodelpostlist = async (id) => {
 
 
 
+
+
+//Get model post  
+export const Getmodelpost = async (id) => {
+  try {
+    const res = await fetch(`${url}/public/api/model/post-listing`, {
+      method: "Get",
+      headers: {
+        "Content-Type": "application/json",
+        Authorization: `Bearer ${localStorage.getItem("userToken")}`,
+      },
+    });
+    console.log(res, "res");
+    // Ensure response is ok before proceeding
+
+    const productData = await res.json(); // Parse response JSON
+    console.log(productData, "res");
+    if (!res.ok) {
+      // toastAlert(productData?.msg, ALERT_TYPES.ERROR);
+    } else {
+      // toastAlert(productData?.msg, ALERT_TYPES.SUCCESS);
+    }
+
+    return productData; // Return parsed data
+  } catch (error) {
+    toastAlert(error, ALERT_TYPES.ERROR); // Handle error
+    throw error; // Rethrow error to be handled by caller
+  }
+};
+
+
+
 //Get model post detail
 export const Getmodelpostdetail = async (id) => {
   try {
@@ -356,7 +388,7 @@ export const modelfriendrequestaccept = async (id) => {
 
 
 //Get model Pofile View
-export const modelprofileview = async ( ) => {
+export const modelprofileview = async () => {
   try {
     const res = await fetch(`${url}/public/api/model/profile-get`, {
       method: "Get",
@@ -390,7 +422,7 @@ export const modelprofileview = async ( ) => {
 
 
 //Get model Pofile View list
-export const modelprofillist = async ( ) => {
+export const modelprofillist = async () => {
   try {
     const res = await fetch(`${url}/public/api/package-listing`, {
       method: "Get",
@@ -430,7 +462,7 @@ export const modelprofillist = async ( ) => {
 
 
 //Get model Pofile View list
-export const modellist = async ( ) => {
+export const modellist = async () => {
   try {
     const res = await fetch(`${url}/public/api/model-listing`, {
       method: "Get",
@@ -539,7 +571,7 @@ export const modelprofiletag = async (id) => {
 //Get User Profile view
 export const Userprogileview = async (id) => {
   try {
-    const res = await fetch(`${url}/public/api/user/profile-get`, {
+    const res = await fetch(`${url}/public/api/user/profile-get/${id}`, {
       method: "Get",
       headers: {
         "Content-Type": "application/json",
@@ -639,7 +671,7 @@ export const UserSendRequest = async (id) => {
 // User Unflow Model
 export const UserUnflowmodel = async (id) => {
   try {
-    const res = await fetch(`${url}/public/api/model-follow-unfollow/${id}`, {
+    const res = await fetch(`${url}/public/api/user/model-follow-unfollow/${id}`, {
       method: "Get",
       headers: {
         "Content-Type": "application/json",
@@ -662,7 +694,7 @@ export const UserUnflowmodel = async (id) => {
     toastAlert(error, ALERT_TYPES.ERROR); // Handle error
     throw error; // Rethrow error to be handled by caller
   }
-};  
+};
 
 
 
@@ -748,14 +780,15 @@ export const modelpurchaseplane = async (id) => {
       },
     });
     console.log(res, "res");
-    // Ensure response is ok before proceeding
+ 
 
     const productData = await res.json(); // Parse response JSON
     console.log(productData, "res");
     if (!res.ok) {
-      toastAlert(productData?.msg, ALERT_TYPES.ERROR);
-    } else {
       toastAlert(productData?.msg, ALERT_TYPES.SUCCESS);
+
+    } else {
+      toastAlert(productData?.msg, ALERT_TYPES.ERROR);
     }
 
     return productData; // Return parsed data
@@ -784,20 +817,20 @@ export const modelcatigorylist = async () => {
     });
     console.log(res, "res");
 
-    const productData = await res.json(); 
+    const productData = await res.json();
     console.log(productData, "res");
     if (!res.ok) {
     } else {
     }
 
-    return productData; 
+    return productData;
   } catch (error) {
     toastAlert(error, ALERT_TYPES.ERROR); // Handle error
     throw error;
   }
 };
 
- 
+
 
 
 //  Model  Packaged Plane
@@ -813,7 +846,7 @@ export const modelpackagelist = async () => {
     console.log(res, "res");
     // Ensure response is ok before proceeding
 
-    const productData = await res.json();  
+    const productData = await res.json();
     console.log(productData, "res");
     if (!res.ok) {
       // toastAlert(productData?.msg, ALERT_TYPES.ERROR);

@@ -10,7 +10,7 @@ import "swiper/css";
 import "swiper/css/pagination";
 import { useParams } from "react-router-dom";
 import { Navigation, Pagination } from "swiper/modules";
-import { Getmodelpostlist } from '../../api'
+import { Getmodelpostlist, Userprogileview, UserUnflowmodel } from '../../api'
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 // import { faHeart } from '@awesome.me/kit-KIT_CODE/icons'
 
@@ -84,6 +84,32 @@ const Profile = () => {
     }
 
 
+    const flowmodel = async () => {
+        try {
+            const response = await UserUnflowmodel(id);
+            console.log("response", response)
+
+            if (response?.status == true) {
+
+                const data = response?.data;
+                console.log("data", data)
+                setModellists(data)
+                model_listview()
+
+            } else {
+                // toastAlert(response.statusText, ALERT_TYPES.ERROR);
+                console.log("packege ", response.statusText)
+            }
+            setModellists(response?.data)
+
+        } catch (error) {
+            console.error("Error in logging in:", error);
+
+            // toastAlert(error, ALERT_TYPES.ERROR);
+        }
+    };
+
+
 
 
     const [modellists, setModellists] = useState([])
@@ -115,12 +141,46 @@ const Profile = () => {
 
 
 
+    const [modellistsprofileview, setModelprofileview] = useState({})
+
+    console.log("modellists", modellists)
+
+
+    const model_listview = async () => {
+        try {
+            const response = await Userprogileview(id);
+            console.log("response", response)
+
+            if (response?.status == true) {
+
+                const data = response?.data;
+                console.log("data", data)
+                setModelprofileview(data)
+
+
+            } else {
+                // toastAlert(response.statusText, ALERT_TYPES.ERROR);
+                console.log("packege ", response.statusText)
+            }
+            setModelprofileview(response?.data)
+
+        } catch (error) {
+            console.error("Error in logging in:", error);
+
+            // toastAlert(error, ALERT_TYPES.ERROR);
+        }
+    };
+
+
+
+
     console.log("modellists", modellists)
     useEffect(() => {
         model_list()
+        model_listview()
         Aos.init();
 
-    }, []);
+    }, [id]);
     const [hearts, setHeart] = useState(false)
 
     const handleHeart = () => {
@@ -129,12 +189,14 @@ const Profile = () => {
     const baseurl = `${process.env.REACT_APP_BASE_URL}/public/`
 
     const [modellist, setmodellisting] = useState(true)
- 
+
     const [follow, setFollowing] = useState(false)
     const [sendmessages, setSendmessage] = useState(false)
     const [transactions, setTransactions] = useState(false)
- 
 
+    const followmodel = () => {
+
+    }
     const [givestip, setGivestip] = useState(false)
     const following = () => {
         setFollowing(!follow)
@@ -182,10 +244,10 @@ const Profile = () => {
         // setIsChecked(!isChecked);
         if (id === isChecked) {
             setIsChecked(null);
-             return;
-          }
-        
-    };
+            return;
+        }
+
+    }
 
 
 
@@ -213,7 +275,7 @@ const Profile = () => {
                                             data-aos-anchor-placement="center-bottom"
                                             data-aos-duration="3000"
                                         >
-                                            <img src={userProfilePic} />
+                                            <img src={(baseurl + modellistsprofileview?.profile_pic) && (userProfilePic)} />
                                         </div>
 
                                         <div className="user_info">
@@ -226,7 +288,7 @@ const Profile = () => {
                                                 <span className="online_circle">
                                                     <i class="fa-solid fa-circle"></i>
                                                 </span>
-                                                <span className="hot_model_name">HOTMODEL1234</span>
+                                                <span className="hot_model_name">{modellistsprofileview?.name || 'HOTMODEL1234'}</span>
                                             </div>
 
                                             <div type="button" onClick={showprofile}
@@ -235,19 +297,18 @@ const Profile = () => {
                                                 data-aos-anchor-placement="center-bottom"
                                                 data-aos-duration="2000"
                                             >
-                                                <span className="user_access">@HOTMODEL1223</span>
+                                                <span className="user_access">{modellistsprofileview?.email || 'HOTMODEL1234@gmail.com'}</span>
                                             </div>
 
-                                            <p
-                                                className="user_profile_desc"
-                                                data-aos="fade-right"
-                                                data-aos-anchor-placement="center-bottom"
-                                                data-aos-duration="3000"
-                                            >
-                                                Lorem Ipsum is simply dummy text of the printing and
-                                                typesetting industry. Lorem Ipsum has been the
-                                                industry's standard
-                                            </p>
+                                            {/* <p
+                        className="user_profile_desc"
+                        data-aos="fade-right"
+                        data-aos-anchor-placement="center-bottom"
+                        data-aos-duration="3000"
+                      >
+                                         {modellistsprofileview?.bio || 'Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry standard' }
+
+                      </p> */}
                                         </div>
 
                                         <div
@@ -258,7 +319,7 @@ const Profile = () => {
                                         >
                                             <span className="followers_title">followers</span>
                                             <span className="followers_number">
-                                                <span className="no_of_follows">257</span>
+                                                <span className="no_of_follows">{modellistsprofileview?.follower || 0}</span>
                                             </span>
                                         </div>
 
@@ -274,10 +335,12 @@ const Profile = () => {
                                                 data-aos-anchor-placement="center-bottom"
                                                 data-aos-duration="3000"
                                             >
+                                                <button className="give_tip_btn" onClick={flowmodel}>  {modellistsprofileview?.follow == true ? "Unfollow" : " follow"}  </button>
                                                 <button className="give_tip_btn" onClick={following}>  following</button>
+
                                             </div>
                                             <span className="followers_number">
-                                                <span className="no_of_follows">145</span>
+                                                <span className="no_of_follows">{modellistsprofileview?.following || 0} </span>
                                             </span>
                                         </div>
 
@@ -314,7 +377,7 @@ const Profile = () => {
                                             data-aos-anchor-placement="center-bottom"
                                             data-aos-duration="3000"
                                         >
-                                            <button onClick={givetip} className="give_tip_btn">give tip</button>
+                                            {/* <button onClick={givetip} className="give_tip_btn">give tip</button> */}
                                         </div>
                                     </div>
 
@@ -599,7 +662,7 @@ const Profile = () => {
 
 
 
-{/* 
+                                {/* 
 {sendmessages && (
                                 
                                 <div className="tabs_box">
@@ -757,7 +820,7 @@ const Profile = () => {
                                                         className=""
                                                         type="radio"
                                                         checked={isChecked}
-                                                       onClick={() => handleRadioChange(2)}
+                                                        onClick={() => handleRadioChange(2)}
                                                     /> $100
                                                 </div>
                                                 <div className="paytips col-md-3  mb-4 " >
@@ -765,7 +828,7 @@ const Profile = () => {
                                                         className=""
                                                         type="radio"
                                                         checked={isChecked}
-                                                       onClick={() => handleRadioChange(3)}
+                                                        onClick={() => handleRadioChange(3)}
                                                     /> $100
                                                 </div>
                                                 <div className="paytips col-md-3  mb-4 ">
@@ -773,7 +836,7 @@ const Profile = () => {
                                                         className=""
                                                         type="radio"
                                                         checked={isChecked}
-                                                       onClick={() => handleRadioChange(4)}
+                                                        onClick={() => handleRadioChange(4)}
                                                     /> $100
                                                 </div>
                                                 <div className="paytips col-md-3  mb-4 ">
@@ -781,7 +844,7 @@ const Profile = () => {
                                                         className=""
                                                         type="radio"
                                                         checked={isChecked}
-                                                       onClick={() => handleRadioChange(5)}
+                                                        onClick={() => handleRadioChange(5)}
                                                     /> $100
                                                 </div>
 
@@ -789,11 +852,11 @@ const Profile = () => {
 
                                             <h4 className="  text-white mt-2 mb-2">Custom Amount </h4>
                                             <div className="custompay mb-4"> $
-                                                <input className="custom" type="text"/>
-                                                </div>
-                                                <button className="paybtn mt -4">
-                                                    Pay Now
-                                                </button>
+                                                <input className="custom" type="text" />
+                                            </div>
+                                            <button className="paybtn mt -4">
+                                                Pay Now
+                                            </button>
                                         </div>
                                     </div>
                                 )}
