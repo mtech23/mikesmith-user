@@ -247,7 +247,7 @@ export const Getmodelpostlist = async (id) => {
 
     return productData; // Return parsed data
   } catch (error) {
-    toastAlert(error, ALERT_TYPES.ERROR); // Handle error
+    // toastAlert(error, ALERT_TYPES.ERROR); // Handle error
     throw error; // Rethrow error to be handled by caller
   }
 };
@@ -413,7 +413,7 @@ export const modelprofileview = async () => {
 
     return productData; // Return parsed data
   } catch (error) {
-    toastAlert(error, ALERT_TYPES.ERROR); // Handle error
+    // toastAlert(error, ALERT_TYPES.ERROR); // Handle error
     throw error; // Rethrow error to be handled by caller
   }
 };
@@ -639,14 +639,14 @@ export const Userprogileview = async (id) => {
     const productData = await res.json(); // Parse response JSON
     console.log(productData, "res");
     if (!res.ok) {
-      toastAlert(productData?.msg, ALERT_TYPES.ERROR);
+      // toastAlert(productData?.msg, ALERT_TYPES.ERROR);
     } else {
-      toastAlert(productData?.msg, ALERT_TYPES.SUCCESS);
+      // toastAlert(productData?.msg, ALERT_TYPES.SUCCESS);
     }
 
     return productData; // Return parsed data
   } catch (error) {
-    toastAlert(error, ALERT_TYPES.ERROR); // Handle error
+    // toastAlert(error, ALERT_TYPES.ERROR); // Handle error
     throw error; // Rethrow error to be handled by caller
   }
 };

@@ -2,7 +2,7 @@ import React, { useEffect, useState } from "react";
 import Header from "../../Components/Layout/Header";
 import Footer from "../../Components/Layout/Footer";
 import afterimgframe from '../../Asserts/images/after-img-frame.png'
-import { modelprofileview, modelprofillist, Getmodelpostlist , Getmodelpost  , UserUnflowmodel} from "../../api";
+import { modelprofileview, modelprofillist, Getmodelpostlist, Getmodelpost, UserUnflowmodel } from "../../api";
 import { Swiper, SwiperSlide } from "swiper/react";
 import { toastAlert } from "../../utils";
 import { ALERT_TYPES } from "../../constants";
@@ -69,6 +69,14 @@ import { useNavigate } from "react-router-dom";
 
 const ModelProfile = () => {
 
+  const [filterid, setfilterid] = useState()
+
+  const handleid = (id) => {
+    const datafilter = userprofilelist.filter((items) => items.id == id)
+    console.log("datafilter", datafilter)
+    setfilterid(datafilter)
+
+  }
   const handleclick = () => {
     navigate('/')
   }
@@ -107,7 +115,7 @@ const ModelProfile = () => {
     }
   };
 
- 
+
 
   // const modelprofilelist = async () => {
   //   try {
@@ -158,7 +166,7 @@ const ModelProfile = () => {
 
 
 
-  
+
   const [givestip, setGivestip] = useState(false)
   const following = () => {
     setFollowing(!follow)
@@ -211,7 +219,7 @@ const ModelProfile = () => {
     }
 
   };
-   
+
   const recived_tips = () => {
     setTransactions(false)
     setRecivedtips(!Recivedtips)
@@ -221,7 +229,7 @@ const ModelProfile = () => {
     setGivestip(false)
   }
 
-
+  console.log("filterid", filterid)
   return (
     <div>
       <div>
@@ -289,7 +297,7 @@ const ModelProfile = () => {
                     >
                       <span className="followers_title">followers</span>
                       <span className="followers_number">
-                      <span className="no_of_follows">{userdata?.follower || 0}</span>
+                        <span className="no_of_follows">{userdata?.follower || 0}</span>
                       </span>
                     </div>
 
@@ -308,7 +316,7 @@ const ModelProfile = () => {
                         <button className="give_tip_btn" onClick={following}>  following</button>
                       </div>
                       <span className="followers_number">
-                      <span className="no_of_follows">{userdata?.following || 0} </span>
+                        <span className="no_of_follows">{userdata?.following || 0} </span>
                       </span>
                     </div>
 
@@ -333,7 +341,7 @@ const ModelProfile = () => {
                       <button
                         className="sign_actionBtn"
                         data-aos="fade-left"
-                        data-aos-anchor-placement="center-bottom" 
+                        data-aos-anchor-placement="center-bottom"
                         data-aos-duration="3000"
                         onClick={transaction} >
                         Transaction
@@ -342,12 +350,12 @@ const ModelProfile = () => {
 
 
                     <div
-                        data-aos="fade-right"
-                        data-aos-anchor-placement="center-bottom"
-                        data-aos-duration="3000"
-                      >
-                        <button className="give_tip_btn" onClick={recived_tips}>  Recived Tips</button>
-                      </div>
+                      data-aos="fade-right"
+                      data-aos-anchor-placement="center-bottom"
+                      data-aos-duration="3000"
+                    >
+                      <button className="give_tip_btn" onClick={recived_tips}>  Recived Tips</button>
+                    </div>
 
                     <div
                       data-aos="fade-right"
@@ -366,7 +374,7 @@ const ModelProfile = () => {
                     <img src={modelCardBottomCorner} />
                   </div>
                 </div>
-{/* 
+                {/* 
                 <div
                   className="more_profiles_main"
                   data-aos="fade-right"
@@ -533,68 +541,68 @@ const ModelProfile = () => {
 
 
                 {modellist && (
-                                    <div className="row  ">
-                                        {userprofilelist?.map((items, index) => (
+                  <div className="row  ">
+                    {userprofilelist?.map((items, index) => (
 
 
-                                            <div className="col-sm-6 col-lg-4">
-                                                <div className="first_model_card">
+                      <div className="col-sm-6 col-lg-4" onClick={() => handleid(items?.id)}>
+                        <div className="first_model_card">
 
 
-                                                    <Swiper
-                                                        spaceBetween={30}
-                                                        slidesPerView={1}
-                                                        onSlideChange={() => console.log("slide change")}
-                                                        onSwiper={(swiper) => console.log(swiper)}
-                                                    >
-                                                        {items?.post_data?.map((data) => (
+                          <Swiper
+                            spaceBetween={30}
+                            slidesPerView={1}
+                            onSlideChange={() => console.log("slide change")}
+                            onSwiper={(swiper) => console.log(swiper)}
+                          >
+                            {items?.post_data?.map((data) => (
 
-                                                            <SwiperSlide>
-                                                                <div className="model_card_img position-relative first_model_card"
-                                                                    data-toggle="modal"
-                                                                    data-target=".exampleModal">
-                                                                    <img src={data?.file ? baseurl + data.file : "dummy"} className="img-fluid" />
+                              <SwiperSlide>
+                                <div className="model_card_img position-relative first_model_card"
+                                  data-toggle="modal"
+                                  data-target=".exampleModal">
+                                  <img src={data?.file ? baseurl + data.file : "dummy"} className="img-fluid" />
 
-                                                                    <span className="edit_icon_img">
+                                  <span className="edit_icon_img">
 
-                                                                    </span>
+                                  </span>
 
-                                                                    <span className="share_icon_img">
+                                  <span className="share_icon_img">
 
-                                                                    </span>
+                                  </span>
 
-                                                                    <span className="boost_icon_img">
+                                  <span className="boost_icon_img">
 
-                                                                    </span>
-                                                                </div>
+                                  </span>
+                                </div>
 
-                                                                <div>
-                                                                    <div className="model_have_a_look_btn">
-                                                                        <button className="have_alook_btn">have a look</button>
-                                                                        <span className="be_nice_span">
-                                                                            BE NICE, or we will crush you!
-                                                                        </span>
-                                                                    </div>
-                                                                </div>
-                                                            </SwiperSlide>))}
+                                <div>
+                                  <div className="model_have_a_look_btn">
+                                    <button className="have_alook_btn">have a look</button>
+                                    <span className="be_nice_span">
+                                      BE NICE, or we will crush you!
+                                    </span>
+                                  </div>
+                                </div>
+                              </SwiperSlide>))}
 
 
-                                                    </Swiper>
+                          </Swiper>
 
-                                                    <div className="model_card_top_corner_img">
-                                                        <img src={modelCardTopCorner} />
-                                                    </div>
+                          <div className="model_card_top_corner_img">
+                            <img src={modelCardTopCorner} />
+                          </div>
 
-                                                    <div className="model_card_bottom_corner_img" id="model_card_bottom_corner_imgs">
-                                                        <img src={modelCardBottomCorner} />
-                                                    </div>
+                          <div className="model_card_bottom_corner_img" id="model_card_bottom_corner_imgs">
+                            <img src={modelCardBottomCorner} />
+                          </div>
 
-                                                </div>
-                                            </div>
-                                        ))}
+                        </div>
+                      </div>
+                    ))}
 
-                                    </div>
-                                )}
+                  </div>
+                )}
 
                 {follow && (
                   <div className="row tabs_box">
@@ -656,81 +664,81 @@ const ModelProfile = () => {
 
 
 
-       
-{sendmessages && (
-                            <div className="tabs_box box_height">
-                            <div className="row">
-                              <div className="col-md-12 ">
-                                <h3 className="inbox_heading" data-aos="fade-right" data-aos-anchor-placement="center-bottom" data-aos-duration="3000" >Inbox</h3>
-                                <div className="divider_row"></div>
-                              </div>
-                              
+
+                {sendmessages && (
+                  <div className="tabs_box box_height">
+                    <div className="row">
+                      <div className="col-md-12 ">
+                        <h3 className="inbox_heading" data-aos="fade-right" data-aos-anchor-placement="center-bottom" data-aos-duration="3000" >Inbox</h3>
+                        <div className="divider_row"></div>
+                      </div>
+
+                    </div>
+
+                    <div className="row inbox_container">
+                      <div className="col-lg-4 col-sm-12 right_divider ">
+                        <div className="example example_one">
+                          <form class="" action="/action_page.php" >
+                            <button type="submit"><i class="fa fa-search"></i></button>
+                            <input type="text" placeholder="Search Message" name="search2" />
+                          </form>
+                        </div>
+                        <div className="profile_div">
+                          <div> <img className="img-fluid profile_img" src={userProfilePic} /></div>
+                          <div>
+                            <p className="profile_name"> Brittanyvues <sup className="profile_message_date"> 29 May 07:55 AM </sup> </p>
+                            <p className="message_text">I am</p>
+                          </div>
+                        </div>
+
+                      </div>
+
+                      <div className="col-lg-8 col-sm-12 p-0 ">
+                        <div className="inbox_header_row">
+                          <div className="profile_div pl-3">
+                            <div> <img className="img-fluid profile_img" src={userProfilePic} /></div>
+
+                            <div>
+                              <p className="profile_name"> Brittanyvues </p>
+
                             </div>
-                         
-                                <div className="row inbox_container">
-                                  <div className="col-lg-4 col-sm-12 right_divider ">
-                                      <div className="example example_one">
-                                        <form class="" action="/action_page.php" >
-                                          <button type="submit"><i class="fa fa-search"></i></button>
-                                          <input type="text" placeholder="Search Message" name="search2"/>
-                                        </form>
-                                      </div>
-                                    <div className="profile_div">
-                                     <div> <img className="img-fluid profile_img" src={userProfilePic}/></div>
-                                      <div>
-                                        <p className="profile_name"> Brittanyvues <sup  className="profile_message_date"> 29 May 07:55 AM </sup> </p>    
-                                        <p className="message_text">I am</p> 
-                                      </div>                     
-                                    </div>
-                                  
-                                  </div>
-                                
-                                  <div className="col-lg-8 col-sm-12 p-0 ">
-                                  <div className="inbox_header_row">
-                                    <div className="profile_div pl-3">
-                                        <div> <img className="img-fluid profile_img" src={userProfilePic}/></div>
-                                        
-                                        <div>
-                                          <p className="profile_name"> Brittanyvues </p>
-                                                               
-                                        </div>                     
-                                    </div>
-          
-          
-                                      <div className="custom_dropdown_div">
-                                          <div class="dropdown">
-                                            <button class=" custom_btn_secondary" type="button" data-toggle="dropdown" aria-expanded="false">
-                                            <i class="fa-solid fa-ellipsis"></i>
-                                            </button>
-                                            <div class="dropdown-menu custom_dropdown-menu">
-                                              <a class="dropdown-item custom_dropdown_item" href="#">View Profile</a>
-                                              <a class="dropdown-item custom_dropdown_item" href="#">Delete Chat</a>
-                                            </div>
-                                          </div>
-                                        </div>
-                                    </div>
-          
-          
-                                      <div className="divider_row"></div>
-                                     
-                                        <div className="main_chat_div">
-                                        <div className="chat_box">
-                                          <p className="message_date">29 May 07:55 AM</p>
-                                          <p className="message_para">Hey</p>
-                                        </div>
-                                        <div className="chat_box">
-                                          <p className="message_date">29 May 07:59 AM</p>
-                                          <p className="message_para">I'm waiting</p>
-                                        </div>
-                                        <div className="chat_box_reply">
-                                          <p className="message_date">29 May 08:09 AM</p>
-                                          <p className="message_para_reply">Hey</p>
-                                        </div>
-                                        <div className="chat_box_reply">
-                                          <p className="message_date">29 May 08:12 AM</p>
-                                          <p className="message_para_reply">Coming</p>
-                                        </div>
-                                        {/* <div className="chat_box">
+                          </div>
+
+
+                          <div className="custom_dropdown_div">
+                            <div class="dropdown">
+                              <button class=" custom_btn_secondary" type="button" data-toggle="dropdown" aria-expanded="false">
+                                <i class="fa-solid fa-ellipsis"></i>
+                              </button>
+                              <div class="dropdown-menu custom_dropdown-menu">
+                                <a class="dropdown-item custom_dropdown_item" href="#">View Profile</a>
+                                <a class="dropdown-item custom_dropdown_item" href="#">Delete Chat</a>
+                              </div>
+                            </div>
+                          </div>
+                        </div>
+
+
+                        <div className="divider_row"></div>
+
+                        <div className="main_chat_div">
+                          <div className="chat_box">
+                            <p className="message_date">29 May 07:55 AM</p>
+                            <p className="message_para">Hey</p>
+                          </div>
+                          <div className="chat_box">
+                            <p className="message_date">29 May 07:59 AM</p>
+                            <p className="message_para">I'm waiting</p>
+                          </div>
+                          <div className="chat_box_reply">
+                            <p className="message_date">29 May 08:09 AM</p>
+                            <p className="message_para_reply">Hey</p>
+                          </div>
+                          <div className="chat_box_reply">
+                            <p className="message_date">29 May 08:12 AM</p>
+                            <p className="message_para_reply">Coming</p>
+                          </div>
+                          {/* <div className="chat_box">
                                           <p className="message_date">29 May 07:59 AM</p>
                                           <p className="message_para">I'm waiting</p>
                                         </div>
@@ -766,21 +774,21 @@ const ModelProfile = () => {
                                           <p className="message_date">29 May 07:59 AM</p>
                                           <p className="message_para">I'm waiting</p>
                                         </div> */}
-                                        </div>
-                                    
-          
-                                     <div className="message_sent_box"> 
-                                     
-                                     <div  className="main_btn_input_div">
-                                        <input type="text" className="message_type_box" placeholder="Write Text" id="name" name="name" required/>
-                                        <button className="message_type_box_icon" ><i class="fa fa-paper-plane" aria-hidden="true"></i></button>
-                                     </div>
-                                     </div>
-                                  </div>
-          
-                            </div>
+                        </div>
+
+
+                        <div className="message_sent_box">
+
+                          <div className="main_btn_input_div">
+                            <input type="text" className="message_type_box" placeholder="Write Text" id="name" name="name" required />
+                            <button className="message_type_box_icon" ><i class="fa fa-paper-plane" aria-hidden="true"></i></button>
                           </div>
-                                )} 
+                        </div>
+                      </div>
+
+                    </div>
+                  </div>
+                )}
 
 
 
@@ -837,7 +845,7 @@ const ModelProfile = () => {
 
 
 
-{Recivedtips && (
+                {Recivedtips && (
                   <div className="row tabs_box">
 
                     <div className="col-md-12">
@@ -908,9 +916,10 @@ const ModelProfile = () => {
                           <input
                             className=""
                             type="radio"
+                            id="ti"
                             checked={isChecked}
                             onClick={() => handleRadioChange(0)}
-                          /> $100
+                          /> <label for="t1">$25</label>
                         </div>
 
 
@@ -922,7 +931,7 @@ const ModelProfile = () => {
                             type="radio"
                             checked={isChecked}
                             onClick={() => handleRadioChange(1)}
-                          /> $100
+                          /> $50
                         </div>
 
                         <div className="paytips col-md-3    mb-4 justify-content-center">
@@ -939,7 +948,7 @@ const ModelProfile = () => {
                             type="radio"
                             checked={isChecked}
                             onClick={() => handleRadioChange(3)}
-                          /> $100
+                          /> $120
                         </div>
                         <div className="paytips col-md-3  mb-4 ">
                           <input
@@ -947,7 +956,7 @@ const ModelProfile = () => {
                             type="radio"
                             checked={isChecked}
                             onClick={() => handleRadioChange(4)}
-                          /> $100
+                          /> $150
                         </div>
                         <div className="paytips col-md-3  mb-4 ">
                           <input
@@ -955,7 +964,7 @@ const ModelProfile = () => {
                             type="radio"
                             checked={isChecked}
                             onClick={() => handleRadioChange(5)}
-                          /> $100
+                          /> $200
                         </div>
 
                       </div>
@@ -1009,7 +1018,7 @@ const ModelProfile = () => {
 
                           </div>
                         </div>
-                        <h3 className="modal-title">HOTMODEL1234</h3>
+                        <h3 className="modal-title">{filterid?.catgeory_detail?.name}</h3>
                         <p className="modal-subtitle">38- USA - 2 Hours ago</p>
                       </div>
 
@@ -1024,21 +1033,12 @@ const ModelProfile = () => {
                         modules={[Navigation]}
                         className="mySwiper"
                       >
-                        <SwiperSlide>
-                          <img src={modal1} />
-                        </SwiperSlide>
-                        <SwiperSlide>
-                          <img src={modal2} />
-                        </SwiperSlide>
-                        <SwiperSlide>
-                          <img src={modal3} />
-                        </SwiperSlide>
-                        <SwiperSlide>
-                          <img src={modal2} />
-                        </SwiperSlide>
-                        <SwiperSlide>
-                          <img src={modal3} />
-                        </SwiperSlide>
+                        {filterid?.post_data?.map((items) => (
+
+                          <SwiperSlide>
+                            <img src={baseurl + items?.file} />
+                          </SwiperSlide>))}
+
                       </Swiper>
 
                       <div className="carousel-footer">

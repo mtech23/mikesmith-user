@@ -94,14 +94,14 @@ const Profile = () => {
 
                 const data = response?.data;
                 console.log("data", data)
-                setModellists(data)
+                // setModellists(data)
                 model_listview()
 
             } else {
                 // toastAlert(response.statusText, ALERT_TYPES.ERROR);
                 console.log("packege ", response.statusText)
             }
-            setModellists(response?.data)
+            // setModellists(response?.data)
 
         } catch (error) {
             console.error("Error in logging in:", error);
@@ -194,7 +194,9 @@ const Profile = () => {
     const [follow, setFollowing] = useState(false)
     const [sendmessages, setSendmessage] = useState(false)
     const [transactions, setTransactions] = useState(false)
-
+const handlepay= () =>{
+    navigate('/payment-page')
+}
  
     const [givestip, setGivestip] = useState(false)
     const following = () => {
@@ -344,14 +346,14 @@ const Profile = () => {
                                         </div>
 
                                         <div className="d-flex justify-content-between align-items-center pt-4 sec-rqst-btns">
-                                            <button
+                                            {/* <button
                                                 className="sign_actionBtn"
                                                 data-aos="fade-right"
                                                 data-aos-anchor-placement="center-bottom"
                                                 data-aos-duration="3000"
                                             >
                                                 send request
-                                            </button>
+                                            </button> */}
 
                                             <button
                                                 className="sign_actionBtn"
@@ -388,7 +390,7 @@ const Profile = () => {
                                         <img src={modelCardBottomCorner} />
                                     </div>
                                 </div>
-
+{/* 
                                 <div
                                     className="more_profiles_main"
                                     data-aos="fade-right"
@@ -522,7 +524,7 @@ const Profile = () => {
                                             </div>
                                         </div>
                                     </div>
-                                </div>
+                                </div> */}
                             </div>
                         </div>
 
@@ -864,10 +866,11 @@ const Profile = () => {
                                                 <div className="paytips col-md-3    mb-4 justify-content-center">
                                                     <input
                                                         className=""
+                                                        id="t1"
                                                         type="radio"
                                                         checked={isChecked}
                                                         onClick={() => handleRadioChange(0)}
-                                                    /> $100
+                                                    />   <label for="t1"> $100</label> 
                                                 </div>
 
 
@@ -876,43 +879,48 @@ const Profile = () => {
                                                 <div className="paytips col-md-3    mb-4 justify-content-center">
                                                     <input
                                                         className=""
+                                                        id="t2"
                                                         type="radio"
                                                         checked={isChecked}
                                                         onClick={() => handleRadioChange(1)}
-                                                    /> $100
+                                                    /> <label for="t2"> $200</label> 
                                                 </div>
 
                                                 <div className="paytips col-md-3    mb-4 justify-content-center">
                                                     <input
                                                         className=""
+                                                        id="t3"
                                                         type="radio"
                                                         checked={isChecked}
                                                         onClick={() => handleRadioChange(2)}
-                                                    /> $100
+                                                    /> <label for="t3"> $300</label> 
                                                 </div>
                                                 <div className="paytips col-md-3  mb-4 " >
                                                     <input
                                                         className=""
                                                         type="radio"
+                                                        id="t4"
                                                         checked={isChecked}
                                                         onClick={() => handleRadioChange(3)}
-                                                    /> $100
+                                                    />   <label for="t4"> $400</label> 
                                                 </div>
-                                                <div className="paytips col-md-3  mb-4 ">
+                                                <div type="btn" className="paytips col-md-3   mb-4 ">
                                                     <input
                                                         className=""
                                                         type="radio"
                                                         checked={isChecked}
+                                                        id="t5"
                                                         onClick={() => handleRadioChange(4)}
-                                                    /> $100
+                                                    />  <label for="t5"> $450</label> 
                                                 </div>
                                                 <div className="paytips col-md-3  mb-4 ">
                                                     <input
                                                         className=""
+                                                        id="t5"
                                                         type="radio"
                                                         checked={isChecked}
                                                         onClick={() => handleRadioChange(5)}
-                                                    /> $100
+                                                    />  <label for="t5"> $500</label> 
                                                 </div>
 
                                             </div>
@@ -921,7 +929,7 @@ const Profile = () => {
                                             <div className="custompay mb-4"> $
                                                 <input className="custom" type="text" />
                                             </div>
-                                            <button className="paybtn mt -4">
+                                            <button onClick={handlepay} className="paybtn mt -4">
                                                 Pay Now
                                             </button>
                                         </div>

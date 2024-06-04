@@ -31,7 +31,7 @@ const Payment = () => {
     else if (getusertype == 3) {
       // notify()
       // toastAlert("You've successfully submitted a payment!", ALERT_TYPES.SUCCESS);
-      navigate('/profile-page')
+      navigate('/')
     }
 
     else {
@@ -126,7 +126,7 @@ const Payment = () => {
                       <input
                         className="nam"
                         type="text"
-                        placeholder="YYY"
+                        placeholder="YYYY"
                         required
                         name="Name"
                       />
@@ -141,7 +141,7 @@ const Payment = () => {
                     <input
                       className="nam"
                       type="text"
-                      placeholder="1234-5678-9101-1213"
+                      placeholder="123"
                       required
                       name="Name"
                     />

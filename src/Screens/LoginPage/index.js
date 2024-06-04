@@ -42,7 +42,7 @@ const Login = () => {
         if (usertype == 2) {
           navigate("/model-profile-page");
         } else {
-          navigate("/");
+          navigate("/model-page");
         }
         // navigate("/");
       } else {
