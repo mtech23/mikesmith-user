@@ -517,17 +517,22 @@ outline: 0 !important;
   color: #000 !important;
 }
 
-
 .css-t3ipsp-control .css-1p3m7a8-multiValue * {
   color: #fff !important;
 }
 
+.css-t3ipsp-control *{
+  color: #000000 !important;
+}
+
+/* .css-t3ipsp-control * :focus {
+
+  border: none !important;
+  outline: 0 !important;
+} */
+/* .css-5kkxb */
 
 /* .css-13cymwt-control:hover{
   background-color: #000 !important;
   color: #fff !important;
 } */
-.css-t3ipsp-control *{
-  color: #000000 !important;
-}
-/* .css-5kkxb */

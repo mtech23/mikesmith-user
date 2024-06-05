@@ -10,6 +10,7 @@ import Packages from "../Screens/PackagesPage";
 import Faqs from '../Screens/Faqs'
 import Payment from "../Screens/PaymentPage";
 import History from "../Screens/History";
+import UserProfile from "../Screens/UserProfile";
  
 import SignUp from "../Screens/SignUpPage";
 import { ToastContainer } from "react-toastify";
@@ -65,6 +66,15 @@ const Router = () => {
             </ProtectedRoute>
           }
         />
+         <Route
+          path="/user-profile"
+          element={
+            <ProtectedRoute>
+              <UserProfile />
+            </ProtectedRoute>
+          }
+        />
+         
         <Route path="/" element={<Home />} />
         <Route path="/model-page" element={<Model />} />
         {/* <Route path="/profile-page" element={<Profile />} /> */}

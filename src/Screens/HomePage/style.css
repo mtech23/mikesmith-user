@@ -299,8 +299,8 @@
 }
 
 .first_model_card .model_card_img img {
-  width: 100%;
-  height: 345px;
+  width: 439px;
+  height: 369px;
 }
 
 .have_alook_btn {
@@ -616,6 +616,12 @@
 }
 
 /* .how_it_works_left_img */
+@media (max-width: 1440px) {
+  .first_model_card .model_card_img img {
+
+    height: 311px;
+  }
+}
 
 @media (max-width: 1600px) {
   .for_model_most_right_img {
@@ -632,6 +638,10 @@
 @media (max-width: 1024px) {
   #platinumFeetTextimg {
     width: 426px;
+  }
+  .first_model_card .model_card_img img {
+
+    height: 275px;
   }
 }
 
@@ -670,6 +680,11 @@
     height: 388px;
     width: 314px;
     opacity: 0;
+  }
+}
+@media (max-width: 991px) {
+  .first_model_card .model_card_img img {
+      height: 355px;
   }
 }
 
@@ -864,6 +879,10 @@
     padding-top: 12px;
     padding-bottom: 10px;
   }
+  .first_model_card .model_card_img img {
+        width: 373px !important;
+        height: 348px !important;
+    }
 
   .for_models_right_para {
     font-size: 14px;
@@ -1009,7 +1028,13 @@
     height: 45px;
   }
 }
+@media (max-width: 600px) {
+  .first_model_card .model_card_img img {
+    width: 366px;
+    height: 304px;
+}
 
+}
 
 @media (min-width: 1399px) {
   .container, .container-lg, .container-md, .container-sm, .container-xl {

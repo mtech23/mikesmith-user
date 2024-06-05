@@ -41,6 +41,7 @@ import {
     howItWorksText,
     howItWorksImg,
     forClientText,
+    mainLogo,
     forClientImg,
     forModelsText,
     formodelImg01,
@@ -69,7 +70,7 @@ import "aos/dist/aos.css";
 import { nanoid } from "@reduxjs/toolkit";
 import { useNavigate } from "react-router-dom";
 import { useRef } from 'react';
-const Profile = () => {
+const UserProfile = () => {
     const { id } = useParams()
     const navigate = useNavigate()
     // const handleclick = () => {
@@ -262,7 +263,7 @@ const handlepay= () =>{
             <div className="profile_section_main">
                 <div className="container">
                     <div className="row">
-                        <div className="col-md-3">
+                        <div className="col-lg-3 col-sm-12">
                             <div className="profile_left_part">
                                 <div className="user_profile_main position-relative">
                                     <div className="user_profile_bk_img">
@@ -277,6 +278,7 @@ const handlepay= () =>{
                                             data-aos-duration="3000"
                                         >
                                             <img src={(baseurl + modellistsprofileview?.profile_pic) && (userProfilePic)} />
+                                           <button className="profile_edit_icon"> <i class="fa-regular fa-pen-to-square "></i> </button>
                                         </div>
 
                                         <div className="user_info">
@@ -312,7 +314,7 @@ const handlepay= () =>{
                       </p> */}
                                         </div>
 
-                                        <div
+                                        {/* <div
                                             className="followers_div mb-4"
                                             data-aos="fade-left"
                                             data-aos-anchor-placement="center-bottom"
@@ -322,7 +324,7 @@ const handlepay= () =>{
                                             <span className="followers_number">
                                                 <span className="no_of_follows">{modellistsprofileview?.follower || 0}</span>
                                             </span>
-                                        </div>
+                                        </div> */}
 
                                         <div
                                             className="followers_div"
@@ -331,7 +333,7 @@ const handlepay= () =>{
                                             data-aos-duration="3000"
                                         >
                                             {/* <span className="followers_title">following</span> */}
-                                            <div
+                                            {/* <div
                                                 data-aos="fade-right"
                                                 data-aos-anchor-placement="center-bottom"
                                                 data-aos-duration="3000"
@@ -342,7 +344,7 @@ const handlepay= () =>{
                                             </div>
                                             <span className="followers_number">
                                                 <span className="no_of_follows">{modellistsprofileview?.following || 0} </span>
-                                            </span>
+                                            </span> */}
                                         </div>
 
                                         <div className="d-flex justify-content-between align-items-center pt-4 sec-rqst-btns">
@@ -354,22 +356,70 @@ const handlepay= () =>{
                                             >
                                                 send request
                                             </button> */}
+                                             <button
+                                                className="followers_numbers"
+                                                data-aos="fade-left"
+                                                data-aos-anchor-placement="center-bottom"
+                                                data-aos-duration="3000"
+                                              >
+                                                <span className="profile_btn_icons"><i class="fa-solid fa-unlock-keyhole "></i></span>
+                                                Unclocked Content
+                                            </button>
 
                                             <button
-                                                className="sign_actionBtn"
+                                                className=" followers_numbers"
                                                 data-aos="fade-left"
                                                 data-aos-anchor-placement="center-bottom"
                                                 data-aos-duration="3000"
                                                 onClick={sendmessage} >
-                                                send message
+                                                    <i class="fa-solid fa-envelope profile_btn_icons"></i>
+                                                Inbox
                                             </button>
                                             <button
-                                                className="sign_actionBtn"
+                                                className=" followers_numbers"
+                                                data-aos="fade-left"
+                                                data-aos-anchor-placement="center-bottom"
+                                                data-aos-duration="3000"
+                                                onClick={following}>
+                                              
+                                                <i class="fa-solid fa-user-plus profile_btn_icons"></i>
+                                                Following
+                                            </button>
+                                            <button
+                                                className="followers_numbers"
                                                 data-aos="fade-left"
                                                 data-aos-anchor-placement="center-bottom"
                                                 data-aos-duration="3000"
                                                 onClick={transaction} >
+                                                <i class="fa-regular fa-credit-card profile_btn_icons"></i>
                                                 Transaction
+                                            </button>
+                                            <button
+                                                className="followers_numbers"
+                                                data-aos="fade-left"
+                                                data-aos-anchor-placement="center-bottom"
+                                                data-aos-duration="3000"
+                                              >
+                                                <i class="fa-solid fa-gear profile_btn_icons"></i>
+                                                Settings
+                                            </button>
+                                            <button
+                                                className=" followers_numbers"
+                                                data-aos="fade-left"
+                                                data-aos-anchor-placement="center-bottom"
+                                                data-aos-duration="3000"
+                                              >
+                                                <i class="fa-solid fa-handshake-angle profile_btn_icons"></i>
+                                                Partner Program
+                                            </button>
+                                            <button
+                                                className="followers_numbers"
+                                                data-aos="fade-left"
+                                                data-aos-anchor-placement="center-bottom"
+                                                data-aos-duration="3000"
+                                              >
+                                                <i class="fa-solid fa-arrow-right-from-bracket profile_btn_icons"></i>
+                                                Log Out
                                             </button>
                                         </div>
 
@@ -378,7 +428,10 @@ const handlepay= () =>{
                                             data-aos-anchor-placement="center-bottom"
                                             data-aos-duration="3000"
                                         >
-                                            <button onClick={givetip} className="give_tip_btn">give tip</button>
+                                            <button onClick={givetip} className="followers_numbers">
+                                            <i class="fa-solid fa-circle-dollar-to-slot profile_btn_icons"></i>
+                                                Give Tip
+                                                </button>
                                         </div>
                                     </div>
 
@@ -528,7 +581,7 @@ const handlepay= () =>{
                             </div>
                         </div>
 
-                        <div className="col-md-9">
+                        <div className="col-lg-9 col-sm-12">
                             <div className="feet_container_main">
 
 
@@ -703,7 +756,6 @@ const handlepay= () =>{
                                                                    
                                             </div>                     
                                         </div>
-                                        
               
               
                                           <div className="custom_dropdown_div">
@@ -855,13 +907,49 @@ const handlepay= () =>{
 
 
                                 {givestip && (
-                                    <div className="row paytab">
+                                    <div className="row paytab ">
 
-                                        <div className="col-md-19">
+                                        <div className="col-md-12">
                                             <h3 className="following_heading" data-aos="fade-right" data-aos-anchor-placement="center-bottom" data-aos-duration="3000" >Payment Information</h3>
                                             <div className="divider_row"></div>
                                         </div>
-                                        <div className="col-md-12" data-aos="fade-up" data-aos-anchor-placement="center-bottom" data-aos-duration="3000">
+                                        <div className="col-md-4 choose_amount_column payment_right_side" data-aos="fade-up" data-aos-anchor-placement="center-bottom" data-aos-duration="3000">
+
+                                       
+                                              <div className="payment_img_div">
+                                                <img className="img-fluid payment_img" src={modelImg02} alt="Brittanyvues" />
+                                                {/* <p className="image_text">Brittanyvues</p> */}
+                                                <div className="model_div">
+                                                        <div className="image_with_text_row">
+                                                            <img className="img-fluid model_img" src={userProfilePic}/>
+                                                            <p className="profile_name_one"> Brittanyvues </p>      
+                                                        </div>     
+                                                
+                                                
+                                                        <div className="image_with_text_row_two">
+                                                        <p className="free_locked_text">
+                                                            <span className="unlocked_icon">
+                                                            <i className="fa-solid fa-unlock"></i>
+                                                            </span> 
+                                                        
+                                                            Free
+                                                        </p>
+                                                        <p className="lock_text_clr free_locked_text">
+                                                            <span className="locked_icon">
+                                                            <i className="fa-solid fa-lock"></i>
+                                                            </span>
+                                                        
+                                                            Locked
+                                                        </p>
+                                                        </div>
+                                                
+                                                    </div>
+                                                
+                                            </div>
+                                              
+                                              
+                                        </div>
+                                        <div className="col-md-8 choose_amount_column" data-aos="fade-up" data-aos-anchor-placement="center-bottom" data-aos-duration="3000">
                                             <h4 className="  text-white mt-2 mb-2">Choose Amount </h4>
                                             <div className="tipgap row  mx-auto    ">
                                                 <div className="paytips col-md-3    mb-4 justify-content-center">
@@ -934,6 +1022,8 @@ const handlepay= () =>{
                                                 Pay Now
                                             </button>
                                         </div>
+                                        
+
                                     </div>
                                 )}
 
@@ -1038,4 +1128,4 @@ const handlepay= () =>{
     );
 };
 
-export default Profile;
+export default UserProfile;
