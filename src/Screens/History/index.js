@@ -501,7 +501,7 @@ const baseurl = `${process.env.REACT_APP_BASE_URL}/public/`
                               </form>
                               <div className="divider_row"></div>
                               <div className="btns_row">
-                                <button className="update_btn">  Create Account </button> 
+                                <button className="create_btn">  Update Settings </button> 
                                 <a href="#" className="delete_btns"> <i class="fa fa-trash" aria-hidden="true"></i>  Delete Account </a>
                               </div>
                             </div>
@@ -520,7 +520,7 @@ const baseurl = `${process.env.REACT_APP_BASE_URL}/public/`
                             </form>
                             <div className="divider_row"></div>
                             <div className="btns_row">
-                              <button className="update_btn">  Create Account </button> 
+                              <button className="create_btn">  Update Settings </button> 
                               <a href="#" className="delete_btns"> <i class="fa fa-trash" aria-hidden="true"></i>  Delete Account </a>
                             </div>
                           </div>

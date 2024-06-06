@@ -219,6 +219,7 @@ const UserProfile = () => {
         setSendmessage(true)
         setFollowing(false)
         setmodellisting(false)
+        setUnlock(false)
         setTransactions(false)
         setGivestip(false)
     }
@@ -231,6 +232,7 @@ const UserProfile = () => {
         setUnlock(false)
         setmodellisting(false)
         setGivestip(false)
+        setSetting(false)
     }
     const showprofile = () => {
         setmodellisting(true)
@@ -249,6 +251,7 @@ const UserProfile = () => {
         setmodellisting(false)
         setGivestip(true)
         setUnlock(false)
+        setSetting(false)
     }
 
 
@@ -260,6 +263,8 @@ const UserProfile = () => {
         setmodellisting(false)
         setUnlock(true)
         setSetting(false)
+        setGivestip(false)
+
     }
 
 
@@ -274,8 +279,6 @@ const UserProfile = () => {
         setUnlock(false)
         setGivestip(false)
     }
-
-
 
 
     const [isChecked, setIsChecked] = useState(null);
@@ -362,7 +365,7 @@ const UserProfile = () => {
 
             <div className="profile_section_main">
                 <div className="container">
-                    <div className="row">
+                    <div className="row justify-content-between">
                         <div className="col-lg-3 col-sm-12">
                             <div className="profile_left_part">
                                 <div className="user_profile_main position-relative">
@@ -378,7 +381,7 @@ const UserProfile = () => {
                                             data-aos-duration="3000"
                                         >
                                             <img src={(baseurl + modellistsprofileview?.profile_pic)} />
-                                            <div className="profile_edit_icon">  <input type="file" name="image" onChange={handlefile} /> <i class="fa-regular fa-pen-to-square "></i>
+                                            <div className="profile_edit_icon">  <input type="file" className="edit_icon_input" name="image" onChange={handlefile} /> <i class="fa-regular fa-pen-to-square "></i>
                                             </div>
                                         </div>
 
@@ -674,20 +677,8 @@ const UserProfile = () => {
                             </div>
                         </div>
 
-                        <div className="col-lg-9 col-sm-12">
+                        <div className="col-lg-8 col-sm-12">
                             <div className="feet_container_main">
-
-
-
-
-
-
-
-
-
-
-
-
 
 
                                 {setting && (
@@ -725,7 +716,7 @@ const UserProfile = () => {
                                                         </form>
                                                         <div className="divider_row"></div>
                                                         <div className="btns_row">
-                                                            <button className="update_btn">  Update Email </button>
+                                                            <button className="create_btn">  Update Email </button>
                                                             <a href="#" className="delete_btns"> <i class="fa fa-trash" aria-hidden="true"></i>  Delete Account </a>
                                                         </div>
                                                     </div>
@@ -744,7 +735,7 @@ const UserProfile = () => {
                                                         </form>
                                                         <div className="divider_row"></div>
                                                         <div className="btns_row">
-                                                            <button className="update_btn">  Update Paasword </button>
+                                                            <button className="create_btn">  Update Paasword </button>
                                                             <a href="#" className="delete_btns"> <i class="fa fa-trash" aria-hidden="true"></i>  Delete Account </a>
                                                         </div>
                                                     </div>
@@ -758,28 +749,13 @@ const UserProfile = () => {
 
 
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
                                 {modellist && (
                                     <div className="row  ">
                                         {modellists?.map((items, index) => (
 
-
-                                            <div className="col-sm-6 col-lg-4">
-                                                <div className="first_model_card">
+                                                    
+                                            <div className="col-10 col-sm-6 col-lg-3 mx-auto">   
+                                                <div className="unlocked_model_card">
 
 
                                                     <Swiper
@@ -791,7 +767,7 @@ const UserProfile = () => {
                                                         {items?.post_data?.map((data) => (
 
                                                             <SwiperSlide>
-                                                                <div className="model_card_img position-relative first_model_card"
+                                                                <div className="model_card_img position-relative unlocked_model_card"
                                                                     data-toggle="modal"
                                                                     data-target=".exampleModal">
                                                                     <img src={data?.file ? baseurl + data.file : dummy} className="img-fluid" />
@@ -817,6 +793,7 @@ const UserProfile = () => {
                                                                         </span>
                                                                     </div>
                                                                 </div>
+
                                                             </SwiperSlide>))}
 
 
@@ -892,9 +869,6 @@ const UserProfile = () => {
                                         </div>
                                     </div>
                                 )}
-
-
-
 
 
 
@@ -1044,96 +1018,74 @@ const UserProfile = () => {
 
                                 {unlock && (
 
-                                    <div className="tabs_box box_height">
+                                    <div className="unlocked_box">
                                         <div className="row">
-                                            <div   className="col-10 col-sm-6 col-lg-3 mx-auto">
-                                                <div className="first_model_card">
+                                       
+                                      
+                  <div className="col-10 col-sm-6 col-lg-4">
+                    <div className="unlocked_model_card">
 
 
-                                                    <Swiper
-                                                        spaceBetween={30}
-                                                        slidesPerView={1}
-                                                        onSlideChange={() => console.log("slide change")}
-                                                        onSwiper={(swiper) => console.log(swiper)}
-                                                    >
+                    {/* <Swiper
+                        spaceBetween={30}
+                        slidesPerView={1}
+                        onSlideChange={() => console.log("slide change")}
+                        onSwiper={(swiper) => console.log(swiper)}
+                        > */}
+                             {/* <SwiperSlide> */}
+                                    <div className="model_card_img position-relative">
+                                        <img
+                                        src={modelImg03}
+                                        className="img-fluid"
+                                        />
 
-                                                        <SwiperSlide  >
-                                                            <div className="model_card_img position-relative">
-                                                                <img
-                                                                    src={modelImg03}
-                                                                    className="img-fluid"
-                                                                />
-                                                                {/* {token && (
-                                                                    <span
-                                                                        type="button"
-                                                                        onClick={() => handleHeart(item?.id)}
-                                                                        className="heart_icon"
-                                                                    >
-                                                                        <i className={`fa ${item?.favourite == true ? 'fa-solid' : 'fa-regular'} fa-heart`}></i>
-                                                                    </span>
-                                                                )} */}
+                                    </div>
 
-                                                            </div>
-
-                                                            <div className="model_card_desc ">
-                                                                <div className="model_div">
-                                                                    <div className="image_with_text_row">
-                                                                        <img className="img-fluid model_img" src={userProfilePic} />
-                                                                        <p className="profile_name_one"> Brittanyvues </p>
-                                                                    </div>
-
-
-                                                                    <div className="image_with_text_row_two">
-                                                                        <p className="free_locked_text">
-                                                                            <span className="unlocked_icon">
-                                                                                <i className="fa-solid fa-unlock"></i>
-                                                                            </span>
-
-                                                                            Free
-                                                                        </p>
-                                                                        <p className="lock_text_clr free_locked_text">
-                                                                            <span className="locked_icon">
-                                                                                <i className="fa-solid fa-lock"></i>
-                                                                            </span>
-
-                                                                            Locked
-                                                                        </p>
-                                                                    </div>
-
-                                                                </div>
-                                                                <div className="description_box">
-                                                                    <a className="product_heading" href="#">Lorem Ipsum</a>
-                                                                    <p className="product_description" >Lorem Ipsum is simply dummy text of the printing and typesetting industry.
-                                                                        Ipsum has been the industry's standard dummy text ever since the 1500s,</p>
-                                                                </div>
-
-
-
-
-
-
-
-
-
-
-                                                            </div>
-
-                                                        </SwiperSlide>
-
-
-                                                    </Swiper>
-
-                                                    <div className="model_card_top_corner_img">
-                                                        <img src={modelCardTopCorner} />
-                                                    </div>
-
-                                                    <div className="model_card_bottom_corner_img">
-                                                        <img src={modelCardBottomCorner} />
-                                                    </div>
-
-
+                                    <div className="unlocked_card_desc ">
+                                            <div className="unlocked_div">
+                                                <div className="unlocked_image_with_text_row">
+                                                    <img className="img-fluid model_img" src={userProfilePic}/>
+                                                    <p className="profile_name_one"> Brittanyvues </p>      
+                                                </div>     
+                                        
+                                        
+                                                <div className="image_with_text_row_two">
+                                                <p className="unlocked_text">
+                                                    <span className="unlocked_content_icon">
+                                                    <i className="fa-solid fa-unlock"></i>
+                                                    </span> 
+                                                
+                                                    Free
+                                                </p>
+                                                <p className="lock_text_clr unlocked_text">
+                                                    <span className="locked_content_icon">
+                                                    <i className="fa-solid fa-lock"></i>
+                                                    </span>
+                                                
+                                                    Locked
+                                                </p>
                                                 </div>
+                                        
                                             </div>
+                                            <div className="description_box">
+                                                <a className="product_heading" href="#">Lorem Ipsum</a>
+                                                <p className="product_description" >Lorem Ipsum is simply dummy text of the printing and typesetting industry.
+                                                Ipsum has been the industry's standard dummy text ever since the 1500s,</p>
+                                            </div>
+                                    </div>
+                                {/* </SwiperSlide>
+                          </Swiper> */}
+                                    <div className="model_card_top_corner_img">
+                                        <img src={modelCardTopCorner} />
+                                    </div>
+
+                                    <div className="model_card_bottom_corner_img">
+                                        <img src={modelCardBottomCorner} />
+                                    </div>
+
+                                    </div>
+                                </div>
+
                                         </div>
                                     </div>
                                 )}

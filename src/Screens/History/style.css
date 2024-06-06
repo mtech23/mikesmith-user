@@ -231,6 +231,18 @@ padding: 0px 20px ;
 .update_btn:hover{
   transform: scale(1.04);
 }
+.create_btn {
+  background-color: #161616;
+  border: #ab8b38 1px solid;
+  padding: 10px 41px;
+  font-size: 16px;
+  color: white;
+  font-family: "CircularStd-Bold", sans-serif;
+  border-radius: 25px;
+}
+.create_btn:hover{
+  background-color: #b99649;
+}
 .delete_btns{
   font-family: "CircularStd-Medium", sans-serif;
   font-weight: 500;
@@ -1124,8 +1136,9 @@ p.carousel-footer_price {
   }
   .more_users_profile_img {
     width: 30% !important;
- 
- 
+  }
+  .email-form input.mail[type="text"] {
+    background-size: 4% 40% !important;
   }
 
 }
