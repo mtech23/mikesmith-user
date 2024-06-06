@@ -299,8 +299,11 @@
 }
 
 .first_model_card .model_card_img img {
-  width: 439px;
-  height: 369px;
+  /* width: 439px;
+  height: 369px; */
+  height: 100%;
+  min-height: 420px;
+
 }
 
 .have_alook_btn {

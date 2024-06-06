@@ -250,6 +250,16 @@ const handlepay= () =>{
 
     }
 
+    const stylesForSidebar = {
+        "marginTop": "0px",
+        "height": "100%",
+        "borderRadius": "20px",
+        "width": "80%",
+        "padding": "34px 0px 12px",
+        "maxHeight" : "300px",
+        "objectFit": "contain",
+    };
+
 
 
     console.log("isChecked", isChecked)
@@ -265,9 +275,9 @@ const handlepay= () =>{
                         <div className="col-md-3">
                             <div className="profile_left_part">
                                 <div className="user_profile_main position-relative">
-                                    <div className="user_profile_bk_img">
+                                    {/* <div className="user_profile_bk_img">
                                         <img src={userProfilePicBackground} className="img-fluid" />
-                                    </div>
+                                    </div> */}
 
                                     <div className="user_profile_info text-center">
                                         <div type="button" onClick={showprofile}
@@ -275,8 +285,9 @@ const handlepay= () =>{
                                             data-aos="flip-left"
                                             data-aos-anchor-placement="center-bottom"
                                             data-aos-duration="3000"
+                                            
                                         >
-                                            <img src={(baseurl + modellistsprofileview?.profile_pic) && (userProfilePic)} />
+                                            <img src={(baseurl + modellistsprofileview?.profile_pic) && (modelImg01)} style={stylesForSidebar}/>
                                         </div>
 
                                         <div className="user_info">
@@ -310,9 +321,42 @@ const handlepay= () =>{
                                          {modellistsprofileview?.bio || 'Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry standard' }
 
                       </p> */}
+
+
+                                        <div className="main_about_div">
+                                            <h6 className="hot_model_name text-left about_text">About:</h6>
+                                            <p className="user_profile_about">
+                                            9 and SINGLE-Nudist and bass fisherman-MILF and GILF. I live on a treefarm. Here to make some smiling faces light up even brighter I'm not here to judge anyone's kinks... I have my own... teeheehe
+                                            </p>
                                         </div>
 
-                                        <div
+                                        <div className="user_about_icons">
+                                            <span className="facebook_icon">
+                                                {/* <FontAwesomeIcon icon="fa-brands fa-facebook-f" /> */}
+                                                <i class="fa-brands fa-facebook-f"></i>
+                                            </span>
+
+                                            <span className="facebook_icon">
+                                            {/* <FontAwesomeIcon icon="fa-brands fa-square-instagram" /> */}
+                                            <i class="fa-brands fa-instagram"></i>
+                                            </span>
+
+                                            <span className="facebook_icon">
+                                            {/* <FontAwesomeIcon icon="fa-brands fa-square-instagram" /> */}
+                                            <i class="fa-brands fa-youtube"></i>
+                                            </span>
+
+                                            <span className="facebook_icon">
+                                            {/* <FontAwesomeIcon icon="fa-brands fa-square-instagram" /> */}
+                                            <i class="fa-brands fa-twitter"></i>
+                                            </span>
+
+                                       
+                                        </div>
+
+                                        </div>
+
+                                        {/* <div
                                             className="followers_div mb-4"
                                             data-aos="fade-left"
                                             data-aos-anchor-placement="center-bottom"
@@ -322,15 +366,14 @@ const handlepay= () =>{
                                             <span className="followers_number">
                                                 <span className="no_of_follows">{modellistsprofileview?.follower || 0}</span>
                                             </span>
-                                        </div>
+                                        </div> */}
 
-                                        <div
+                                        {/* <div
                                             className="followers_div"
                                             data-aos="fade-right"
                                             data-aos-anchor-placement="center-bottom"
                                             data-aos-duration="3000"
                                         >
-                                            {/* <span className="followers_title">following</span> */}
                                             <div
                                                 data-aos="fade-right"
                                                 data-aos-anchor-placement="center-bottom"
@@ -343,17 +386,9 @@ const handlepay= () =>{
                                             <span className="followers_number">
                                                 <span className="no_of_follows">{modellistsprofileview?.following || 0} </span>
                                             </span>
-                                        </div>
+                                        </div> */}
 
-                                        <div className="d-flex justify-content-between align-items-center pt-4 sec-rqst-btns">
-                                            {/* <button
-                                                className="sign_actionBtn"
-                                                data-aos="fade-right"
-                                                data-aos-anchor-placement="center-bottom"
-                                                data-aos-duration="3000"
-                                            >
-                                                send request
-                                            </button> */}
+                                        {/* <div className="d-flex justify-content-between align-items-center pt-4 sec-rqst-btns">
 
                                             <button
                                                 className="sign_actionBtn"
@@ -371,15 +406,19 @@ const handlepay= () =>{
                                                 onClick={transaction} >
                                                 Transaction
                                             </button>
-                                        </div>
+                                        </div> */}
 
-                                        <div
+                                        {/* <div
                                             data-aos="fade-right"
                                             data-aos-anchor-placement="center-bottom"
                                             data-aos-duration="3000"
                                         >
                                             <button onClick={givetip} className="give_tip_btn">give tip</button>
-                                        </div>
+                                        </div> */}
+
+                                        <button class="followers_numbers aos-init aos-animate" data-aos="fade-left" data-aos-anchor-placement="center-bottom" data-aos-duration="3000"><i class="fa-solid fa-envelope profile_btn_icons"></i>Inbox</button>
+                                        <button class="followers_numbers aos-init aos-animate mt-3" data-aos="fade-left" data-aos-anchor-placement="center-bottom" data-aos-duration="3000"><i class="fa-solid fa-user-plus profile_btn_icons"></i>Followers</button>
+
                                     </div>
 
                                     <div class="model_card_top_corner_img">
