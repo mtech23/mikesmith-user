@@ -302,7 +302,7 @@ const Model = () => {
 
               {listingCard &&
                 filterData?.map((item, index) => (
-                  <div key={index} className="col-sm-6 col-lg-3">
+                  <div key={index} className="col-10 col-sm-6 col-lg-3 mx-auto">
                     <div className="first_model_card">
 
 

@@ -469,7 +469,7 @@ const baseurl = `${process.env.REACT_APP_BASE_URL}/public/`
 
 
 
-            {/* <div className="row tabs_box">
+            <div className="row tabs_box">
 
                   <div className="col-md-12 p-0" >
                       <h3 className="following_heading" data-aos="fade-right" data-aos-anchor-placement="center-bottom" data-aos-duration="3000" > Settings </h3>
@@ -527,7 +527,7 @@ const baseurl = `${process.env.REACT_APP_BASE_URL}/public/`
                         </div>
                       </div>
                   </div>
-                </div>   */}
+                </div>  
 
 
 
@@ -576,7 +576,7 @@ const baseurl = `${process.env.REACT_APP_BASE_URL}/public/`
 
                 </div>  */}
 
-                <div className="tabs_box box_height">
+                {/* <div className="tabs_box box_height">
                   <div className="row">
                     <div className="col-md-12 ">
                       <h3 className="inbox_heading" data-aos="fade-right" data-aos-anchor-placement="center-bottom" data-aos-duration="3000" >Inbox</h3>
@@ -648,42 +648,6 @@ const baseurl = `${process.env.REACT_APP_BASE_URL}/public/`
                                 <p className="message_date">29 May 08:12 AM</p>
                                 <p className="message_para_reply">Coming</p>
                               </div>
-                              {/* <div className="chat_box">
-                                <p className="message_date">29 May 07:59 AM</p>
-                                <p className="message_para">I'm waiting</p>
-                              </div>
-                              <div className="chat_box">
-                                <p className="message_date">29 May 07:59 AM</p>
-                                <p className="message_para">I'm waiting</p>
-                              </div>
-                              <div className="chat_box">
-                                <p className="message_date">29 May 07:59 AM</p>
-                                <p className="message_para">I'm waiting</p>
-                              </div>
-                              <div className="chat_box">
-                                <p className="message_date">29 May 07:59 AM</p>
-                                <p className="message_para">Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lore five centuries, but also the leap into electronic typesetting, remaining essentially unchanged. It was popularised in the 1960s with the release of Letraset sheets containing Lorem Ipsum passages, and more recently with des</p>
-                              </div>
-                              <div className="chat_box">
-                                <p className="message_date">29 May 07:59 AM</p>
-                                <p className="message_para">I'm waiting</p>
-                              </div>
-                              <div className="chat_box">
-                                <p className="message_date">29 May 07:59 AM</p>
-                                <p className="message_para">I'm waiting</p>
-                              </div>
-                              <div className="chat_box">
-                                <p className="message_date">29 May 07:59 AM</p>
-                                <p className="message_para">I'm waiting</p>
-                              </div>
-                              <div className="chat_box">
-                                <p className="message_date">29 May 07:59 AM</p>
-                                <p className="message_para">I'm waiting</p>
-                              </div>
-                              <div className="chat_box">
-                                <p className="message_date">29 May 07:59 AM</p>
-                                <p className="message_para">I'm waiting</p>
-                              </div> */}
                               </div>
                           
 
@@ -697,7 +661,7 @@ const baseurl = `${process.env.REACT_APP_BASE_URL}/public/`
                         </div>
 
                   </div>
-                </div>
+                </div> */}
                   
 
                   
