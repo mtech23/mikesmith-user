@@ -586,12 +586,6 @@ const handlepay= () =>{
 
 
 
-
-
-
-
-
-
                                 {modellist && (
                                     <div className="row  ">
                                         {modellists?.map((items, index) => (
