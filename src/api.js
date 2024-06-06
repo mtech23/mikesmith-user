@@ -624,9 +624,9 @@ export const modelprofiletag = async (id) => {
 
 
 //Get User Profile view
-export const Userprogileview = async (id) => {
+export const Userprogileview = async ( ) => {
   try {
-    const res = await fetch(`${url}/public/api/user/profile-get/${id}`, {
+    const res = await fetch(`${url}/public/api/user/profile-get`, {
       method: "Get",
       headers: {
         "Content-Type": "application/json",

@@ -19,6 +19,7 @@ import {
   modelText,
   modelImg01,
   modelCardTopCorner,
+  userProfilePic,
   modelCardBottomCorner,
   modelImg02,
   modelImg03,
@@ -328,38 +329,72 @@ const Model = () => {
                               </span>
                             )}
 
-
-
-
-
-
-
                           </div>
 
-                          <div className="model_card_desc">
-                            <div className="name_with_status">
+                          <div className="model_card_desc ">
+                                <div className="model_div">
+                                    <div className="image_with_text_row">
+                                        <img className="img-fluid model_img" src={userProfilePic}/>
+                                        <p className="profile_name_one"> Brittanyvues </p>      
+                                    </div>     
+                              
+                              
+                                    <div className="image_with_text_row_two">
+                                    <p className="free_locked_text">
+                                        <span className="unlocked_icon">
+                                          <i className="fa-solid fa-unlock"></i>
+                                        </span> 
+                                     
+                                        Free
+                                      </p>
+                                      <p className="lock_text_clr free_locked_text">
+                                        <span className="locked_icon">
+                                          <i className="fa-solid fa-lock"></i>
+                                        </span>
+                                      
+                                         Locked
+                                      </p>
+                                    </div>
+                               
+                                 </div>
+                                 <div className="description_box">
+                                    <a className="product_heading" href="#">Lorem Ipsum</a>
+                                    <p className="product_description" >Lorem Ipsum is simply dummy text of the printing and typesetting industry.
+                                     Ipsum has been the industry's standard dummy text ever since the 1500s,</p>
+                                  </div>
+              
+            
+                            {/* <div className="name_with_status">
                               <span className="online_circle">
                                 <i class="fa-solid fa-circle"></i>
                               </span>
                               <span className="hot_model_name">
                                 {item?.name}
                               </span>
-                            </div>
-                            <div>
+                            </div> */}
+                            {/* <div>
                               <span className="hotmodel_info">
                                 {item?.address}
                               </span>
                               <span className="send_tip_text">
                                 send tip
                               </span>
-                            </div>
+                            </div> */}
 
-                            <div className="pt-2">
+                            {/* <div className="pt-2">
                               <button className="sign_actionBtn" onClick={() => handleclick(item?.id)}>
                                 view profile
                               </button>
-                            </div>
+                            </div> */}
+
+
+
+
+                             
+
+                            
                           </div>
+                          
                         </SwiperSlide>
 
 

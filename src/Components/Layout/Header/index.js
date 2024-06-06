@@ -165,6 +165,12 @@ const Header = () => {
                   </li>
                 )}
 
+                {usertype == 3 && (
+                  <li>
+                    <Link to={"/user-profile"}>My Profile</Link>
+                  </li>
+                )}
+
                 {/* {usertype == 3 && (
                   <li>
                     <Link to={"/profile-page"}>My Profile</Link>

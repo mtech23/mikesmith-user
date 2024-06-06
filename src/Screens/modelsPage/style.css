@@ -1,3 +1,5 @@
+
+
 .model_section {
   /* background-color: #000; */
   padding-top: 126px;
@@ -70,7 +72,7 @@
   height: 0;
 }
 .first_model_card:hover .model_card_desc {
-  height: 120px;
+  height: 135px;
   transition: .5s;
 }
 
@@ -254,4 +256,152 @@
     top: -4px;
     right: -10px;
   }
+}
+
+.model_img {
+  width: 25% !important;
+  border: 2px solid #c18d30;
+  border-radius: 50%;
+}
+.model_div {
+  display: flex;
+  align-items: center;
+  padding: 13px 10px;
+  flex-wrap: wrap;
+}
+.image_with_text_row{
+  display: flex;
+  align-items: center;
+  gap: 11px;
+  width: 45%;
+}
+.image_with_text_row_two{
+  display: flex;
+  align-items: center;
+  gap: 16px;
+
+}
+.profile_name_one {
+  font-family: "CircularStd-Book", sans-serif;
+  font-style: normal;
+  font-weight: 450;
+  font-size: 14px;
+  margin: 0px;
+  color: #fff;
+  padding: 0px;
+  position: relative;
+  text-align: center;
+}
+.unlocked_icon{
+  color: #fff;
+  font-size: 20px;
+  opacity: 0.5;
+  padding-right: 6px;
+  position: relative;
+
+}
+.free_locked_text{
+  color: #fff;
+  text-align: center;
+  font-family: "CircularStd-Bold", sans-serif;
+  font-weight: 700;
+  font-size: 14px;
+  padding: 0px;
+  margin: 0px;
+}
+.locked_icon{
+  color: #9e7d2a;
+  font-size: 20px;
+  padding-right: 6px;
+  position: relative;
+}
+.lock_text_clr{
+  color: #9e7d2a;
+}
+.numbers_in_icons {
+  color: #fff;
+  text-align: center;
+  font-family: "CircularStd-Bold", sans-serif;
+  font-weight: 700;
+  font-size: 11px;
+  position: absolute;
+  top: 23%;
+  right: 51%
+}
+.numbers_in_icons_two {
+  color: #fff;
+  text-align: center;
+  font-family: "CircularStd-Bold", sans-serif;
+  font-weight: 700;
+  font-size: 11px;
+  position: absolute;
+  top: 23%;
+  right: 33%;
+}
+.description_box{
+padding: 0px 13px;
+}
+.product_heading{
+  font-family: "CircularStd-Medium", sans-serif;
+  font-size: 15px;
+  line-height: 23px;
+  color: #fff;
+  text-align: left;
+  font-weight: 700;
+  display: block;
+}
+.product_heading:hover{
+text-decoration: none;
+  color: #fff;
+}
+.product_description{
+  font-size: 13px;
+  line-height: 17px;
+  color: #d7d7d7;
+  text-align: left;
+  display: -webkit-box;
+  overflow: hidden;
+  -webkit-line-clamp: 2;
+  -webkit-box-orient: vertical;
+  padding: 0;
+}
+@media (max-width: 1440px) {
+  .numbers_in_icons_two {
+    top: 19%;
+    right: 26%;
+    font-size: 8px;
+}
+.numbers_in_icons {
+  font-size: 8px;
+  top: 19%;
+  right: 48%;
+
+}
+.model_div {
+    gap: 7px;
+}
+.unlocked_icon {
+    font-size: 16px;
+}
+.locked_icon{
+  font-size: 16px;
+}
+.profile_name_one {
+  font-size: 12px;
+}
+.free_locked_text {
+  font-size: 12px;
+
+}
+.image_with_text_row_two {
+
+  gap: 12px;
+}
+.image_with_text_row {
+  gap: 5px;
+}
+}
+@media (max-width: 1024px) {
+  .model_div {
+}
 }
