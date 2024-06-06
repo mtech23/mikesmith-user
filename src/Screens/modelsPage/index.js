@@ -222,82 +222,10 @@ const Model = () => {
                     </button>
                   </div>
 
-                  {/* <div className="dropdown">
-                    <button
-                      className="sign_actionBtn btn dropdown-toggle"
-                      type="button"
-                      data-toggle="dropdown"
-                      aria-expanded="false"
-                    >
-                      add filter
-                    </button>
-                    <div class="dropdown-menu">
-                      <a className="dropdown-item" href="javascript:;">
-                        Action
-                      </a>
-                      <a className="dropdown-item" href="javascript:;">
-                        Another action
-                      </a>
-                      <a className="dropdown-item" href="javascript:;">
-                        Something else here
-                      </a>
-                    </div>
-                  </div> */}
-                  {/* 
-                  <div className="dropdown">
-                    <label className="sortby_label m-0">sort by: </label>
-
-                    <button
-                      className="ml-2 sign_actionBtn btn dropdown-toggle"
-                      type="button"
-                      data-toggle="dropdown"
-                      aria-expanded="false"
-                    >
-                      date
-                    </button>
-                    <div class="dropdown-menu">
-                      <a className="dropdown-item" href="javascript:;">
-                        Action
-                      </a>
-                      <a className="dropdown-item" href="javascript:;">
-                        Another action
-                      </a>
-                      <a className="dropdown-item" href="javascript:;">
-                        Something else here
-                      </a>
-                    </div>
-                  </div> */}
+               
                 </div>
 
-                {/* <div className="all_filtered_btn">
-                  <div>
-                    <button className="sign_actionBtn" onClick={handleclick}>featured</button>
-                  </div>
-
-                  <div>
-                    <button className="sign_actionBtn" onClick={handleclick}>new</button>
-                  </div>
-
-                  <div>
-                    <button className="sign_actionBtn" onClick={handleclick}>free teases</button>
-                  </div>
-
-                  <div>
-                    <button className="sign_actionBtn" onClick={handleclick}>cute</button>
-                  </div>
-
-                  <div>
-                    <button className="sign_actionBtn" onClick={handleclick}>thick</button>
-                  </div>
-
-                  <div>
-                    <button className="sign_actionBtn" onClick={handleclick}>petite</button>
-                  </div>
-
-                  <div>
-                    <button className="sign_actionBtn" onClick={handleclick}>polished</button>
-                  </div>
-                </div> */}
+               
               </div>
 
               {listingCard &&

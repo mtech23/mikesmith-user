@@ -5,13 +5,15 @@ import Footer from "../../Components/Layout/Footer";
 import { Swiper, SwiperSlide } from "swiper/react";
 import afterimgframe from '../../Asserts/images/after-img-frame.png'
 import dummy from '../../Asserts/images/dummy.jpg'
+import { useDispatch } from "react-redux";
 // Import Swiper styles
 import follow from '../../Asserts/images/follow.png'
 import "swiper/css";
 import "swiper/css/pagination";
+import { logoutRequest } from "../../redux/slicers/user";
 import { useParams } from "react-router-dom";
 import { Navigation, Pagination } from "swiper/modules";
-import { Getmodelpostlist, Userprogileview, UserUnflowmodel } from '../../api'
+import { Getmodelpostlist, Userprogileview, UserUnflowmodel, userLogoutRequest } from '../../api'
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 // import { faHeart } from '@awesome.me/kit-KIT_CODE/icons'
 
@@ -79,6 +81,9 @@ const UserProfile = () => {
     // }
 
 
+
+
+    const dispatch = useDispatch()
     const modalRef = useRef(null);
 
     const handleclick = () => {
@@ -150,7 +155,7 @@ const UserProfile = () => {
 
     const model_listview = async () => {
         try {
-            const response = await Userprogileview( );
+            const response = await Userprogileview();
             console.log("response", response)
 
             if (response?.status == true) {
@@ -182,7 +187,7 @@ const UserProfile = () => {
         model_listview()
         Aos.init();
 
-    }, [ ]);
+    }, []);
     const [hearts, setHeart] = useState(false)
 
     const handleHeart = () => {
@@ -203,14 +208,15 @@ const UserProfile = () => {
 
     const [givestip, setGivestip] = useState(false)
     const following = () => {
-        setFollowing(!follow)
+        setFollowing(true)
         setmodellisting(false)
         setSendmessage(false)
         setTransactions(false)
         setGivestip(false)
+        setUnlock(false)
     }
     const sendmessage = () => {
-        setSendmessage(!sendmessages)
+        setSendmessage(true)
         setFollowing(false)
         setmodellisting(false)
         setTransactions(false)
@@ -219,9 +225,10 @@ const UserProfile = () => {
 
 
     const transaction = () => {
-        setTransactions(!transactions)
+        setTransactions(true)
         setFollowing(false)
         setSendmessage(false)
+        setUnlock(false)
         setmodellisting(false)
         setGivestip(false)
     }
@@ -229,6 +236,7 @@ const UserProfile = () => {
         setmodellisting(true)
         setTransactions(false)
         setFollowing(false)
+        setUnlock(false)
         setSendmessage(false)
 
         setGivestip(false)
@@ -239,8 +247,36 @@ const UserProfile = () => {
         setFollowing(false)
         setSendmessage(false)
         setmodellisting(false)
-        setGivestip(!givestip)
+        setGivestip(true)
+        setUnlock(false)
     }
+
+
+    const [unlock, setUnlock] = useState(false)
+    const unlockcontents = () => {
+        setTransactions(false)
+        setFollowing(false)
+        setSendmessage(false)
+        setmodellisting(false)
+        setUnlock(true)
+        setSetting(false)
+    }
+
+
+    const [setting, setSetting] = useState(false)
+
+    const settings = () => {
+        setSetting(true)
+        setTransactions(false)
+        setFollowing(false)
+        setSendmessage(false)
+        setmodellisting(false)
+        setUnlock(false)
+        setGivestip(false)
+    }
+
+
+
 
     const [isChecked, setIsChecked] = useState(null);
 
@@ -301,7 +337,23 @@ const UserProfile = () => {
                 });
         }
     };
-    console.log("isChecked", isChecked)
+    const handleLogout = async () => {
+        try {
+            const response = await userLogoutRequest();
+
+            if (response && response.status === true) {
+                // toastAlert('Logged Out Successfully', ALERT_TYPES.SUCCESS);
+                localStorage.removeItem("userToken");
+                localStorage.removeItem("userrole");
+                dispatch(logoutRequest());
+                navigate("/login-page");
+            } else {
+                // toastAlert(response.statusText, ALERT_TYPES.ERROR);
+            }
+        } catch (error) {
+            // toastAlert(error, ALERT_TYPES.ERROR);
+        }
+    };
     return (
         <div>
             <div>
@@ -405,7 +457,7 @@ const UserProfile = () => {
                                             >
                                                 send request
                                             </button> */}
-                                            <button
+                                            <button onClick={unlockcontents}
                                                 className="followers_numbers"
                                                 data-aos="fade-left"
                                                 data-aos-anchor-placement="center-bottom"
@@ -444,6 +496,7 @@ const UserProfile = () => {
                                                 Transaction
                                             </button>
                                             <button
+                                                onClick={settings}
                                                 className="followers_numbers"
                                                 data-aos="fade-left"
                                                 data-aos-anchor-placement="center-bottom"
@@ -461,7 +514,7 @@ const UserProfile = () => {
                                                 <i class="fa-solid fa-handshake-angle profile_btn_icons"></i>
                                                 Partner Program
                                             </button>
-                                            <button
+                                            <button onClick={handleLogout}
                                                 className="followers_numbers"
                                                 data-aos="fade-left"
                                                 data-aos-anchor-placement="center-bottom"
@@ -632,6 +685,94 @@ const UserProfile = () => {
 
                         <div className="col-lg-9 col-sm-12">
                             <div className="feet_container_main">
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+                                {setting && (
+
+
+                                    <div className="row tabs_box">
+
+                                        <div className="col-md-12 p-0" >
+                                            <h3 className="following_heading" data-aos="fade-right" data-aos-anchor-placement="center-bottom" data-aos-duration="3000" > Settings </h3>
+                                            <div data-aos="fade-up" data-aos-duration="3000">
+
+                                                <ul class="nav nav-pills tabs_header" id="pills-tab" role="tablist" >
+                                                    <li class="nav-item " role="presentation">
+                                                        <button class="nav-link tabs_text active form_tabs" id="pills-home-tab" data-toggle="pill" data-target="#pills-home" type="button" role="tab" aria-controls="pills-home" aria-selected="true">Change Email</button>
+                                                    </li>
+                                                    <li class="nav-item " role="presentation">
+                                                        <button class="nav-link tabs_text form_tabs" id="pills-profile-tab" data-toggle="pill" data-target="#pills-profile" type="button" role="tab" aria-controls="pills-profile" aria-selected="false">Change Password</button>
+                                                    </li>
+                                                </ul>
+
+                                                <div className="divider_row"></div>
+                                                <div class="tab-content" id="pills-tabContent">
+                                                    <div class="tab-pane fade show active" id="pills-home" role="tabpanel" aria-labelledby="pills-home-tab">
+                                                        <form className="email-form">
+                                                            <label required class="user">
+                                                                {" "}
+                                                                Email:{" "}
+                                                            </label>
+                                                            <input class="mail" type="text" placeholder="Email Address " name="email" required />
+                                                            <label required class="user">
+                                                                {" "}
+                                                                Confirm Email:{" "}
+                                                            </label>
+                                                            <input class="mail" type="text" placeholder="Confirm Email" name="email" required />
+                                                        </form>
+                                                        <div className="divider_row"></div>
+                                                        <div className="btns_row">
+                                                            <button className="update_btn">  Update Email </button>
+                                                            <a href="#" className="delete_btns"> <i class="fa fa-trash" aria-hidden="true"></i>  Delete Account </a>
+                                                        </div>
+                                                    </div>
+                                                    <div class="tab-pane fade" id="pills-profile" role="tabpanel" aria-labelledby="pills-profile-tab">
+                                                        <form className="email-form">
+                                                            <label class="pass" required>
+                                                                {" "}
+                                                                Password{" "}
+                                                            </label>
+                                                            <input class="pass" type="password" placeholder="Password" name="password" required />
+                                                            <label class="pass" required>
+                                                                {" "}
+                                                                Confirm Password{" "}
+                                                            </label>
+                                                            <input class="pass" type="password" placeholder=" Confirm Password" name="password" required />
+                                                        </form>
+                                                        <div className="divider_row"></div>
+                                                        <div className="btns_row">
+                                                            <button className="update_btn">  Update Paasword </button>
+                                                            <a href="#" className="delete_btns"> <i class="fa fa-trash" aria-hidden="true"></i>  Delete Account </a>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+
+
+                                )}
+
+
+
+
+
+
+
+
+
 
 
 
@@ -892,6 +1033,128 @@ const UserProfile = () => {
                                     </div>
 
                                 )}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+                                {unlock && (
+
+                                    <div className="tabs_box box_height">
+                                        <div className="row">
+                                            <div   className="col-10 col-sm-6 col-lg-3 mx-auto">
+                                                <div className="first_model_card">
+
+
+                                                    <Swiper
+                                                        spaceBetween={30}
+                                                        slidesPerView={1}
+                                                        onSlideChange={() => console.log("slide change")}
+                                                        onSwiper={(swiper) => console.log(swiper)}
+                                                    >
+
+                                                        <SwiperSlide  >
+                                                            <div className="model_card_img position-relative">
+                                                                <img
+                                                                    src={modelImg03}
+                                                                    className="img-fluid"
+                                                                />
+                                                                {/* {token && (
+                                                                    <span
+                                                                        type="button"
+                                                                        onClick={() => handleHeart(item?.id)}
+                                                                        className="heart_icon"
+                                                                    >
+                                                                        <i className={`fa ${item?.favourite == true ? 'fa-solid' : 'fa-regular'} fa-heart`}></i>
+                                                                    </span>
+                                                                )} */}
+
+                                                            </div>
+
+                                                            <div className="model_card_desc ">
+                                                                <div className="model_div">
+                                                                    <div className="image_with_text_row">
+                                                                        <img className="img-fluid model_img" src={userProfilePic} />
+                                                                        <p className="profile_name_one"> Brittanyvues </p>
+                                                                    </div>
+
+
+                                                                    <div className="image_with_text_row_two">
+                                                                        <p className="free_locked_text">
+                                                                            <span className="unlocked_icon">
+                                                                                <i className="fa-solid fa-unlock"></i>
+                                                                            </span>
+
+                                                                            Free
+                                                                        </p>
+                                                                        <p className="lock_text_clr free_locked_text">
+                                                                            <span className="locked_icon">
+                                                                                <i className="fa-solid fa-lock"></i>
+                                                                            </span>
+
+                                                                            Locked
+                                                                        </p>
+                                                                    </div>
+
+                                                                </div>
+                                                                <div className="description_box">
+                                                                    <a className="product_heading" href="#">Lorem Ipsum</a>
+                                                                    <p className="product_description" >Lorem Ipsum is simply dummy text of the printing and typesetting industry.
+                                                                        Ipsum has been the industry's standard dummy text ever since the 1500s,</p>
+                                                                </div>
+
+
+
+
+
+
+
+
+
+
+                                                            </div>
+
+                                                        </SwiperSlide>
+
+
+                                                    </Swiper>
+
+                                                    <div className="model_card_top_corner_img">
+                                                        <img src={modelCardTopCorner} />
+                                                    </div>
+
+                                                    <div className="model_card_bottom_corner_img">
+                                                        <img src={modelCardBottomCorner} />
+                                                    </div>
+
+
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                )}
+
+
+
+
+
+
+
+
+
 
 
 
