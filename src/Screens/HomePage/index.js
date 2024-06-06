@@ -221,7 +221,7 @@ const Home = () => {
 
 
             {modellists?.map((item, index) => (
-              <div className="col-sm-6 col-lg-3">     
+              <div className="col-10 col-sm-6 col-lg-3 mx-auto">     
                <div onClick={() => handledetail(item?.id)} type="button" className="first_model_card">
                 <div className="model_card_img">
                   <img src={baseurl + item?.profile_pic} className="img-fluid" />

@@ -977,9 +977,11 @@
   }
 
   .model_card_top_corner_img {
-    right: 0px;
-  }
-
+    right: -10px;
+}
+.first_model_card .model_card_bottom_corner_img {
+  left: -11px !important;
+}
   .framePic {
     top: -117px;
     left: -90px;

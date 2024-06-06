@@ -83,7 +83,7 @@ height: 100%;
 .payment_img {
   border-radius: 9px 9px 0px 0px;
   width: 100%;
-  height: 325px;
+  height: 371px;
 }
 .payment_img_div {
   background-color: #161616;
@@ -92,7 +92,10 @@ height: 100%;
   box-shadow: #f5d77f1f 0px -9px 55px, rgba(0, 0, 0, 0.12) 0px -31px 30px, #141414 0px -1px 0px, #f4d77f08 0px 8px 6px, #bd8628a6 0px 0px 2px;
   text-align: center;
 }
-
+.payment_method_with_image{
+  display: flex;
+  justify-content: space-between;
+}
 .custom{
   background-color:transparent;
   border-width: 0;
@@ -111,15 +114,15 @@ height: 100%;
   color: white;
   padding: 4px 22px;
   font-size: 20px;
-  width: 25%;
-  height: 54px;
+  /* width: 25%;
+  height: 54px; */
 }
 input[type='radio']:checked:after {
-  width: 20px;
-  height: 17px;
+  width: 13px;
+  height: 14px;
   border-radius: 15px;
   top: -10px;
-  left: -1px;
+  left: 2px;
   position: relative;
   background-color: #9e7d2a;
   content: '';
@@ -676,12 +679,12 @@ padding: 0px 20px ;
   border-width: 2px 0px
 
 }
-.followers_numbers:focus {
+.followers_numbers:focus{
   border: solid #8e6200;
     border-radius: 8px 8px 0px 0px;
     background: #161616;
 }
-.followers_numbers:active {
+.followers_numbers:active{
   border: solid #8e6200;
     border-radius: 8px 8px 0px 0px;
     background: #161616;
@@ -1068,9 +1071,9 @@ p.carousel-footer_price {
   }
 }
 @media (max-width: 425px) {
-  .first_model_card .model_card_bottom_corner_img {
+  /* .first_model_card .model_card_bottom_corner_img {
     left: 0px !important;
-}
+} */
 }
 @media (max-width: 480px) {
   .more_users_profile_img {
@@ -1117,11 +1120,11 @@ p.carousel-footer_price {
   .follow_img{
     width: 50%;
   }
-  .first_model_card .model_card_bottom_corner_img {
+  /* .first_model_card .model_card_bottom_corner_img {
     bottom: -4px;
     left: -11px;
 
-}
+} */
   /* .follow_img_div{
     text-align: center;
   } */
@@ -1150,4 +1153,34 @@ p.carousel-footer_price {
   padding: 10px 8px
 }
 }
- 
+@media(max-width:1440px){
+.payment_img {
+  height: 336px;
+}
+}
+@media (max-width: 1184px) {
+  .payment_img {
+      height: 262px;
+  }
+  .paytips {
+    padding: 3px 10px !important;
+    margin-right: 10px;
+    font-size: 17px;
+}
+.custompay {
+  padding: 4px 10px;
+  font-size: 17px;
+  height: 43px;
+}
+}
+@media(max-width:1280px){
+  .payment_img {
+    height: 272px;
+  }
+  }
+  @media(max-width:1166px){
+    input[type='radio']:checked:after {
+      top: -8px;
+      left: 3px;
+    }
+    }
