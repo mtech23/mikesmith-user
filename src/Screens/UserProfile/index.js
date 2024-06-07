@@ -1035,13 +1035,13 @@ const UserProfile = () => {
                     <div className="unlocked_model_card">
 
 
-                    {/* <Swiper
+                    <Swiper
                         spaceBetween={30}
                         slidesPerView={1}
                         onSlideChange={() => console.log("slide change")}
                         onSwiper={(swiper) => console.log(swiper)}
-                        > */}
-                             {/* <SwiperSlide> */}
+                        >
+                             <SwiperSlide>
                                     <div className="model_card_img position-relative">
                                         <img
                                         src={modelImg03}
@@ -1082,8 +1082,8 @@ const UserProfile = () => {
                                                 Ipsum has been the industry's standard dummy text ever since the 1500s,</p>
                                             </div>
                                     </div>
-                                {/* </SwiperSlide>
-                          </Swiper> */}
+                                </SwiperSlide>
+                          </Swiper>
                                     <div className="model_card_top_corner_img">
                                         <img src={modelCardTopCorner} />
                                     </div>

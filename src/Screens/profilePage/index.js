@@ -557,7 +557,7 @@ const handlepay= () =>{
                                                         {items?.post_data?.map((data) => (
 
                                                             <SwiperSlide>
-                                                                <div className="model_card_img position-relative first_model_card"
+                                                                <div className="model_card_img position-relative first_model_card profile_model_img"
                                                                     data-toggle="modal"
                                                                     data-target=".exampleModal">
                                                                     <img src={data?.file ? baseurl + data.file : dummy} className="img-fluid" />
