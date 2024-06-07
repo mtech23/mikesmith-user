@@ -14,8 +14,10 @@ import { Navigation, Pagination } from "swiper/modules";
 import { Getmodelpostlist, Userprogileview, UserUnflowmodel, profileviewbyid } from '../../api'
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 // import { faHeart } from '@awesome.me/kit-KIT_CODE/icons'
+// import { onfrontimage } from "../../Asserts/images/index";
 
 import {
+    locked_icon,
     platinumFeetText,
     headerSearchIcon,
     legsImage01,
@@ -25,7 +27,7 @@ import {
     homeImg01,
     modelText,
     modelImg01,
-
+    onfrontimage,
     modelCardTopCorner,
     modelCardBottomCorner,
     modelImg02,
@@ -319,7 +321,7 @@ const Profile = () => {
                                         <img src={userProfilePicBackground} className="img-fluid" />
                                     </div> */}
 
-                                    <div className="user_profile_info text-center">
+                                    <div className="user_profile_info text-center px-5">
                                         <div type="button" onClick={showprofile}
                                             className="user_profile_picture"
                                             data-aos="flip-left"
@@ -363,12 +365,12 @@ const Profile = () => {
                       </p> */}
 
 
-                                            <div className="main_about_div">
-                                                <h6 className="hot_model_name text-left about_text">About:</h6>
-                                                <p className="user_profile_about">
-                                                    9 and SINGLE-Nudist and bass fisherman-MILF and GILF. I live on a treefarm. Here to make some smiling faces light up even brighter I'm not here to judge anyone's kinks... I have my own... teeheehe
-                                                </p>
-                                            </div>
+                                        <div className="main_about_div">
+                                            <h6 className="hot_model_name text-center about_text">About</h6>
+                                            <p className="user_profile_about">
+                                            I'm the sweetest thing you will ever meet. Message me and I'll do whatever your heart desires.
+                                            </p>
+                                        </div>
 
                                             <div className="user_about_icons">
                                                 <span className="facebook_icon">
@@ -624,6 +626,15 @@ const Profile = () => {
 
 
                                             <div className="col-sm-6 col-lg-4">
+
+                                                <div className="lock_icon_image">
+                                                    <img src={locked_icon}/>
+                                                </div>
+
+                                                {/* <div className="onfront_image">
+                                                    <img src={onfrontimage} className="img-fluid"/>
+                                                </div> */}
+
                                                 <div className="first_model_card">
 
 
@@ -652,6 +663,15 @@ const Profile = () => {
                                                                     <span className="boost_icon_img">
 
                                                                     </span>
+
+                                                                    <div className="onfront_image">
+                                                                            <img src={onfrontimage} className=""/>
+                                                                        </div>
+
+                                                                        {/* <div className="lock_icon_image">
+                                                                            <img src={locked_icon}/>
+                                                                        </div> */}
+
                                                                 </div>
 
                                                                 <div>
@@ -1107,7 +1127,7 @@ const Profile = () => {
 
                                                     </h4>
                                                     <p className="carousel-footer_body">
-                                                        {profilebyid?.post_descripction}
+                                                        {profilebyid?.post_description}
                                                     </p>
                                                     <p className="carousel-footer_price">${profilebyid?.price}    </p>
                                                     <button onClick={handleclick} className="carousel-footer_button " data-dismiss="modal">Buy</button>
