@@ -290,6 +290,9 @@ const Model = () => {
                                     <p className="product_description" >Lorem Ipsum is simply dummy text of the printing and typesetting industry.
                                      Ipsum has been the industry's standard dummy text ever since the 1500s,</p>
                                   </div>
+                                  <div className="view_collection_btn_div">
+                                    <button className="view_collection_btn" > View Collection </button>
+                                  </div>
               
             
                             {/* <div className="name_with_status">

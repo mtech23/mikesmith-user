@@ -301,11 +301,11 @@
   padding-top: 10px;
 } */
 
-.model_card_desc {
+/* .model_card_desc {
   position: absolute;
   bottom: 24px;
   left: 10px;
-}
+} */
 
 /* .card_short_para {
   display: inline-block;
@@ -324,7 +324,7 @@
   text-transform: capitalize;
   font-weight: 600;
 }
-.first_model_card:hover .model_card_desc {
+/* .first_model_card:hover .model_card_desc {
   opacity: 0;
   transition: 0.5s;
 }
@@ -338,7 +338,7 @@
 .first_model_card:hover .framePic img {
   opacity: 1;
   transition: 0.5s;
-}
+} */
 
 .video_play_icon {
   position: absolute;

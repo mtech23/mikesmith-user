@@ -72,7 +72,7 @@
   height: 0;
 }
 .first_model_card:hover .model_card_desc {
-  height: 135px;
+  height: 182px;
   transition: .5s;
 }
 
@@ -407,4 +407,21 @@ text-decoration: none;
 @media (max-width: 1024px) {
   .model_div {
 }
+}
+
+.view_collection_btn {
+  background-color: #16161666;
+  border: #ab8b38 1px solid;
+  padding: 6px 23px;
+  font-size: 13px;
+  color: white;
+  font-family: "CircularStd-Bold", sans-serif;
+  border-radius: 25px;
+}
+.view_collection_btn:hover{
+  background-color: #b99649;
+}
+.view_collection_btn_div{
+  text-align: left;
+  padding: 0px 10px;
 }

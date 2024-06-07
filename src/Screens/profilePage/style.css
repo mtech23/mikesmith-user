@@ -1052,10 +1052,44 @@ p.carousel-footer_price {
   }
   
 }
+ 
 
 
 
 
 
+.user_profile_about{
+  background: -webkit-linear-gradient(#ffe37f, #b9a374);
+  background-clip: text;
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  text-align: justify;
+  font-size: 16px;
+  font-weight: 500;
+}
 
 
+.main_about_div{
+  padding: 0px 28px;
+}
+
+.facebook_icon{
+  font-size: 14px;
+  color: #000000;
+  background-color: #a07c32;
+  display: inline-block;
+  height: 30px;
+  width: 30px;
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+
+.user_about_icons{
+  display: flex;
+  justify-content: center;
+  gap: 12px;
+  padding: 0px 0px 20px;
+}
