@@ -147,7 +147,7 @@ const Model = () => {
       // toastAlert(error, ALERT_TYPES.ERROR);
     }
   }
-    ; console.log("heart", heart)
+ 
   const [inputValue, setInputValue] = useState('');
   const baseurl = `${process.env.REACT_APP_BASE_URL}/public/`
   console.log("baseurl", baseurl)
@@ -164,7 +164,7 @@ const Model = () => {
 
 
 
-  console.log("filterData ", filterData)
+ 
   const modesllist = async () => {
     try {
       const response = await modellist();
@@ -188,7 +188,7 @@ const Model = () => {
   useEffect(() => {
     modesllist()
   }, [])
-  console.log("modellists", modellists)
+ 
   return (
     <div>
       <div className="model_main_section">
@@ -222,10 +222,10 @@ const Model = () => {
                     </button>
                   </div>
 
-               
+
                 </div>
 
-               
+
               </div>
 
               {listingCard &&
@@ -247,7 +247,7 @@ const Model = () => {
                               src={baseurl + item?.profile_pic}
                               className="img-fluid"
                             />
-                            {token && (
+                            {/* {token && (
                               <span
                                 type="button"
                                 onClick={() => handleHeart(item?.id)}
@@ -255,7 +255,7 @@ const Model = () => {
                               >
                                 <i className={`fa ${item?.favourite == true ? 'fa-solid' : 'fa-regular'} fa-heart`}></i>
                               </span>
-                            )}
+                            )} */}
 
                           </div>
 
@@ -312,20 +312,16 @@ const Model = () => {
                               </span>
                             </div> */}
 
-                            {/* <div className="pt-2">
-                              <button className="sign_actionBtn" onClick={() => handleclick(item?.id)}>
-                                view profile
-                              </button>
-                            </div> */}
 
 
 
 
-                             
 
-                            
+
+
+
                           </div>
-                          
+
                         </SwiperSlide>
 
 
