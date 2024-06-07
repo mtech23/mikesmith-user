@@ -18,6 +18,8 @@ import modelImg04 from "./model-img-04.png";
 import modelImg05 from "./model-img-05.png";
 import modelImg06 from "./model-img-06.png";
 import modelImg07 from "./model-img-07.png";
+import onfrontimage from "./hotModel-bk.png";
+
 import modelCardTopCorner from "./login-page-top-gold-bar.png";
 import modelCardBottomCorner from "./login-page-bottom-gold-bar.png";
 import framePic from "./after-img-frame.png";
@@ -67,8 +69,12 @@ import modal1 from "./modal-1.png";
 import modal2 from "./modal-2.png";
 import modal3 from "./modal-3.png";
 import uploadIcon from "./upload-icon.png";
+import locked_icon from "./lock_icon.png";
+
 
 export {
+  locked_icon,
+  onfrontimage,
   headerBurgerIcon,
   mainLogo,
   CLoseMenu,

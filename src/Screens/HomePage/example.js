@@ -237,7 +237,7 @@ const Home = () => {
             {modellists &&
               modellists?.map((item, index) => (
                 <div key={index} className="col-10 col-sm-6 col-lg-3 mx-auto">
-                  <div className="home_page_model_card">
+                  <div className="first_model_card">
 
 
                     <Swiper
@@ -247,17 +247,25 @@ const Home = () => {
                       onSwiper={(swiper) => console.log(swiper)}
                     >
 
-                      <SwiperSlide key={index} >
+                      <SwiperSlide key={index}>
                         <div className="model_card_img position-relative">
                           <img
                             src={baseurl + item?.profile_pic}
                             className="img-fluid"
                           />
-                          
+                          {/* {token && (
+                            <span
+                              type="button"
+                              onClick={() => handleHeart(item?.id)}
+                              className="heart_icon"
+                            >
+                              <i className={`fa ${item?.favourite == true ? 'fa-solid' : 'fa-regular'} fa-heart`}></i>
+                            </span>
+                          )} */}
 
                         </div>
 
-                        <div className="home_page_model_card_desc ">
+                        <div className="model_card_desc ">
                           <div className="model_div">
                             <div className="image_with_text_row">
                               <img className="img-fluid model_img" src={userProfilePic} />
@@ -288,9 +296,6 @@ const Home = () => {
                             <p className="product_description" >Lorem Ipsum is simply dummy text of the printing and typesetting industry.
                               Ipsum has been the industry's standard dummy text ever since the 1500s,</p>
                           </div>
-                          <div className="view_collection_btn_div">
-                             <button className="view_collection_btn" > View Collection </button>
-                           </div>
 
 
                           {/* <div className="name_with_status">

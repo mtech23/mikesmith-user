@@ -214,6 +214,7 @@ const UserProfile = () => {
         setTransactions(false)
         setGivestip(false)
         setUnlock(false)
+        setSetting(false)
     }
     const sendmessage = () => {
         setSendmessage(true)
@@ -222,6 +223,7 @@ const UserProfile = () => {
         setUnlock(false)
         setTransactions(false)
         setGivestip(false)
+        setSetting(false)
     }
 
 
