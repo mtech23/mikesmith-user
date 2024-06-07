@@ -247,13 +247,21 @@ const Home = () => {
                       onSwiper={(swiper) => console.log(swiper)}
                     >
 
-                      <SwiperSlide key={index} >
+                      <SwiperSlide key={index}>
                         <div className="model_card_img position-relative">
                           <img
                             src={baseurl + item?.profile_pic}
                             className="img-fluid"
                           />
-                          
+                          {/* {token && (
+                            <span
+                              type="button"
+                              onClick={() => handleHeart(item?.id)}
+                              className="heart_icon"
+                            >
+                              <i className={`fa ${item?.favourite == true ? 'fa-solid' : 'fa-regular'} fa-heart`}></i>
+                            </span>
+                          )} */}
 
                         </div>
 
