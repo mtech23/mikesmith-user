@@ -698,8 +698,8 @@ padding: 0px 20px ;
   margin-right: 15px;
 }
 input.edit_icon_input[type='file']{
-  width: 0px;
-  height: 0px;
+  width: 21px;
+  height: 21px;
   position: absolute;
   background-color: #FFF;
   bottom: 0;
@@ -711,6 +711,7 @@ input.edit_icon_input[type='file']{
   justify-content: center;
   align-items: center;
   border: none;
+  opacity: 0;
 }
 .profile_edit_icon {
   width: 25px;
@@ -848,10 +849,10 @@ input.edit_icon_input[type='file']{
   border-image-width: auto;
 }
  
-.profile_section_main .swiper-slide-active,
+/* .profile_section_main .swiper-slide-active,
 .profile_section_main .swiper-slide {
   padding: 5px 7px;
-}
+} */
  
 /* .model_main_section{
     background-image: url("../../Asserts/images/hotModel-bk.png");
@@ -1252,13 +1253,18 @@ p.carousel-footer_price {
   padding: 0px;
   margin: 0px;
 }
-/* .unlocked_model_card .unlocked_card_desc {
-  opacity: 1;
+.unlocked_model_card .unlocked_card_desc {
+  opacity: 0;
 }
 .unlocked_model_card:hover .unlocked_card_desc {
   height: 135px;
-  transition: .5s;
-} */
+  opacity: 1;
+  transition: 0.5s;
+}
+.unlocked_model_card .swiper-slide-active,
+.unlocked_model_card .swiper-slide {
+  padding: 0px;
+}
 @media (max-width:1440px){
   .unlocked_content_icon {
     font-size: 10px;
