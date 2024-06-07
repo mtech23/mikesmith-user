@@ -752,11 +752,16 @@ padding: 0px 20px ;
   border-image-outset: 5px;
   border-image-width: auto;
 }
+.profile_model_img img{
+  /* height: auto !important;
+  width: 100% !important; */
+  min-height: 420px ;
+}
  
-.profile_section_main .swiper-slide-active,
+/* .profile_section_main .swiper-slide-active,
 .profile_section_main .swiper-slide {
   padding: 5px 7px;
-}
+} */
  
 /* .model_main_section{
     background-image: url("../../Asserts/images/hotModel-bk.png");
@@ -1064,9 +1069,9 @@ p.carousel-footer_price {
 }
 
 
-.main_about_div{
+/* .main_about_div{
   padding: 0px 28px;
-}
+} */
 
 .facebook_icon{
   font-size: 14px;
@@ -1088,4 +1093,3 @@ p.carousel-footer_price {
   gap: 12px;
   padding: 0px 0px 20px;
 }
-

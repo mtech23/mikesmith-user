@@ -108,11 +108,11 @@
   height: 30px;
 }
 
-.img_bottom_corner {
+/* .img_bottom_corner {
   position: absolute;
   bottom: 10px;
   right: 10px;
-}
+} */
 
 .img_bottom_corner img {
   height: 30px;

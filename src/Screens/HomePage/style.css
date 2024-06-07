@@ -14,6 +14,20 @@
   /* justify-content: center; */
 }
 
+
+ .model_section .model_card_desc {
+    position: absolute;
+    bottom: 0;
+    left: 50%;
+    transform: translateX(-50%);
+    text-align: center;
+    width: 100%;
+    background-color: #0009;
+    height: 0;
+}
+
+
+
 .sign_actionBtn {
   background-image: url("../../Asserts/images/home-btn-bk.png");
   background-size: 100% 100%;
@@ -129,7 +143,7 @@
 .img_bottom_corner {
   position: absolute;
   bottom: 10px;
-  right: 10px;
+  right: 110px;
 }
 
 .img_bottom_corner img {
@@ -624,6 +638,9 @@
 
     height: 311px;
   }
+  .img_bottom_corner {
+    right: 33px;
+}
 }
 
 @media (max-width: 1600px) {

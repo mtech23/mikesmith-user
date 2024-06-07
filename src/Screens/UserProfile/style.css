@@ -12,6 +12,7 @@
   object-fit: cover;
   position: relative;
   margin-top: -50px;
+  border-radius: 50%;
 }
 /* .first_model_card .be_nice_span {
   display: block;
@@ -696,8 +697,23 @@ padding: 0px 20px ;
   margin-left: 47px;
   margin-right: 15px;
 }
-
-.profile_edit_icon{
+input.edit_icon_input[type='file']{
+  width: 21px;
+  height: 21px;
+  position: absolute;
+  background-color: #FFF;
+  bottom: 0;
+  right: 37%;
+  font-size: 13px;
+  border-radius: 50%;
+  box-shadow: 10px 10px 30px rgba(24, 24, 51, 0.07);
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  border: none;
+  opacity: 0;
+}
+.profile_edit_icon {
   width: 25px;
   height: 25px;
   position: absolute;
@@ -833,10 +849,10 @@ padding: 0px 20px ;
   border-image-width: auto;
 }
  
-.profile_section_main .swiper-slide-active,
+/* .profile_section_main .swiper-slide-active,
 .profile_section_main .swiper-slide {
   padding: 5px 7px;
-}
+} */
  
 /* .model_main_section{
     background-image: url("../../Asserts/images/hotModel-bk.png");
@@ -1184,3 +1200,79 @@ p.carousel-footer_price {
       left: 3px;
     }
     }
+
+
+.unlocked_card_desc {
+      position: absolute;
+      bottom: 0px;
+      left: 0px;
+      background: #00000096;
+  }
+  .unlocked_box {
+    background: #000;
+    padding: 25px;
+    border-radius: 15px;
+    box-shadow: rgba(0, 0, 0, 0.16) 0px 10px 36px 0px, rgba(0, 0, 0, 0.06) 0px 0px 0px 1px;
+}
+.unlocked_model_card {
+  position: relative;
+  /* margin-bottom: 40px; */
+}
+.unlocked_div {
+  display: flex;
+  align-items: center;
+  padding: 13px 6px;
+  flex-wrap: wrap;
+  gap: 23px;
+}
+.unlocked_content_icon {
+  color: #fff;
+  font-size: 15px;
+  opacity: 0.5;
+  padding-right: 6px;
+  position: relative;
+}
+.locked_content_icon {
+  color: #9e7d2a;
+  font-size: 15px;
+  padding-right: 6px;
+  position: relative;
+}
+.unlocked_image_with_text_row {
+  display: flex;
+  align-items: center;
+  gap: 6px;
+  width: 38%;
+}
+.unlocked_text {
+  color: #fff;
+  text-align: center;
+  font-family: "CircularStd-Bold", sans-serif;
+  font-weight: 700;
+  font-size: 12px;
+  padding: 0px;
+  margin: 0px;
+}
+.unlocked_model_card .unlocked_card_desc {
+  opacity: 0;
+}
+.unlocked_model_card:hover .unlocked_card_desc {
+  height: 135px;
+  opacity: 1;
+  transition: 0.5s;
+}
+.unlocked_model_card .swiper-slide-active,
+.unlocked_model_card .swiper-slide {
+  padding: 0px;
+}
+@media (max-width:1440px){
+  .unlocked_content_icon {
+    font-size: 10px;
+  }
+  .unlocked_text {
+    font-size: 10px;
+  }
+  .locked_content_icon {
+    font-size: 10px;
+}
+}

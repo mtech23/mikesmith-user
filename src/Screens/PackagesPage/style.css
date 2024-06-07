@@ -1,3 +1,4 @@
+
 .packages-page {
   background: url("../../Asserts/images/packages-bg.png");
   background-size: 100% 100%;
@@ -5,6 +6,7 @@
 }
 .gradiant-text {
   background: -webkit-linear-gradient(45deg, #f4d77f, #fdf6c3, #bd8628);
+  background-clip: text;
   -webkit-background-clip: text;
   -webkit-text-fill-color: transparent;
 }
@@ -14,7 +16,8 @@
 
 .packages_section .gold-package {
   background: url("../../Asserts/images/gold-bg.png");
-  background-size: 100% 150%;
+  /* background-size: 100% 100%; */
+  background-size: cover;
   background-repeat: no-repeat;
   position: relative;
   padding: 60px 0 90px;
@@ -102,6 +105,7 @@
   top: -10%;
   background: -webkit-linear-gradient(45deg, #f4d77f, #fdf6c3, #bd8628);
   -webkit-background-clip: text;
+  background-clip: text;
   -webkit-text-fill-color: transparent;
 }
 /* .custom-check-boxes .custom_check-box .checkmark {

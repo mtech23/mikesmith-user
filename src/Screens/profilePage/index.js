@@ -279,7 +279,7 @@ const handlepay= () =>{
                                         <img src={userProfilePicBackground} className="img-fluid" />
                                     </div> */}
 
-                                    <div className="user_profile_info text-center">
+                                    <div className="user_profile_info text-center px-5">
                                         <div type="button" onClick={showprofile}
                                             className="user_profile_picture"
                                             data-aos="flip-left"
@@ -324,9 +324,9 @@ const handlepay= () =>{
 
 
                                         <div className="main_about_div">
-                                            <h6 className="hot_model_name text-left about_text">About:</h6>
+                                            <h6 className="hot_model_name text-center about_text">About</h6>
                                             <p className="user_profile_about">
-                                            9 and SINGLE-Nudist and bass fisherman-MILF and GILF. I live on a treefarm. Here to make some smiling faces light up even brighter I'm not here to judge anyone's kinks... I have my own... teeheehe
+                                            I'm the sweetest thing you will ever meet. Message me and I'll do whatever your heart desires.
                                             </p>
                                         </div>
 
@@ -596,7 +596,7 @@ const handlepay= () =>{
                                                         {items?.post_data?.map((data) => (
 
                                                             <SwiperSlide>
-                                                                <div className="model_card_img position-relative first_model_card"
+                                                                <div className="model_card_img position-relative first_model_card profile_model_img"
                                                                     data-toggle="modal"
                                                                     data-target=".exampleModal">
                                                                     <img src={data?.file ? baseurl + data.file : dummy} className="img-fluid" />

@@ -1,6 +1,7 @@
 import React, { useEffect, useState } from "react";
 import Header from "../../Components/Layout/Header";
 import Footer from "../../Components/Layout/Footer";
+import { Swiper, SwiperSlide } from "swiper/react";
 
 import { Link, useNavigate } from "react-router-dom";
 import { modellist } from '../../api'
@@ -14,6 +15,7 @@ import {
   homeImg01,
   modelText,
   modelImg01,
+  userProfilePic ,
   modelCardTopCorner,
   modelCardBottomCorner,
   modelImg02,
@@ -44,7 +46,7 @@ import "aos/dist/aos.css";
 const Home = () => {
   //CONST VALS
   const [inputValue, setInputValue] = useState('');
- 
+
   const navigate = useNavigate();
   const handledetail = (id) => {
 
@@ -220,42 +222,138 @@ const Home = () => {
 
 
 
-            {modellists?.map((item, index) => (
-              <div className="col-10 col-sm-6 col-lg-3 mx-auto">     
-               <div onClick={() => handledetail(item?.id)} type="button" className="first_model_card">
-                <div className="model_card_img">
-                  <img src={baseurl + item?.profile_pic} className="img-fluid" />
-                </div>
+         
 
-                <div onClick={handledetail} type="button" className="model_card_top_corner_img">
-                  <img src={modelCardTopCorner} />
-                </div>
 
-                <div onClick={handledetail} type="button" className="model_card_bottom_corner_img">
-                  <img src={modelCardBottomCorner} />
-                </div>
 
-                <div onClick={handledetail} type="button" className="model_card_desc">
-                  <span className="card_short_para">
-                    {item?.name} :)
-                  </span>
-                </div>
 
-                <div onClick={handledetail} type="button" className="framePic">
-                  <img src={mainFrameImg} className=" " />
-                </div>
 
-                <div>
-                  <div className="model_have_a_look_btn">
-                    <button className="have_alook_btn">have a look</button>
-                    <span className="be_nice_span">
-                      BE NICE, or we will crush you!
-                    </span>
+
+
+
+
+
+
+            {modellists &&
+              modellists?.map((item, index) => (
+                <div key={index} className="col-10 col-sm-6 col-lg-3 mx-auto">
+                  <div className="first_model_card">
+
+
+                    <Swiper
+                      spaceBetween={30}
+                      slidesPerView={1}
+                      onSlideChange={() => console.log("slide change")}
+                      onSwiper={(swiper) => console.log(swiper)}
+                    >
+
+                      <SwiperSlide key={index}>
+                        <div className="model_card_img position-relative">
+                          <img
+                            src={baseurl + item?.profile_pic}
+                            className="img-fluid"
+                          />
+                          {/* {token && (
+                            <span
+                              type="button"
+                              onClick={() => handleHeart(item?.id)}
+                              className="heart_icon"
+                            >
+                              <i className={`fa ${item?.favourite == true ? 'fa-solid' : 'fa-regular'} fa-heart`}></i>
+                            </span>
+                          )} */}
+
+                        </div>
+
+                        <div className="model_card_desc ">
+                          <div className="model_div">
+                            <div className="image_with_text_row">
+                              <img className="img-fluid model_img" src={userProfilePic} />
+                              <p className="profile_name_one"> Brittanyvues </p>
+                            </div>
+
+
+                            <div className="image_with_text_row_two">
+                              <p className="free_locked_text">
+                                <span className="unlocked_icon">
+                                  <i className="fa-solid fa-unlock"></i>
+                                </span>
+
+                                Free
+                              </p>
+                              <p className="lock_text_clr free_locked_text">
+                                <span className="locked_icon">
+                                  <i className="fa-solid fa-lock"></i>
+                                </span>
+
+                                Locked
+                              </p>
+                            </div>
+
+                          </div>
+                          <div className="description_box">
+                            <a className="product_heading" href="#">Lorem Ipsum</a>
+                            <p className="product_description" >Lorem Ipsum is simply dummy text of the printing and typesetting industry.
+                              Ipsum has been the industry's standard dummy text ever since the 1500s,</p>
+                          </div>
+
+
+                          {/* <div className="name_with_status">
+                              <span className="online_circle">
+                                <i class="fa-solid fa-circle"></i>
+                              </span>
+                              <span className="hot_model_name">
+                                {item?.name}
+                              </span>
+                            </div> */}
+                          {/* <div>
+                              <span className="hotmodel_info">
+                                {item?.address}
+                              </span>
+                              <span className="send_tip_text">
+                                send tip
+                              </span>
+                            </div> */}
+
+                          {/* <div className="pt-2">
+                              <button className="sign_actionBtn" onClick={() => handleclick(item?.id)}>
+                                view profile
+                              </button>
+                            </div> */}
+
+
+
+
+
+
+
+                        </div>
+
+                      </SwiperSlide>
+
+
+                    </Swiper>
+
+                    <div className="model_card_top_corner_img">
+                      <img src={modelCardTopCorner} />
+                    </div>
+
+                    <div className="model_card_bottom_corner_img">
+                      <img src={modelCardBottomCorner} />
+                    </div>
+
+                    {/* <div className="framePic">
+                        <img src={framePic} className="" />
+                      </div> */}
                   </div>
                 </div>
-              </div>
-              </div>
-            ))}
+
+
+
+              ))}
+
+
+
 
 
 
