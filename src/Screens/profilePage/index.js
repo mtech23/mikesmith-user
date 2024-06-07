@@ -448,13 +448,13 @@ const Profile = () => {
                                             </button>
                                         </div> */}
 
-                                        {/* <div
+                                        <div
                                             data-aos="fade-right"
                                             data-aos-anchor-placement="center-bottom"
                                             data-aos-duration="3000"
                                         >
                                             <button onClick={givetip} className="give_tip_btn">give tip</button>
-                                        </div> */}
+                                        </div>
 
                                         <button class="followers_numbers aos-init aos-animate" data-aos="fade-left" data-aos-anchor-placement="center-bottom" data-aos-duration="3000"><i class="fa-solid fa-envelope profile_btn_icons"></i>Inbox</button>
                                         <button class="followers_numbers aos-init aos-animate mt-3" data-aos="fade-left" data-aos-anchor-placement="center-bottom" data-aos-duration="3000"><i class="fa-solid fa-user-plus profile_btn_icons"></i>Followers</button>
