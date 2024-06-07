@@ -5,6 +5,7 @@ import Footer from "../../Components/Layout/Footer";
 import { Swiper, SwiperSlide } from "swiper/react";
 import afterimgframe from '../../Asserts/images/after-img-frame.png'
 import dummy from '../../Asserts/images/dummy.jpg'
+
 import { useDispatch } from "react-redux";
 // Import Swiper styles
 import follow from '../../Asserts/images/follow.png'
@@ -63,6 +64,7 @@ import {
     modal2,
     Cancel,
     Heart,
+ 
 } from "../../Asserts/images/index";
 
 import "./style.css";
@@ -1008,16 +1010,6 @@ const UserProfile = () => {
 
 
 
-
-
-
-
-
-
-
-
-
-
                                 {unlock && (
 
                                     <div className="unlocked_box">
@@ -1047,8 +1039,10 @@ const UserProfile = () => {
                                             <div className="unlocked_div">
                                                 <div className="unlocked_image_with_text_row">
                                                     <img className="img-fluid model_img" src={userProfilePic}/>
+                                                    {/* <img className="img-fluid model_img" src={modelBg}/> */}
                                                     <p className="profile_name_one"> Brittanyvues </p>      
-                                                </div>     
+                                                </div>    
+                                              
                                         
                                         
                                                 <div className="image_with_text_row_two">
@@ -1075,8 +1069,10 @@ const UserProfile = () => {
                                                 Ipsum has been the industry's standard dummy text ever since the 1500s,</p>
                                             </div>
                                     </div>
+                                         
                                 </SwiperSlide>
                           </Swiper>
+                         
                                     <div className="model_card_top_corner_img">
                                         <img src={modelCardTopCorner} />
                                     </div>
@@ -1091,14 +1087,6 @@ const UserProfile = () => {
                                         </div>
                                     </div>
                                 )}
-
-
-
-
-
-
-
-
 
 
 

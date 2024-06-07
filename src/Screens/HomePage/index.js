@@ -60,8 +60,10 @@ const Home = () => {
   }, []);
 
 
-
-
+  const handlenavigate = (id) => {
+    // navigate('/profile-page')
+    navigate(`/profile-page/${id}`)
+  }
 
 
   const baseurl = `${process.env.REACT_APP_BASE_URL}/public/`
@@ -289,7 +291,7 @@ const Home = () => {
                               Ipsum has been the industry's standard dummy text ever since the 1500s,</p>
                           </div>
                           <div className="view_collection_btn_div">
-                             <button className="view_collection_btn" > View Collection </button>
+                             <button className="view_collection_btn" onClick={() => handlenavigate(item?.id)} > View Collection </button>
                            </div>
 
 
@@ -315,10 +317,6 @@ const Home = () => {
                                 view profile
                               </button>
                             </div> */}
-
-
-
-
 
 
 

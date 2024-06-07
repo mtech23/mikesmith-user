@@ -291,7 +291,7 @@ const Model = () => {
                                      Ipsum has been the industry's standard dummy text ever since the 1500s,</p>
                                   </div>
                                   <div className="view_collection_btn_div">
-                                    <button className="view_collection_btn" > View Collection </button>
+                                    <button className="view_collection_btn"  onClick={handleclick}> View Collection </button>
                                   </div>
               
             
