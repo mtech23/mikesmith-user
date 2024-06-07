@@ -635,7 +635,7 @@ const Profile = () => {
                                                     <img src={onfrontimage} className="img-fluid"/>
                                                 </div> */}
 
-                                                <div className="first_model_card">
+                                                <div className="first_model_card profile_first_model">
 
 
                                                     <Swiper
@@ -687,11 +687,11 @@ const Profile = () => {
 
                                                     </Swiper>
 
-                                                    <div className="model_card_top_corner_img" id="model_card_top_corner_img">
+                                                    <div className="model_card_top_corner_img" id="">
                                                         <img src={modelCardTopCorner} />
                                                     </div>
 
-                                                    <div className="model_card_bottom_corner_img" id="model_card_bottom_corner_imgs">
+                                                    <div className="model_card_bottom_corner_img" id="">
                                                         <img src={modelCardBottomCorner} />
                                                     </div>
 

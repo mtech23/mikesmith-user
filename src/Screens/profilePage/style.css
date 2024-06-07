@@ -1247,4 +1247,7 @@ p.carousel-footer_price {
   bottom: 34px !important;
   left: 6px !important;
 }
-
+.profile_first_model{
+  width: 100%;
+  margin-bottom: 0px;
+ }
