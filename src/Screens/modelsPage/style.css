@@ -371,6 +371,9 @@ text-decoration: none;
     right: 26%;
     font-size: 8px;
 }
+.product_heading{
+  font-size: 12px;
+}
 .numbers_in_icons {
   font-size: 8px;
   top: 19%;

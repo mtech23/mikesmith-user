@@ -508,16 +508,7 @@ const UserProfile = () => {
                                                 <i class="fa-solid fa-gear profile_btn_icons"></i>
                                                 Settings
                                             </button>
-                                            <button
-                                                className=" followers_numbers"
-                                                data-aos="fade-left"
-                                                data-aos-anchor-placement="center-bottom"
-                                                data-aos-duration="3000"
-                                            >
-                                                <i class="fa-solid fa-handshake-angle profile_btn_icons"></i>
-                                                Partner Program
-                                            </button>
-                                            <button onClick={handleLogout}
+                                             <button onClick={handleLogout}
                                                 className="followers_numbers"
                                                 data-aos="fade-left"
                                                 data-aos-anchor-placement="center-bottom"
@@ -527,7 +518,7 @@ const UserProfile = () => {
                                                 Log Out
                                             </button>
                                         </div>
-
+{/* 
                                         <div
                                             data-aos="fade-right"
                                             data-aos-anchor-placement="center-bottom"
@@ -537,7 +528,7 @@ const UserProfile = () => {
                                                 <i class="fa-solid fa-circle-dollar-to-slot profile_btn_icons"></i>
                                                 Give Tip
                                             </button>
-                                        </div>
+                                        </div> */}
                                     </div>
 
                                     <div class="model_card_top_corner_img">
@@ -1170,126 +1161,6 @@ const UserProfile = () => {
 
 
 
-                                {givestip && (
-                                    <div className="row paytab ">
-
-                                        <div className="col-md-12">
-                                            <h3 className="following_heading" data-aos="fade-right" data-aos-anchor-placement="center-bottom" data-aos-duration="3000" >Payment Information</h3>
-                                            <div className="divider_row"></div>
-                                        </div>
-                                        <div className="col-md-4 choose_amount_column payment_right_side" data-aos="fade-up" data-aos-anchor-placement="center-bottom" data-aos-duration="3000">
-
-
-                                            <div className="payment_img_div">
-                                                <img className="img-fluid payment_img" src={modelImg02} alt="Brittanyvues" />
-                                                {/* <p className="image_text">Brittanyvues</p> */}
-                                                <div className="model_div">
-                                                    <div className="image_with_text_row">
-                                                        <img className="img-fluid model_img" src={userProfilePic} />
-                                                        <p className="profile_name_one"> Brittanyvues </p>
-                                                    </div>
-
-
-                                                    <div className="image_with_text_row_two">
-                                                        <p className="free_locked_text">
-                                                            <span className="unlocked_icon">
-                                                                <i className="fa-solid fa-unlock"></i>
-                                                            </span>
-
-                                                            Free
-                                                        </p>
-                                                        <p className="lock_text_clr free_locked_text">
-                                                            <span className="locked_icon">
-                                                                <i className="fa-solid fa-lock"></i>
-                                                            </span>
-
-                                                            Locked
-                                                        </p>
-                                                    </div>
-
-                                                </div>
-
-                                            </div>
-
-
-                                        </div>
-                                        <div className="col-md-8 choose_amount_column" data-aos="fade-up" data-aos-anchor-placement="center-bottom" data-aos-duration="3000">
-                                            <h4 className="  text-white mt-2 mb-2">Choose Amount </h4>
-                                            <div className="tipgap row  mx-auto    ">
-                                                <div className="paytips col-md-3    mb-4 justify-content-center">
-                                                    <input
-                                                        className=""
-                                                        id="t1"
-                                                        type="radio"
-                                                        checked={isChecked}
-                                                        onClick={() => handleRadioChange(0)}
-                                                    />   <label for="t1"> $100</label>
-                                                </div>
-
-
-
-
-                                                <div className="paytips col-md-3    mb-4 justify-content-center">
-                                                    <input
-                                                        className=""
-                                                        id="t2"
-                                                        type="radio"
-                                                        checked={isChecked}
-                                                        onClick={() => handleRadioChange(1)}
-                                                    /> <label for="t2"> $200</label>
-                                                </div>
-
-                                                <div className="paytips col-md-3    mb-4 justify-content-center">
-                                                    <input
-                                                        className=""
-                                                        id="t3"
-                                                        type="radio"
-                                                        checked={isChecked}
-                                                        onClick={() => handleRadioChange(2)}
-                                                    /> <label for="t3"> $300</label>
-                                                </div>
-                                                <div className="paytips col-md-3  mb-4 " >
-                                                    <input
-                                                        className=""
-                                                        type="radio"
-                                                        id="t4"
-                                                        checked={isChecked}
-                                                        onClick={() => handleRadioChange(3)}
-                                                    />   <label for="t4"> $400</label>
-                                                </div>
-                                                <div type="btn" className="paytips col-md-3   mb-4 ">
-                                                    <input
-                                                        className=""
-                                                        type="radio"
-                                                        checked={isChecked}
-                                                        id="t5"
-                                                        onClick={() => handleRadioChange(4)}
-                                                    />  <label for="t5"> $450</label>
-                                                </div>
-                                                <div className="paytips col-md-3  mb-4 ">
-                                                    <input
-                                                        className=""
-                                                        id="t5"
-                                                        type="radio"
-                                                        checked={isChecked}
-                                                        onClick={() => handleRadioChange(5)}
-                                                    />  <label for="t5"> $500</label>
-                                                </div>
-
-                                            </div>
-
-                                            <h4 className="  text-white mt-2 mb-2">Custom Amount </h4>
-                                            <div className="custompay mb-4"> $
-                                                <input className="custom" type="text" />
-                                            </div>
-                                            <button onClick={handlepay} className="paybtn mt -4">
-                                                Pay Now
-                                            </button>
-                                        </div>
-
-
-                                    </div>
-                                )}
 
 
 

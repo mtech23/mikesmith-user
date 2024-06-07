@@ -477,7 +477,7 @@ export const modelprofillist = async () => {
 //     else{
 //       res
 //     }
-    
+
 //     {
 //       method: "Get",
 //       headers: {
@@ -583,6 +583,34 @@ export const modelprofileedit = async (id) => {
 
 
 
+ 
+export const profileviewbyid = async (id) => {
+  try {
+    const res = await fetch(`${url}/public/api/user/post-view${id}`, {
+      method: "Get",
+      headers: {
+        "Content-Type": "application/json",
+        Authorization: `Bearer ${localStorage.getItem("userToken")}`,
+      },
+    });
+    console.log(res, "res");
+    // Ensure response is ok before proceeding
+
+    const productData = await res.json(); // Parse response JSON
+    console.log(productData, "res");
+    if (!res.ok) {
+      // toastAlert(productData?.msg, ALERT_TYPES.ERROR);
+    } else {
+      // toastAlert(productData?.msg, ALERT_TYPES.SUCCESS);
+    }
+
+    return productData; // Return parsed data
+  } catch (error) {
+    // toastAlert(error, ALERT_TYPES.ERROR); // Handle error
+    throw error; // Rethrow error to be handled by caller
+  }
+};
+
 
 
 //Get model Post Tag
@@ -624,7 +652,7 @@ export const modelprofiletag = async (id) => {
 
 
 //Get User Profile view
-export const Userprogileview = async ( ) => {
+export const Userprogileview = async () => {
   try {
     const res = await fetch(`${url}/public/api/user/profile-get`, {
       method: "Get",
@@ -650,6 +678,50 @@ export const Userprogileview = async ( ) => {
     throw error; // Rethrow error to be handled by caller
   }
 };
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+//Get User Profile view
+export const modalprogileview = async (id) => {
+  try {
+    const res = await fetch(`${url}/public/api/user/profile-get/${id}`, {
+      method: "Get",
+      headers: {
+        "Content-Type": "application/json",
+        Authorization: `Bearer ${localStorage.getItem("userToken")}`,
+      },
+    });
+    console.log(res, "res");
+    // Ensure response is ok before proceeding
+
+    const productData = await res.json(); // Parse response JSON
+    console.log(productData, "res");
+    if (!res.ok) {
+      // toastAlert(productData?.msg, ALERT_TYPES.ERROR);
+    } else {
+      // toastAlert(productData?.msg, ALERT_TYPES.SUCCESS);
+    }
+
+    return productData; // Return parsed data
+  } catch (error) {
+    // toastAlert(error, ALERT_TYPES.ERROR); // Handle error
+    throw error; // Rethrow error to be handled by caller
+  }
+};
+
 
 
 
@@ -833,8 +905,8 @@ export const modelpurchaseplane = async (id) => {
         "Content-Type": "application/json",
         Authorization: `Bearer ${localStorage.getItem("userToken")}`,
       },
-    }); 
- 
+    });
+
 
     const productData = await res.json(); // Parse response JSON
     console.log(productData, "res");
