@@ -642,7 +642,7 @@ input[type='radio']:checked:after {
   bottom: 40px !important;
   padding-top: 22px;
   height: 140px !important;
-  width: 100% !important;
+  width: 90% !important;
   top: auto;
 }
 
@@ -1237,4 +1237,14 @@ p.carousel-footer_price {
 }
 
 
+#model_card_top_corner_img {
+  right: 6px !important;
+}
+
+
+
+#model_card_bottom_corner_imgs{
+  bottom: 34px !important;
+  left: 6px !important;
+}
 

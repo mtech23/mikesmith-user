@@ -463,7 +463,7 @@ const Profile = () => {
 
                                     </div>
 
-                                    <div class="model_card_top_corner_img">
+                                    <div class="model_card_top_corner_img" >
                                         <img src={modelCardTopCorner} />
                                     </div>
 
@@ -687,7 +687,7 @@ const Profile = () => {
 
                                                     </Swiper>
 
-                                                    <div className="model_card_top_corner_img">
+                                                    <div className="model_card_top_corner_img" id="model_card_top_corner_img">
                                                         <img src={modelCardTopCorner} />
                                                     </div>
 
