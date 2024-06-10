@@ -119,16 +119,16 @@ const Packages = () => {
 
 
                 {userdata?.map((data) => (
-                        <div className="col-lg-5 col-md-6">
+                        <div className="col-lg-5 col-md-6 gold-package">
                   <div
-                    className="gold-package"
+                    className=""
                     data-aos="fade-right"
                     data-aos-anchor-placement="center-bottom"
                     data-aos-duration="3000"
                   >
                     <img />
 
-                    <p className=" ">{data?.plan?.name}</p>
+                    <p className="platinum_text">{data?.plan?.name}</p>
                     <p>+ Good, Easy Money!</p>
                     <p>+ {data?.plan?.posts_limit} Posts/Month</p>
                     <p>+ {data?.plan?.messages_limit} Messages Per Month</p>

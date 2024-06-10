@@ -361,6 +361,21 @@ const UserProfile = () => {
             // toastAlert(error, ALERT_TYPES.ERROR);
         }
     };
+
+    
+    const stylesForSidebar = {
+        "margin-top": "0px",
+        "height": "179px",
+        "border-radius": "20px",
+        "width": "159px",
+        "padding": "12px 0px",
+        "max-height": "300px",
+        "border-radius": "50%",
+        // "objectFit": "contain",
+    };
+
+
+
     return (
         <div>
             <div>
@@ -373,12 +388,23 @@ const UserProfile = () => {
                         <div className="col-lg-3 col-sm-12">
                             <div className="profile_left_part">
                                 <div className="user_profile_main position-relative">
-                                    <div className="user_profile_bk_img">
+                                    {/* <div className="user_profile_bk_img">
                                         <img src={userProfilePicBackground} className="img-fluid" />
-                                    </div>
+                                    </div> */}
 
                                     <div className="user_profile_info text-center">
-                                        <div type="button" onClick={showprofile}
+                                    <div type="button" onClick={showprofile}
+                                            className="user_profile_picture"
+                                            data-aos="flip-left"
+                                            data-aos-anchor-placement="center-bottom"
+                                            data-aos-duration="3000"
+
+                                        >
+                                            <img src={(baseurl + modellistsprofileview?.profile_pic) && (modelImg01)} style={stylesForSidebar} />
+                                            <div className="profile_edit_icon">  <input type="file" className="edit_icon_input" name="image" onChange={handlefile} /> <i class="fa-regular fa-pen-to-square "></i>
+                                            </div>
+                                        </div>
+                                        {/* <div type="button" onClick={showprofile}
                                             className="user_profile_picture"
                                             data-aos="flip-left"
                                             data-aos-anchor-placement="center-bottom"
@@ -387,7 +413,7 @@ const UserProfile = () => {
                                             <img src={(baseurl + modellistsprofileview?.profile_pic)} />
                                             <div className="profile_edit_icon">  <input type="file" className="edit_icon_input" name="image" onChange={handlefile} /> <i class="fa-regular fa-pen-to-square "></i>
                                             </div>
-                                        </div>
+                                        </div> */}
 
                                         <div className="user_info">
                                             <div type="button" onClick={showprofile}

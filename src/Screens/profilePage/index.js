@@ -242,14 +242,14 @@ const Profile = () => {
 
     const [givestip, setGivestip] = useState(false)
     const following = () => {
-        setFollowing(!follow)
+        setFollowing(true)
         setmodellisting(false)
         setSendmessage(false)
         setTransactions(false)
         setGivestip(false)
     }
     const sendmessage = () => {
-        setSendmessage(!sendmessages)
+        setSendmessage(true)
         setFollowing(false)
         setmodellisting(false)
         setTransactions(false)
@@ -294,12 +294,12 @@ const Profile = () => {
 
     const stylesForSidebar = {
         "marginTop": "0px",
-        "height": "100%",
-        "borderRadius": "20px",
-        "width": "80%",
-        "padding": "34px 0px 12px",
+        "height": "258px",
+        "border-radius": "20px",
+        "width": "192px",
+        "padding": "12px 0px",
         "maxHeight": "300px",
-        "objectFit": "contain",
+        // "objectFit": "contain",
     };
 
 
@@ -321,7 +321,7 @@ const Profile = () => {
                                         <img src={userProfilePicBackground} className="img-fluid" />
                                     </div> */}
 
-                                    <div className="user_profile_info text-center px-5">
+                                    <div className="user_profile_info text-center px-3">
                                         <div type="button" onClick={showprofile}
                                             className="user_profile_picture"
                                             data-aos="flip-left"
@@ -365,12 +365,12 @@ const Profile = () => {
                       </p> */}
 
 
-                                        <div className="main_about_div">
-                                            <h6 className="hot_model_name text-center about_text">About</h6>
-                                            <p className="user_profile_about">
-                                            I'm the sweetest thing you will ever meet. Message me and I'll do whatever your heart desires.
-                                            </p>
-                                        </div>
+                                            <div className="main_about_div">
+                                                <h6 className="hot_model_name text-left about_text">About</h6>
+                                                <p className="user_profile_about">
+                                                    I'm the sweetest thing you will ever meet. Message me and I'll do whatever your heart desires.
+                                                </p>
+                                            </div>
 
                                             <div className="user_about_icons">
                                                 <span className="facebook_icon">
@@ -455,11 +455,13 @@ const Profile = () => {
                                             data-aos-anchor-placement="center-bottom"
                                             data-aos-duration="3000"
                                         >
-                                            <button onClick={givetip} className="give_tip_btn">give tip</button>
+                                            <button
+                                                data-toggle="modal"
+                                                data-target=".exampleModaltip" className="followers_numbers mb-3"> <i class="fas fa-donate profile_btn_icons"></i> give tip</button>
                                         </div>
 
-                                        <button class="followers_numbers aos-init aos-animate" data-aos="fade-left" data-aos-anchor-placement="center-bottom" data-aos-duration="3000"><i class="fa-solid fa-envelope profile_btn_icons"></i>Inbox</button>
-                                        <button class="followers_numbers aos-init aos-animate mt-3" data-aos="fade-left" data-aos-anchor-placement="center-bottom" data-aos-duration="3000"><i class="fa-solid fa-user-plus profile_btn_icons"></i>Followers</button>
+                                        <button onClick={sendmessage} class="followers_numbers aos-init aos-animate" data-aos="fade-left" data-aos-anchor-placement="center-bottom" data-aos-duration="3000"><i class="fa-solid fa-envelope profile_btn_icons"></i>Inbox</button>
+                                        <button onClick={following} class="followers_numbers aos-init aos-animate mt-3" data-aos="fade-left" data-aos-anchor-placement="center-bottom" data-aos-duration="3000"><i class="fa-solid fa-user-plus profile_btn_icons"></i>Followers</button>
 
                                     </div>
 
@@ -628,7 +630,7 @@ const Profile = () => {
                                             <div className="col-sm-6 col-lg-4">
 
                                                 <div className="lock_icon_image">
-                                                    <img src={locked_icon}/>
+                                                    <img src={locked_icon} />
                                                 </div>
 
                                                 {/* <div className="onfront_image">
@@ -665,10 +667,10 @@ const Profile = () => {
                                                                     </span>
 
                                                                     <div className="onfront_image">
-                                                                            <img src={onfrontimage} className=""/>
-                                                                        </div>
+                                                                        <img src={onfrontimage} className="" />
+                                                                    </div>
 
-                                                                        {/* <div className="lock_icon_image">
+                                                                    {/* <div className="lock_icon_image">
                                                                             <img src={locked_icon}/>
                                                                         </div> */}
 
@@ -698,11 +700,11 @@ const Profile = () => {
                                                 </div>
                                             </div>
                                         ))}
-                                          
+
                                     </div>
 
-                                   
-                                    
+
+
 
                                 )}
 
@@ -952,24 +954,17 @@ const Profile = () => {
 
 
 
-
-
-
-
-
-
-
                                 {givestip && (
                                     <div className="row paytab">
 
-                                        <div className="col-md-19">
+                                        <div className="col-md-9">
                                             <h3 className="following_heading" data-aos="fade-right" data-aos-anchor-placement="center-bottom" data-aos-duration="3000" >Payment Information</h3>
                                             <div className="divider_row"></div>
                                         </div>
                                         <div className="col-md-12" data-aos="fade-up" data-aos-anchor-placement="center-bottom" data-aos-duration="3000">
                                             <h4 className="  text-white mt-2 mb-2">Choose Amount </h4>
-                                            <div className="tipgap row  mx-auto    ">
-                                                <div className="paytips col-md-3    mb-4 justify-content-center">
+                                            <div className="tipgap row  mx-auto">
+                                                <div className="paytips col-md-3 mb-4 justify-content-center">
                                                     <input
                                                         className=""
                                                         id="t1"
@@ -982,7 +977,7 @@ const Profile = () => {
 
 
 
-                                                <div className="paytips col-md-3    mb-4 justify-content-center">
+                                                <div className="paytips col-md-3 mb-4 justify-content-center">
                                                     <input
                                                         className=""
                                                         id="t2"
@@ -992,7 +987,7 @@ const Profile = () => {
                                                     /> <label for="t2"> $200</label>
                                                 </div>
 
-                                                <div className="paytips col-md-3    mb-4 justify-content-center">
+                                                <div className="paytips col-md-3  mb-4 justify-content-center">
                                                     <input
                                                         className=""
                                                         id="t3"
@@ -1083,7 +1078,7 @@ const Profile = () => {
                                             </div> */}
 
 
-                                                    <div class="carousel-header mb-5">
+                                            <div class="carousel-header mb-5">
                                                 <div className="carousel-icons">
                                                     <div className="caarousel-icons_inner">
                                                         <a
@@ -1093,59 +1088,334 @@ const Profile = () => {
                                                         >
                                                             <img src={Cancel} />
                                                         </a>
-                                                  
+
 
                                                     </div>
                                                 </div>
-                                           
+
                                             </div>
-                                                <Swiper
-                                                    slidesPerView={"auto"}
-                                                    centeredSlides={true}
-                                                    spaceBetween={15}
-                                                    navigation={true}
-                                                    // pagination={{
-                                                    //   clickable: true,
-                                                    // }}
-                                                    modules={[Navigation]}
-                                                    className="mySwiper mt-5"
-                                                >  {profilebyid?.post_data?.map((data) => (
+                                            <Swiper
+                                                slidesPerView={"auto"}
+                                                centeredSlides={true}
+                                                spaceBetween={15}
+                                                navigation={true}
+                                                // pagination={{
+                                                //   clickable: true,
+                                                // }}
+                                                modules={[Navigation]}
+                                                className="mySwiper mt-5"
+                                            >  {profilebyid?.post_data?.map((data) => (
 
-                                                    <SwiperSlide >
-                                                        {/* <div> */}
-                                                        <img src={data?.file ? baseurl + data?.file : dummy} className="modalpic" />
-                                                        {/* </div> */}
-                                                    </SwiperSlide>
-                                                ))}
+                                                <SwiperSlide >
+                                                    {/* <div> */}
+                                                    <img src={data?.file ? baseurl + data?.file : dummy} className="modalpic" />
+                                                    {/* </div> */}
+                                                </SwiperSlide>
+                                            ))}
 
 
-                                                </Swiper>
+                                            </Swiper>
 
-                                                <div className="carousel-footer">
-                                                    <h4 className="carousel-footer_title">
-                                                        <h3 className="modal-title mt-3">{profilebyid?.post_title}       :)</h3>
+                                            <div className="carousel-footer">
+                                                <h4 className="carousel-footer_title">
+                                                    <h3 className="modal-title mt-3">{profilebyid?.post_title}       :)</h3>
 
-                                                    </h4>
-                                                    <p className="carousel-footer_body">
-                                                        {profilebyid?.post_description}
-                                                    </p>
-                                                    <p className="carousel-footer_price">${profilebyid?.price}    </p>
-                                                    <button onClick={handleclick} className="carousel-footer_button " data-dismiss="modal">Buy</button>
-                                                </div>
+                                                </h4>
+                                                <p className="carousel-footer_body">
+                                                    {profilebyid?.post_description}
+                                                </p>
+                                                <p className="carousel-footer_price">${profilebyid?.price}    </p>
+                                                <button onClick={handleclick} className="carousel-footer_button " data-dismiss="modal">Buy</button>
                                             </div>
                                         </div>
                                     </div>
                                 </div>
                             </div>
                         </div>
+
+
+
+
+
+
+
+
+
+
+
+                        <div className="col-md-6">
+
+                            <div
+
+                                class="modal fade exampleModaltip"
+
+                                // id="exampleModal"
+
+                                tabindex="-1"
+
+                                aria-labelledby="exampleModalLabel"
+
+                                aria-hidden="true"
+
+                            >
+
+                                <div class="modal-dialog modal-dialog-centered my-modal">
+
+                                    <div class="modal-content">
+
+                                        <div className="carousel-modal">
+
+                                            <div class="carousel-header">
+
+                                                <div className="carousel-icons">
+
+                                                    <div className="caarousel-icons_inner">
+
+                                                        <a
+
+                                                            href="javaScript:;"
+
+                                                            className="cancel"
+
+                                                            data-dismiss="modal"
+
+                                                        >
+
+                                                            <img src={Cancel} />
+
+                                                        </a>
+
+
+                                                    </div>
+
+                                                </div>
+
+                                                {/* <h3 className="modal-title">HOTMODEL1234</h3>
+
+                                            <p className="modal-subtitle">38- USA - 2 Hours ago</p> */}
+
+                                            </div>
+
+
+                                            <div className="row    px-4 ">
+
+                                                <div className="col-md-12  mt-4 ">
+
+                                                    <h3 className="following_heading" data-aos="fade-right" data-aos-anchor-placement="center-bottom" data-aos-duration="3000" >Payment Information</h3>
+
+                                                    <div className="divider_row"></div>
+
+                                                </div>
+
+                                                <div className="col-md-4 choose_amount_column payment_right_side" data-aos="fade-up" data-aos-anchor-placement="center-bottom" data-aos-duration="3000">
+
+
+                                                    <div className="payment_img_div">
+
+                                                        <img className="img-fluid payment_img" src={modelImg02} alt="Brittanyvues" />
+
+                                                        {/* <p className="image_text">Brittanyvues</p> */}
+
+                                                        <div className="model_div">
+
+                                                            <div className="image_with_text_row">
+
+                                                                <img className="img-fluid model_img" src={userProfilePic} />
+
+                                                                <p className="profile_name_one"> Brittanyvues </p>
+
+                                                            </div>
+
+
+                                                            <div className="image_with_text_row_two">
+
+                                                                <p className="free_locked_text">
+
+                                                                    <span className="unlocked_icon">
+
+                                                                        <i className="fa-solid fa-unlock"></i>
+
+                                                                    </span>
+
+                                                                    Free
+
+                                                                </p>
+
+                                                                <p className="lock_text_clr free_locked_text">
+
+                                                                    <span className="locked_icon">
+
+                                                                        <i className="fa-solid fa-lock"></i>
+
+                                                                    </span>
+
+                                                                    Locked
+
+                                                                </p>
+
+                                                            </div>
+
+                                                        </div>
+
+                                                    </div>
+
+                                                </div>
+
+                                                <div className="col-md-8 choose_amount_column" data-aos="fade-up" data-aos-anchor-placement="center-bottom" data-aos-duration="3000">
+
+                                                    <h4 className="  text-white mt-2 mb-4">Choose Amount </h4>
+
+                                                    <div className="  row  mx-auto    d-flex justify-content-center ">
+
+                                                        <div className="paytips col-md-3 mb-4 justify-content-center">
+
+                                                            <input
+
+                                                                className=""
+
+                                                                id="t1"
+
+                                                                type="radio"
+
+                                                                checked={isChecked}
+
+                                                                onClick={() => handleRadioChange(0)}
+
+                                                            />   <label for="t1"> $100</label>
+
+                                                        </div>
+
+
+
+                                                        <div className="paytips col-md-3 mb-4 justify-content-center">
+
+                                                            <input
+
+                                                                className=""
+
+                                                                id="t2"
+
+                                                                type="radio"
+
+                                                                checked={isChecked}
+
+                                                                onClick={() => handleRadioChange(1)}
+
+                                                            /> <label for="t2"> $200</label>
+
+                                                        </div>
+
+                                                        <div className="paytips col-md-3    mb-4 justify-content-center">
+
+                                                            <input
+
+                                                                className=""
+
+                                                                id="t3"
+
+                                                                type="radio"
+
+                                                                checked={isChecked}
+
+                                                                onClick={() => handleRadioChange(2)}
+
+                                                            /> <label for="t3"> $300</label>
+
+                                                        </div>
+
+                                                        <div className="paytips col-md-3  mb-4 " >
+
+                                                            <input
+
+                                                                className=""
+
+                                                                type="radio"
+
+                                                                id="t4"
+
+                                                                checked={isChecked}
+
+                                                                onClick={() => handleRadioChange(3)}
+
+                                                            />   <label for="t4"> $400</label>
+
+                                                        </div>
+
+                                                        <div type="btn" className="paytips col-md-3   mb-4 ">
+
+                                                            <input
+
+                                                                className=""
+
+                                                                type="radio"
+
+                                                                checked={isChecked}
+
+                                                                id="t5"
+
+                                                                onClick={() => handleRadioChange(4)}
+
+                                                            />  <label for="t5"> $450</label>
+
+                                                        </div>
+
+                                                        <div className="paytips col-md-3  mb-4 ">
+
+                                                            <input
+
+                                                                className=""
+
+                                                                id="t5"
+
+                                                                type="radio"
+
+                                                                checked={isChecked}
+
+                                                                onClick={() => handleRadioChange(5)}
+
+                                                            />  <label for="t5"> $500</label>
+
+                                                        </div>
+
+                                                    </div>
+
+                                                    <h4 className="  text-white mt-2 mb-2">Custom Amount </h4>
+
+                                                    <div className="custompay  mx-auto justify-content-center d-flex mb-4"> $
+
+                                                        <input className="custom" type="text" />
+
+                                                    </div>
+
+                                                    <button data-dismiss="modal" onClick={handlepay} className="paybtn mt -4">
+
+                                                        Pay Now
+
+                                                    </button>
+
+                                                </div>
+
+
+                                            </div>
+
+                                        </div>
+
+                                    </div>
+
+                                </div>
+
+                            </div>
+
+                        </div>
                     </div>
                 </div>
-
-                <div>
-                    <Footer />
-                </div>
             </div>
-            );
+
+            <div>
+                <Footer />
+            </div>
+        </div>
+    );
 };
 
-            export default Profile;
+export default Profile;

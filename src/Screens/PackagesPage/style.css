@@ -17,10 +17,11 @@
 .packages_section .gold-package {
   background: url("../../Asserts/images/gold-bg.png");
   /* background-size: 100% 100%; */
-  background-size: cover;
   background-repeat: no-repeat;
-  position: relative;
-  padding: 60px 0 90px;
+    padding: 60px 0 90px;
+    position: relative;
+    background-size: 80% 99%;
+    background-position: center;
 }
 .goldp{
   position: absolute!important;
@@ -140,6 +141,8 @@
   background: url("../../Asserts/images/gold-btn-bg.png");
   background-size: 100% 100%;
   background-repeat: no-repeat;
+  width: max-content;
+  padding: 10px 50px;
 }
 .packages-btns .platinum-btn {
   background: url("../../Asserts/images/platinum-btn-bg.png");
@@ -467,4 +470,10 @@ span.small-tagline {
     font-size: 35px;
     margin-bottom: 20px;
   }
+}
+.platinum_text {
+  font-weight: 700;
+  text-transform: uppercase;
+  font-size: 25px !important;
+  /* line-height: 35px !important; */
 }
