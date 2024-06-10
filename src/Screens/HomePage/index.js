@@ -60,8 +60,10 @@ const Home = () => {
   }, []);
 
 
-
-
+  const handlenavigate = (id) => {
+    // navigate('/profile-page')
+    navigate(`/profile-page/${id}`)
+  }
 
 
   const baseurl = `${process.env.REACT_APP_BASE_URL}/public/`
@@ -237,7 +239,7 @@ const Home = () => {
             {modellists &&
               modellists?.map((item, index) => (
                 <div key={index} className="col-10 col-sm-6 col-lg-3 mx-auto">
-                  <div className="first_model_card">
+                  <div className="home_page_model_card">
 
 
                     <Swiper
@@ -257,7 +259,7 @@ const Home = () => {
 
                         </div>
 
-                        <div className="model_card_desc ">
+                        <div className="home_page_model_card_desc ">
                           <div className="model_div">
                             <div className="image_with_text_row">
                               <img className="img-fluid model_img" src={userProfilePic} />
@@ -288,6 +290,9 @@ const Home = () => {
                             <p className="product_description" >Lorem Ipsum is simply dummy text of the printing and typesetting industry.
                               Ipsum has been the industry's standard dummy text ever since the 1500s,</p>
                           </div>
+                          <div className="view_collection_btn_div">
+                             <button className="view_collection_btn" onClick={() => handlenavigate(item?.id)} > View Collection </button>
+                           </div>
 
 
                           {/* <div className="name_with_status">
@@ -312,10 +317,6 @@ const Home = () => {
                                 view profile
                               </button>
                             </div> */}
-
-
-
-
 
 
 

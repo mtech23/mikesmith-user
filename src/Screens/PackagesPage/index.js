@@ -2,6 +2,7 @@ import React, { useEffect, useState } from "react";
 import Header from "../../Components/Layout/Header";
 import Footer from "../../Components/Layout/Footer";
 import goldpackage from '../../Asserts/images/Grouppackage.png'
+ 
 // import { modelpurchaseplane } from '../../api'
 import { modelpackagelist, modelpurchaseplane } from '../../api'
 import "./style.css";
@@ -99,6 +100,8 @@ const Packages = () => {
   };
 
 
+
+  const userrole = localStorage.getItem("userrole")
   // useEffect(() =>{
   //   packagecheckout()
   // } , [])
@@ -115,38 +118,76 @@ const Packages = () => {
 
             <div className="row justify-content-center">
 
-         
 
 
-                {userdata?.map((data) => (
-                        <div className="col-lg-5 col-md-6">
+
+              {userdata?.map((data) => (
+                <div className="col-lg-5 col-md-6">
                   <div
                     className="gold-package"
                     data-aos="fade-right"
                     data-aos-anchor-placement="center-bottom"
                     data-aos-duration="3000"
                   >
-                    <img />
+                    <img className="goldpkg" src={goldpackage} />
 
                     <p className=" ">{data?.plan?.name}</p>
                     <p>+ Good, Easy Money!</p>
-                    <p>+ {data?.plan?.posts_limit} Posts/Month</p>
-                    <p>+ {data?.plan?.messages_limit} Messages Per Month</p>
-                    <p>+ Keep {data?.plan?.sales_percent}% of Sales</p>
+                    <p>+ {data?.plan?.posts_limit} Request Posts/Day</p>
+                    <p>+ {data?.plan?.messages_limit} Messages With Images  Per Month</p>
+                    <p>+Earn  {data?.plan?.sales_percent}%  on Purchases </p>
                     <p>+ Keep {data?.plan?.tips_percent}% of Tips</p>
                     <p>+ Earn {data?.plan?.platinum_percent}% in Platinum Points on Sales</p>
-                    <p>- Can Only View Requests</p>
+
+                    {userrole == 2 ? (<p> Can Only {data?.plan?.requests} Requests</p>) : (" ")}
+
+
+
                     {/* <p>- 10 Posts/Month</p> */}
-                    <p>- {data?.plan?.boost_limit} Boosts/Month</p>
+                    {userrole == 2 ? (<p>- {data?.plan?.boost_limit} Boosts/Month</p>) : (" ")}
 
                     <div className="custom-check-boxes">
                       <div className="checkbox-div1">
-                        {data?.plan_time?.map((plantime) => (<label className="custom_check-box">
-                          <span className="custom_check-text">${plantime?.price}/{plantime?.plan_time}</span>
-                          <input onChange={() => handlepkg(plantime?.id)} type="checkbox" className="blackbox_custom" />
-                        </label>))}
+                        <label className="custom_check-box">
+
+                          <span className="custom_check-text"> $ {data?.plan?.prices_options?.monthly?.price}/Month </span>
+                          <input onChange={() => handlepkg(data?.plan?.prices_options?.monthly?.id)} type="checkbox" className="blackbox_custom" />
+                        </label>
+
+
+                        <label className="custom_check-box">
+
+                          <span className="custom_check-text"> $ {data?.plan?.prices_options?.yearly?.price}/Year   </span>
+                          <input onChange={() => handlepkg(data?.plan?.prices_options?.yearly?.id)} type="checkbox" className="blackbox_custom" />
+                        </label>
+
+
+
 
                       </div>
+
+
+                      <div className="checkbox-div1">
+
+
+                        <label className="custom_check-box">
+
+                          <span className="custom_check-text"> $ {data?.plan?.prices_options?.month_platinum_points?.price}/Month Platinum Points     </span>
+                          <input onChange={() => handlepkg(data?.plan?.prices_options?.month_platinum_points?.id)} type="checkbox" className="blackbox_custom" />
+                        </label>
+
+                      </div>
+
+
+
+                      {/* <div className="checkbox-div1">
+                        <label className="custom_check-box">
+
+                          <span className="custom_check-text"> $ {data?.plan?.prices_options?.yearly?.price}/Year   </span>
+                          <input onChange={() => handlepkg(data?.plan?.prices_options?.yearly?.id)} type="checkbox" className="blackbox_custom" />
+                        </label>
+
+                      </div> */}
 
                     </div>
                     <div className="packages-btns">
@@ -154,14 +195,14 @@ const Packages = () => {
                     </div>
 
                   </div>
-                  
+
+                </div>
+              ))}
+
             </div>
-                ))}
-
-              </div>
 
 
-             
+
 
 
           </div>
@@ -250,118 +291,7 @@ const Packages = () => {
             </div>
           </div>
         </section>
-        <section className="checkout">
-          <div className="container">
-            <div className="checkout-content">
-              <div className="row">
-                <div className="col-md-12">
-                  <h2
-                    className="checkout__title"
-                    data-aos="fade-right"
-                    data-aos-anchor-placement="center-bottom"
-                    data-aos-duration="3000"
-                  >
-                    CHECKOUT
-                  </h2>
-                </div>
-              </div>
-              <form action="/">
-                <div className="row">
-                  <div className="col-lg-7">
-                    <div
-                      className="checkbox-outer"
-                      data-aos="fade-right"
-                      data-aos-anchor-placement="center-bottom"
-                      data-aos-duration="3000"
-                    >
-                      <label className="custom_check-box label-1">
-                        <span className="custom_check-text">
-                          PLATINUM MONTHLY MEMBERSHIP&nbsp; &nbsp;
-                          <span className="actual-price">$34/Month</span>&nbsp;
-                          &nbsp;
-                          <span className="discount-price gradiant-text">
-                            $34/Month
-                          </span>
-                        </span>
-                        <input type="checkbox" className="blackbox_custom" />
-                      </label>
-                    </div>
-                  </div>
-                  <div className="col-lg-5">
-                    <div
-                      className="checkbox-outer"
-                      data-aos="fade-left"
-                      data-aos-anchor-placement="center-bottom"
-                      data-aos-duration="3000"
-                    >
-                      <label className="custom_check-box lable-2">
-                        <span className="custom_check-text">
-                          ADD <span class="gradiant-text">$50</span> to my
-                          platinum bank
-                        </span>
-                        <span className="small-tagline">
-                          (FOR BOOST OR OTHER FEATURES)
-                        </span>
-                        <input type="checkbox" className="blackbox_custom" />
-                      </label>
-                    </div>
-                  </div>
-                  <div className="col-md-12">
-                    <div
-                      className="subtotal"
-                      data-aos="fade-right"
-                      data-aos-anchor-placement="center-bottom"
-                      data-aos-duration="3000"
-                    >
-                      <h3>
-                        SUBTOTAL: <span className="subtotal-price">$73</span>
-                      </h3>
-                    </div>
-                  </div>
-                  <div className="col-md-12">
-                    <label
-                      htmlFor="promo"
-                      data-aos="fade-left"
-                      data-aos-anchor-placement="center-bottom"
-                      data-aos-duration="3000"
-                    >
-                      PROMO CODE
-                    </label>
-                  </div>
-                  <div className="col-md-6">
-                    <div className="form-group">
-                      <input
-                        type="text"
-                        className="form-control promo"
-                        id="promo"
-                        data-aos="fade-right"
-                        data-aos-anchor-placement="center-bottom"
-                        data-aos-duration="3000"
-                      />
-                    </div>
-                  </div>
-                  <div className="col-md-6">
-                    <p
-                      className="saved-price"
-                      data-aos="fade-left"
-                      data-aos-anchor-placement="center-bottom"
-                      data-aos-duration="3000"
-                    >
-                      YOU Saved <span className="five-dollers">$5</span>
-                    </p>
-                  </div>
-                </div>
-                <div className="row">
-                  <div class="col-md-12">
-                    <div className="text-center checkout-btn">
-                      <button type="button" onClick={handlepayment} class="sign_actionBtn">GO TO PAYMENT</button>
-                    </div>
-                  </div>
-                </div>
-              </form>
-            </div>
-          </div>
-        </section>
+
 
         <img src={pageBottomImg} className="page-bottom_img" />
       </section>

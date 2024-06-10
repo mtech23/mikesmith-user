@@ -639,10 +639,10 @@ input[type='radio']:checked:after {
 
 
 .profile_section_main .first_model_card:hover .model_have_a_look_btn {
-  bottom: 13%;
+  bottom: 40px !important;
   padding-top: 22px;
-  height: 112px;
-  width: 94%;
+  height: 140px !important;
+  width: 90% !important;
   top: auto;
 }
 
@@ -1170,9 +1170,9 @@ p.carousel-footer_price {
 }
 
 
-.main_about_div {
+/* .main_about_div{
   padding: 0px 28px;
-}
+} */
 
 .modalpic {
   height: 530px!important;
@@ -1198,3 +1198,56 @@ p.carousel-footer_price {
   gap: 12px;
   padding: 0px 0px 20px;
 }
+
+
+
+.onfront_image{
+  position: absolute;
+  width: 100%;
+  height: 100%;
+  z-index: 10;
+  top: 0px;
+}
+
+.onfront_image img{
+  width: 100%;
+  height: 100%;
+}
+
+.lock_icon_image{
+  position: absolute;
+  top: 40%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  z-index: 40;
+  border: 3px solid #ab9d61;
+  border-radius: 50%;
+  height: 80px;
+  width: 80px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+
+.lock_icon_image img{
+  height: 50px;
+  filter: invert(1);
+  width: 60px;
+}
+
+
+#model_card_top_corner_img {
+  right: 6px !important;
+}
+
+
+
+#model_card_bottom_corner_imgs{
+  bottom: 34px !important;
+  left: 6px !important;
+}
+.profile_first_model{
+  width: 100%;
+  margin-bottom: 0px;
+ }

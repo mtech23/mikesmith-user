@@ -9,13 +9,15 @@ import dummy from '../../Asserts/images/dummy.jpg'
 import follow from '../../Asserts/images/follow.png'
 import "swiper/css";
 import "swiper/css/pagination";
-import { useParams } from "react-router-dom";
+import { Link, useParams } from "react-router-dom";
 import { Navigation, Pagination } from "swiper/modules";
 import { Getmodelpostlist, Userprogileview, UserUnflowmodel, profileviewbyid } from '../../api'
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 // import { faHeart } from '@awesome.me/kit-KIT_CODE/icons'
+// import { onfrontimage } from "../../Asserts/images/index";
 
 import {
+    locked_icon,
     platinumFeetText,
     headerSearchIcon,
     legsImage01,
@@ -25,7 +27,7 @@ import {
     homeImg01,
     modelText,
     modelImg01,
-
+    onfrontimage,
     modelCardTopCorner,
     modelCardBottomCorner,
     modelImg02,
@@ -301,7 +303,7 @@ const Profile = () => {
     };
 
 
-
+    console.log("modellists", modellists)
 
     return (
         <div>
@@ -319,7 +321,7 @@ const Profile = () => {
                                         <img src={userProfilePicBackground} className="img-fluid" />
                                     </div> */}
 
-                                    <div className="user_profile_info text-center">
+                                    <div className="user_profile_info text-center px-5">
                                         <div type="button" onClick={showprofile}
                                             className="user_profile_picture"
                                             data-aos="flip-left"
@@ -364,9 +366,9 @@ const Profile = () => {
 
 
                                             <div className="main_about_div">
-                                                <h6 className="hot_model_name text-left about_text">About:</h6>
+                                                <h6 className="hot_model_name text-center about_text">About</h6>
                                                 <p className="user_profile_about">
-                                                    9 and SINGLE-Nudist and bass fisherman-MILF and GILF. I live on a treefarm. Here to make some smiling faces light up even brighter I'm not here to judge anyone's kinks... I have my own... teeheehe
+                                                    I'm the sweetest thing you will ever meet. Message me and I'll do whatever your heart desires.
                                                 </p>
                                             </div>
 
@@ -461,7 +463,7 @@ const Profile = () => {
 
                                     </div>
 
-                                    <div class="model_card_top_corner_img">
+                                    <div class="model_card_top_corner_img" >
                                         <img src={modelCardTopCorner} />
                                     </div>
 
@@ -624,7 +626,17 @@ const Profile = () => {
 
 
                                             <div className="col-sm-6 col-lg-4">
-                                                <div className="first_model_card">
+                                                {items?.is_paid == true ? (
+                                                    <Link to={'/packages-page'} >
+                                                        <div className="lock_icon_image">
+                                                            <img src={locked_icon} />
+                                                        </div></Link>) : ("")
+                                                }
+                                                {/* <div className="onfront_image">
+                                                    <img src={onfrontimage} className="img-fluid"/>
+                                                </div> */}
+
+                                                <div className="first_model_card profile_first_model">
 
 
                                                     <Swiper
@@ -652,26 +664,34 @@ const Profile = () => {
                                                                     <span className="boost_icon_img">
 
                                                                     </span>
+                                                                    {console.log("data?.is_paid", items?.is_paid)}
+                                                                    {items?.is_paid == true ? (
+                                                                        <div className="onfront_image">
+                                                                            <img src={onfrontimage} className="" />
+                                                                        </div>
+                                                                    ) : (
+                                                                        " "
+                                                                    )}
+
+                                                                    {/* <div className="lock_icon_image">
+                                                                            <img src={locked_icon}/>
+                                                                        </div> */}
+
                                                                 </div>
 
                                                                 <div>
-                                                                    <div className="model_have_a_look_btn">
-                                                                        <button className="have_alook_btn">have a look</button>
-                                                                        <span className="be_nice_span">
-                                                                            BE NICE, or we will crush you!
-                                                                        </span>
-                                                                    </div>
+
                                                                 </div>
                                                             </SwiperSlide>))}
 
 
                                                     </Swiper>
 
-                                                    <div className="model_card_top_corner_img">
+                                                    <div className="model_card_top_corner_img" id="">
                                                         <img src={modelCardTopCorner} />
                                                     </div>
 
-                                                    <div className="model_card_bottom_corner_img" id="model_card_bottom_corner_imgs">
+                                                    <div className="model_card_bottom_corner_img" id="">
                                                         <img src={modelCardBottomCorner} />
                                                     </div>
 
@@ -680,7 +700,13 @@ const Profile = () => {
                                         ))}
 
                                     </div>
+
+
+
+
                                 )}
+
+
 
                                 {follow && (
                                     <div className="row tabs_box">
@@ -1052,7 +1078,7 @@ const Profile = () => {
                                             </div> */}
 
 
-                                                    <div class="carousel-header mb-5">
+                                            <div class="carousel-header mb-5">
                                                 <div className="carousel-icons">
                                                     <div className="caarousel-icons_inner">
                                                         <a
@@ -1062,45 +1088,44 @@ const Profile = () => {
                                                         >
                                                             <img src={Cancel} />
                                                         </a>
-                                                  
+
 
                                                     </div>
                                                 </div>
-                                           
+
                                             </div>
-                                                <Swiper
-                                                    slidesPerView={"auto"}
-                                                    centeredSlides={true}
-                                                    spaceBetween={15}
-                                                    navigation={true}
-                                                    // pagination={{
-                                                    //   clickable: true,
-                                                    // }}
-                                                    modules={[Navigation]}
-                                                    className="mySwiper mt-5"
-                                                >  {profilebyid?.post_data?.map((data) => (
+                                            <Swiper
+                                                slidesPerView={"auto"}
+                                                centeredSlides={true}
+                                                spaceBetween={15}
+                                                navigation={true}
+                                                // pagination={{
+                                                //   clickable: true,
+                                                // }}
+                                                modules={[Navigation]}
+                                                className="mySwiper mt-5"
+                                            >  {profilebyid?.post_data?.map((data) => (
 
-                                                    <SwiperSlide >
-                                                        {/* <div> */}
-                                                        <img src={data?.file ? baseurl + data?.file : dummy} className="modalpic" />
-                                                        {/* </div> */}
-                                                    </SwiperSlide>
-                                                ))}
+                                                <SwiperSlide >
+                                                    {/* <div> */}
+                                                    <img src={data?.file ? baseurl + data?.file : dummy} className="modalpic" />
+                                                    {/* </div> */}
+                                                </SwiperSlide>
+                                            ))}
 
 
-                                                </Swiper>
+                                            </Swiper>
 
-                                                <div className="carousel-footer">
-                                                    <h4 className="carousel-footer_title">
-                                                        <h3 className="modal-title mt-3">{profilebyid?.post_title}       :)</h3>
+                                            <div className="carousel-footer">
+                                                <h4 className="carousel-footer_title">
+                                                    <h3 className="modal-title mt-3">{profilebyid?.post_title}       :)</h3>
 
-                                                    </h4>
-                                                    <p className="carousel-footer_body">
-                                                        {profilebyid?.post_descripction}
-                                                    </p>
-                                                    <p className="carousel-footer_price">${profilebyid?.price}    </p>
-                                                    <button onClick={handleclick} className="carousel-footer_button " data-dismiss="modal">Buy</button>
-                                                </div>
+                                                </h4>
+                                                <p className="carousel-footer_body">
+                                                    {profilebyid?.post_description}
+                                                </p>
+                                                <p className="carousel-footer_price">${profilebyid?.price}    </p>
+                                                <button onClick={handleclick} className="carousel-footer_button " data-dismiss="modal">Buy</button>
                                             </div>
                                         </div>
                                     </div>
@@ -1109,12 +1134,13 @@ const Profile = () => {
                         </div>
                     </div>
                 </div>
-
-                <div>
-                    <Footer />
-                </div>
             </div>
-            );
+
+            <div>
+                <Footer />
+            </div>
+        </div>
+    );
 };
 
-            export default Profile;
+export default Profile;

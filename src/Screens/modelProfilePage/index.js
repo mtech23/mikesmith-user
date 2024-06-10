@@ -230,6 +230,17 @@ const ModelProfile = () => {
   }
 
   console.log("filterid", filterid)
+
+  const stylesForSidebar = {
+    "marginTop": "0px",
+    "height": "100%",
+    "borderRadius": "20px",
+    "width": "80%",
+    "padding": "34px 0px 12px",
+    "maxHeight" : "300px",
+    "objectFit": "contain",
+};
+
   return (
     <div>
       <div>
@@ -242,18 +253,18 @@ const ModelProfile = () => {
             <div className="col-md-3">
               <div className="profile_left_part">
                 <div className="user_profile_main position-relative">
-                  <div className="user_profile_bk_img">
+                  {/* <div className="user_profile_bk_img">
                     <img src={userProfilePicBackground} className="img-fluid" />
-                  </div>
+                  </div> */}
 
-                  <div className="user_profile_info text-center">
+                  <div className="user_profile_info text-center px-5">
                     <div type="button" onClick={showprofile}
                       className="user_profile_picture"
                       data-aos="flip-left"
                       data-aos-anchor-placement="center-bottom"
                       data-aos-duration="3000"
                     >
-                      <img src={(baseurl + userdata?.profile_pic) && (userProfilePic)} />
+                      <img src={(baseurl + userdata?.profile_pic) && (modelImg01)} style={stylesForSidebar}/>
                     </div>
 
                     <div className="user_info">
@@ -277,6 +288,38 @@ const ModelProfile = () => {
                       >
                         <span className="user_access">{userdata?.email || 'HOTMODEL1234@gmail.com'}</span>
                       </div>
+
+
+                      <div className="main_about_div">
+                                            <h6 className="hot_model_name text-center about_text">About</h6>
+                                            <p className="user_profile_about">
+                                            I'm the sweetest thing you will ever meet. Message me and I'll do whatever your heart desires.
+                                            </p>
+                                        </div>
+
+                                        <div className="user_about_icons">
+                                            <span className="facebook_icon">
+                                                {/* <FontAwesomeIcon icon="fa-brands fa-facebook-f" /> */}
+                                                <i class="fa-brands fa-facebook-f"></i>
+                                            </span>
+
+                                            <span className="facebook_icon">
+                                            {/* <FontAwesomeIcon icon="fa-brands fa-square-instagram" /> */}
+                                            <i class="fa-brands fa-instagram"></i>
+                                            </span>
+
+                                            <span className="facebook_icon">
+                                            {/* <FontAwesomeIcon icon="fa-brands fa-square-instagram" /> */}
+                                            <i class="fa-brands fa-youtube"></i>
+                                            </span>
+
+                                            <span className="facebook_icon">
+                                            {/* <FontAwesomeIcon icon="fa-brands fa-square-instagram" /> */}
+                                            <i class="fa-brands fa-twitter"></i>
+                                            </span>
+
+                                       
+                                        </div>
 
                       {/* <p
                         className="user_profile_desc"
@@ -330,8 +373,10 @@ const ModelProfile = () => {
                         send request
                       </button> */}
 
+                      {/* sign_actionBtn */}
+
                       <button
-                        className="sign_actionBtn"
+                        className="followers_numbers text-center text-capitalize"
                         data-aos="fade-left"
                         data-aos-anchor-placement="center-bottom"
                         data-aos-duration="3000"
@@ -339,7 +384,7 @@ const ModelProfile = () => {
                         send message
                       </button>
                       <button
-                        className="sign_actionBtn"
+                        className="followers_numbers text-center text-capitalize"
                         data-aos="fade-left"
                         data-aos-anchor-placement="center-bottom"
                         data-aos-duration="3000"
@@ -354,7 +399,8 @@ const ModelProfile = () => {
                       data-aos-anchor-placement="center-bottom"
                       data-aos-duration="3000"
                     >
-                      <button className="give_tip_btn" onClick={recived_tips}>  Recived Tips</button>
+                    {/* give_tip_btn */}  
+                      <button className="followers_numbers text-center text-capitalize" onClick={recived_tips}>  Recived Tips</button>
                     </div>
 
                     <div
