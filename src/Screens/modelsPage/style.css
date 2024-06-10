@@ -1,3 +1,4 @@
+<<<<<<< HEAD
 .model_section {
   /* background-color: #000; */
   padding-top: 126px;
@@ -218,3 +219,143 @@
     right: -10px;
   }
 }
+=======
+
+
+.model_section{
+    /* background-color: #000; */
+    padding-top: 126px;
+}
+
+.model_section .main_searchBar{
+    width: 40%;
+}
+
+.all_filters_with_search{
+    display: flex;
+    justify-content: center;
+    gap: 40px;
+}
+
+.sortby_label{
+    color: #fff;
+    text-transform: uppercase;
+    font-size: 16px;
+    font-weight: 400;
+    margin-right: 10px;
+    display: inline-block;
+}
+
+.all_filtered_btn{
+    display: flex;
+    justify-content: center;
+    gap: 40px;
+    align-items: center;
+    padding: 30px 0px;
+}
+
+
+.model_section .sign_actionBtn{
+    background-image: url("../../Asserts/images/have-a-look-btn-bk.png");
+    color: #fff;
+    font-weight: 400;
+    font-size: 12px;
+}
+
+.model_section .sign_actionBtn:focus{
+    box-shadow: none;
+}
+
+.model_section .first_model_card:hover .model_card_desc{
+    opacity: 1;
+}
+
+.online_circle{
+    color: #58ca2e;
+    display: inline-block;
+    font-size: 8px;
+
+}
+
+.hot_model_name{
+    color: #fff;
+    font-size: 16px;
+    text-transform: uppercase;
+}
+
+.model_section .model_card_desc {
+    position: absolute;
+    bottom: 50px;
+    left: 50%;
+    transform: translateX(-50%);
+    text-align: center;
+    width: 100%;
+}
+
+.name_with_status {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    gap: 5px;
+}
+
+.hotmodel_info{
+    color: #fff;
+}
+
+.send_tip_text{
+    color: #F5D77F;
+    text-transform: uppercase;
+    padding-left: 9px;
+    font-weight: 500;
+}
+
+.model_card_desc .sign_actionBtn {
+    padding: 8px 16px;
+    background-image: url("../../Asserts/images/home-btn-bk.png");
+    color: #000;
+}
+
+.heart_icon {
+    position: absolute;
+    top: 6px;
+    z-index: 30;
+    right: 14px;
+    color: crimson;
+    font-size: 22px;
+}
+
+.model_section .second_model_card:hover .model_card_desc{
+    opacity: 1;
+}
+
+.model_section .second_model_card_img{
+    background-color: transparent;
+    border-image-outset: 1px;
+    border-image-width: auto;
+}
+
+.model_section .second_model_card_img img{
+    position: relative;
+    z-index: -1;
+}
+
+
+.model_section .video_play_icon img {
+    height: 40px;
+    width: 40px;
+}
+
+.model_main_section{
+    background-image: url("../../Asserts/images/hotModel-bk.png");
+    background-repeat: no-repeat;
+    background-size: 100% 100%;
+    padding-bottom: 55px;
+}
+
+.model_section{
+    background-image: url("../../Asserts/images/top-model-section-bk.png");
+    background-repeat: no-repeat;
+    background-size: 100% 27%;
+}
+>>>>>>> origin/master

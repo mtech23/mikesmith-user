@@ -1,6 +1,12 @@
+<<<<<<< HEAD
 import headerBurgerIcon from "./Header-Burger-Menu.png";
 import mainLogo from "./home-logo.png";
 import CLoseMenu from "./close-menu.png";
+=======
+
+import headerBurgerIcon from "./Header-Burger-Menu.png";
+import mainLogo from "./home-logo.png";
+>>>>>>> origin/master
 import headerSearchIcon from "./search-icon.png";
 import platinumFeetText from "./platinum-feet-text.png";
 import buttonBackground from "./home-btn-bk.png";
@@ -54,6 +60,7 @@ import sharingIcon from "./Share-icon.png";
 import boostIcon from "./Boost-icon.png";
 import top from "./top.png";
 import btm from "./btm.png";
+<<<<<<< HEAD
 import addPostImg1 from "./add-post-img-01.png";
 import addPostImg2 from "./add-post-img-02.png";
 import addPostImg3 from "./add-post-img-03.png";
@@ -139,3 +146,64 @@ export {
   modal3,
   uploadIcon,
 };
+=======
+
+
+export{
+    headerBurgerIcon,
+    mainLogo,
+    headerSearchIcon,
+    platinumFeetText,
+    buttonBackground,
+    legsImage01,
+    imgTopCorner,
+    imgBottomCorner,
+    firstBackground,
+    hundredPercentage,
+    homeImg01,
+    modelText,
+    modelImg01,
+    modelCardTopCorner,
+    modelCardBottomCorner,
+    modelImg02,
+    modelImg03,
+    modelImg04,
+    framePic,
+    hoverableImg,
+    mainFrameImg,
+    videoPlayIcon,
+    modelImg05,
+    modelImg06,
+    modelImg07,
+    howItWorksText,
+    howItWorksImg,
+    forClientText,
+    forClientImg,
+    forModelsText,
+    formodelImg01,
+    formodelImg02,
+    faqText,
+    footerSocialIcon01,
+    footerSocialIcon02,
+    footerSocialIcon03,
+    footerSocialIcon04,
+    footerSocialIcon05,
+    footerSocialIcon06,
+    hotModelImg01,
+    userProfilePic,
+    userProfilePicBackground,
+    moreUserProfilePic,
+    profileFeetImg01,
+    profileFeetImg02,
+    profileFeetImg03,
+    profileFeetImg04,
+    profileFeetImg05,
+    profileFeetImg06,
+    modelProfileRewardsBtnBk,
+    editingIcon,
+    sharingIcon,
+    boostIcon,
+    top,
+    btm
+};
+>>>>>>> origin/master
