@@ -7,6 +7,8 @@ import { modelpackagelist, modelpurchaseplane } from '../../api'
 import "./style.css";
 import { pageBottomImg } from "../../Asserts/images";
 
+import gold_package_img from '../../Asserts/images/gold_package_img.png'
+import silver_card_img from '../../Asserts/images/silver_card_img.png'
 import Aos from "aos";
 import "aos/dist/aos.css";
 import { useNavigate } from "react-router-dom";
@@ -115,23 +117,24 @@ const Packages = () => {
 
             <div className="row justify-content-center">
 
-         
 
 
-                {userdata?.map((data) => (
-                        <div className="col-lg-5 col-md-6 gold-package">
+
+              {userdata?.map((data) => (
+                <div className="col-lg-5 col-md-6 gold-package">
                   <div
                     className=""
                     data-aos="fade-right"
                     data-aos-anchor-placement="center-bottom"
                     data-aos-duration="3000"
                   >
-                    <img />
-
+                    <img className="img-fluid packages_name" src={data?.plan?.plan_type == "Gold" ? (gold_package_img) : (data?.plan?.plan_type == "Platinum Plus" ? (silver_card_img) : (silver_card_img))} />
+                    <h5 className="packages_title"> {data?.plan?.plan_type} </h5>
                     <p className="platinum_text">{data?.plan?.name}</p>
                     <p>+ Good, Easy Money!</p>
                     <p>+ {data?.plan?.posts_limit} Posts/Month</p>
-                    <p>+ {data?.plan?.messages_limit} Messages Per Month</p>
+                    <p>+ {data?.plan?.messages_limit} </p>
+                    <p> Messages Per Month</p>
                     <p>+ Keep {data?.plan?.sales_percent}% of Sales</p>
                     <p>+ Keep {data?.plan?.tips_percent}% of Tips</p>
                     <p>+ Earn {data?.plan?.platinum_percent}% in Platinum Points on Sales</p>
@@ -154,14 +157,14 @@ const Packages = () => {
                     </div>
 
                   </div>
-                  
+
+                </div>
+              ))}
+
             </div>
-                ))}
-
-              </div>
 
 
-             
+
 
 
           </div>

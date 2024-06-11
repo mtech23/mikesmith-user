@@ -15,7 +15,38 @@
 }
 
 .packages_section .gold-package {
-  background: url("../../Asserts/images/gold-bg.png");
+  background: url("../../Asserts/images/package_bg.png");
+  /* background-size: 100% 100%; */
+  background-repeat: no-repeat;
+  padding: 60px 90px 90px 90px;
+    position: relative;
+    background-size: 66% 99%;
+    background-position: center;
+    position: relative;
+}
+.packages_name {
+  position: absolute;
+  top: -66px;
+  width: 182px;
+  height: 187px;
+  left: 12px;
+}
+.packages_title {
+  position: absolute;
+  top: -8px;
+  left: -11px;
+  color: #000;
+  transform: rotateZ(314deg);
+  font-size: 21px;
+  font-weight: 600;
+  height: 25px;
+  width: 183px;
+  text-transform: uppercase;
+  display: flex;
+  justify-content: center;
+}
+.packages_section .silver-package {
+  background: url("../../Asserts/images/silverPackage.png");
   /* background-size: 100% 100%; */
   background-repeat: no-repeat;
     padding: 60px 0 90px;
@@ -43,7 +74,8 @@
   color: #fff;
   text-align: center;
   margin-bottom: 0;
-  line-height: 3;
+  line-height: 40px;
+  font-size: 13px;
 }
 
 .custom-check-boxes .custom_check-box {
@@ -143,6 +175,10 @@
   background-repeat: no-repeat;
   width: max-content;
   padding: 10px 50px;
+}
+.packages-btns .silver_btn {
+  background: url("../../Asserts/images/silver_btn.png");
+
 }
 .packages-btns .platinum-btn {
   background: url("../../Asserts/images/platinum-btn-bg.png");
@@ -474,6 +510,57 @@ span.small-tagline {
 .platinum_text {
   font-weight: 700;
   text-transform: uppercase;
-  font-size: 25px !important;
+  font-size: 20px !important;
   /* line-height: 35px !important; */
+}
+
+
+
+@media (max-width:1919px){
+  .packages_name {
+    top: -65px;
+    width: 149px;
+    height: 149px;
+    left: -8px;
+}
+.packages_title {
+  top: -20px;
+  left: -42px;
+  color: #000;
+  font-size: 19px;
+  height: 25px;
+  width: 183px;
+}
+}
+@media (max-width:1180px){
+  .packages_name {
+    top: -65px;
+    width: 152px;
+    height: 112px;
+    left: -28px;
+}
+.packages_title {
+  top: -34px;
+  left: -53px;
+  color: #000;
+  font-size: 16px;
+  height: 25px;
+  width: 183px;
+  transform: rotateZ(324deg);
+}
+.platinum_text {
+  font-size: 17px !important;
+}
+}
+@media (max-width:991px){
+  .platinum_text {
+    font-weight: 600;
+    font-size: 17px !important;
+  }
+
+}
+@media (max-width:600px){
+.packages_section .gold-package{
+  margin-top: 18px;
+}
 }

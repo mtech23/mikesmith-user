@@ -1165,7 +1165,7 @@ const Profile = () => {
 
                                         <div className="carousel-modal">
 
-                                            <div class="carousel-header">
+                                            <div class="carousel-header mb-3">
 
                                                 <div className="carousel-icons">
 
