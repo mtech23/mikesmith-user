@@ -1132,6 +1132,309 @@ const Profile = () => {
                                 </div>
                             </div>
                         </div>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+                        <div className="col-md-6">
+
+                            <div
+
+                                class="modal fade exampleModaltip"
+
+                                // id="exampleModal"
+
+                                tabindex="-1"
+
+                                aria-labelledby="exampleModalLabel"
+
+                                aria-hidden="true"
+
+                            >
+
+                                <div class="modal-dialog modal-dialog-centered my-modal">
+
+                                    <div class="modal-content">
+
+                                        <div className="carousel-modal">
+
+                                            <div class="carousel-header">
+
+                                                <div className="carousel-icons">
+
+                                                    <div className="caarousel-icons_inner">
+
+                                                        <a
+
+                                                            href="javaScript:;"
+
+                                                            className="cancel"
+
+                                                            data-dismiss="modal"
+
+                                                        >
+
+                                                            <img src={Cancel} />
+
+                                                        </a>
+
+
+                                                    </div>
+
+                                                </div>
+
+                                                {/* <h3 className="modal-title">HOTMODEL1234</h3>
+
+                <p className="modal-subtitle">38- USA - 2 Hours ago</p> */}
+
+                                            </div>
+
+
+                                            <div className="row    px-4 ">
+
+                                                <div className="col-md-12  mt-4 ">
+
+                                                    <h3 className="following_heading" data-aos="fade-right" data-aos-anchor-placement="center-bottom" data-aos-duration="3000" >Payment Information</h3>
+
+                                                    <div className="divider_row"></div>
+
+                                                </div>
+
+                                                <div className="col-md-4 choose_amount_column payment_right_side" data-aos="fade-up" data-aos-anchor-placement="center-bottom" data-aos-duration="3000">
+
+
+                                                    <div className="payment_img_div">
+
+                                                        <img className="img-fluid payment_img" src={modelImg02} alt="Brittanyvues" />
+
+                                                        {/* <p className="image_text">Brittanyvues</p> */}
+
+                                                        <div className="model_div">
+
+                                                            <div className="image_with_text_row">
+
+                                                                <img className="img-fluid model_img" src={userProfilePic} />
+
+                                                                <p className="profile_name_one"> Brittanyvues </p>
+
+                                                            </div>
+
+
+                                                            <div className="image_with_text_row_two">
+
+                                                                <p className="free_locked_text">
+
+                                                                    <span className="unlocked_icon">
+
+                                                                        <i className="fa-solid fa-unlock"></i>
+
+                                                                    </span>
+
+                                                                    Free
+
+                                                                </p>
+
+                                                                <p className="lock_text_clr free_locked_text">
+
+                                                                    <span className="locked_icon">
+
+                                                                        <i className="fa-solid fa-lock"></i>
+
+                                                                    </span>
+
+                                                                    Locked
+
+                                                                </p>
+
+                                                            </div>
+
+                                                        </div>
+
+                                                    </div>
+
+                                                </div>
+
+                                                <div className="col-md-8 choose_amount_column" data-aos="fade-up" data-aos-anchor-placement="center-bottom" data-aos-duration="3000">
+
+                                                    <h4 className="  text-white mt-2 mb-4">Choose Amount </h4>
+
+                                                    <div className="  row  mx-auto    d-flex justify-content-center ">
+
+                                                        <div className="paytips col-md-3 mb-4 justify-content-center">
+
+                                                            <input
+
+                                                                className=""
+
+                                                                id="t1"
+
+                                                                type="radio"
+
+                                                                checked={isChecked}
+
+                                                                onClick={() => handleRadioChange(0)}
+
+                                                            />   <label for="t1"> $100</label>
+
+                                                        </div>
+
+
+
+                                                        <div className="paytips col-md-3 mb-4 justify-content-center">
+
+                                                            <input
+
+                                                                className=""
+
+                                                                id="t2"
+
+                                                                type="radio"
+
+                                                                checked={isChecked}
+
+                                                                onClick={() => handleRadioChange(1)}
+
+                                                            /> <label for="t2"> $200</label>
+
+                                                        </div>
+
+                                                        <div className="paytips col-md-3    mb-4 justify-content-center">
+
+                                                            <input
+
+                                                                className=""
+
+                                                                id="t3"
+
+                                                                type="radio"
+
+                                                                checked={isChecked}
+
+                                                                onClick={() => handleRadioChange(2)}
+
+                                                            /> <label for="t3"> $300</label>
+
+                                                        </div>
+
+                                                        <div className="paytips col-md-3  mb-4 " >
+
+                                                            <input
+
+                                                                className=""
+
+                                                                type="radio"
+
+                                                                id="t4"
+
+                                                                checked={isChecked}
+
+                                                                onClick={() => handleRadioChange(3)}
+
+                                                            />   <label for="t4"> $400</label>
+
+                                                        </div>
+
+                                                        <div type="btn" className="paytips col-md-3   mb-4 ">
+
+                                                            <input
+
+                                                                className=""
+
+                                                                type="radio"
+
+                                                                checked={isChecked}
+
+                                                                id="t5"
+
+                                                                onClick={() => handleRadioChange(4)}
+
+                                                            />  <label for="t5"> $450</label>
+
+                                                        </div>
+
+                                                        <div className="paytips col-md-3  mb-4 ">
+
+                                                            <input
+
+                                                                className=""
+
+                                                                id="t5"
+
+                                                                type="radio"
+
+                                                                checked={isChecked}
+
+                                                                onClick={() => handleRadioChange(5)}
+
+                                                            />  <label for="t5"> $500</label>
+
+                                                        </div>
+
+                                                    </div>
+
+                                                    <h4 className="  text-white mt-2 mb-2">Custom Amount </h4>
+
+                                                    <div className="custompay  mx-auto justify-content-center d-flex mb-4"> $
+
+                                                        <input className="custom" type="text" />
+
+                                                    </div>
+
+                                                    <button data-dismiss="modal" onClick={handlepay} className="paybtn mt -4">
+
+                                                        Pay Now
+
+                                                    </button>
+
+                                                </div>
+
+
+                                            </div>
+
+                                        </div>
+
+                                    </div>
+
+                                </div>
+
+                            </div>
+
+                        </div>
+
+
+
+
+
+
+
+
+
                     </div>
                 </div>
             </div>
