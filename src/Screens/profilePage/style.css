@@ -12,6 +12,7 @@
   object-fit: cover;
   position: relative;
   margin-top: -50px;
+  padding: 12px 0px
 }
 
 /* .first_model_card .be_nice_span {
@@ -90,6 +91,7 @@ input[type='radio'] {
   font-size: 20px;
   width: 336px;
   height: 54px;
+  align-items: center;
 }
 
 input[type='radio']:checked:after {
@@ -541,7 +543,7 @@ input[type='radio']:checked:after {
 }
 
 .profile_section_main .hot_model_name {
-  font-size: 18px;
+  font-size: 16px;
   font-weight: 500;
 }
 
@@ -639,10 +641,10 @@ input[type='radio']:checked:after {
 
 
 .profile_section_main .first_model_card:hover .model_have_a_look_btn {
-  bottom: 40px !important;
+  bottom: 0px !important;
   padding-top: 22px;
   height: 140px !important;
-  width: 90% !important;
+  width: 100% !important;
   top: auto;
 }
 
@@ -1241,8 +1243,6 @@ p.carousel-footer_price {
   right: 6px !important;
 }
 
-
-
 #model_card_bottom_corner_imgs{
   bottom: 34px !important;
   left: 6px !important;
@@ -1251,3 +1251,6 @@ p.carousel-footer_price {
   width: 100%;
   margin-bottom: 0px;
  }
+.model_card_img{
+  margin-bottom: 0px !important;
+}

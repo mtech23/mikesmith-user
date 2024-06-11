@@ -7,7 +7,7 @@
 }
  
 .user_profile_picture img {
-  height: 100px;
+  height: 120px;
   width: 100px;
   object-fit: cover;
   position: relative;
@@ -518,7 +518,7 @@ padding: 0px 20px ;
 }
  
 .profile_section_main .hot_model_name {
-  font-size: 18px;
+  font-size: 16px;
   font-weight: 500;
 }
  
@@ -698,14 +698,14 @@ padding: 0px 20px ;
   margin-right: 15px;
 }
 input.edit_icon_input[type='file']{
-  width: 21px;
-  height: 21px;
+  width: 25px;
+  height: 25px;
   position: absolute;
   background-color: #FFF;
-  bottom: 0;
-  right: 37%;
+  bottom: 0px;
+  right: 20%;
   font-size: 13px;
-  border-radius: 50%;
+  border-radius: 5px;
   box-shadow: 10px 10px 30px rgba(24, 24, 51, 0.07);
   display: flex;
   justify-content: center;
@@ -715,18 +715,19 @@ input.edit_icon_input[type='file']{
 }
 .profile_edit_icon {
   width: 25px;
-  height: 25px;
-  position: absolute;
-  background-color: #FFF;
-  bottom: 0;
-  right: 37%;
-  font-size: 13px;
-  border-radius: 50%;
-  box-shadow: 10px 10px 30px rgba(24, 24, 51, 0.07);
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  border: none;
+    height: 25px;
+    position: absolute;
+    background-color: #FFF;
+    bottom: 14px;
+    right: 33%;
+    font-size: 13px;
+    border-radius: 21px;
+    box-shadow: 10px 10px 30px rgba(24, 24, 51, 0.07);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    border: none;
+
 }
 .no_of_follows {
   display: inline-block;
@@ -1090,7 +1091,11 @@ p.carousel-footer_price {
   /* .first_model_card .model_card_bottom_corner_img {
     left: 0px !important;
 } */
+/* .profile_edit_icon {
+      right: 21%;
+  } */
 }
+
 @media (max-width: 480px) {
   .more_users_profile_img {
     width: unset !important;
@@ -1275,4 +1280,28 @@ p.carousel-footer_price {
   .locked_content_icon {
     font-size: 10px;
 }
+/* .profile_edit_icon {
+
+  right: 10%;
+} */
 }
+/* @media (max-width: 1024px) {
+  .profile_edit_icon {
+      right: -10px;
+  }
+}
+@media (max-width: 991px) {
+  .profile_edit_icon {
+      right: 34%;
+  }
+}
+  @media (max-width: 600px) {
+    .profile_edit_icon {
+        right: 27%;
+    }
+}
+@media (max-width: 425px) {
+  .profile_edit_icon {
+      right: 21%;
+  }
+} */

@@ -699,6 +699,11 @@
 
     height: 275px;
   }
+  .first_model_card .model_card_img img {
+
+    min-height: auto;
+  
+  }
 }
 
 @media (max-width: 426px) {

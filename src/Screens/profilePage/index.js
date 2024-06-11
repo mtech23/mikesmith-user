@@ -242,14 +242,14 @@ const Profile = () => {
 
     const [givestip, setGivestip] = useState(false)
     const following = () => {
-        setFollowing(!follow)
+        setFollowing(true)
         setmodellisting(false)
         setSendmessage(false)
         setTransactions(false)
         setGivestip(false)
     }
     const sendmessage = () => {
-        setSendmessage(!sendmessages)
+        setSendmessage(true)
         setFollowing(false)
         setmodellisting(false)
         setTransactions(false)
@@ -294,12 +294,12 @@ const Profile = () => {
 
     const stylesForSidebar = {
         "marginTop": "0px",
-        "height": "100%",
-        "borderRadius": "20px",
-        "width": "80%",
-        "padding": "34px 0px 12px",
+        "height": "258px",
+        "border-radius": "20px",
+        "width": "192px",
+        "padding": "12px 0px",
         "maxHeight": "300px",
-        "objectFit": "contain",
+        // "objectFit": "contain",
     };
 
 
@@ -321,7 +321,7 @@ const Profile = () => {
                                         <img src={userProfilePicBackground} className="img-fluid" />
                                     </div> */}
 
-                                    <div className="user_profile_info text-center px-5">
+                                    <div className="user_profile_info text-center px-3">
                                         <div type="button" onClick={showprofile}
                                             className="user_profile_picture"
                                             data-aos="flip-left"
@@ -366,7 +366,7 @@ const Profile = () => {
 
 
                                             <div className="main_about_div">
-                                                <h6 className="hot_model_name text-center about_text">About</h6>
+                                                <h6 className="hot_model_name text-left about_text">About</h6>
                                                 <p className="user_profile_about">
                                                     I'm the sweetest thing you will ever meet. Message me and I'll do whatever your heart desires.
                                                 </p>
@@ -455,11 +455,13 @@ const Profile = () => {
                                             data-aos-anchor-placement="center-bottom"
                                             data-aos-duration="3000"
                                         >
-                                            <button onClick={givetip} className="give_tip_btn">give tip</button>
+                                            <button
+                                                data-toggle="modal"
+                                                data-target=".exampleModaltip" className="followers_numbers mb-3"> <i class="fas fa-donate profile_btn_icons"></i> give tip</button>
                                         </div>
 
-                                        <button class="followers_numbers aos-init aos-animate" data-aos="fade-left" data-aos-anchor-placement="center-bottom" data-aos-duration="3000"><i class="fa-solid fa-envelope profile_btn_icons"></i>Inbox</button>
-                                        <button class="followers_numbers aos-init aos-animate mt-3" data-aos="fade-left" data-aos-anchor-placement="center-bottom" data-aos-duration="3000"><i class="fa-solid fa-user-plus profile_btn_icons"></i>Followers</button>
+                                        <button onClick={sendmessage} class="followers_numbers aos-init aos-animate" data-aos="fade-left" data-aos-anchor-placement="center-bottom" data-aos-duration="3000"><i class="fa-solid fa-envelope profile_btn_icons"></i>Inbox</button>
+                                        <button onClick={following} class="followers_numbers aos-init aos-animate mt-3" data-aos="fade-left" data-aos-anchor-placement="center-bottom" data-aos-duration="3000"><i class="fa-solid fa-user-plus profile_btn_icons"></i>Followers</button>
 
                                     </div>
 
@@ -699,7 +701,10 @@ const Profile = () => {
                                             </div>
                                         ))}
 
+
                                     </div>
+
+
 
 
 
@@ -952,24 +957,17 @@ const Profile = () => {
 
 
 
-
-
-
-
-
-
-
                                 {givestip && (
                                     <div className="row paytab">
 
-                                        <div className="col-md-19">
+                                        <div className="col-md-9">
                                             <h3 className="following_heading" data-aos="fade-right" data-aos-anchor-placement="center-bottom" data-aos-duration="3000" >Payment Information</h3>
                                             <div className="divider_row"></div>
                                         </div>
                                         <div className="col-md-12" data-aos="fade-up" data-aos-anchor-placement="center-bottom" data-aos-duration="3000">
                                             <h4 className="  text-white mt-2 mb-2">Choose Amount </h4>
-                                            <div className="tipgap row  mx-auto    ">
-                                                <div className="paytips col-md-3    mb-4 justify-content-center">
+                                            <div className="tipgap row  mx-auto">
+                                                <div className="paytips col-md-3 mb-4 justify-content-center">
                                                     <input
                                                         className=""
                                                         id="t1"
@@ -982,7 +980,7 @@ const Profile = () => {
 
 
 
-                                                <div className="paytips col-md-3    mb-4 justify-content-center">
+                                                <div className="paytips col-md-3 mb-4 justify-content-center">
                                                     <input
                                                         className=""
                                                         id="t2"
@@ -992,7 +990,7 @@ const Profile = () => {
                                                     /> <label for="t2"> $200</label>
                                                 </div>
 
-                                                <div className="paytips col-md-3    mb-4 justify-content-center">
+                                                <div className="paytips col-md-3  mb-4 justify-content-center">
                                                     <input
                                                         className=""
                                                         id="t3"
@@ -1090,8 +1088,10 @@ const Profile = () => {
                                                         </a>
 
 
+
                                                     </div>
                                                 </div>
+
 
                                             </div>
                                             <Swiper
