@@ -197,3 +197,182 @@ data-aos-duration="3000"
 </div>
 
 </div>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<section className="checkout">
+<div className="container">
+  <div className="checkout-content">
+    <div className="row">
+      <div className="col-md-12">
+        <h2
+          className="checkout__title"
+          data-aos="fade-right"
+          data-aos-anchor-placement="center-bottom"
+          data-aos-duration="3000"
+        >
+          CHECKOUT
+        </h2>
+      </div>
+    </div>
+    <form action="/">
+      <div className="row">
+        <div className="col-lg-7">
+          <div
+            className="checkbox-outer"
+            data-aos="fade-right"
+            data-aos-anchor-placement="center-bottom"
+            data-aos-duration="3000"
+          >
+            <label className="custom_check-box label-1">
+              <span className="custom_check-text">
+                PLATINUM MONTHLY MEMBERSHIP&nbsp; &nbsp;
+                <span className="actual-price">$34/Month</span>&nbsp;
+                &nbsp;
+                <span className="discount-price gradiant-text">
+                  $34/Month
+                </span>
+              </span>
+              <input type="checkbox" className="blackbox_custom" />
+            </label>
+          </div>
+        </div>
+        <div className="col-lg-5">
+          <div
+            className="checkbox-outer"
+            data-aos="fade-left"
+            data-aos-anchor-placement="center-bottom"
+            data-aos-duration="3000"
+          >
+            <label className="custom_check-box lable-2">
+              <span className="custom_check-text">
+                ADD <span class="gradiant-text">$50</span> to my
+                platinum bank
+              </span>
+              <span className="small-tagline">
+                (FOR BOOST OR OTHER FEATURES)
+              </span>
+              <input type="checkbox" className="blackbox_custom" />
+            </label>
+          </div>
+        </div>
+        <div className="col-md-12">
+          <div
+            className="subtotal"
+            data-aos="fade-right"
+            data-aos-anchor-placement="center-bottom"
+            data-aos-duration="3000"
+          >
+            <h3>
+              SUBTOTAL: <span className="subtotal-price">$73</span>
+            </h3>
+          </div>
+        </div>
+        <div className="col-md-12">
+          <label
+            htmlFor="promo"
+            data-aos="fade-left"
+            data-aos-anchor-placement="center-bottom"
+            data-aos-duration="3000"
+          >
+            PROMO CODE
+          </label>
+        </div>
+        <div className="col-md-6">
+          <div className="form-group">
+            <input
+              type="text"
+              className="form-control promo"
+              id="promo"
+              data-aos="fade-right"
+              data-aos-anchor-placement="center-bottom"
+              data-aos-duration="3000"
+            />
+          </div>
+        </div>
+        <div className="col-md-6">
+          <p
+            className="saved-price"
+            data-aos="fade-left"
+            data-aos-anchor-placement="center-bottom"
+            data-aos-duration="3000"
+          >
+            YOU Saved <span className="five-dollers">$5</span>
+          </p>
+        </div>
+      </div>
+      <div className="row">
+        <div class="col-md-12">
+          <div className="text-center checkout-btn">
+            <button type="button" onClick={handlepayment} class="sign_actionBtn">GO TO PAYMENT</button>
+          </div>
+        </div>
+      </div>
+    </form>
+  </div>
+</div>
+</section>

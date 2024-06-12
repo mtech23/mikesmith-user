@@ -9,7 +9,7 @@ import dummy from '../../Asserts/images/dummy.jpg'
 import follow from '../../Asserts/images/follow.png'
 import "swiper/css";
 import "swiper/css/pagination";
-import { useParams } from "react-router-dom";
+import { Link, useParams } from "react-router-dom";
 import { Navigation, Pagination } from "swiper/modules";
 import { Getmodelpostlist, Userprogileview, UserUnflowmodel, profileviewbyid } from '../../api'
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
@@ -303,7 +303,7 @@ const Profile = () => {
     };
 
 
-
+    console.log("modellists", modellists)
 
     return (
         <div>
@@ -628,11 +628,12 @@ const Profile = () => {
 
 
                                             <div className="col-sm-6 col-lg-4">
-
-                                                <div className="lock_icon_image">
-                                                    <img src={locked_icon} />
-                                                </div>
-
+                                                {items?.is_paid == true ? (
+                                                    <Link to={'/packages-page'} >
+                                                        <div className="lock_icon_image">
+                                                            <img src={locked_icon} />
+                                                        </div></Link>) : ("")
+                                                }
                                                 {/* <div className="onfront_image">
                                                     <img src={onfrontimage} className="img-fluid"/>
                                                 </div> */}
@@ -665,10 +666,14 @@ const Profile = () => {
                                                                     <span className="boost_icon_img">
 
                                                                     </span>
-
-                                                                    <div className="onfront_image">
-                                                                        <img src={onfrontimage} className="" />
-                                                                    </div>
+                                                                    {console.log("data?.is_paid", items?.is_paid)}
+                                                                    {items?.is_paid == true ? (
+                                                                        <div className="onfront_image">
+                                                                            <img src={onfrontimage} className="" />
+                                                                        </div>
+                                                                    ) : (
+                                                                        " "
+                                                                    )}
 
                                                                     {/* <div className="lock_icon_image">
                                                                             <img src={locked_icon}/>
@@ -677,12 +682,7 @@ const Profile = () => {
                                                                 </div>
 
                                                                 <div>
-                                                                    <div className="model_have_a_look_btn">
-                                                                        <button className="have_alook_btn">have a look</button>
-                                                                        <span className="be_nice_span">
-                                                                            BE NICE, or we will crush you!
-                                                                        </span>
-                                                                    </div>
+
                                                                 </div>
                                                             </SwiperSlide>))}
 
@@ -701,7 +701,10 @@ const Profile = () => {
                                             </div>
                                         ))}
 
+
                                     </div>
+
+
 
 
 
@@ -1039,11 +1042,6 @@ const Profile = () => {
 
 
 
-
-
-
-
-
                             </div>
                         </div>
 
@@ -1090,8 +1088,10 @@ const Profile = () => {
                                                         </a>
 
 
+
                                                     </div>
                                                 </div>
+
 
                                             </div>
                                             <Swiper
@@ -1132,6 +1132,25 @@ const Profile = () => {
                                 </div>
                             </div>
                         </div>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 
 
@@ -1192,7 +1211,7 @@ const Profile = () => {
 
                                                 {/* <h3 className="modal-title">HOTMODEL1234</h3>
 
-                                            <p className="modal-subtitle">38- USA - 2 Hours ago</p> */}
+                <p className="modal-subtitle">38- USA - 2 Hours ago</p> */}
 
                                             </div>
 
@@ -1407,6 +1426,15 @@ const Profile = () => {
                             </div>
 
                         </div>
+
+
+
+
+
+
+
+
+
                     </div>
                 </div>
             </div>
