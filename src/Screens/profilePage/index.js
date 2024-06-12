@@ -355,12 +355,12 @@ const Profile = () => {
                                             </div>
 
                                             {/* <p
-                        className="user_profile_desc"
-                        data-aos="fade-right"
-                        data-aos-anchor-placement="center-bottom"
-                        data-aos-duration="3000"
-                      >
-                                         {modellistsprofileview?.bio || 'Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry standard' }
+                                                className="user_profile_desc"
+                                                data-aos="fade-right"
+                                                data-aos-anchor-placement="center-bottom"
+                                                data-aos-duration="3000"
+                                            >
+                                                {modellistsprofileview?.bio || 'Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry standard' }
 
                       </p> */}
 

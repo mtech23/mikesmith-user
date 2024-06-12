@@ -174,6 +174,7 @@ const ModelProfile = () => {
     setSendmessage(false)
     setTransactions(false)
     setGivestip(false)
+    setRecivedtips(false)
   }
   const sendmessage = () => {
     setSendmessage(!sendmessages)
@@ -181,6 +182,7 @@ const ModelProfile = () => {
     setmodellisting(false)
     setTransactions(false)
     setGivestip(false)
+    setRecivedtips(false)
   }
 
 
@@ -356,7 +358,7 @@ const ModelProfile = () => {
                         data-aos-anchor-placement="center-bottom"
                         data-aos-duration="3000"
                       >
-                        <button className="give_tip_btn" onClick={following}>  following</button>
+                        <button className="followers_numbers text-center mb-2" onClick={following}>  Following</button>
                       </div>
                       <span className="followers_number">
                         <span className="no_of_follows">{userdata?.following || 0} </span>
@@ -639,7 +641,7 @@ const ModelProfile = () => {
                             <img src={modelCardTopCorner} />
                           </div>
 
-                          <div className="model_card_bottom_corner_img" id="model_card_bottom_corner_imgs">
+                          <div className="model_card_bottom_corner_img" >
                             <img src={modelCardBottomCorner} />
                           </div>
 
@@ -864,6 +866,7 @@ const ModelProfile = () => {
                               <td class="order_history">$80.00</td>
                               <td class="order_history"><a href="#" className="seller_text"> Brittanyvues </a></td>
                               <td class="order_history">Unlocked collection: Lime green high heels <span><a href="#" className="view_links"> View </a></span></td>
+                          
 
                             </tr>
                             <tr className="bg_table_row">

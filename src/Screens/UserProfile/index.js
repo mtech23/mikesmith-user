@@ -364,15 +364,15 @@ const UserProfile = () => {
 
     
     const stylesForSidebar = {
-        "margin-top": "0px",
-        "height": "179px",
+        "marginTop": "0px",
+        "height": "242px",
         "border-radius": "20px",
-        "width": "159px",
+        "width": "192px",
         "padding": "12px 0px",
-        "max-height": "300px",
-        "border-radius": "50%",
+        "maxHeight": "300px",
         // "objectFit": "contain",
     };
+
 
 
 

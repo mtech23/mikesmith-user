@@ -57,18 +57,18 @@
 
 
 .model_profile_section_main  .second_model_card:hover .model_have_a_look_btn{
-  bottom: 13%;
+  bottom: 0px;
     padding-top: 22px;
 height: 112px;
-width: 94%;
+width: 97%;
 top: auto;
 }
 
 .model_profile_section_main  .first_model_card:hover .model_have_a_look_btn{
-  bottom: 13%;
+  bottom: 0px;
     padding-top: 22px;
 height: 112px;
-width: 94%;
+width: 97%;
 top: auto;
 }
 
