@@ -35,7 +35,9 @@ const Login = () => {
         localStorage.setItem("userToken", userToken?.token);
         localStorage.setItem("userrole", userToken?.user_role);
         localStorage.setItem("email", response.data?.email);
-
+        localStorage.setItem("plan", response.data?.plan);
+        localStorage.setItem("post_limit", response.data?.post_limit);
+        localStorage.setItem("boost_limit", response.data?.boost_limit);
         dispatch(loginSuccess(response.data));
         const usertype = localStorage.getItem('userrole')
         console.log("usertype", usertype)
