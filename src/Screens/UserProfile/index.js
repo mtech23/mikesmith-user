@@ -8,13 +8,15 @@ import dummy from '../../Asserts/images/dummy.jpg'
 
 import { useDispatch } from "react-redux";
 // Import Swiper styles
+import { Link } from 'react-router-dom';
+
 import follow from '../../Asserts/images/follow.png'
 import "swiper/css";
 import "swiper/css/pagination";
 import { logoutRequest } from "../../redux/slicers/user";
 import { useParams } from "react-router-dom";
 import { Navigation, Pagination } from "swiper/modules";
-import { Getmodelpostlist, Userprogileview, UserUnflowmodel, userLogoutRequest } from '../../api'
+import { Getmodelpostlist, Userprogileview, UserUnflowmodel, userLogoutRequest, profileviewbyid } from '../../api'
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 // import { faHeart } from '@awesome.me/kit-KIT_CODE/icons'
 
@@ -64,7 +66,7 @@ import {
     modal2,
     Cancel,
     Heart,
- 
+
 } from "../../Asserts/images/index";
 
 import "./style.css";
@@ -75,6 +77,9 @@ import { nanoid } from "@reduxjs/toolkit";
 import { useNavigate } from "react-router-dom";
 import { useRef } from 'react';
 const UserProfile = () => {
+
+
+    const [profilebyid, setprofilebyid] = useState({})
     const { id } = useParams()
     const navigate = useNavigate()
     // const handleclick = () => {
@@ -82,6 +87,30 @@ const UserProfile = () => {
     //   navigate('/payment-page')
     // }
 
+    const model_listpicbyid = async (id) => {
+        try {
+            const response = await profileviewbyid(id);
+
+
+            if (response?.status == true) {
+
+                const data = response?.data;
+                console.log("data", data)
+                setModelprofileview(data)
+
+
+            } else {
+                // toastAlert(response.statusText, ALERT_TYPES.ERROR);
+                console.log("packege ", response.statusText)
+            }
+            setprofilebyid(response?.data)
+
+        } catch (error) {
+            console.error("Error in logging in:", error);
+
+            // toastAlert(error, ALERT_TYPES.ERROR);
+        }
+    };
 
 
 
@@ -293,10 +322,9 @@ const UserProfile = () => {
             setIsChecked(null);
             return;
         }
-
     }
 
-
+    const plane_limit = localStorage.getItem('post_limit')
 
 
 
@@ -362,7 +390,7 @@ const UserProfile = () => {
         }
     };
 
-    
+
     const stylesForSidebar = {
         "margin-top": "0px",
         "height": "179px",
@@ -393,7 +421,7 @@ const UserProfile = () => {
                                     </div> */}
 
                                     <div className="user_profile_info text-center">
-                                    <div type="button" onClick={showprofile}
+                                        <div type="button" onClick={showprofile}
                                             className="user_profile_picture"
                                             data-aos="flip-left"
                                             data-aos-anchor-placement="center-bottom"
@@ -466,30 +494,26 @@ const UserProfile = () => {
                                             data-aos-anchor-placement="center-bottom"
                                             data-aos-duration="3000"
                                         >
-                                            {/* <span className="followers_title">following</span> */}
-                                            {/* <div
-                                                data-aos="fade-right"
-                                                data-aos-anchor-placement="center-bottom"
-                                                data-aos-duration="3000"
-                                            >
-                                                <button className="give_tip_btn" onClick={flowmodel}>  {modellistsprofileview?.follow == true ? "Unfollow" : " follow"}  </button>
-                                                <button className="give_tip_btn" onClick={following}>  following</button>
 
-                                            </div>
-                                            <span className="followers_number">
-                                                <span className="no_of_follows">{modellistsprofileview?.following || 0} </span>
-                                            </span> */}
                                         </div>
 
+
+                                        <div
+                                            className="followers_div mb-4"
+                                            data-aos="fade-left"
+                                            data-aos-anchor-placement="center-bottom"
+                                            data-aos-duration="3000"
+                                        >
+                                            <span className="followers_title">Post Limit</span>
+                                            <span className="followers_number">
+                                                <span className="no_of_follows">{plane_limit - modellistsprofileview?.post_count || 10} / {plane_limit}</span>
+                                            </span>
+                                        </div>
+
+
+
                                         <div className="d-flex justify-content-between align-items-center pt-4 sec-rqst-btns">
-                                            {/* <button
-                                                className="sign_actionBtn"
-                                                data-aos="fade-right"
-                                                data-aos-anchor-placement="center-bottom"
-                                                data-aos-duration="3000"
-                                            >
-                                                send request
-                                            </button> */}
+
                                             <button onClick={unlockcontents}
                                                 className="followers_numbers"
                                                 data-aos="fade-left"
@@ -538,7 +562,7 @@ const UserProfile = () => {
                                                 <i class="fa-solid fa-gear profile_btn_icons"></i>
                                                 Settings
                                             </button>
-                                             <button onClick={handleLogout}
+                                            <button onClick={handleLogout}
                                                 className="followers_numbers"
                                                 data-aos="fade-left"
                                                 data-aos-anchor-placement="center-bottom"
@@ -548,7 +572,7 @@ const UserProfile = () => {
                                                 Log Out
                                             </button>
                                         </div>
-{/* 
+                                        {/* 
                                         <div
                                             data-aos="fade-right"
                                             data-aos-anchor-placement="center-bottom"
@@ -569,141 +593,7 @@ const UserProfile = () => {
                                         <img src={modelCardBottomCorner} />
                                     </div>
                                 </div>
-                                {/* 
-                                <div
-                                    className="more_profiles_main"
-                                    data-aos="fade-right"
-                                    data-aos-anchor-placement="center-bottom"
-                                    data-aos-duration="3000"
-                                >
-                                    <div>
-                                        <p className="more_profiles_like_this_title">
-                                            more profiles like this
-                                        </p>
-                                    </div>
 
-                                    <div className="all_other_users_profiles">
-                                        <div className="more_profiles_content">
-                                            <div className="more_user_profile_details">
-                                                <div className="more_users_profile_img">
-                                                    <img src={moreUserProfilePic} />
-                                                </div>
-                                                <div className="other_user_info">
-                                                    <p className="other_user_name">HOTMODEL1234</p>
-                                                    <span className="other_user_access">
-                                                        @HOTMODEL1223
-                                                    </span>
-                                                </div>
-                                            </div>
-
-                                            <div>
-                                                <button className="user_profile_follow_btn">
-                                                    follow
-                                                </button>
-                                            </div>
-                                        </div>
-
-                                        <div className="more_profiles_content">
-                                            <div className="more_user_profile_details">
-                                                <div className="more_users_profile_img">
-                                                    <img src={moreUserProfilePic} />
-                                                </div>
-                                                <div className="other_user_info">
-                                                    <p className="other_user_name">HOTMODEL1234</p>
-                                                    <span className="other_user_access">
-                                                        @HOTMODEL1223
-                                                    </span>
-                                                </div>
-                                            </div>
-
-                                            <div>
-                                                <button className="user_profile_follow_btn">
-                                                    follow
-                                                </button>
-                                            </div>
-                                        </div>
-
-                                        <div className="more_profiles_content">
-                                            <div className="more_user_profile_details">
-                                                <div className="more_users_profile_img">
-                                                    <img src={moreUserProfilePic} />
-                                                </div>
-                                                <div className="other_user_info" type="button" >
-                                                    <p className="other_user_name">HOTMODEL1234</p>
-                                                    <span className="other_user_access">
-                                                        @HOTMODEL1223
-                                                    </span>
-                                                </div>
-                                            </div>
-
-                                            <div>
-                                                <button className="user_profile_follow_btn">
-                                                    follow
-                                                </button>
-                                            </div>
-                                        </div>
-
-                                        <div className="more_profiles_content">
-                                            <div className="more_user_profile_details">
-                                                <div className="more_users_profile_img">
-                                                    <img src={moreUserProfilePic} />
-                                                </div>
-                                                <div className="other_user_info">
-                                                    <p className="other_user_name">HOTMODEL1234</p>
-                                                    <span className="other_user_access">
-                                                        @HOTMODEL1223
-                                                    </span>
-                                                </div>
-                                            </div>
-
-                                            <div>
-                                                <button className="user_profile_follow_btn">
-                                                    follow
-                                                </button>
-                                            </div>
-                                        </div>
-
-                                        <div className="more_profiles_content">
-                                            <div className="more_user_profile_details">
-                                                <div className="more_users_profile_img">
-                                                    <img src={moreUserProfilePic} />
-                                                </div>
-                                                <div className="other_user_info">
-                                                    <p className="other_user_name">HOTMODEL1234</p>
-                                                    <span className="other_user_access">
-                                                        @HOTMODEL1223
-                                                    </span>
-                                                </div>
-                                            </div>
-
-                                            <div>
-                                                <button className="user_profile_follow_btn">
-                                                    follow
-                                                </button>
-                                            </div>
-                                        </div>
-
-                                        <div className="more_profiles_content">
-                                            <div className="more_user_profile_details">
-                                                <div className="more_users_profile_img">
-                                                    <img src={moreUserProfilePic} />
-                                                </div>
-                                                <div className="other_user_info">
-                                                    <p className="other_user_name">HOTMODEL1234</p>
-                                                    <span className="other_user_access">
-                                                        @HOTMODEL1223
-                                                    </span>
-                                                </div>
-                                            </div>
-
-                                            <div>
-                                                <button className="user_profile_follow_btn">
-                                                    follow
-                                                </button>
-                                            </div>
-                                        </div>
-                                    </div>
-                                </div> */}
                             </div>
                         </div>
 
@@ -781,11 +671,23 @@ const UserProfile = () => {
 
                                 {modellist && (
                                     <div className="row  ">
-                                        {modellists?.map((items, index) => (
+                                        {modellistsprofileview?.post_purchases?.map((items, index) => (
 
-                                                    
-                                            <div className="col-10 col-sm-6 col-lg-3 mx-auto">   
-                                                <div className="unlocked_model_card">
+
+                                            <div className="col-sm-6 col-lg-4">
+                                                {/* // onClick={() => model_listpicbyid(items?.id)} */}
+                                                {/* {items?.is_paid == true ? (
+
+                                                    <div type="btn"  className="lock_icon_image" data-toggle="modal"
+                                                        data-target=".exampleModalunlock">
+                                                        <img src={locked_icon} />
+                                                    </div>) : ("")
+                                                } */}
+                                                {/* <div className="onfront_image">
+    <img src={onfrontimage} className="img-fluid"/>
+</div> */}
+
+                                                <div className="first_model_card profile_first_model">
 
 
                                                     <Swiper
@@ -795,11 +697,13 @@ const UserProfile = () => {
                                                         onSwiper={(swiper) => console.log(swiper)}
                                                     >
                                                         {items?.post_data?.map((data) => (
-
-                                                            <SwiperSlide>
-                                                                <div className="model_card_img position-relative unlocked_model_card"
+                                                            // 
+                                                            <SwiperSlide onClick={() => model_listpicbyid(items?.id)} >
+                                                                <div
+                                                                    className="model_card_img position-relative first_model_card profile_model_img"
                                                                     data-toggle="modal"
-                                                                    data-target=".exampleModal">
+                                                                    data-target={items?.is_paid !== true ? ".exampleModal" : undefined}
+                                                                >
                                                                     <img src={data?.file ? baseurl + data.file : dummy} className="img-fluid" />
 
                                                                     <span className="edit_icon_img">
@@ -813,27 +717,34 @@ const UserProfile = () => {
                                                                     <span className="boost_icon_img">
 
                                                                     </span>
+                                                                    {items?.is_paid == true ? (
+                                                                        <div className="onfront_image" data-toggle="modal"
+                                                                            data-target={items?.is_paid == true ? ".exampleModalunlock" : undefined} >
+                                                                            {/* <img src={onfrontimage} className="" /> */}
+                                                                        </div>
+                                                                    ) : (
+                                                                        " "
+                                                                    )}
+
+                                                                    {/* <div className="lock_icon_image">
+                            <img src={locked_icon}/>
+                        </div> */}
+
                                                                 </div>
 
                                                                 <div>
-                                                                    <div className="model_have_a_look_btn">
-                                                                        <button className="have_alook_btn">have a look</button>
-                                                                        <span className="be_nice_span">
-                                                                            BE NICE, or we will crush you!
-                                                                        </span>
-                                                                    </div>
-                                                                </div>
 
+                                                                </div>
                                                             </SwiperSlide>))}
 
 
                                                     </Swiper>
 
-                                                    <div className="model_card_top_corner_img">
+                                                    <div className="model_card_top_corner_img" id="">
                                                         <img src={modelCardTopCorner} />
                                                     </div>
 
-                                                    <div className="model_card_bottom_corner_img" id="model_card_bottom_corner_imgs">
+                                                    <div className="model_card_bottom_corner_img" id="">
                                                         <img src={modelCardBottomCorner} />
                                                     </div>
 
@@ -857,7 +768,29 @@ const UserProfile = () => {
                                             </h3>
                                             <div className="divider_row"></div>
                                         </div>
-                                        <div className="col-lg-3 col-md-4 col-sm-12 pt-4" data-aos="fade-up" data-aos-duration="3000">
+                                        {modellistsprofileview?.user_following?.map((data) => (
+                                            <div className="col-lg-3 col-md-4 col-sm-12 pt-4" data-aos="fade-up" data-aos-duration="3000">
+                                                <div className="follow_img_div">
+                                                    <Link to={`/profile-page/${data?.friend_detail?.id}`}>
+                                                        <img className="img-fluid follow_img" src={data?.friend_detail?.profile_pic ? baseurl + data?.friend_detail?.profile_pic : dummy} alt="Profile" />
+                                                    </Link>                                                <p className="image_text">{data?.friend_detail?.name}</p>
+                                                    <div className="locked_div">
+                                                        <p className="free_text">
+                                                            <span className="icon_unlock">
+                                                                <i className="fa-solid fa-unlock"></i>
+                                                            </span>
+                                                            Free
+                                                        </p>
+                                                        <p className="lock_text">
+                                                            <span className="icon_lock">
+                                                                <i className="fa-solid fa-lock"></i>
+                                                            </span>
+                                                            Locked
+                                                        </p>
+                                                    </div>
+                                                </div>
+                                            </div>))}
+                                        {/* <div className="col-lg-3 col-md-4 col-sm-12 pt-4" data-aos="fade-down" data-aos-duration="3000">
                                             <div className="follow_img_div">
                                                 <img className="img-fluid follow_img" src={modelImg02} alt="Brittanyvues" />
                                                 <p className="image_text">Brittanyvues</p>
@@ -876,27 +809,7 @@ const UserProfile = () => {
                                                     </p>
                                                 </div>
                                             </div>
-                                        </div>
-                                        <div className="col-lg-3 col-md-4 col-sm-12 pt-4" data-aos="fade-down" data-aos-duration="3000">
-                                            <div className="follow_img_div">
-                                                <img className="img-fluid follow_img" src={modelImg02} alt="Brittanyvues" />
-                                                <p className="image_text">Brittanyvues</p>
-                                                <div className="locked_div">
-                                                    <p className="free_text">
-                                                        <span className="icon_unlock">
-                                                            <i className="fa-solid fa-unlock"></i>
-                                                        </span>
-                                                        Free
-                                                    </p>
-                                                    <p className="lock_text">
-                                                        <span className="icon_lock">
-                                                            <i className="fa-solid fa-lock"></i>
-                                                        </span>
-                                                        Locked
-                                                    </p>
-                                                </div>
-                                            </div>
-                                        </div>
+                                        </div> */}
                                     </div>
                                 )}
 
@@ -1040,76 +953,78 @@ const UserProfile = () => {
 
                                     <div className="unlocked_box">
                                         <div className="row">
-                                       
-                                      
-                  <div className="col-10 col-sm-6 col-lg-4">
-                    <div className="unlocked_model_card">
+
+                                        {modellistsprofileview?.post_purchases?.map((items, index) => (
+                                            <div className="col-10 col-sm-6 col-lg-4">
+                                                <div className="unlocked_model_card">
 
 
-                    <Swiper
-                        spaceBetween={30}
-                        slidesPerView={1}
-                        onSlideChange={() => console.log("slide change")}
-                        onSwiper={(swiper) => console.log(swiper)}
-                        >
-                             <SwiperSlide>
-                                    <div className="model_card_img position-relative">
-                                        <img
-                                        src={modelImg03}
-                                        className="img-fluid"
-                                        />
+                                                    <Swiper
+                                                        spaceBetween={30}
+                                                        slidesPerView={1}
+                                                        onSlideChange={() => console.log("slide change")}
+                                                        onSwiper={(swiper) => console.log(swiper)}
+                                                    >
+                                                            {items?.post_data?.map((data) => (
+                                                        <SwiperSlide>
+                                                            <div className="model_card_img position-relative">
+                                                                <img
+                                                                    src={modelImg03}
+                                                                    className="img-fluid"
+                                                                />
 
-                                    </div>
+                                                            </div>
 
-                                    <div className="unlocked_card_desc ">
-                                            <div className="unlocked_div">
-                                                <div className="unlocked_image_with_text_row">
-                                                    <img className="img-fluid model_img" src={userProfilePic}/>
-                                                    {/* <img className="img-fluid model_img" src={modelBg}/> */}
-                                                    <p className="profile_name_one"> Brittanyvues </p>      
-                                                </div>    
-                                              
-                                        
-                                        
-                                                <div className="image_with_text_row_two">
-                                                <p className="unlocked_text">
-                                                    <span className="unlocked_content_icon">
-                                                    <i className="fa-solid fa-unlock"></i>
-                                                    </span> 
-                                                
-                                                    Free
-                                                </p>
-                                                <p className="lock_text_clr unlocked_text">
-                                                    <span className="locked_content_icon">
-                                                    <i className="fa-solid fa-lock"></i>
-                                                    </span>
-                                                
-                                                    Locked
-                                                </p>
+                                                            <div className="unlocked_card_desc ">
+                                                                <div className="unlocked_div">
+                                                                    <div className="unlocked_image_with_text_row">
+                                                                        <img className="img-fluid model_img" src={data?.file ? baseurl + data.file : dummy} />
+                                                                        {/* <img className="img-fluid model_img" src={modelBg}/> */}
+                                                                        <p className="profile_name_one"> Brittanyvues </p>
+                                                                    </div>
+
+
+
+                                                                    <div className="image_with_text_row_two">
+                                                                        <p className="unlocked_text">
+                                                                            <span className="unlocked_content_icon">
+                                                                                <i className="fa-solid fa-unlock"></i>
+                                                                            </span>
+
+                                                                            Free
+                                                                        </p>
+                                                                        <p className="lock_text_clr unlocked_text">
+                                                                            <span className="locked_content_icon">
+                                                                                <i className="fa-solid fa-lock"></i>
+                                                                            </span>
+
+                                                                            Locked
+                                                                        </p>
+                                                                    </div>
+
+                                                                </div>
+                                                                <div className="description_box">
+                                                                    <a className="product_heading" href="#">Lorem Ipsum</a>
+                                                                    <p className="product_description" >Lorem Ipsum is simply dummy text of the printing and typesetting industry.
+                                                                        Ipsum has been the industry's standard dummy text ever since the 1500s,</p>
+                                                                </div>
+                                                            </div>
+
+                                                        </SwiperSlide>
+                                                            ))}
+                                                    </Swiper>
+
+                                                    <div className="model_card_top_corner_img">
+                                                        <img src={modelCardTopCorner} />
+                                                    </div>
+
+                                                    <div className="model_card_bottom_corner_img">
+                                                        <img src={modelCardBottomCorner} />
+                                                    </div>
+
                                                 </div>
-                                        
                                             </div>
-                                            <div className="description_box">
-                                                <a className="product_heading" href="#">Lorem Ipsum</a>
-                                                <p className="product_description" >Lorem Ipsum is simply dummy text of the printing and typesetting industry.
-                                                Ipsum has been the industry's standard dummy text ever since the 1500s,</p>
-                                            </div>
-                                    </div>
-                                         
-                                </SwiperSlide>
-                          </Swiper>
-                         
-                                    <div className="model_card_top_corner_img">
-                                        <img src={modelCardTopCorner} />
-                                    </div>
-
-                                    <div className="model_card_bottom_corner_img">
-                                        <img src={modelCardBottomCorner} />
-                                    </div>
-
-                                    </div>
-                                </div>
-
+                                        ))}
                                         </div>
                                     </div>
                                 )}
@@ -1199,7 +1114,7 @@ const UserProfile = () => {
                                 <div class="modal-dialog modal-dialog-centered my-modal">
                                     <div class="modal-content">
                                         <div className="carousel-modal">
-                                            <div class="carousel-header">
+                                            {/* <div class="carousel-header">
                                                 <div className="carousel-icons">
                                                     <div className="caarousel-icons_inner">
                                                         <a
@@ -1210,16 +1125,33 @@ const UserProfile = () => {
                                                             <img src={Cancel} />
                                                         </a>
                                                         <a type="button" onClick={handleHeart} className="heart">
-                                                            {/* <img src={Heart} /> */}
-                                                            <i className={`fa ${hearts ? 'fa-solid' : 'fa-regular'} fa-heart`}></i>
+                                                             <i className={`fa ${hearts ? 'fa-solid' : 'fa-regular'} fa-heart`}></i>
                                                         </a>
 
                                                     </div>
                                                 </div>
-                                                <h3 className="modal-title">HOTMODEL1234</h3>
-                                                <p className="modal-subtitle">38- USA - 2 Hours ago</p>
-                                            </div>
+                                                
+                                            </div> */}
 
+
+                                            <div class="carousel-header mb-5">
+                                                <div className="carousel-icons">
+                                                    <div className="caarousel-icons_inner">
+                                                        <a
+                                                            href="javaScript:;"
+                                                            className="cancel"
+                                                            data-dismiss="modal"
+                                                        >
+                                                            <img src={Cancel} />
+                                                        </a>
+
+
+
+                                                    </div>
+                                                </div>
+
+
+                                            </div>
                                             <Swiper
                                                 slidesPerView={"auto"}
                                                 centeredSlides={true}
@@ -1229,45 +1161,39 @@ const UserProfile = () => {
                                                 //   clickable: true,
                                                 // }}
                                                 modules={[Navigation]}
-                                                className="mySwiper"
-                                            >
-                                                <SwiperSlide>
-                                                    <img src={modal1} />
+                                                className="mySwiper mt-5"
+                                            >  {profilebyid?.post_data?.map((data) => (
+
+                                                <SwiperSlide >
+                                                    {/* <div> */}
+                                                    <img src={data?.file ? baseurl + data?.file : dummy} className="modalpic" />
+                                                    {/* </div> */}
                                                 </SwiperSlide>
-                                                <SwiperSlide>
-                                                    <img src={modal2} />
-                                                </SwiperSlide>
-                                                <SwiperSlide>
-                                                    <img src={modal3} />
-                                                </SwiperSlide>
-                                                <SwiperSlide>
-                                                    <img src={modal2} />
-                                                </SwiperSlide>
-                                                <SwiperSlide>
-                                                    <img src={modal3} />
-                                                </SwiperSlide>
+                                            ))}
+
+
                                             </Swiper>
 
                                             <div className="carousel-footer">
                                                 <h4 className="carousel-footer_title">
-                                                    My Pretty Pink Nails :)
+                                                    <h3 className="modal-title mt-3">{profilebyid?.post_title}       :)</h3>
+
                                                 </h4>
                                                 <p className="carousel-footer_body">
-                                                    Lorem Ipsum is simply dummy text of the printing and
-                                                    typesetting industry. Lorem Ipsum has been the
-                                                    industry's standard dummy text ever since the 1500s,
-                                                    when an unknown printer took a galley of type and
-                                                    scrambled it to make a type specimen book. It has
-                                                    survived not only five centuries
+                                                    {profilebyid?.post_description}
                                                 </p>
-                                                <p className="carousel-footer_price">$12.44</p>
-                                                <button onClick={handleclick} className="carousel-footer_button " data-dismiss="modal">Buy</button>
+                                                <p className="carousel-footer_price">${profilebyid?.price}    </p>
+
+                                                {/* {profilebyid?.price !== 0 ? (
+                                                    <button onClick={handleclick} className="carousel-footer_button " data-dismiss="modal">Buy</button>
+                                                ) : ("")} */}
                                             </div>
                                         </div>
                                     </div>
                                 </div>
                             </div>
                         </div>
+
                     </div>
                 </div>
             </div>

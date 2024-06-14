@@ -1254,3 +1254,32 @@ p.carousel-footer_price {
 .model_card_img{
   margin-bottom: 0px !important;
 }
+
+
+
+.modal-content-2 {
+   width: 53% !important;
+}
+
+
+
+
+.modal_lock_btn{
+  top: 25%;
+}
+
+
+.unlock_successfully_div{
+  padding: 115px 0px 32px;
+}
+
+.modal_got_it_btn{
+  border: 1px solid #d5aa4e;
+  background-color: transparent;
+  color: #fff;
+  border-radius: 27px;
+  padding: 7px 30px;
+  margin-top: 12px;
+  font-size: 14px;
+  font-weight: 500;
+}

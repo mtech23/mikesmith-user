@@ -1107,3 +1107,81 @@ const Profile = () => {
 };
 
 export default Profile;
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<div className="col-md-4 choose_amount_column payment_right_side" data-aos="fade-up" data-aos-anchor-placement="center-bottom" data-aos-duration="3000">
+
+
+<div className="payment_img_div">
+
+    <img className="img-fluid payment_img" src={modelImg02} alt="Brittanyvues" />
+
+    {/* <p className="image_text">Brittanyvues</p> */}
+
+    <div className="model_div">
+
+        <div className="image_with_text_row">
+
+            <img className="img-fluid model_img" src={userProfilePic} />
+
+            <p className="profile_name_one"> Brittanyvues </p>
+
+        </div>
+
+
+        <div className="image_with_text_row_two">
+
+            <p className="free_locked_text">
+
+                <span className="unlocked_icon">
+
+                    <i className="fa-solid fa-unlock"></i>
+
+                </span>
+
+                Free
+
+            </p>
+
+            <p className="lock_text_clr free_locked_text">
+
+                <span className="locked_icon">
+
+                    <i className="fa-solid fa-lock"></i>
+
+                </span>
+
+                Locked
+
+            </p>
+
+        </div>
+
+    </div>
+
+</div>
+
+</div>
