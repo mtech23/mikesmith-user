@@ -457,7 +457,7 @@ const Profile = () => {
                                         >
                                             <button
                                                 data-toggle="modal"
-                                                data-target=".exampleModaltip" className="followers_numbers mb-3"> <i class="fas fa-donate profile_btn_icons"></i> give tip</button>
+                                                data-target=".exampleModaltip" className="followers_numbers mb-3"> <i class="fas fa-donate profile_btn_icons"></i> Give Tip </button>
                                         </div>
 
                                         <button onClick={sendmessage} class="followers_numbers aos-init aos-animate" data-aos="fade-left" data-aos-anchor-placement="center-bottom" data-aos-duration="3000"><i class="fa-solid fa-envelope profile_btn_icons"></i>Inbox</button>
