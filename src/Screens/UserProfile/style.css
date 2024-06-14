@@ -719,9 +719,9 @@ input.edit_icon_input[type='file']{
     position: absolute;
     background-color: #FFF;
     bottom: 14px;
-    right: 33%;
+    right: 20%;
     font-size: 13px;
-    border-radius: 21px;
+    border-radius: 5px;
     box-shadow: 10px 10px 30px rgba(24, 24, 51, 0.07);
     display: flex;
     justify-content: center;
@@ -1161,7 +1161,7 @@ p.carousel-footer_price {
     } */
     .profile_edit_icon {
     
-      right: 43%;
+      
 }
 }
 
@@ -1305,3 +1305,29 @@ p.carousel-footer_price {
       right: 21%;
   }
 } */
+@media (max-width:1919px){
+
+  .profile_edit_icon {
+    right: 10%;
+  }
+}
+@media (max-width: 1180px) {
+  .profile_edit_icon {
+      right: -9px;
+  }
+}
+@media (max-width: 991px) {
+  .profile_edit_icon {
+      right: 35%;
+  }
+}
+@media (max-width: 600px) {
+  .profile_edit_icon {
+      right: 28%;
+  }
+}
+@media (max-width: 425px) {
+  .profile_edit_icon {
+      right: 22%;
+  }
+}
