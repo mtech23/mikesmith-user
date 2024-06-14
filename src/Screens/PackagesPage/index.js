@@ -158,7 +158,7 @@ const Packages = () => {
                   {userdata?.map((data) => (
 
 
-                    <div className="col-lg-5 col-md-6 gold-package">
+                    <div className="col-lg-5 col-md-6 mb-4 gold-package">
                       <form onSubmit={packagecheckout}>
                         <div
                           className=""

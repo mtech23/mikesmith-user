@@ -85,7 +85,7 @@ const Profile = () => {
     const handleclick = () => {
         navigate('/payment-page');
     }
-
+const [flow  , setUnflow] = useState(false)
 
     const flowmodel = async () => {
         try {
@@ -97,6 +97,7 @@ const Profile = () => {
                 const data = response?.data;
                 console.log("data", data)
                 // setModellists(data)
+                setUnflow(response?.msg)
                 model_listview()
 
             } else {
@@ -318,7 +319,7 @@ const Profile = () => {
 
     }
 
-    console.log("profilebyid.id", profilebyid.id)
+ 
 
     // const stylesForSidebar = {
     //     "marginTop": "0px",
@@ -462,7 +463,7 @@ const Profile = () => {
                                         </div>
 
                                         <button onClick={sendmessage} class="followers_numbers aos-init aos-animate" data-aos="fade-left" data-aos-anchor-placement="center-bottom" data-aos-duration="3000"><i class="fa-solid fa-envelope profile_btn_icons"></i>Inbox</button>
-                                        <button onClick={flowmodel} class="followers_numbers aos-init aos-animate mt-3" data-aos="fade-left" data-aos-anchor-placement="center-bottom" data-aos-duration="3000"><i class="fa-solid fa-user-plus profile_btn_icons"></i>Followers</button>
+                                        <button onClick={flowmodel} class="followers_numbers aos-init aos-animate mt-3" data-aos="fade-left" data-aos-anchor-placement="center-bottom" data-aos-duration="3000"><i class="fa-solid fa-user-plus profile_btn_icons"></i>{flow == "Following Successfully" ? "Following" : "Unflow"}</button>
 
                                     </div>
 
