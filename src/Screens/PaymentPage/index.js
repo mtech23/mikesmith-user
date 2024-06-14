@@ -220,11 +220,23 @@ const Payment = () => {
                           onChange={handlechanges}
                         />
                       </div> */}
-                      <div className="col-md-12">
-                        <CardElement />
+                      <div className="col-md-9 mt-4 mb-3 ">
+                       <CardElement className=" custom_element_input" 
+                       
+                       options={{style: {
+                        base: {
+                          fontSize: '15px',
+                          color: '#fff',
+                          
+                        },
+                        invalid: {
+                          color: '#fff',
+                        },
+                      },
+                    }}/> 
                       </div>
 
-                      <div className="col-md-9 mt-3">
+                      <div className="col-md-9 ">
 
                         <label className="namin"> ADDRESS </label>
                         <input

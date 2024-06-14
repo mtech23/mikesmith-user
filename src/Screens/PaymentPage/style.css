@@ -183,6 +183,25 @@ input[type=number] {
   padding: 10px 20px;
   margin-bottom: 22px;
 }
+
+
+.custom_element_input{
+  color: #fff;
+  font-family: "Poppins";
+  font-size: 16px;
+  appearance: textfield !important;
+  margin: 0 !important;
+  font-weight: 300;
+  line-height: 24px;
+  text-align: left;
+  background: transparent;
+  border: 1px gold solid;
+  width: 100%;
+  border-radius: 3px;
+  padding: 13px;
+  height: 100%;
+}
+
 .sub {
   background-image: url("../../Asserts/images/home-btn-bk.png");
   background-repeat: no-repeat;
@@ -256,4 +275,15 @@ input[type=number] {
     width: 90px;
     padding: 10px 4px;
   }
+}
+@media (max-width: 991px) {
+.login-forms label.namin{
+font-size: 13px;
+}
+}
+@media (max-width: 1280px) {
+.payment h5.pay {
+  padding-top: 30px;
+}
+
 }
