@@ -13,6 +13,7 @@ import Loader from "./Components/loader";
 import Router from "./Routers";
 
 function App() {
+  
   const [persistor, setPersistor] = useState(null);
   const [store, setStore] = useState(null);
   const [isLoading, setLoading] = useState(true);
@@ -31,6 +32,7 @@ function App() {
         <Loader />
       ) : (
         <Provider store={store}>
+          
           <PersistGate loading={<Loader />} persistor={persistor}>
             <Router />
           </PersistGate>

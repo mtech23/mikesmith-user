@@ -1,6 +1,9 @@
 import { ALERT_TYPES } from "./constants";
 import { toastAlert } from "./utils";
 
+import { ToastContainer, toast } from 'react-toastify';
+import 'react-toastify/dist/ReactToastify.css';
+
 // const url = "https://custom3.mystagingserver.site/Mike-Smith";
 const url = process.env.REACT_APP_BASE_URL
 //SIGN UP
@@ -94,6 +97,8 @@ const LogoutData = localStorage.getItem("userToken");
 
 //AddPost
 export const Addmodelpost = async (data) => {
+
+
 
   try {
     const res = await fetch(`${url}/public/api/model/post-add-edit`, {
@@ -579,11 +584,49 @@ export const modelprofileedit = async (id) => {
 
 
 
-
-
-
-
  
+
+
+
+export const profileviewbyidmodel = async (id) => {
+  try {
+    const res = await fetch(`${url}/public/api/model/post-view/${id}`, {
+      method: "Get",
+      headers: {
+        "Content-Type": "application/json",
+        Authorization: `Bearer ${localStorage.getItem("userToken")}`,
+      },
+    });
+    console.log(res, "res");
+    // Ensure response is ok before proceeding
+
+    const productData = await res.json(); // Parse response JSON
+    console.log(productData, "res");
+    if (!res.ok) {
+      // toastAlert(productData?.msg, ALERT_TYPES.ERROR);
+    } else {
+      // toastAlert(productData?.msg, ALERT_TYPES.SUCCESS);
+    }
+
+    return productData; // Return parsed data
+  } catch (error) {
+    // toastAlert(error, ALERT_TYPES.ERROR); // Handle error
+    throw error; // Rethrow error to be handled by caller
+  }
+};
+
+
+
+
+
+
+
+
+
+
+
+
+
 export const profileviewbyid = async (id) => {
   try {
     const res = await fetch(`${url}/public/api/user/post-view/${id}`, {
@@ -926,34 +969,36 @@ export const UserBuyPost = async (id) => {
 
 
 //  Model Purchase Plane
-export const modelpurchaseplane = async (id) => {
+
+
+
+
+export const modelpurchaseplane = async (Plane_id, formDataMethod) => {
+ 
   try {
-    const res = await fetch(`${url}/public/api/pick-subscription-package/${id}`, {
-      method: "Get",
+ 
+    const res = await fetch(`${url}/public/api/pick-subscription-package/${Plane_id}`, {
+      method: "POST",
       headers: {
-        "Content-Type": "application/json",
         Authorization: `Bearer ${localStorage.getItem("userToken")}`,
       },
+      body: formDataMethod
     });
 
+    const productData = await res.json(); // Parse the response data
 
-    const productData = await res.json(); // Parse response JSON
-    console.log(productData, "res");
     if (!res.ok) {
-      // toastAlert(productData?.msg, ALERT_TYPES.SUCCESS);
-
+      toastAlert(productData?.msg, ALERT_TYPES.ERROR); // Display error message
     } else {
-      // toastAlert(productData?.msg, ALERT_TYPES.ERROR);
+      toastAlert(productData?.msg, ALERT_TYPES.SUCCESS); // Display success message
     }
 
-    return productData; // Return parsed data
+    return productData;
   } catch (error) {
-    toastAlert(error, ALERT_TYPES.ERROR); // Handle error
+    toastAlert(error.message, ALERT_TYPES.ERROR); // Display error message
     throw error; // Rethrow error to be handled by caller
   }
 };
-
-
 
 
 

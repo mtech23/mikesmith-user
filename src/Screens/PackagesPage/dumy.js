@@ -49,6 +49,14 @@
 
 
 
+                      {/* <div className="checkbox-div1">
+                        <label className="custom_check-box">
+
+                          <span className="custom_check-text"> $ {data?.plan?.prices_options?.yearly?.price}/Year   </span>
+                          <input onChange={() => handlepkg(data?.plan?.prices_options?.yearly?.id)} type="checkbox" className="blackbox_custom" />
+                        </label>
+
+                      </div> */}
 
               <div
               className="gold-package"
@@ -376,3 +384,74 @@ data-aos-duration="3000"
   </div>
 </div>
 </section>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  // const packagecheckout = async (event) => {
+  //   event.preventDefault();
+
+  //   const notify = () => toast(notify);
+  //   notify()
+  //   try {
+  //     const response = await modelpurchaseplane(selectedPlanId, selected, prices);
+
+  //     if (response?.status == true) {
+
+  //       setNotify(response?.mgs)
+  //       setUserdata(response?.data)
+
+  //       alert("data")
+  //       navigate('/payment-page')
+  //       // toastAlert(response.statusText, ALERT_TYPES.ERROR);
+  //     } else {
+  //       // toastAlert(response.statusText, ALERT_TYPES.ERROR);
+  //     }
+  //   } catch (error) {
+  //     console.error("Error in adding model post:", error); // Corrected the log message
+  //     // toastAlert(error.message || "An error occurred", ALERT_TYPES.ERROR); // Show error message in toast
+  //   }
+  // };
+
+
+
+  // const packagecheckout = async (planeid) => {
+  //   try {
+  //     const formDataMethod = new FormData();
+  //     formDataMethod.append('id', selected);
+  //     formDataMethod.append('price', prices);
+  //     console.log("prices", prices, selected)
+  //     const response = await modelpurchaseplane(planeid, formDataMethod);
+  //     console.log("response", response)
+
+  //     if (response?.status == true) {
+  //       navigate('/payment-page')
+  //       const data = response?.data;
+  //       console.log("data", data)
+  //       setModellists(data)
+
+
+  //     } else {
+  //       // toastAlert(response.statusText, ALERT_TYPES.ERROR);
+  //       console.log("packege ", response.statusText)
+  //     }
+  //     setModellists(response?.data)
+
+  //   } catch (error) {
+  //     console.error("Error in logging in:", error);
+
+  //     // toastAlert(error, ALERT_TYPES.ERROR);
+  //   }
+  // };
+

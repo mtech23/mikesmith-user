@@ -2,7 +2,7 @@ import React, { useEffect, useState } from "react";
 import Header from "../../Components/Layout/Header";
 import Footer from "../../Components/Layout/Footer";
 import afterimgframe from '../../Asserts/images/after-img-frame.png'
-import { modelprofileview, modelprofillist  , Getmodelpostlist } from "../../api";
+import { modelprofileview, modelprofillist, Getmodelpostlist } from "../../api";
 import { Swiper, SwiperSlide } from "swiper/react";
 import { toastAlert } from "../../utils";
 import { ALERT_TYPES } from "../../constants";
@@ -89,7 +89,7 @@ const ModelProfile = () => {
     } catch (error) {
       console.error("Error in logging in:", error);
 
- 
+
     }
   };
   // const modelprifilelist = async () => {
@@ -125,7 +125,7 @@ const ModelProfile = () => {
     }
   };
 
-   
+
   useEffect(() => {
     Aos.init();
     modelprifilelist()
@@ -201,7 +201,7 @@ const ModelProfile = () => {
                         data-aos-anchor-placement="center-bottom"
                         data-aos-duration="3000"
                       >
-                        {userdata?.bio || 'Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry standard' }
+                        {userdata?.bio || 'Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry standard'}
                       </p>
                     </div>
 
@@ -1652,3 +1652,78 @@ const ModelProfile = () => {
 };
 
 export default ModelProfile;
+
+
+
+
+<div className="col-md-12">
+  <div
+    class="modal fade exampleModal"
+    // id="exampleModal"
+    tabindex="-1"
+    aria-labelledby="exampleModalLabel"
+    aria-hidden="true"
+  >
+    <div class="modal-dialog modal-dialog-centered my-modal">
+      <div class="modal-content">
+        <div className="carousel-modal">
+          <div class="carousel-header">
+            <div className="carousel-icons">
+              <div className="caarousel-icons_inner">
+                <a
+                  href="javaScript:;"
+                  className="cancel"
+                  data-dismiss="modal"
+                >
+                  <img src={Cancel} />
+                </a>
+                <a type="button" onClick={handleHeart} className="heart">
+                  {/* <img src={Heart} /> */}
+                  <i className={`fa ${hearts ? 'fa-solid' : 'fa-regular'} fa-heart`}></i>
+                </a>
+
+              </div>
+            </div>
+            <h3 className="modal-title">{filterid?.catgeory_detail?.name}</h3>
+            <p className="modal-subtitle">38- USA - 2 Hours ago</p>
+          </div>
+
+          <Swiper
+            slidesPerView={"auto"}
+            centeredSlides={true}
+            spaceBetween={15}
+            navigation={true}
+            // pagination={{
+            //   clickable: true,
+            // }}
+            modules={[Navigation]}
+            className="mySwiper"
+          >
+            {filterid?.post_data?.map((items) => (
+
+              <SwiperSlide>
+                <img src={baseurl + items?.file} />
+              </SwiperSlide>))}
+
+          </Swiper>
+
+          <div className="carousel-footer">
+            <h4 className="carousel-footer_title">
+              My Pretty Pink Nails :)
+            </h4>
+            <p className="carousel-footer_body">
+              Lorem Ipsum is simply dummy text of the printing and
+              typesetting industry. Lorem Ipsum has been the
+              industry's standard dummy text ever since the 1500s,
+              when an unknown printer took a galley of type and
+              scrambled it to make a type specimen book. It has
+              survived not only five centuries
+            </p>
+            {/* <p className="carousel-footer_price">$12.44</p>
+          <button onClick={handleclick} className="carousel-footer_button">Buy</button> */}
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>

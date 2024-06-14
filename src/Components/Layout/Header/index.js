@@ -23,6 +23,10 @@ import { userLogoutRequest } from "../../../api";
 const Header = () => {
   const [ismenu, setIsMenu] = useState(false);
 
+
+
+  const post_limit = localStorage.getItem("post_limit");
+
   const LogoutData = localStorage.getItem("userToken");
   const dispatch = useDispatch();
   const navigate = useNavigate();
@@ -182,12 +186,16 @@ const Header = () => {
                   <Link to={"/add-post-page"}>Search posts</Link>
                 </li> */}
 
-                {usertype == 2 && (
 
-                  <li>
-                    <Link to={"/add-post-page"}>Request board</Link>
-                  </li>
+
+
+                {usertype == 2 && (
+                  post_limit !== 0 ? (
+                    <li>
+                      <Link to="/add-post-page">Request board</Link>                  </li>
+                  ) : null
                 )}
+
                 <li>
                   {/* <Link to={"/add-post-page"}>swag</Link> */}
                 </li>

@@ -87,7 +87,7 @@ const AddPost = () => {
     { id: 1, name: "Jhon" },
     { id: 2, name: "Michael" }
   ].map(option => ({ value: option.id, label: option.name }));
-  
+
 
 
 
@@ -127,14 +127,13 @@ const AddPost = () => {
   };
 
 
-  console.log("selectedCategory", selectedCategory)
 
-
+  const boost_limit = localStorage.getItem("boost_limit");
 
   const handleSubmit = async (event) => {
 
     event.preventDefault();
-    // navigate('/')
+
 
     toastAlert("Post Add Successfully", ALERT_TYPES.SUCCESS);
     const formDataMethod = new FormData();
@@ -155,11 +154,11 @@ const AddPost = () => {
         navigate('/model-profile-page');
         // toastAlert(response.statusText, ALERT_TYPES.ERROR);
       } else {
-        toastAlert(response.statusText, ALERT_TYPES.ERROR);
+        // toastAlert(response.statusText, ALERT_TYPES.ERROR);
       }
     } catch (error) {
       console.error("Error in adding model post:", error); // Corrected the log message
-      toastAlert(error.message || "An error occurred", ALERT_TYPES.ERROR); // Show error message in toast
+      // toastAlert(error.message || "An error occurred", ALERT_TYPES.ERROR); // Show error message in toast
     }
   };
 
@@ -388,7 +387,7 @@ const AddPost = () => {
                     DESCRIPTION
                   </h3>
                   <p className="description-text">
-                    <textarea name="post_title" onChange={handlechanges} className="form-control post-title__form" required placeholder="Enter Description" id="des"></textarea>
+                    <textarea name="post_description" onChange={handlechanges} className="form-control post-title__form" required placeholder="Enter Description" id="des"></textarea>
 
                   </p>
                 </div>
@@ -430,21 +429,21 @@ const AddPost = () => {
                       TAGS FRIENDS
                     </h3>
                     <div className="tag-friends">
-                     
+
                       <Select
-                      className="tags-btn"
+                        className="tags-btn"
                         value={formData?.friend}
                         isMulti
                         required
                         options={SelectOptions}
                         onChange={handleChangeSelect}
                       />
-                         {/* <a href="javascript:;" class="small-cancel">
+                      {/* <a href="javascript:;" class="small-cancel">
                           <img src={SmallCancel} />
                         </a> */}
                     </div>
 
- {/*   <button type="button"  >
+                    {/*   <button type="button"  >
                         2MANYKIDS{" "}
                         <a href="javascript:;" class="small-cancel">
                           <img src={SmallCancel} />
@@ -475,7 +474,7 @@ const AddPost = () => {
                       </label>
                     </div>
                   </div>
-                  <div className="col-lg-4">
+                  {boost_limit !== 0 ? (<div className="col-lg-4">
                     <div className="post_options">
                       <h3 className="title d-lg-block d-none">&nbsp;</h3>
                       <label class="custom_check-box">
@@ -490,7 +489,7 @@ const AddPost = () => {
                         />
                       </label>
                     </div>
-                  </div>
+                  </div>) : null}
                 </div>
               </div>
 

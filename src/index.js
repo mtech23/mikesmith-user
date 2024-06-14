@@ -4,12 +4,16 @@ import "./index.css";
 import App from "./App";
 import reportWebVitals from "./reportWebVitals";
 import "react-toastify/dist/ReactToastify.css";
-
+import { Elements } from '@stripe/react-stripe-js'
+import { loadStripe } from '@stripe/stripe-js'
 const root = ReactDOM.createRoot(document.getElementById("root"));
+const stripePromise = loadStripe('pk_test_51OM8L0JUBwD5W3vxolPWPoxknpqaDJUxTe2DbgHuXTJqs1buU8e6ow0sWKBXkWvgz5DhJQ9XVC1l2i0479Zfxziv00pQYssWdI')
 root.render(
+  <Elements stripe={stripePromise}>
   <React.StrictMode>
     <App />
   </React.StrictMode>
+  </Elements>
 );
 
 // If you want to start measuring performance in your app, pass a function
