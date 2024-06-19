@@ -6,6 +6,7 @@ import { modelprofileview, modelprofillist, Getmodelpostlist, Getmodelpost, User
 import { Swiper, SwiperSlide } from "swiper/react";
 import { toastAlert } from "../../utils";
 import { ALERT_TYPES } from "../../constants";
+import { Link } from 'react-router-dom'
 import { loginSuccess } from "../../redux/slicers/user";
 import { useDispatch } from "react-redux";
 import dummy from '../../Asserts/images/dummy.jpg'
@@ -87,7 +88,7 @@ const ModelProfile = () => {
     navigate('/')
   }
   const dispatch = useDispatch();
-  const [userdata, setUserdata] = useState([])
+  const [userdata, setUserdata] = useState({})
   const [userprofilelist, setprofilelist] = useState([])
   const baseurl = `${process.env.REACT_APP_BASE_URL}/public/`
 
@@ -161,6 +162,7 @@ const ModelProfile = () => {
   const [isLoadingdetail, setLoadingdetail] = useState(true);
 
   const [modellist, setmodellisting] = useState(true)
+  const [followers, setfollowers] = useState(false)
 
   const [follow, setFollowing] = useState(false)
   const [sendmessages, setSendmessage] = useState(false)
@@ -174,6 +176,7 @@ const ModelProfile = () => {
     setSendmessage(false)
     setTransactions(false)
     setGivestip(false)
+    setfollowers(false)
     setRecivedtips(false)
   }
   const sendmessage = () => {
@@ -183,6 +186,7 @@ const ModelProfile = () => {
     setTransactions(false)
     setGivestip(false)
     setRecivedtips(false)
+    setfollowers(false)
   }
 
 
@@ -192,6 +196,7 @@ const ModelProfile = () => {
     setFollowing(false)
     setSendmessage(false)
     setmodellisting(false)
+    setfollowers(false)
     setGivestip(false)
   }
   const showprofile = () => {
@@ -199,7 +204,7 @@ const ModelProfile = () => {
     setTransactions(false)
     setFollowing(false)
     setSendmessage(false)
-
+    setfollowers(false)
     setGivestip(false)
   }
 
@@ -207,6 +212,7 @@ const ModelProfile = () => {
     setTransactions(false)
     setFollowing(false)
     setSendmessage(false)
+    setfollowers(false)
     setmodellisting(false)
     setGivestip(!givestip)
   }
@@ -228,10 +234,22 @@ const ModelProfile = () => {
     setFollowing(false)
     setSendmessage(false)
     setmodellisting(false)
+    setfollowers(false)
     setGivestip(false)
   }
 
-  console.log("filterid", filterid)
+
+
+
+  const follower = () => {
+    setTransactions(false)
+    setfollowers(true)
+    setFollowing(false)
+    setSendmessage(false)
+    setmodellisting(false)
+    setGivestip(false)
+  }
+
 
   const stylesForSidebar = {
     "marginTop": "0px",
@@ -269,7 +287,7 @@ const ModelProfile = () => {
       // toastAlert(error, ALERT_TYPES.ERROR);
     }
   };
-
+  console.log("modellistsprofileview?.user_follower", userdata?.user_follower)
   return (
     <div>
       <div>
@@ -352,15 +370,7 @@ const ModelProfile = () => {
 
                         </div>
 
-                        {/* <p
-                        className="user_profile_desc"
-                        data-aos="fade-right"
-                        data-aos-anchor-placement="center-bottom"
-                        data-aos-duration="3000"
-                      >
-                                         {userdata?.bio || 'Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry standard' }
 
-                      </p> */}
                       </div>
 
                       <div
@@ -381,8 +391,17 @@ const ModelProfile = () => {
                         data-aos-anchor-placement="center-bottom"
                         data-aos-duration="3000"
                       >
-                        <span className="followers_title">followers</span>
+                        {/* <span className="followers_title">followers</span> */}
+                        <div
+                          data-aos="fade-right"
+                          data-aos-anchor-placement="center-bottom"
+                          data-aos-duration="3000"
+                        >
+                          <button className=" followers_numbers text-center mb-2" onClick={follower}>  followers</button>
+                        </div>
                         <span className="followers_number">
+
+
                           <span className="no_of_follows">{userdata?.follower || 0}</span>
                         </span>
                       </div>
@@ -402,21 +421,12 @@ const ModelProfile = () => {
                           <button className=" followers_numbers text-center mb-2" onClick={following}>  Following</button>
                         </div>
                         <span className="followers_number">
-                          <span className="no_of_follows">{userdata?.following || 0} </span>
+                          {/* <span className="no_of_follows">{userdata?.following || 0} </span> */}
                         </span>
                       </div>
 
                       <div className="d-flex justify-content-between align-items-center pt-4 sec-rqst-btns">
-                        {/* <button
-                        className="sign_actionBtn"
-                        data-aos="fade-right"
-                        data-aos-anchor-placement="center-bottom"
-                        data-aos-duration="3000"
-                      >
-                        send request
-                      </button> */}
 
-                        {/* sign_actionBtn */}
 
                         <button
                           className="followers_numbers text-center text-capitalize"
@@ -517,9 +527,9 @@ const ModelProfile = () => {
                               <img src={modelCardTopCorner} />
                             </div>
 
-                          <div className="model_card_bottom_corner_img" id="">
-                            <img src={modelCardBottomCorner} />
-                          </div>
+                            <div className="model_card_bottom_corner_img" id="">
+                              <img src={modelCardBottomCorner} />
+                            </div>
 
                           </div>
                         </div>
@@ -541,50 +551,93 @@ const ModelProfile = () => {
                         </h3>
                         <div className="divider_row"></div>
                       </div>
-                      <div className="col-lg-3 col-md-4 col-sm-12 pt-4" data-aos="fade-up" data-aos-duration="3000">
-                        <div className="follow_img_div">
-                          <img className="img-fluid follow_img" src={modelImg02} alt="Brittanyvues" />
-                          <p className="image_text">Brittanyvues</p>
-                          <div className="locked_div">
-                            <p className="free_text">
-                              <span className="icon_unlock">
-                                <i className="fa-solid fa-unlock"></i>
-                              </span>
-                              Free
-                            </p>
-                            <p className="lock_text">
-                              <span className="icon_lock">
-                                <i className="fa-solid fa-lock"></i>
-                              </span>
-                              Locked
-                            </p>
+                      {userdata?.user_following?.map((data) => (
+                        <div className="col-lg-3 col-md-4 col-sm-12 pt-4" data-aos="fade-up" data-aos-duration="3000">
+                          <div className="follow_img_div">
+                            <Link to={`/profile-page/${data?.friend_detail?.id}`}>
+                              <img className="img-fluid follow_img" src={data?.friend_detail?.profile_pic ? baseurl + data?.friend_detail?.profile_pic : dummy} alt="Profile" />
+                            </Link>                                                <p className="image_text">{data?.friend_detail?.name}</p>
+                            <div className="locked_div">
+                              <p className="free_text">
+                                <span className="icon_unlock">
+                                  <i className="fa-solid fa-unlock"></i>
+                                </span>
+                                Free
+                              </p>
+                              <p className="lock_text">
+                                <span className="icon_lock">
+                                  <i className="fa-solid fa-lock"></i>
+                                </span>
+                                Locked
+                              </p>
+                            </div>
                           </div>
-                        </div>
-                      </div>
-                      <div className="col-lg-3 col-md-4 col-sm-12 pt-4" data-aos="fade-down" data-aos-duration="3000">
-                        <div className="follow_img_div">
-                          <img className="img-fluid follow_img" src={modelImg02} alt="Brittanyvues" />
-                          <p className="image_text">Brittanyvues</p>
-                          <div className="locked_div">
-                            <p className="free_text">
-                              <span className="icon_unlock">
-                                <i className="fa-solid fa-unlock"></i>
-                              </span>
-                              Free
-                            </p>
-                            <p className="lock_text">
-                              <span className="icon_lock">
-                                <i className="fa-solid fa-lock"></i>
-                              </span>
-                              Locked
-                            </p>
-                          </div>
-                        </div>
-                      </div>
+                        </div>))}
+
                     </div>
                   )}
 
 
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+                  {followers && (
+                    <div className="row tabs_box">
+                      <div className="col-md-12">
+                        <h3
+                          className="following_heading"
+                          data-aos="fade-right"
+                          data-aos-anchor-placement="center-bottom"
+                          data-aos-duration="3000"
+                        >
+                          Followers
+                        </h3>
+                        <div className="divider_row"></div>
+                      </div>
+
+                      {userdata?.user_follower?.map((data) => (
+                        <div className="col-lg-3 col-md-4 col-sm-12 pt-4" data-aos="fade-up" data-aos-duration="3000">
+                          <div className="follow_img_div">
+                            {console.log("modellistsprofileview?.user_follower?", data?.user_detail.name)}
+                            <Link to={`/profile-page/${data?.user_detail?.id}`}>
+                              <img className="img-fluid follow_img" src={data?.user_detail?.profile_pic ? baseurl + data?.user_detail?.profile_pic : dummy} alt="Profile" />
+                            </Link>                                                <p className="image_text">{data?.user_detail?.name}</p>
+                            <div className="locked_div">
+                              <p className="free_text">
+                                <span className="icon_unlock">
+                                  <i className="fa-solid fa-unlock"></i>
+                                </span>
+                                Free
+                              </p>
+                              <p className="lock_text">
+                                <span className="icon_lock">
+                                  <i className="fa-solid fa-lock"></i>
+                                </span>
+                                Locked
+                              </p>
+                            </div>
+                          </div>
+                        </div>))}
+
+                    </div>
+                  )}
 
 
 
@@ -662,42 +715,7 @@ const ModelProfile = () => {
                               <p className="message_date">29 May 08:12 AM</p>
                               <p className="message_para_reply">Coming</p>
                             </div>
-                            {/* <div className="chat_box">
-                                          <p className="message_date">29 May 07:59 AM</p>
-                                          <p className="message_para">I'm waiting</p>
-                                        </div>
-                                        <div className="chat_box">
-                                          <p className="message_date">29 May 07:59 AM</p>
-                                          <p className="message_para">I'm waiting</p>
-                                        </div>
-                                        <div className="chat_box">
-                                          <p className="message_date">29 May 07:59 AM</p>
-                                          <p className="message_para">I'm waiting</p>
-                                        </div>
-                                        <div className="chat_box">
-                                          <p className="message_date">29 May 07:59 AM</p>
-                                          <p className="message_para">Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lore five centuries, but also the leap into electronic typesetting, remaining essentially unchanged. It was popularised in the 1960s with the release of Letraset sheets containing Lorem Ipsum passages, and more recently with des</p>
-                                        </div>
-                                        <div className="chat_box">
-                                          <p className="message_date">29 May 07:59 AM</p>
-                                          <p className="message_para">I'm waiting</p>
-                                        </div>
-                                        <div className="chat_box">
-                                          <p className="message_date">29 May 07:59 AM</p>
-                                          <p className="message_para">I'm waiting</p>
-                                        </div>
-                                        <div className="chat_box">
-                                          <p className="message_date">29 May 07:59 AM</p>
-                                          <p className="message_para">I'm waiting</p>
-                                        </div>
-                                        <div className="chat_box">
-                                          <p className="message_date">29 May 07:59 AM</p>
-                                          <p className="message_para">I'm waiting</p>
-                                        </div>
-                                        <div className="chat_box">
-                                          <p className="message_date">29 May 07:59 AM</p>
-                                          <p className="message_para">I'm waiting</p>
-                                        </div> */}
+
                           </div>
 
 
@@ -735,13 +753,13 @@ const ModelProfile = () => {
                                 <th scope="col" className="table_header_row">Purchased</th>
                               </tr>
 
-                          </thead>
-                          <tbody>
-                            <tr >
-                              <td class="order_history">25.05.2024</td>
-                              <td class="order_history">$80.00</td>
-                              <td class="order_history"><a href="#" className="seller_text"> Brittanyvues </a></td>
-                              <td class="order_history">Unlocked collection: Lime green high heels <span><a href="#" className="view_links"> View </a></span></td>
+                            </thead>
+                            <tbody>
+                              <tr >
+                                <td class="order_history">25.05.2024</td>
+                                <td class="order_history">$80.00</td>
+                                <td class="order_history"><a href="#" className="seller_text"> Brittanyvues </a></td>
+                                <td class="order_history">Unlocked collection: Lime green high heels <span><a href="#" className="view_links"> View </a></span></td>
 
                               </tr>
                               <tr className="bg_table_row">
@@ -908,22 +926,20 @@ const ModelProfile = () => {
 
 
 
-              {/* {isLoadingdetail ? (
-                <Loader />
-              ) : ( */}
 
-                <div className="col-md-12">
-                  <div
-                    class="modal fade exampleModal"
-                    // id="exampleModal"
-                    tabindex="-1"
-                    aria-labelledby="exampleModalLabel"
-                    aria-hidden="true"
-                  >
-                    <div class="modal-dialog modal-dialog-centered my-modal">
-                      <div class="modal-content">
-                        <div className="carousel-modal">
-                          {/* <div class="carousel-header">
+
+              <div className="col-md-12">
+                <div
+                  class="modal fade exampleModal"
+                  // id="exampleModal"
+                  tabindex="-1"
+                  aria-labelledby="exampleModalLabel"
+                  aria-hidden="true"
+                >
+                  <div class="modal-dialog modal-dialog-centered my-modal">
+                    <div class="modal-content">
+                      <div className="carousel-modal">
+                        {/* <div class="carousel-header">
                                                 <div className="carousel-icons">
                                                     <div className="caarousel-icons_inner">
                                                         <a
@@ -943,63 +959,63 @@ const ModelProfile = () => {
                                             </div> */}
 
 
-                          <div class="carousel-header mb-5">
-                            <div className="carousel-icons">
-                              <div className="caarousel-icons_inner">
-                                <a
-                                  href="javaScript:;"
-                                  className="cancel"
-                                  data-dismiss="modal"
-                                >
-                                  <img src={Cancel} />
-                                </a>
+                        <div class="carousel-header mb-5">
+                          <div className="carousel-icons">
+                            <div className="caarousel-icons_inner">
+                              <a
+                                href="javaScript:;"
+                                className="cancel"
+                                data-dismiss="modal"
+                              >
+                                <img src={Cancel} />
+                              </a>
 
 
 
-                              </div>
                             </div>
-
-
                           </div>
-                          <Swiper
-                            slidesPerView={"auto"}
-                            centeredSlides={true}
-                            spaceBetween={15}
-                            navigation={true}
-                            // pagination={{
-                            //   clickable: true,
-                            // }}
-                            modules={[Navigation]}
-                            className="mySwiper mt-5"
-                          >  {profilebyid?.post_data?.map((data) => (
-
-                            <SwiperSlide >
-                              {/* <div> */}
-                              <img src={data?.file ? baseurl + data?.file : dummy} className="modalpic" />
-                              {/* </div> */}
-                            </SwiperSlide>
-                          ))}
 
 
-                          </Swiper>
+                        </div>
+                        <Swiper
+                          slidesPerView={"auto"}
+                          centeredSlides={true}
+                          spaceBetween={15}
+                          navigation={true}
+                          // pagination={{
+                          //   clickable: true,
+                          // }}
+                          modules={[Navigation]}
+                          className="mySwiper mt-5"
+                        >  {profilebyid?.post_data?.map((data) => (
 
-                          <div className="carousel-footer">
-                            <h4 className="carousel-footer_title">
-                              <h3 className="modal-title mt-3">{profilebyid?.post_title}       :)</h3>
+                          <SwiperSlide >
+                            {/* <div> */}
+                            <img src={data?.file ? baseurl + data?.file : dummy} className="modalpic" />
+                            {/* </div> */}
+                          </SwiperSlide>
+                        ))}
 
-                            </h4>
-                            <p className="carousel-footer_body">
-                              {profilebyid?.post_description}
-                            </p>
-                            <p className="carousel-footer_price">${profilebyid?.price}    </p>
-                            <button onClick={handleclick} className="carousel-footer_button " data-dismiss="modal">Buy</button>
-                          </div>
+
+                        </Swiper>
+
+                        <div className="carousel-footer">
+                          <h4 className="carousel-footer_title">
+                            <h3 className="modal-title mt-3">{profilebyid?.post_title}       :)</h3>
+
+                          </h4>
+                          <p className="carousel-footer_body">
+                            {profilebyid?.post_description}
+                          </p>
+                          <p className="carousel-footer_price">${profilebyid?.price}    </p>
+                          <button onClick={handleclick} className="carousel-footer_button " data-dismiss="modal">Buy</button>
                         </div>
                       </div>
                     </div>
                   </div>
                 </div>
-              )}
+              </div>
+
 
 
 
@@ -1015,3 +1031,4 @@ const ModelProfile = () => {
 };
 
 export default ModelProfile;
+// userdata?.user_follower

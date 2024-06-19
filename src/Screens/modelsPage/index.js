@@ -3,6 +3,7 @@ import Header from "../../Components/Layout/Header";
 import Footer from "../../Components/Layout/Footer";
 
 import { Swiper, SwiperSlide } from "swiper/react";
+import Loader from "../../Components/loader";
 
 import { Addmodelpost, modellist, UserUnfavouritemodel } from '../../api'
 
@@ -113,6 +114,7 @@ const listingCard = [
 
 const Model = () => {
 
+  const [isLoading, setLoading] = useState(true);
 
   const token = localStorage.getItem("userToken")
   const [heart, setHearts] = useState(false)
@@ -147,7 +149,7 @@ const Model = () => {
       // toastAlert(error, ALERT_TYPES.ERROR);
     }
   }
- 
+
   const [inputValue, setInputValue] = useState('');
   const baseurl = `${process.env.REACT_APP_BASE_URL}/public/`
   console.log("baseurl", baseurl)
@@ -164,7 +166,7 @@ const Model = () => {
 
 
 
- 
+
   const modesllist = async () => {
     try {
       const response = await modellist();
@@ -172,7 +174,7 @@ const Model = () => {
 
 
       setModellists(response?.data)
-
+setLoading(false)
     } catch (error) {
       console.error("Error in logging in:", error);
 
@@ -188,66 +190,74 @@ const Model = () => {
   useEffect(() => {
     modesllist()
   }, [])
- 
+    
+   
+
   return (
-    <div>
-      <div className="model_main_section">
+    <>
+ 
+      {isLoading ? (
+        <Loader />
+      ) : (
+
         <div>
-          <Header />
-        </div>
+          <div className="model_main_section">
+            <div>
+              <Header />
+            </div>
 
-        <div className="model_section">
-          <div className="container">
-            <div className="row">
-              <div className="col-md-12 pb-4">
-                <div
-                  className="model_text_img text-center pb-5"
-                  data-aos="fade-right"
-                  data-aos-anchor-placement="center-bottom"
-                  data-aos-duration="3000"
-                >
-                  <img src={modelText} />
-                </div>
+            <div className="model_section">
+              <div className="container">
+                <div className="row">
+                  <div className="col-md-12 pb-4">
+                    <div
+                      className="model_text_img text-center pb-5"
+                      data-aos="fade-right"
+                      data-aos-anchor-placement="center-bottom"
+                      data-aos-duration="3000"
+                    >
+                      <img src={modelText} />
+                    </div>
 
-                <div className="all_filters_with_search">
-                  <div className="main_searchBar">
-                    <input
-                      value={inputValue} inputClass="mainInput" onChange={handleChange}
-                      className="searchbar_input_field"
-                      type="text"
-                      placeholder="search post here"
-                    />
-                    <button className="searchbar_actionBtn">
-                      <img src={headerSearchIcon} />
-                    </button>
+                    <div className="all_filters_with_search">
+                      <div className="main_searchBar">
+                        <input
+                          value={inputValue} inputClass="mainInput" onChange={handleChange}
+                          className="searchbar_input_field"
+                          type="text"
+                          placeholder="search post here"
+                        />
+                        <button className="searchbar_actionBtn">
+                          <img src={headerSearchIcon} />
+                        </button>
+                      </div>
+
+
+                    </div>
+
+
                   </div>
 
-
-                </div>
-
-
-              </div>
-
-              {listingCard &&
-                filterData?.map((item, index) => (
-                  <div key={index} className="col-10 col-sm-6 col-lg-3 mx-auto">
-                    <div className="first_model_card">
+                  {listingCard &&
+                    filterData?.map((item, index) => (
+                      <div key={index} className="col-10 col-sm-6 col-lg-3 mx-auto">
+                        <div className="first_model_card">
 
 
-                      <Swiper
-                        spaceBetween={30}
-                        slidesPerView={1}
-                        onSlideChange={() => console.log("slide change")}
-                        onSwiper={(swiper) => console.log(swiper)}
-                      >
+                          <Swiper
+                            spaceBetween={30}
+                            slidesPerView={1}
+                            onSlideChange={() => console.log("slide change")}
+                            onSwiper={(swiper) => console.log(swiper)}
+                          >
 
-                        <SwiperSlide key={index}>
-                          <div className="model_card_img position-relative">
-                            <img
-                              src={baseurl + item?.profile_pic}
-                              className="img-fluid"
-                            />
-                            {/* {token && (
+                            <SwiperSlide key={index}>
+                              <div className="model_card_img position-relative">
+                                <img
+                                  src={baseurl + item?.profile_pic}
+                                  className="img-fluid"
+                                />
+                                {/* {token && (
                               <span
                                 type="button"
                                 onClick={() => handleHeart(item?.id)}
@@ -257,46 +267,46 @@ const Model = () => {
                               </span>
                             )} */}
 
-                          </div>
+                              </div>
 
-                          <div className="model_card_desc ">
+                              <div className="model_card_desc ">
                                 <div className="model_div">
-                                    <div className="image_with_text_row">
-                                        <img className="img-fluid model_img" src={userProfilePic}/>
-                                        <p className="profile_name_one"> Brittanyvues </p>      
-                                    </div>     
-                              
-                              
-                                    <div className="image_with_text_row_two">
+                                  <div className="image_with_text_row">
+                                    <img className="img-fluid model_img" src={userProfilePic} />
+                                    <p className="profile_name_one"> Brittanyvues </p>
+                                  </div>
+
+
+                                  <div className="image_with_text_row_two">
                                     <p className="free_locked_text">
-                                        <span className="unlocked_icon">
-                                          <i className="fa-solid fa-unlock"></i>
-                                        </span> 
-                                     
-                                        Free
-                                      </p>
-                                      <p className="lock_text_clr free_locked_text">
-                                        <span className="locked_icon">
-                                          <i className="fa-solid fa-lock"></i>
-                                        </span>
-                                      
-                                         Locked
-                                      </p>
-                                    </div>
-                               
-                                 </div>
-                                 <div className="description_box">
-                                    <a className="product_heading" href="#">Lorem Ipsum</a>
-                                    <p className="product_description" >Lorem Ipsum is simply dummy text of the printing and typesetting industry.
-                                     Ipsum has been the industry's standard dummy text ever since the 1500s,</p>
+                                      <span className="unlocked_icon">
+                                        <i className="fa-solid fa-unlock"></i>
+                                      </span>
+
+                                      Free
+                                    </p>
+                                    <p className="lock_text_clr free_locked_text">
+                                      <span className="locked_icon">
+                                        <i className="fa-solid fa-lock"></i>
+                                      </span>
+
+                                      Locked
+                                    </p>
                                   </div>
-                                  <div className="view_collection_btn_div">
-                                    {console.log("item?.id" , item?.id)}
-                                    <button className="view_collection_btn"  onClick={() => handleclick(item?.id)}> View Collection </button>
-                                  </div>
-              
-            
-                            {/* <div className="name_with_status">
+
+                                </div>
+                                <div className="description_box">
+                                  <a className="product_heading" href="#">Lorem Ipsum</a>
+                                  <p className="product_description" >Lorem Ipsum is simply dummy text of the printing and typesetting industry.
+                                    Ipsum has been the industry's standard dummy text ever since the 1500s,</p>
+                                </div>
+                                <div className="view_collection_btn_div">
+                                  {console.log("item?.id", item?.id)}
+                                  <button className="view_collection_btn" onClick={() => handleclick(item?.id)}> View Collection </button>
+                                </div>
+
+
+                                {/* <div className="name_with_status">
                               <span className="online_circle">
                                 <i class="fa-solid fa-circle"></i>
                               </span>
@@ -304,7 +314,7 @@ const Model = () => {
                                 {item?.name}
                               </span>
                             </div> */}
-                            {/* <div>
+                                {/* <div>
                               <span className="hotmodel_info">
                                 {item?.address}
                               </span>
@@ -321,41 +331,43 @@ const Model = () => {
 
 
 
+                              </div>
+
+                            </SwiperSlide>
+
+
+                          </Swiper>
+
+                          <div className="model_card_top_corner_img">
+                            <img src={modelCardTopCorner} />
                           </div>
 
-                        </SwiperSlide>
+                          <div className="model_card_bottom_corner_img">
+                            <img src={modelCardBottomCorner} />
+                          </div>
 
-
-                      </Swiper>
-
-                      <div className="model_card_top_corner_img">
-                        <img src={modelCardTopCorner} />
-                      </div>
-
-                      <div className="model_card_bottom_corner_img">
-                        <img src={modelCardBottomCorner} />
-                      </div>
-
-                      {/* <div className="framePic">
+                          {/* <div className="framePic">
                         <img src={framePic} className="" />
                       </div> */}
-                    </div>
-                  </div>
+                        </div>
+                      </div>
 
 
 
-                ))}
+                    ))}
 
 
+                </div>
+              </div>
             </div>
           </div>
-        </div>
-      </div>
 
-      <div>
-        <Footer />
-      </div>
-    </div>
+          <div>
+            <Footer />
+          </div>
+        </div>)}
+   </>
+
   );
 };
 

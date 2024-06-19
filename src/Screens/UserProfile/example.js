@@ -3338,3 +3338,187 @@ const Profile = () => {
 };
 
 export default Profile;
+
+
+
+
+
+<div className="col-md-12">
+<div
+    class="modal fade exampleModal"
+    // id="exampleModal"
+    tabindex="-1"
+    aria-labelledby="exampleModalLabel"
+    aria-hidden="true"
+>
+    <div class="modal-dialog modal-dialog-centered my-modal">
+        <div class="modal-content">
+            <div className="carousel-modal">
+                {/* <div class="carousel-header">
+                    <div className="carousel-icons">
+                        <div className="caarousel-icons_inner">
+                            <a
+                                href="javaScript:;"
+                                className="cancel"
+                                data-dismiss="modal"
+                            >
+                                <img src={Cancel} />
+                            </a>
+                            <a type="button" onClick={handleHeart} className="heart">
+                                 <i className={`fa ${hearts ? 'fa-solid' : 'fa-regular'} fa-heart`}></i>
+                            </a>
+
+                        </div>
+                    </div>
+                    
+                </div> */}
+
+
+                <div class="carousel-header mb-5">
+                    <div className="carousel-icons">
+                        <div className="caarousel-icons_inner">
+                            <a
+                                href="javaScript:;"
+                                className="cancel"
+                                data-dismiss="modal"
+                            >
+                                <img src={Cancel} />
+                            </a>
+
+
+
+                        </div>
+                    </div>
+
+
+                </div>
+                <Swiper
+                    slidesPerView={"auto"}
+                    centeredSlides={true}
+                    spaceBetween={15}
+                    navigation={true}
+                    // pagination={{
+                    //   clickable: true,
+                    // }}
+                    modules={[Navigation]}
+                    className="mySwiper mt-5"
+                >  {profilebyid?.post_data?.map((data) => (
+
+                    <SwiperSlide >
+                        {/* <div> */}
+                        <img src={data?.file ? baseurl + data?.file : dummy} className="modalpic" />
+                        {/* </div> */}
+                    </SwiperSlide>
+                ))}
+
+
+                </Swiper>
+
+                <div className="carousel-footer">
+                    <h4 className="carousel-footer_title">
+                        <h3 className="modal-title mt-3">{profilebyid?.post_title}       :)</h3>
+
+                    </h4>
+                    <p className="carousel-footer_body">
+                        {profilebyid?.post_description}
+                    </p>
+                    <p className="carousel-footer_price">${profilebyid?.price}    </p>
+
+                    {/* {profilebyid?.price !== 0 ? (
+                        <button onClick={handleclick} className="carousel-footer_button " data-dismiss="modal">Buy</button>
+                    ) : ("")} */}
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+</div>
+
+
+
+
+
+
+
+
+
+
+
+{unlock && (
+
+  <div className="unlocked_box">
+      <div className="row">
+
+          {modellistsprofileview?.post_purchases?.map((items, index) => (
+              <div className="col-10 col-sm-6 col-lg-4">
+                  <div className="unlocked_model_card">
+
+
+                      <Swiper
+                          spaceBetween={30}
+                          slidesPerView={1}
+                          onSlideChange={() => console.log("slide change")}
+                          onSwiper={(swiper) => console.log(swiper)}
+                      >
+                          {/* {items?.post_data?.map((data) => ( */}
+                          <SwiperSlide className="mb-4">
+                              <div className="model_card_img position-relative mb-4">
+
+                                  <img src={items?.post_image ? baseurl + items.post_image : dummy} className="img-fluid" />
+
+
+                              </div>
+
+                              <div className="unlocked_card_desc ">
+                                  <div className="unlocked_div">
+                                      <div className="unlocked_image_with_text_row">
+                                          <img className="img-fluid model_img" src={items?.post_image ? baseurl + items?.post_image : dummy} />
+                                          {/* <img className="img-fluid model_img" src={modelBg}/> */}
+                                          <p className="profile_name_one"> {items?.post_image} </p>
+                                      </div>
+
+
+
+                                      <div className="image_with_text_row_two">
+                                          <p className="unlocked_text">
+                                              <span className="unlocked_content_icon">
+                                                  <i className="fa-solid fa-unlock"></i>
+                                              </span>
+
+                                              Free
+                                          </p>
+                                          <p className="lock_text_clr unlocked_text">
+                                              <span className="locked_content_icon">
+                                                  <i className="fa-solid fa-lock"></i>
+                                              </span>
+
+                                              Locked
+                                          </p>
+                                      </div>
+
+                                  </div>
+                                  <div className="description_box">
+                                      <a className="product_heading" href="#">Lorem Ipsum</a>
+                                      <p className="product_description" >Lorem Ipsum is simply dummy text of the printing and typesetting industry.
+                                          Ipsum has been the industry's standard dummy text ever since the 1500s,</p>
+                                  </div>
+                              </div>
+
+                          </SwiperSlide>
+                          {/* ))} */}
+                      </Swiper>
+
+                      <div className="model_card_top_corner_img">
+                          <img src={modelCardTopCorner} />
+                      </div>
+
+                      <div className="model_card_bottom_corner_img">
+                          <img src={modelCardBottomCorner} />
+                      </div>
+
+                  </div>
+              </div>
+          ))}
+      </div>
+  </div>
+)}

@@ -30,6 +30,10 @@ const Login = () => {
       const response = await userLoginRequest(payload);
 
       if (response && response.success === true) {
+        await new Promise((resolve) => {
+          // notifys();
+          setTimeout(resolve, 3000); // Assuming the toast display duration is 3 seconds
+        });
         const userToken = response?.data;
         toastAlert('you have successfully logged in', ALERT_TYPES.SUCCESS);
         localStorage.setItem("userToken", userToken?.token);
@@ -103,7 +107,7 @@ const Login = () => {
                     <input type="submit" value="Login" />
                   </form>
                   <div className="for">
-                    <p className="forgot">Forgot Password?</p>
+                    {/* <p className="forgot">Forgot Password?</p> */}
                   </div>
                   <div className="divider">
                     {" "}
