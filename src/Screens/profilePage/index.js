@@ -100,7 +100,7 @@ const Profile = () => {
                 // setModellists(data)
                 setUnflow(response?.msg)
                 model_listview()
-
+                model_listview()
             } else {
                 // toastAlert(response.statusText, ALERT_TYPES.ERROR);
                 console.log("packege ", response.statusText)
@@ -149,7 +149,6 @@ const Profile = () => {
 
     const [modellistsprofileview, setModelprofileview] = useState({})
 
-    console.log("modellists", modellists)
 
 
     const model_listview = async () => {
@@ -378,15 +377,11 @@ const Profile = () => {
                                                     data-aos-duration="3000"
 
                                                 >
-                                                    {/* <img src={(baseurl + modellistsprofileview?.profile_pic) && (modelImg01)} style={stylesForSidebar} />
-                                        </div> */}
 
 
 
-                                                    <img src={(baseurl + modellistsprofileview?.profile_pic) && (modelImg01)} style={stylesForSidebar} />
-                                                    <div className="profile_edit_icon">  <input type="file" className="edit_icon_input" name="image" /> <i class="fa-regular fa-pen-to-square "></i>
-                                                    </div>
-                                                    {/*  onChange={handlefile}  */}
+
+                                                    <img src={(baseurl + modellistsprofileview?.profile_pic) || (modelImg01)} style={stylesForSidebar} />
 
                                                 </div>
 
@@ -413,18 +408,6 @@ const Profile = () => {
                                                     >
                                                         <span className="user_access">{modellistsprofileview?.email || 'HOTMODEL1234@gmail.com'}</span>
                                                     </div>
-
-                                                    {/* <p
-                                                className="user_profile_desc"
-                                                data-aos="fade-right"
-                                                data-aos-anchor-placement="center-bottom"
-                                                data-aos-duration="3000"
-                                            >
-                                                {modellistsprofileview?.bio || 'Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry standard' }
-
-                      </p> */}
-
-
                                                     <div className="main_about_div">
                                                         <h6 className="hot_model_name  about_text">About</h6>
                                                         <p className="user_profile_about">
@@ -473,7 +456,7 @@ const Profile = () => {
                                                 </div>
 
                                                 <button onClick={sendmessage} class="followers_numbers aos-init aos-animate" data-aos="fade-left" data-aos-anchor-placement="center-bottom" data-aos-duration="3000"><i class="fa-solid fa-envelope profile_btn_icons"></i>Inbox</button>
-                                                <button onClick={flowmodel} class="followers_numbers aos-init aos-animate mt-3" data-aos="fade-left" data-aos-anchor-placement="center-bottom" data-aos-duration="3000"><i class="fa-solid fa-user-plus profile_btn_icons"></i>{flow == "Following Successfully" ? "UnFollow" : "Follow"}</button>
+                                                <button onClick={flowmodel} class="followers_numbers aos-init aos-animate mt-3" data-aos="fade-left" data-aos-anchor-placement="center-bottom" data-aos-duration="3000"><i class="fa-solid fa-user-plus profile_btn_icons"></i>{modellistsprofileview?.follow == true ? "UnFollow" : "Follow"}</button>
 
                                             </div>
 
@@ -485,20 +468,12 @@ const Profile = () => {
                                                 <img src={modelCardBottomCorner} />
                                             </div>
                                         </div>
-                              
+
                                     </div>
                                 </div>
 
                                 <div className="col-md-9">
                                     <div className="feet_container_main">
-
-
-
-
-
-
-
-
 
                                         {modellist && (
                                             <div className="row  ">
@@ -605,7 +580,7 @@ const Profile = () => {
                                                     >
                                                         Following
                                                     </h3>
-                                                    <div className="divider_row"></div>
+                                                    {/* <div className="divider_row"></div> */}
                                                 </div>
                                                 <div className="col-lg-3 col-md-4 col-sm-12 pt-4" data-aos="fade-up" data-aos-duration="3000">
                                                     <div className="follow_img_div">

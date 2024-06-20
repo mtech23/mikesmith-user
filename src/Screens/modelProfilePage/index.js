@@ -72,7 +72,7 @@ import { useNavigate } from "react-router-dom";
 
 const ModelProfile = () => {
 
-
+  const apiUrl = process.env.REACT_APP_BASE_URL;
 
   const post_limit = localStorage.getItem('post_limit')
   const [filterid, setfilterid] = useState()
@@ -287,7 +287,52 @@ const ModelProfile = () => {
       // toastAlert(error, ALERT_TYPES.ERROR);
     }
   };
-  console.log("modellistsprofileview?.user_follower", userdata?.user_follower)
+  const handlefile = (event) => {
+    const file = event.target.files[0];
+
+    if (file) {
+      setUserdata((prevData) => ({
+        ...prevData,
+        image: file,
+      }));
+
+      const logoutData = localStorage.getItem('userToken');
+      document.querySelector('.loaderBox')?.classList?.remove("d-none");
+
+      const formDataMethod = new FormData();
+      formDataMethod.append('image', file);
+
+      fetch(`${apiUrl}/public/api/user/profile-add-edit`, {
+        method: 'POST',
+        headers: {
+          'Authorization': `Bearer ${logoutData}`,
+        },
+        body: formDataMethod,
+      })
+        .then(response => {
+          if (!response.ok) {
+            throw new Error('Network response was not ok');
+          }
+          return response.json();
+        })
+        .then((data) => {
+          console.log("datas", data.data);
+          // document.querySelector('.loaderBox').classList.add("d-none");
+
+          if (data?.status === true) {
+            // setLoading(true)
+            modelprofile()
+
+          } else {
+            // Handle other responses
+          }
+        })
+        .catch((error) => {
+          document.querySelector('.loaderBox').classList.add("d-none");
+          console.error("Error:", error);
+        });
+    }
+  };
   return (
     <div>
       <div>
@@ -313,7 +358,15 @@ const ModelProfile = () => {
                         data-aos-anchor-placement="center-bottom"
                         data-aos-duration="3000"
                       >
-                        <img src={(baseurl + userdata?.profile_pic) && (modelImg01)} style={stylesForSidebar} />
+                        {/* <img src={(baseurl + userdata?.profile_pic) && (modelImg01)} style={stylesForSidebar} /> */}
+                        <img src={
+                          userdata?.profile_pic instanceof File
+                            ? URL.createObjectURL(userdata?.profile_pic)
+                            : baseurl + userdata?.profile_pic
+                        }
+                          style={stylesForSidebar} />
+                        <div className="profile_edit_icon">  <input type="file" className="edit_icon_input" name="image" onChange={handlefile} /> <i class="fa-regular fa-pen-to-square "></i>
+                        </div>
                       </div>
 
                       <div className="user_info">
@@ -418,14 +471,12 @@ const ModelProfile = () => {
                           data-aos-anchor-placement="center-bottom"
                           data-aos-duration="3000"
                         >
-                          <button className=" followers_numbers text-center mb-2" onClick={following}>  Following</button>
+                          <button className=" followers_numbers text-center  " onClick={following}>  Following</button>
                         </div>
-                        <span className="followers_number">
-                          {/* <span className="no_of_follows">{userdata?.following || 0} </span> */}
-                        </span>
+                     
                       </div>
 
-                      <div className="d-flex justify-content-between align-items-center pt-4 sec-rqst-btns">
+                      <div className="d-flex justify-content-between align-items-center pt-2 sec-rqst-btns">
 
 
                         <button
@@ -555,7 +606,7 @@ const ModelProfile = () => {
                         <div className="col-lg-3 col-md-4 col-sm-12 pt-4" data-aos="fade-up" data-aos-duration="3000">
                           <div className="follow_img_div">
                             <Link to={`/profile-page/${data?.friend_detail?.id}`}>
-                              <img className="img-fluid follow_img" src={data?.friend_detail?.profile_pic ? baseurl + data?.friend_detail?.profile_pic : dummy} alt="Profile" />
+                              <img className="img-fluid follow_img" src={ baseurl + data?.friend_detail?.profile_pic } alt="Profile" />
                             </Link>                                                <p className="image_text">{data?.friend_detail?.name}</p>
                             <div className="locked_div">
                               <p className="free_text">

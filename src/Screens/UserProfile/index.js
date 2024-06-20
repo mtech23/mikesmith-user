@@ -181,7 +181,9 @@ const UserProfile = () => {
 
 
 
-    const [modellistsprofileview, setModelprofileview] = useState({})
+    const [modellistsprofileview, setModelprofileview] = useState({
+        image : ""
+    })
 
     console.log("modellists", modellists)
 
@@ -335,7 +337,7 @@ const UserProfile = () => {
         const file = event.target.files[0];
 
         if (file) {
-            setUserNewData((prevData) => ({
+            setModelprofileview((prevData) => ({
                 ...prevData,
                 image: file,
             }));
@@ -364,7 +366,9 @@ const UserProfile = () => {
                     // document.querySelector('.loaderBox').classList.add("d-none");
 
                     if (data?.status === true) {
+                        // setLoading(true)
                         model_listview()
+
                     } else {
                         // Handle other responses
                     }
@@ -404,8 +408,7 @@ const UserProfile = () => {
         // "objectFit": "contain",
     };
 
-
-
+    console.log("modellistsprofileview", modellistsprofileview)
 
     return (
         <>
@@ -437,7 +440,12 @@ const UserProfile = () => {
                                                     data-aos-duration="3000"
 
                                                 >
-                                                    <img src={(baseurl + modellistsprofileview?.profile_pic) && (modelImg01)} style={stylesForSidebar} />
+                                                    <img src={
+                                                        modellistsprofileview?.profile_pic instanceof File
+                                                            ? URL.createObjectURL(modellistsprofileview?.profile_pic)
+                                                            : baseurl + modellistsprofileview?.profile_pic
+                                                    }
+                                                        style={stylesForSidebar} />
                                                     <div className="profile_edit_icon">  <input type="file" className="edit_icon_input" name="image" onChange={handlefile} /> <i class="fa-regular fa-pen-to-square "></i>
                                                     </div>
                                                 </div>
@@ -666,7 +674,7 @@ const UserProfile = () => {
 
 
                                                     <div className="col-sm-6 col-lg-4">
-                                                      
+
 
                                                         <div className="first_model_card profile_first_model">
 
@@ -773,7 +781,7 @@ const UserProfile = () => {
                                                             </div>
                                                         </div>
                                                     </div>))}
-                                           
+
                                             </div>
                                         )}
 
@@ -853,7 +861,7 @@ const UserProfile = () => {
                                                                 <p className="message_date">29 May 08:12 AM</p>
                                                                 <p className="message_para_reply">Coming</p>
                                                             </div>
-                                                          
+
                                                         </div>
 
 

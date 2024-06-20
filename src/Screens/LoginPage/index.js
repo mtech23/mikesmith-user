@@ -99,7 +99,7 @@ const Login = () => {
                     <input
                       class="pass"
                       type="password"
-                      placeholder=" Enter Your Password"
+                      placeholder=" Enter Your Password "
                       name="password"
                       required
                     />

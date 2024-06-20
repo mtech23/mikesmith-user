@@ -50,14 +50,14 @@ export const userLoginRequest = async (data) => {
     const productData = await res.json(); // Parse response JSON
     console.log(productData, "res");
     if (!res.ok) {
-      toastAlert(productData?.message, ALERT_TYPES.ERROR);
+      // toastAlert(productData?.message, ALERT_TYPES.ERROR);
     } else {
       // toastAlert(productData?.message, ALERT_TYPES.SUCCESS);
     }
 
     return productData; // Return parsed data
   } catch (error) {
-    toastAlert(error, ALERT_TYPES.ERROR); // Handle error
+    // toastAlert(error, ALERT_TYPES.ERROR); // Handle error
     throw error; // Rethrow error to be handled by caller
   }
 };
@@ -726,33 +726,38 @@ export const modelprofiletag = async (id) => {
 
 
 //Get User Profile view
-export const Userprogileview = async () => {
+export const Userprogileview = async (id) => {
   try {
-    const res = await fetch(`${url}/public/api/user/profile-get`, {
-      method: "Get",
+    // Determine the URL based on whether an ID is provided
+    const endpoint = id ? `${url}/public/api/user/profile-get/${id}` : `${url}/public/api/user/profile-get`;
+
+    const res = await fetch(endpoint, {
+      method: "GET", // Method should be in uppercase
       headers: {
         "Content-Type": "application/json",
         Authorization: `Bearer ${localStorage.getItem("userToken")}`,
       },
     });
-    console.log(res, "res");
-    // Ensure response is ok before proceeding
 
+    console.log(res, "res");
     const productData = await res.json(); // Parse response JSON
-    console.log(productData, "res");
+    console.log(productData, "productData");
+
     if (!res.ok) {
+      // Handle error response
       // toastAlert(productData?.msg, ALERT_TYPES.ERROR);
     } else {
+      // Handle successful response
       // toastAlert(productData?.msg, ALERT_TYPES.SUCCESS);
     }
 
     return productData; // Return parsed data
   } catch (error) {
-    // toastAlert(error, ALERT_TYPES.ERROR); // Handle error
+    // Handle error
+    // toastAlert(error, ALERT_TYPES.ERROR);
     throw error; // Rethrow error to be handled by caller
   }
 };
-
 
 
 
